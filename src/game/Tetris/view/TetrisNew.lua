@@ -141,13 +141,13 @@ function TetrisNew:merge(block)
     local blockArray = block:getBlockArray()
     local tx = block.model.x
     local ty = block.model.y
-    local index = 4
-    for i = 4, 1, -1 do
+    local index = 1
+    for i = 1, 4 do
         for j = 1, 4 do
             if blockArray[i][j] ~= 0 then
                 local bx, by = j, (4 - i) + 1
                 self.grids[ty + by][tx + bx] = block:getBlock(index)
-                index = index - 1
+                index = index + 1
             end
         end
     end
@@ -813,6 +813,7 @@ function TetrisNew:refreshGrid()
             local x, y = block:getPosition()
             block:setPosition(cc.p(x, y - self.blockWidth * block.moveLines))
             block.moveLines = 0
+            
         end
         self.upperBlockList = {}
         self:print()

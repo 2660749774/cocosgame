@@ -378,7 +378,7 @@ function TetrisCore:merge(block)
     local blockArray = block:getBlockArray()
     local tx = block.x
     local ty = block.y
-    for i = 4, 1, -1 do
+    for i = 1, 4 do
         for j = 1, 4 do
             if blockArray[i][j] ~= 0 then
                 local bx, by = j, (4 - i) + 1
