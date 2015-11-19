@@ -38,7 +38,6 @@ function TetrisCore:ctor(isNet, width, height)
     self.block = nil
     self.nextBlock = nil
     self.eventStack = {}
-    self.gridsProperties = {}
 end
 
 --------------------------------
@@ -318,7 +317,10 @@ function TetrisCore:checkBlockEliminate()
             eliminateNum = eliminateNum + 1
             
             for k = 1, #self.grids[i] do
-                table.insert(eliminateGrids, {y = i, x = k})
+                local block = self.grids[i][k]
+                block.x = k
+                block.y = i
+                table.insert(eliminateGrids, block)
             end
         else
             eliminateArr[i] = 0
@@ -351,11 +353,8 @@ function TetrisCore:checkBlockEliminate()
 
         -- 处理特殊方块
         for _, block in pairs(eliminateGrids) do
-            local blockProp = self:getBlockProp(block.x, block.y)
-            if blockProp and blockProp.blockType == 4 then
+            if block.blockType == 4 then
                 self:insertGridBlock(block.x, block.y, 2, 6)
-            elseif blockProp then
-                self.gridsProperties[block.y][block.x] = nil
             end
         end
         
@@ -365,7 +364,7 @@ function TetrisCore:checkBlockEliminate()
             name = "Eliminate",
             eliminateArr = eliminateArr
         })
-        self:print()
+        -- self:print()
     end
 
     return eliminateNum > 0
@@ -382,7 +381,7 @@ function TetrisCore:merge(block)
         for j = 1, 4 do
             if blockArray[i][j] ~= 0 then
                 local bx, by = j, (4 - i) + 1
-                self.grids[ty + by][tx + bx] = blockArray[i][j]
+                self.grids[ty + by][tx + bx] = BlockProp:create("", 1)
             end
         end
     end
@@ -421,9 +420,8 @@ function TetrisCore:insertGridBlock(x, y, value, gridType)
             self.grids[i][x] = 0
         end          
     end
-    self.grids[y][x] = value
     -- 指定位置插入一个水滴方块
-    self.gridsProperties[y][x] = BlockProp:create("", gridType)
+    self.grids[y][x] = BlockProp:create("", gridType)
 end
 
 --------------------------------
@@ -437,10 +435,8 @@ function TetrisCore:initGrid(width, height)
         for j = 1, self.col do
             if self.grids[i] == nil then
                 self.grids[i] = {}
-                self.gridsProperties[i] = {}
             end
             table.insert(self.grids[i], 0)
-            table.insert(self.gridsProperties[i], nil)
         end
     end
 end
@@ -467,18 +463,16 @@ function TetrisCore:initGridBlock(conf)
                 if iskindof(conf, "TetrisClearStoneConf") then
                     blockType = 5
                 end
-                local prob = BlockProp:create(pic, blockType)
-                self.grids[gridY][gridX] = 2
-                self.gridsProperties[gridY][gridX] = prob    
+                local prop = BlockProp:create(pic, blockType)
+                self.grids[gridY][gridX] = prop
             elseif blockArray[i][j] == 2 then
                 local gridX = j
                 local gridY = #blockArray - i + 1
 
                 -- 创建方块配置
                 local blockType = 2
-                local prob = BlockProp:create("fangkuai9.png", blockType)
-                self.grids[gridY][gridX] = 2
-                self.gridsProperties[gridY][gridX] = prob  
+                local prop = BlockProp:create("fangkuai9.png", blockType)
+                self.grids[gridY][gridX] = prop
             elseif blockArray[i][j] == 3 then
                 local gridX = j
                 local gridY = #blockArray - i + 1
@@ -486,17 +480,15 @@ function TetrisCore:initGridBlock(conf)
                 -- 创建方块配置
                 local blockType = 3
                 local prob = BlockProp:create("fangkuai11.png", blockType)
-                self.grids[gridY][gridX] = 2
-                self.gridsProperties[gridY][gridX] = prob  
+                self.grids[gridY][gridX] = prop
             elseif blockArray[i][j] == 4 then
                 local gridX = j
                 local gridY = #blockArray - i + 1
 
                 -- 创建方块配置
                 local blockType = 4
-                local prob = BlockProp:create(pic, blockType)
-                self.grids[gridY][gridX] = 2
-                self.gridsProperties[gridY][gridX] = prob  
+                local prop = BlockProp:create(pic, blockType)
+                self.grids[gridY][gridX] = prop
             end
         end
     end
@@ -507,6 +499,7 @@ end
 -- @function [parent=#TetrisCore] print
 function TetrisCore:print()
     local fmt = ""
+    local t = {}
     for i = 1, self.col do
         if i == 1 then
             fmt = fmt .. "%s"
@@ -514,8 +507,20 @@ function TetrisCore:print()
             fmt = fmt .. " %s"
         end
     end
+    for i = 1, self.row do
+        for j = 1, #self.grids[i] do
+            if t[i] == nil then
+                t[i] = {}
+            end
+            if self.grids[i][j] ~= 0 then
+                t[i][j] = self.grids[i][j].blockType
+            else
+                t[i][j] = '0'
+            end
+        end
+    end
     for i = self.row, 1, -1 do
-        log:info(fmt, unpack(self.grids[i]))
+        log:info(fmt, unpack(t[i]))
     end
     log:info("-------------------------------------------")
 end
@@ -530,13 +535,6 @@ function TetrisCore:pollEvent()
         table.remove(self.eventStack, 1)
     end
     return event
-end
-
---------------------------------
--- 获取方块配置
--- @function [parent=#TetrisCore] getBlockProp
-function TetrisCore:getBlockProp(x, y)
-    return self.gridsProperties[y][x]
 end
 
 

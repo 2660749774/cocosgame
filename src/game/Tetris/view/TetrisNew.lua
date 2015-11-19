@@ -487,8 +487,8 @@ function TetrisNew:initGridView()
         for x=1, #grids[y] do
             if grids[y][x] == 0 then
                 self.grids[y][x] = 0
-            elseif grids[y][x] == 2 then
-                self.grids[y][x] = self:createGridBlock(self.core:getBlockProp(x, y), x, y)
+            else
+                self.grids[y][x] = self:createGridBlock(grids[y][x], x, y)
             end
         end
     end
@@ -816,7 +816,7 @@ function TetrisNew:refreshGrid()
             
         end
         self.upperBlockList = {}
-        self:print()
+        -- self:print()
     end
 end
 
