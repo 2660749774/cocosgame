@@ -1,0 +1,91 @@
+<Solution>
+  <PropertyGroup Name="cocosgame" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="res">
+          <PlistImageFolder Image="pack.png" PListFile="pack.plist" Name=".pack_PList.Dir">
+            <PlistImageFile Name="BugAnt.png" Key="BugAnt.png" />
+            <PlistImageFile Name="BugSpider.png" Key="BugSpider.png" />
+            <PlistImageFile Name="ExitButton.png" Key="ExitButton.png" />
+            <PlistImageFile Name="MainSceneBg.jpg" Key="MainSceneBg.jpg" />
+            <PlistImageFile Name="PlayButton.png" Key="PlayButton.png" />
+            <PlistImageFile Name="PlaySceneBg.jpg" Key="PlaySceneBg.jpg" />
+            <PlistImageFile Name="Star.png" Key="Star.png" />
+          </PlistImageFolder>
+          <Folder Name="tetris" />
+          <Image Name="BugAnt.png" />
+          <Audio Name="BugDead.wav" />
+          <Audio Name="BugEnterHole.wav" />
+          <Image Name="BugSpider.png" />
+          <Image Name="ExitButton.png" />
+          <Image Name="HelloWorld.png" />
+          <Image Name="input_bg.png" />
+          <Image Name="PlaySceneBg.jpg" />
+          <Image Name="RadioButtonOff.png" />
+          <Image Name="RadioButtonOffDisabled.png" />
+          <Image Name="RadioButtonOffPressed.png" />
+          <Image Name="RadioButtonOn.png" />
+          <Image Name="RadioButtonOnDisabled.png" />
+          <Image Name="RadioButtonOnPressed.png" />
+          <Image Name="SliderBar.png" />
+          <Image Name="SliderButton.png" />
+          <Image Name="Star.png" />
+        </Folder>
+        <Folder Name="tetris">
+          <Image Name="fangkuai.png" />
+        </Folder>
+        <Folder Name="ui">
+          <Folder Name="button">
+            <Image Name="choose.png" />
+            <Image Name="choose_bg.png" />
+            <Image Name="green_btn.png" />
+          </Folder>
+          <Folder Name="loading">
+            <Image Name="bg.png" />
+            <Image Name="load_bg.png" />
+            <Image Name="load_pregress2.png" />
+            <Image Name="load_progress1.png" />
+            <Image Name="load_txt.png" />
+          </Folder>
+          <Folder Name="slider">
+            <Image Name="slider.png" />
+            <Image Name="slider_1.png" />
+            <Image Name="slider_2.png" />
+            <Image Name="slider_bg.png" />
+          </Folder>
+          <Folder Name="tetris">
+            <Image Name="bg.png" />
+            <Image Name="bg_bk.png" />
+            <Image Name="del_line.png" />
+            <Image Name="down.png" />
+            <Image Name="down_fast.png" />
+            <Image Name="fangkuai.png" />
+            <Image Name="hang.png" />
+            <Image Name="left.png" />
+            <Image Name="NEXT.png" />
+            <Image Name="number.png" />
+            <Image Name="right.png" />
+            <Image Name="scene_bg.png" />
+            <Image Name="shift.png" />
+            <Image Name="small number.png" />
+          </Folder>
+        </Folder>
+        <Project Name="ButtonTestScene.csd" Type="Scene" />
+        <Project Name="CommTips.csd" Type="Node" />
+        <Project Name="ListTestPanel.csd" Type="Scene" />
+        <Project Name="LoadingPanel.csd" Type="Layer" />
+        <Project Name="LoadingScene.csd" Type="Scene" />
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="PageTestScene.csd" Type="Scene" />
+        <Project Name="ParticleTestPanel.csd" Type="Scene" />
+        <Project Name="scrollTestPanel.csd" Type="Scene" />
+        <Project Name="SliderTestScene.csd" Type="Scene" />
+        <Project Name="TestLuaScene.csd" Type="Scene" />
+        <Project Name="TetrisMainScene.csd" Type="Scene" />
+        <Project Name="TetrisScene.csd" Type="Scene" />
+        <Project Name="TetrisScene_Net.csd" Type="Scene" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

@@ -1,43 +1,35 @@
-# Compiled Lua sources
-luac.out
-1111
-2222
-
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
-
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
+bin
+.idea
+.gradle
+build
+toolkit.*
+gradle
+.vs
+.vscode
+cocosgame.sln
+cocosgame.luaproj
+cocosgame.config
+game.log
+frameworks/cocos2d-x
+frameworks/cocos2d-x*
+frameworks/runtime-src/proj.win32/.vs
+frameworks/runtime-src/proj.win32/Debug.win32
+frameworks/runtime-src/proj.win32/game.sdf
+frameworks/runtime-src/proj.win32/game.opensdf
+frameworks/runtime-src/proj.win32/game.VC.db
+frameworks/runtime-src/proj.win32/game.VC.*
+frameworks/runtime-src/proj.linux
+xcuserdata
+project.xcworkspace
+.DS_Store
+simulator/win32/game.pdb
+simulator/win32/game.log
+simulator/win32/game.ilk
+src/quick
+src/app
+src/packages
+cocostudio-ui/cocosgame/frameworks
+cocostudio-ui/cocosgame/res
+cocostudio-ui/cocosgame/src
+cocostudio-ui/**/*.udf
+cocostudio-ui/res
