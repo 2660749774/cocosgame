@@ -1,4 +1,5 @@
 bin
+.luac
 .idea
 .gradle
 build
