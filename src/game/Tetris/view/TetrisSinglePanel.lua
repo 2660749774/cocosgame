@@ -79,10 +79,11 @@ function TetrisSinglePanel:gameStart(data)
 
     -- 处理居中
     local offsetx, offsety = nextBlock:getOffSet()
-    nextBlock:setPosition(cc.p(offsetx + nextBlock.nextOffset, offsety))
+    nextBlock:setPosition(cc.p(0, -offsety))
     self.nextBg:addChild(nextBlock)
 
     -- 游戏开始
+    self.tetris.isAI = true
     self.tetris:gameStart()
 end
 
@@ -97,7 +98,7 @@ function TetrisSinglePanel:roundStart(oldNextBlock, newNextBlock)
 
     -- 显示下一个方块
     local offsetx, offsety = newNextBlock:getOffSet()
-    newNextBlock:setPosition(cc.p(offsetx + newNextBlock.nextOffset, offsety))
+    newNextBlock:setPosition(cc.p(0, -offsety))
     self.nextBg:addChild(newNextBlock)
 
     -- 按钮状态重置

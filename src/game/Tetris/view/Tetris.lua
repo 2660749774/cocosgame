@@ -13,6 +13,7 @@ local Block4 = import(".Block4")
 local Block5 = import(".Block5")
 local Block6 = import(".Block6")
 local Block7 = import(".Block7")
+local ai = import("..AI.TetrisAI")
 
 --------------------------------
 -- 创建方法
@@ -36,6 +37,7 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     self.randomTimes = 1
     self.block = nil
     self.nextBlock = nil
+    self.isAI = false
 end
 
 --------------------------------
@@ -43,7 +45,7 @@ end
 -- @function [parent=#Tetris] playGame
 function Tetris:doUpdate()
     -- if self.isSelf then
-        log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self:getLocalFrameNum(), self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
+        -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self:getLocalFrameNum(), self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
     -- end
     if self.gameOver or self.disableDown then
         return
@@ -61,6 +63,56 @@ function Tetris:doUpdate()
         else
             self.block:setPosition(cc.p(x, y - self.blockWidth))
             self.checkDownCount = 0
+        end
+    end
+end
+
+--------------------------------
+-- 进行AI模拟
+-- @function [parent=#Tetris] playGame
+function Tetris:aiSimulate(dt)
+    if self.gameOver or self.disableDown then
+        return
+    end
+
+    if self.block == nil then
+        return
+    end
+    if self.aicd and self.aicd > dt then
+        self.aicd = self.aicd - dt
+        return
+    elseif self.aicd == nil then
+        self.aicd = 1.5
+        return
+    end
+
+    if self.moves  == nil then
+        local results = ai:makeBestDecision(self.grids, self.block)
+        self.moves = results.action_moves
+        self.moveStep = 1
+    elseif self.moveStep <= #self.moves then
+        local action = self.moves[self.moveStep]
+        self.moveStep = self.moveStep + 1
+        self:doAction(action)
+    end
+
+
+end
+
+function Tetris:doAction(action) 
+    if self.block then
+        local x, y = self.block:getPosition()
+        local idx = self.block.curIndex;
+
+        if action.x > x then
+            self:handleRight(nil, 2)
+        elseif action.x < x then
+            self:handleLeft(nil, 1)
+        elseif action.idx ~= idx then
+            self:handleShift(nil, 3)
+        else
+            self:handleDownLow(nil, 5)
+            self.aicd = 5
         end
     end
 end
@@ -87,7 +139,6 @@ function Tetris:handleServerFrame(eventList)
                 self:roundStart()
             end
         elseif data.protoId == protos.REMOVE_LINES then
-            log:showTable(data)
             self:addLines(data.args)
         end
     end
@@ -127,9 +178,9 @@ function Tetris:roundStart()
     -- 创建方块
     self.block = self:createBlock(self.nextBlock.blockType, self.nextBlock.angle, self.nextBlock.pic)
     if self.isNet then
-        self.block:setPosition(cc.p(165, 489))
+        self.block:setPosition(cc.p(165, 435))
     else
-        self.block:setPosition(cc.p(165, 759))
+        self.block:setPosition(cc.p(165, 705))
     end
     self.bg:addChild(self.block)
 
@@ -162,6 +213,9 @@ function Tetris:roundStart()
     -- 充值加速器状态
     self.fixScheduler:setTimeScale(1)
     self.disableDown = false
+    self.moves = nil
+    self.moveStep = 1
+    self.aicd = nil
 end
 
 --------------------------------
@@ -182,6 +236,9 @@ function Tetris:gameStart()
         self.fixScheduler:updateServerFrameNum(-1)
     end
     self.updateTask = self.fixScheduler:scheduleTask(handler(self, self.doUpdate), 1)
+    if self.isAI then
+        self.aiTask = self.fixScheduler:scheduleTask(handler(self, self.aiSimulate))
+    end
 
     -- 回合开始
     self:roundStart()
@@ -439,6 +496,7 @@ function Tetris:_handleDown(block, simulate)
         self.gameOver = true
         self.parent:notifyGameOver(self.isSelf)
     elseif not simulate then
+        self.disableDown = true
         -- 消除判断
         local maxLine = -1
         local removeLines = {}
@@ -525,6 +583,9 @@ function Tetris:removeCallBack(sender)
     -- 告知服务器
     if self.removeLineNums > 0 and self.isSelf then
         self.parent:updateScore(self.removeLineNums)
+    elseif self.removeLineNums > 0 then
+        -- 通知服务器
+        cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums .. ",true")
     end
 
     -- 更新统计数据
@@ -591,19 +652,19 @@ end
 function Tetris:createBlock(type, angle, pic)
     local block = nil
     if type == 1 then
-        block = Block1:create(angle, 3, 300, pic)
+        block = Block1:create(angle, 3, 273, pic)
     elseif type == 2 then
-        block = Block2:create(angle, 3, 300, pic)
+        block = Block2:create(angle, 3, 273, pic)
     elseif type == 3 then
-        block = Block3:create(angle, 3, 300, pic)
+        block = Block3:create(angle, 3, 273, pic)
     elseif type == 4 then
-        block = Block4:create(angle, 3, 300, pic)
+        block = Block4:create(angle, 3, 273, pic)
     elseif type == 5 then
-        block = Block5:create(angle, 3, 300, pic)
+        block = Block5:create(angle, 3, 273, pic)
     elseif type == 6 then
-        block = Block6:create(angle, 3, 300, pic)
+        block = Block6:create(angle, 3, 273, pic)
     elseif type == 7 then
-        block = Block7:create(angle, 3, 300, pic)
+        block = Block7:create(angle, 3, 273, pic)
     end
 
     return block

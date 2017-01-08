@@ -109,6 +109,9 @@ function TetrisMultiPanel:handlePush(response)
     end
 
     if response.data.schedule ~= nil then
+        if response.data.schedule.def == nil then
+            self.targetTetris.isAI = true
+        end
         cmgr:send(actions.readyFight)
     elseif response.data.event then
         event = response.data.event
@@ -133,7 +136,7 @@ function TetrisMultiPanel:handlePush(response)
                 self:gameStart(data)
             elseif data.protoId == protos.REMOVE_LINES then
                 -- 增加行数
-                if data.playerId == self.playerId then
+                if not data.isAI and data.playerId == self.playerId then
                     self.targetTetris:addServerFrame(self.frameNum, data)
                 else
                     self.tetris:addServerFrame(self.frameNum, data)
@@ -176,7 +179,7 @@ function TetrisMultiPanel:gameStart(data)
 
     -- 处理居中
     local offsetx, offsety = nextBlock:getOffSet()
-    nextBlock:setPosition(cc.p(offsetx + nextBlock.nextOffset, offsety))
+    nextBlock:setPosition(cc.p(0, -offsety))
     self.nextBg:addChild(nextBlock)
 
     -- 游戏开始
@@ -197,7 +200,7 @@ function TetrisMultiPanel:roundStart(oldNextBlock, newNextBlock)
 
     -- 显示下一个方块
     local offsetx, offsety = newNextBlock:getOffSet()
-    newNextBlock:setPosition(cc.p(offsetx + newNextBlock.nextOffset, offsety))
+    newNextBlock:setPosition(cc.p(0, -offsety))
     self.nextBg:addChild(newNextBlock)
 
     -- 解除长按状态

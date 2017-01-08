@@ -21,7 +21,7 @@ function TetrisScene:onCreate()
     self.inputHost:setAnchorPoint(0.5, 0.5)
     self.inputHost:setPosition(125, 35)
     self.inputHost:setFontColor(cc.c3b(0, 128, 0))
-    self.inputHost:setText("127.0.0.1")
+    self.inputHost:setText("192.168.0.116")
     self.inputHost:setInputMode(6)
     layout['bg_input']:addChild(self.inputHost)
     
