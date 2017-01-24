@@ -55,6 +55,17 @@
             <Image Name="slider_bg.png" />
           </Folder>
           <Folder Name="tetris">
+            <Folder Name="power">
+              <Image Name="bg1.png" />
+              <Image Name="bg2.png" />
+              <Image Name="line.png" />
+              <Image Name="square1.png" />
+              <Image Name="square2.png" />
+              <Image Name="square3.png" />
+              <Image Name="square4.png" />
+              <Image Name="start_bg.png" />
+              <Image Name="unopen_bg.png" />
+            </Folder>
             <Image Name="bg.png" />
             <Image Name="bg_bk.png" />
             <Image Name="del_line.png" />
@@ -85,6 +96,8 @@
         <Project Name="TetrisMainScene.csd" Type="Scene" />
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
+        <Project Name="TetrisPowerStart.csd" Type="Scene" />
+        <Project Name="TetrisPowerLoop.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
