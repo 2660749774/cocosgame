@@ -83,7 +83,7 @@ function TetrisSinglePanel:gameStart(data)
     self.nextBg:addChild(nextBlock)
 
     -- 游戏开始
-    self.tetris.isAI = true
+    self.tetris.isAI = false
     self.tetris:gameStart()
 end
 

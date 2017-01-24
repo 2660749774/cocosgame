@@ -40,6 +40,8 @@ function TetrisScene:createPowerView()
     self.powerNum = 2
     self.powerStartArmyNum = 59
     self.powerLoopArmyNum = 66
+    self.currPowerId = 2
+    self.currArmyId = 10
 
     -- 创建TableView
     self.tableView = cc.TableView:create(cc.size(display.width, display.height))
@@ -128,8 +130,17 @@ function TetrisScene:fillStartCell(cell, idx)
     local bg = layout['bg']
     for i = 1, self.powerStartArmyNum do 
         local btn = layout['btn' .. i]
-        btn:setTag((idx + 1) * 1000 + i)
-        btn:addClickEventListener(handler(self, self.handleArmyClick))
+        local powerId = idx + 1
+        if powerId > self.currPowerId or (powerId == self.currPowerId and i > self.currArmyId) then
+            btn:setVisible(false)
+        else
+            local pic = string.format("ui/tetris/power/square%s.png", (math.floor(i / 10) % 4 + 1))
+            btn:loadTextureNormal(pic,0)
+            btn:loadTexturePressed(pic,0)
+            btn:loadTextureDisabled(pic,0)
+            btn:setTag(powerId * 1000 + i)
+            btn:addClickEventListener(handler(self, self.handleArmyClick))
+        end
     end
     bg:setPositionX(display.cx)
     cell:addChild(layout['root'])
@@ -142,8 +153,17 @@ function TetrisScene:fillEndCell(cell, idx)
     local layout = require("layout.TetrisPowerLoop").create()
     for i = 1, self.powerLoopArmyNum do 
         local btn = layout['btn' .. i]
-        btn:setTag((idx + 1) * 1000 + i)
-        btn:addClickEventListener(handler(self, self.handleArmyClick))
+        local powerId = idx + 1
+        if powerId > self.currPowerId or (powerId == self.currPowerId and i > self.currArmyId) then
+            btn:setVisible(false)
+        else
+            local pic = string.format("ui/tetris/power/square%s.png", (math.floor(i / 10) % 4 + 1))
+            btn:loadTextureNormal(pic,0)
+            btn:loadTexturePressed(pic,0)
+            btn:loadTextureDisabled(pic,0)
+            btn:setTag(powerId * 1000 + i)
+            btn:addClickEventListener(handler(self, self.handleArmyClick))
+        end
     end
     local bg = layout['bg']
     local bgSize = bg:getContentSize()
@@ -164,8 +184,17 @@ function TetrisScene:fillLoopCell(cell)
     local layout = require("layout.TetrisPowerLoop").create()
     for i = 1, self.powerLoopArmyNum do 
         local btn = layout['btn' .. i]
-        btn:setTag((idx + 1) * 1000 + i)
-        btn:addClickEventListener(handler(self, self.handleArmyClick))
+        local powerId = idx + 1
+        if powerId > self.currPowerId or (powerId == self.currPowerId and i > self.currArmyId) then
+            btn:setVisible(false)
+        else
+            local pic = string.format("ui/tetris/power/square%s.png", (math.floor(i / 10) % 4 + 1))
+            btn:loadTextureNormal(pic,0)
+            btn:loadTexturePressed(pic,0)
+            btn:loadTextureDisabled(pic,0)
+            btn:setTag(powerId * 1000 + i)
+            btn:addClickEventListener(handler(self, self.handleArmyClick))
+        end
     end
     local bg = layout['bg']
     bg:setPositionX(display.cx)
