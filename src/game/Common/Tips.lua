@@ -42,8 +42,10 @@ function Tips._createTips(msg, interval)
     -- 创建Tips
     interval = interval or 2
     local layout = require("layout.CommTips").create()
+    layout['panel']:setSize(cc.size(display.width, 80))
     local lbTips = layout['lb_tips']
     lbTips:setString(msg)
+    lbTips:setPositionX(display.cx)
 
     -- 定时移除
     local node = layout['root']

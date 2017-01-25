@@ -21,7 +21,7 @@ function TetrisSinglePanel:onCreate(layout)
     self.btnRight = self.layout['btn_right']
     self.nextBg = self.layout['next_bg']
     self.scoreText = self.layout['lb_score']
-    self.scoreHang = self.layout['lb_hang']
+    -- self.scoreHang = self.layout['lb_hang']
     self.btnPlay = self.layout['btn_play']
     self.btnDown = self.layout['btn_down']
     self.btnDownLow = self.layout['btn_down_low']
@@ -33,7 +33,7 @@ function TetrisSinglePanel:onCreate(layout)
 
     self:addChild(self.layout["root"])
     self.scoreText:setString("0")
-    self.scoreHang:setString("0")
+    -- self.scoreHang:setString("0")
 
     -- 添加事件
     self.btnShift:addClickEventListener(handler(self, self.handleShift))
@@ -113,7 +113,7 @@ end
 -- @function [parent=#TetrisSinglePanel] updateScore
 function TetrisSinglePanel:updateScore(removeLineNums)
     self.removeLineNums = self.removeLineNums + removeLineNums
-    self.scoreHang:setString(self.removeLineNums)
+    -- self.scoreHang:setString(self.removeLineNums)
     self.scoreText:setString(self.removeLineNums * 10)
 end
 

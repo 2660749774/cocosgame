@@ -80,6 +80,8 @@
             <Image Name="scene_bg.png" />
             <Image Name="shift.png" />
             <Image Name="small number.png" />
+            <Image Name="yun_left.png" />
+            <Image Name="yun_right.png" />
           </Folder>
         </Folder>
         <Project Name="ButtonTestScene.csd" Type="Scene" />
@@ -98,6 +100,7 @@
         <Project Name="TetrisPowerStart.csd" Type="Scene" />
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
+        <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
       </RootFolder>
     </Group>

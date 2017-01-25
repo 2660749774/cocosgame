@@ -64,7 +64,21 @@ end
 -- 单机模式
 -- @function [parent=#TetrisScene] playSingle
 function TetrisScene:playSingle(powerId, armyId)
-    self:pushPanel("Tetris.view.TetrisTimeMode")
+    local animationLayout = require("layout.TetrisStartAnimation").create()
+    animationLayout['panel']:setAnchorPoint(0.5, 0.5)
+    animationLayout['panel']:setPosition(display.cx, display.cy)
+    self:addObject(animationLayout['root'], "modal")
+
+    local animation = animationLayout['animation']
+    animationLayout['root']:runAction(animation)
+    animation:setLastFrameCallFunc(function()
+        animationLayout['root']:removeFromParent()
+    end)
+    animation:setFrameEventCallFunc(function(frame)
+        self:pushPanel("Tetris.view.TetrisTimeMode")
+    end)
+    animation:gotoFrameAndPlay(0, false)    
+    
 end
 
 --------------------------------
