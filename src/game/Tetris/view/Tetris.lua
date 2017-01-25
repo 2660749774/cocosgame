@@ -30,7 +30,7 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     self.checkDownCount = 0 -- 计数器
     self.blockWidth = 27
     self.fixPixel = 3
-    self.gameOver = false
+    self.gameOverFlag = false
     self.hang = 0
     self.removeLineNums = 0
     self.disableDown = false
@@ -43,11 +43,15 @@ end
 --------------------------------
 -- 每一帧运行
 -- @function [parent=#Tetris] playGame
-function Tetris:doUpdate()
+function Tetris:doUpdate(dt)
     -- if self.isSelf then
         -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self:getLocalFrameNum(), self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
     -- end
-    if self.gameOver or self.disableDown then
+    if nil ~= self.parent and self.parent.doUpdate then
+        self.parent:doUpdate(dt)
+    end
+
+    if self.gameOverFlag or self.disableDown then
         return
     end
 
@@ -71,7 +75,7 @@ end
 -- 进行AI模拟
 -- @function [parent=#Tetris] playGame
 function Tetris:aiSimulate(dt)
-    if self.gameOver or self.disableDown then
+    if self.gameOverFlag or self.disableDown then
         return
     end
 
@@ -245,6 +249,21 @@ function Tetris:gameStart()
 end
 
 --------------------------------
+-- 游戏结束
+-- @function [parent=#Tetris] gameStart
+function Tetris:gameOver()
+    self.gameOverFlag = true
+    self.parent:notifyGameOver(self.isSelf)
+    -- 停止定时任务
+    if self.updateTask then
+        self.fixScheduler:destroy()
+        self.fixScheduler:unscheduleTask(self.updateTask)
+        self.updateTask = nil
+        self.fixScheduler = nil
+    end
+end
+
+--------------------------------
 -- 清理重置
 -- @function [parent=#Tetris] reset
 function Tetris:reset() 
@@ -266,7 +285,7 @@ function Tetris:reset()
     self.checkDownCount = 0 -- 计数器
     self.blockWidth = 27
     self.fixPixel = 3
-    self.gameOver = false
+    self.gameOverFlag = false
     self.hang = 0
     self.removeLineNums = 0
     self.disableDown = false
@@ -493,8 +512,7 @@ function Tetris:_handleDown(block, simulate)
         else
             Tips.showSceneTips("Game Over!", 1)
         end
-        self.gameOver = true
-        self.parent:notifyGameOver(self.isSelf)
+        self:gameOver()
     elseif not simulate then
         self.disableDown = true
         -- 消除判断

@@ -12,26 +12,26 @@ local RandomUtil = require "core.util.RandomUtil"
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisSinglePanel] onCreate
-function TetrisSinglePanel:onCreate()
-    local layout = require("layout.TetrisScene").create()
-    self:fixLayout(layout)
+function TetrisSinglePanel:onCreate(layout)
+    self.layout = require(layout).create()
+    self:fixLayout(self.layout)
     
-    self.btnLeft = layout['btn_left']
-    self.btnShift = layout['btn_shift']
-    self.btnRight = layout['btn_right']
-    self.nextBg = layout['next_bg']
-    self.scoreText = layout['lb_score']
-    self.scoreHang = layout['lb_hang']
-    self.btnPlay = layout['btn_play']
-    self.btnDown = layout['btn_down']
-    self.btnDownLow = layout['btn_down_low']
+    self.btnLeft = self.layout['btn_left']
+    self.btnShift = self.layout['btn_shift']
+    self.btnRight = self.layout['btn_right']
+    self.nextBg = self.layout['next_bg']
+    self.scoreText = self.layout['lb_score']
+    self.scoreHang = self.layout['lb_hang']
+    self.btnPlay = self.layout['btn_play']
+    self.btnDown = self.layout['btn_down']
+    self.btnDownLow = self.layout['btn_down_low']
     self.randomCache = {}
     self.removeLineNums = 0
 
-    local bg = layout['tetris_bg']
+    local bg = self.layout['tetris_bg']
     self.tetris = Tetris.new(bg, false, true, self)
 
-    self:addChild(layout["root"])
+    self:addChild(self.layout["root"])
     self.scoreText:setString("0")
     self.scoreHang:setString("0")
 

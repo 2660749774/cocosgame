@@ -14,6 +14,7 @@ local ScheduleTask = class("ScheduleTask")
 -- @function [parent=#ScheduleTask] ctor
 function ScheduleTask:ctor(callback, dt)
     self.dt = dt
+    self.callbackdt = self.dt / 1000
     self.callback = callback
     self.gameTime = 0
 end
@@ -25,7 +26,7 @@ function ScheduleTask:update(dt, callbackdt)
     self.gameTime = self.gameTime + dt
     if self.gameTime >= self.dt then
         self.gameTime = self.gameTime - self.dt
-        self.callback(callbackdt)
+        self.callback(self.callbackdt)
     end
 end
 

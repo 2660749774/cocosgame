@@ -94,10 +94,11 @@
         <Project Name="SliderTestScene.csd" Type="Scene" />
         <Project Name="TestLuaScene.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
+        <Project Name="TetrisPowerLoop.csd" Type="Scene" />
+        <Project Name="TetrisPowerStart.csd" Type="Scene" />
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
-        <Project Name="TetrisPowerStart.csd" Type="Scene" />
-        <Project Name="TetrisPowerLoop.csd" Type="Scene" />
+        <Project Name="TetrisTimeMode.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

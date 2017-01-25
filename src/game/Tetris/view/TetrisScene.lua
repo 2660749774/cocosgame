@@ -64,7 +64,7 @@ end
 -- 单机模式
 -- @function [parent=#TetrisScene] playSingle
 function TetrisScene:playSingle(powerId, armyId)
-    self:pushPanel("Tetris.view.TetrisSingle")
+    self:pushPanel("Tetris.view.TetrisTimeMode")
 end
 
 --------------------------------
