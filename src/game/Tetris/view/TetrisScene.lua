@@ -75,7 +75,9 @@ function TetrisScene:playSingle(powerId, armyId)
         animationLayout['root']:removeFromParent()
     end)
     animation:setFrameEventCallFunc(function(frame)
-        self:pushPanel("Tetris.view.TetrisTimeMode")
+        if frame:getEvent() == "loadNext" then
+            self:pushPanel("Tetris.view.TetrisTimeMode")
+        end
     end)
     animation:gotoFrameAndPlay(0, false)    
     

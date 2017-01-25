@@ -2,7 +2,7 @@
   <PropertyGroup Name="TetrisStartAnimation" Type="Scene" ID="28a5f935-cf07-46df-8d22-fccc77c6e21c" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
-      <Animation Duration="17" Speed="0.1667" ActivedAnimationName="yun">
+      <Animation Duration="17" Speed="0.1667">
         <Timeline ActionTag="-1848402198" Property="Position">
           <PointFrame FrameIndex="0" X="-213.0000" Y="568.0000">
             <EasingData Type="0" />
@@ -46,7 +46,6 @@
           </ScaleFrame>
         </Timeline>
         <Timeline ActionTag="-1848402198" Property="FrameEvent">
-          <EventFrame FrameIndex="2" Tween="False" Value="" />
           <EventFrame FrameIndex="5" Tween="False" Value="loadNext" />
         </Timeline>
         <Timeline ActionTag="2111664177" Property="Position">
@@ -90,9 +89,6 @@
           <ScaleFrame FrameIndex="17" X="0.0000" Y="0.0000">
             <EasingData Type="0" />
           </ScaleFrame>
-        </Timeline>
-        <Timeline ActionTag="2111664177" Property="FrameEvent">
-          <EventFrame FrameIndex="2" Tween="False" Value="" />
         </Timeline>
       </Animation>
       <AnimationList>
