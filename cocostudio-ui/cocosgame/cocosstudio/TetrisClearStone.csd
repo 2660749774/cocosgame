@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="TetrisTimeMode" Type="Scene" ID="1b6eef34-cfb2-4e8c-8406-b7bc22a90c71" Version="3.10.0.0" />
+  <PropertyGroup Name="TetrisClearStone" Type="Scene" ID="f4f81804-b901-4e02-aa44-0e968f4904d3" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -85,7 +85,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="lb_score_title" ActionTag="1780421741" Tag="26" IconVisible="False" LeftMargin="481.1556" RightMargin="94.8444" TopMargin="264.4195" BottomMargin="839.5805" FontSize="28" LabelText="分 数" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="lb_score_title" ActionTag="1780421741" VisibleForFrame="False" Tag="26" IconVisible="False" LeftMargin="481.1556" RightMargin="94.8444" TopMargin="264.4195" BottomMargin="839.5805" FontSize="28" LabelText="分 数" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="64.0000" Y="32.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="513.1556" Y="855.5805" />
@@ -96,7 +96,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="lb_score" ActionTag="-1933401380" Tag="65" IconVisible="False" LeftMargin="454.0000" RightMargin="66.0000" TopMargin="314.2162" BottomMargin="771.7838" CharWidth="30" CharHeight="50" LabelText="5211" StartChar="0" ctype="TextAtlasObjectData">
+              <AbstractNodeData Name="lb_score" ActionTag="-1933401380" VisibleForFrame="False" Tag="65" IconVisible="False" LeftMargin="454.0000" RightMargin="66.0000" TopMargin="314.2162" BottomMargin="771.7838" CharWidth="30" CharHeight="50" LabelText="5211" StartChar="0" ctype="TextAtlasObjectData">
                 <Size X="120.0000" Y="50.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="514.0000" Y="796.7838" />
@@ -221,27 +221,6 @@
                 <PreSize X="0.0469" Y="0.0132" />
                 <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/small number.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="lb_time_title" ActionTag="1484233355" Tag="105" IconVisible="False" LeftMargin="476.7966" RightMargin="91.2034" TopMargin="107.5281" BottomMargin="996.4720" FontSize="28" LabelText="时  间" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="72.0000" Y="32.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="512.7966" Y="1012.4720" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8012" Y="0.8913" />
-                <PreSize X="0.1125" Y="0.0282" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="lb_time" ActionTag="1146390414" Tag="85" IconVisible="False" LeftMargin="454.0000" RightMargin="66.0000" TopMargin="155.0000" BottomMargin="931.0000" CharWidth="30" CharHeight="50" LabelText="5211" StartChar="0" ctype="TextAtlasObjectData">
-                <Size X="120.0000" Y="50.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="514.0000" Y="956.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8031" Y="0.8415" />
-                <PreSize X="0.1875" Y="0.0440" />
-                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/number.png" Plist="" />
-              </AbstractNodeData>
               <AbstractNodeData Name="lb_left_line_title" ActionTag="1185045856" Tag="24" IconVisible="False" LeftMargin="449.5965" RightMargin="70.4035" TopMargin="688.7273" BottomMargin="415.2727" FontSize="28" LabelText=" 剩余块数" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="120.0000" Y="32.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -261,27 +240,6 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.8009" Y="0.3358" />
                 <PreSize X="0.0938" Y="0.0440" />
-                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/number.png" Plist="" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="lb_needscore_title" ActionTag="2060202547" Tag="52" IconVisible="False" LeftMargin="457.5211" RightMargin="70.4789" TopMargin="545.5465" BottomMargin="558.4535" FontSize="28" LabelText="通关分数" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="112.0000" Y="32.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="513.5211" Y="574.4535" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8024" Y="0.5057" />
-                <PreSize X="0.1750" Y="0.0282" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="lb_needscore" ActionTag="-1524289185" Tag="53" IconVisible="False" LeftMargin="453.3664" RightMargin="66.6336" TopMargin="580.8007" BottomMargin="505.1993" CharWidth="30" CharHeight="50" LabelText="5211" StartChar="0" ctype="TextAtlasObjectData">
-                <Size X="120.0000" Y="50.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="513.3664" Y="530.1993" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8021" Y="0.4667" />
-                <PreSize X="0.1875" Y="0.0440" />
                 <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/number.png" Plist="" />
               </AbstractNodeData>
             </Children>

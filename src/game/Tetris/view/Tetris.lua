@@ -175,7 +175,11 @@ end
 --------------------------------
 -- 下一个方块
 -- @function [parent=#Tetris] roundStart
-function Tetris:roundStart() 
+function Tetris:roundStart()
+    if self.gameOverFlag then
+        return
+    end
+
     -- log:info("roundStart begin")
     local oldNextBlock = self.nextBlock
 
@@ -225,8 +229,9 @@ end
 --------------------------------
 -- 游戏开始
 -- @function [parent=#Tetris] gameStart
-function Tetris:gameStart() 
+function Tetris:gameStart(conf) 
     -- log:info("[Tetris]gameStart")
+    self:initGridBlock(conf)
 
     -- 随机下一块方块
     if nil == self.nextBlock then
@@ -316,6 +321,57 @@ function Tetris:initGrid(width, height)
             table.insert(self.grids[i], 0)
         end
     end
+end
+
+--------------------------------
+-- 根据配置初始化基础方块
+-- @function [parent=#Tetris] createSingleBlock
+function Tetris:initGridBlock(conf)
+    if conf == nil then
+        return
+    end
+
+    local blockArray = conf.blockArray
+    local pic = string.format("tetris/%s.png", conf.blockType)
+    
+    for i = 1, #blockArray do
+        for j = 1, #blockArray[i] do
+            if blockArray[i][j] == 1 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock(pic, gridX, gridY)
+                sprite.confBlock = true
+                self.grids[gridY][gridX] = sprite
+                self.bg:addChild(sprite)
+            elseif blockArray[i][j] == 2 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock("tetris/fangkuai9.png", gridX, gridY)
+                sprite.confBlock = true
+                sprite.hasStar = true
+                self.grids[gridY][gridX] = sprite
+
+                local animationLayout = require("layout.TetrisMeteorAnimation").create()
+                local meteor = animationLayout['root']
+                local animation = animationLayout['animation']
+                sprite:addChild(meteor)
+                meteor:runAction(animation)
+                animation:gotoFrameAndPlay(0)
+                self.bg:addChild(sprite)
+            end
+        end
+    end
+end
+
+--------------------------------
+-- 创建单个方块
+-- @function [parent=#Tetris] createSingleBlock
+function Tetris:createSingleBlock(pic, gridX, gridY)
+    local sprite = cc.Sprite:create(pic)
+    sprite:setAnchorPoint(0, 0)
+    sprite:setPosition((gridX - 1) * self.blockWidth + 3, (gridY - 1) * self.blockWidth + 3)
+
+    return sprite
 end
 
 
@@ -573,6 +629,9 @@ end
 -- @function [parent=#Tetris] removeCallBack
 function Tetris:removeCallBack(sender)
     if sender then
+        if sender.hasStar then
+            self:flyStar(sender)
+        end
         sender:removeFromParent()
     end
 
@@ -599,7 +658,7 @@ function Tetris:removeCallBack(sender)
     end
 
     -- 告知服务器
-    if self.removeLineNums > 0 and self.isSelf then
+    if self.isSelf then
         self.parent:updateScore(self.removeLineNums)
     elseif self.removeLineNums > 0 then
         -- 通知服务器
@@ -617,9 +676,27 @@ function Tetris:removeCallBack(sender)
     --     self.disableDown = true
     --     cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), 100)
     -- else
-        self:roundStart()
+    self:roundStart()
     -- end
     -- self:roundStart()
+end
+
+function Tetris:flyStar(sender)
+    local x, y = sender:getPosition()
+    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
+    local star = cc.Sprite:create("tetris/star.png")
+    star:setAnchorPoint(0, 0)
+    star:setPosition(pos.x, pos.y)
+    self.parent:addChild(star)
+
+    local sequence = cc.Sequence:create(cc.MoveTo:create(1, cc.vertex2F(500, 782)), 
+                                        cc.CallFunc:create(function() 
+                                            star:removeFromParent()
+                                            if self.parent.updateFlyStar then
+                                                self.parent:updateFlyStar()
+                                            end
+                                        end))
+    star:runAction(sequence)
 end
 
 --------------------------------

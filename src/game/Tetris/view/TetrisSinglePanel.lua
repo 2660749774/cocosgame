@@ -9,6 +9,15 @@ local TetrisSinglePanel = class("TetrisSinglePanel", BasePanel)
 local Tetris = import (".Tetris")
 local RandomUtil = require "core.util.RandomUtil"
 
+-- 关卡模式1 -- 清理陨石
+TetrisSinglePanel.TYPE_CLEAR_STONE = 1
+-- 关卡模式2 -- 极速挑战
+TetrisSinglePanel.TYPE_TIMEMODE = 2
+-- 关卡模式3 -- 星际迷阵
+TetrisSinglePanel.TYPE_METEOR = 3
+-- 关卡模式3 -- 方块迷阵
+TetrisSinglePanel.TYPE_MAZE = 4
+
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisSinglePanel] onCreate
@@ -57,6 +66,7 @@ end
 -- 点击开始游戏
 -- @function [parent=#TetrisSinglePanel] playGame
 function TetrisSinglePanel:playGame()
+    self:reset()
     self:gameStart({randomseed=tonumber(tostring(os.time()):reverse():sub(1,6))})
 end
 
@@ -97,9 +107,11 @@ function TetrisSinglePanel:roundStart(oldNextBlock, newNextBlock)
     end
 
     -- 显示下一个方块
-    local offsetx, offsety = newNextBlock:getOffSet()
-    newNextBlock:setPosition(cc.p(0, -offsety))
-    self.nextBg:addChild(newNextBlock)
+    if newNextBlock then
+        local offsetx, offsety = newNextBlock:getOffSet()
+        newNextBlock:setPosition(cc.p(0, -offsety))
+        self.nextBg:addChild(newNextBlock)
+    end
 
     -- 按钮状态重置
     self.btnShift.ended = true
@@ -214,7 +226,6 @@ function TetrisSinglePanel:showHomeBtn(anchorX, anchorY)
     self.btnHome:setPosition(x, y - 100)
     self:addChild(self.btnHome)
 end
-
 
 --------------------------------
 -- 卸载资源
