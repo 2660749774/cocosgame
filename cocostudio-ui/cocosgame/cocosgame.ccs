@@ -102,6 +102,7 @@
         <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
         <Project Name="TetrisMaze.csd" Type="Scene" />
+        <Project Name="TetrisMeteor.csd" Type="Scene" />
         <Project Name="TetrisMeteorAnimation.csd" Type="Scene" />
         <Project Name="TetrisPowerLoop.csd" Type="Scene" />
         <Project Name="TetrisPowerStart.csd" Type="Scene" />
@@ -109,7 +110,6 @@
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TetrisMeteor.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

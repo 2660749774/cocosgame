@@ -689,7 +689,19 @@ function Tetris:flyStar(sender)
     star:setPosition(pos.x, pos.y)
     self.parent:addChild(star)
 
-    local sequence = cc.Sequence:create(cc.MoveTo:create(1, cc.vertex2F(500, 782)), 
+    -- 放大
+    local action1 = cc.ScaleTo:create (1, 2.0)
+
+    -- 贝塞尔运动
+    local bezierConfig = {
+        cc.p(pos.x, pos.y - 250),   
+        cc.p(350, 650),  
+        cc.p(500, 782),  
+    }  
+    local action2 = cc.BezierTo:create(1, bezierConfig)
+    -- local action2 = cc.MoveTo:create(1, cc.vertex2F(500, 782))
+
+    local sequence = cc.Sequence:create(action1, action2, 
                                         cc.CallFunc:create(function() 
                                             star:removeFromParent()
                                             if self.parent.updateFlyStar then
