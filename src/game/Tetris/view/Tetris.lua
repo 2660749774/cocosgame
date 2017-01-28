@@ -44,9 +44,9 @@ end
 -- 每一帧运行
 -- @function [parent=#Tetris] playGame
 function Tetris:doUpdate(dt)
-    -- if self.isSelf then
+    if self.isSelf then
         -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self:getLocalFrameNum(), self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
-    -- end
+    end
     if nil ~= self.parent and self.parent.doUpdate then
         self.parent:doUpdate(dt)
     end
@@ -161,14 +161,24 @@ end
 -- 添加服务器网络帧内容
 -- @function [parent=#Tetris] addServerFrame
 function Tetris:addServerFrame(frameNum, event)
-    self.fixScheduler:addServerFrame(frameNum, event)
+    if self.fixScheduler then
+        self.fixScheduler:addServerFrame(frameNum, event)
+        if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
+            local delay = cc.Util:getCurrentTime() - self.leftTime
+            log:info("recive tcp callback, delay:%s, localFramNum:%s, serverFrame:%s, updateTime:%s", 
+            delay, self:getLocalFrameNum(), self.fixScheduler.serverFrameNum, self.fixScheduler.updateTime)
+        end
+    end
 end
 
 --------------------------------
 -- 获取本地帧号
 -- @function [parent=#Tetris] getLocalFrameNum
 function Tetris:getLocalFrameNum()
-    return self.fixScheduler.frameNum
+    if self.fixScheduler then
+        return self.fixScheduler.frameNum
+    end
+    return 0
 end
 
 
@@ -402,7 +412,16 @@ function Tetris:handleLeft(event, keyCode)
     if self.block == nil then
         return
     end
-
+    if self.isSelf then
+        local serverFrame = (event == nil)
+        if not serverFrame then
+            self.leftTime = cc.Util:getCurrentTime()
+            self.delay = 0
+        else
+            self.delay = cc.Util:getCurrentTime() - self.leftTime
+        end
+        log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
+    end
     -- 发送按钮事件
     if event ~= nil then
         keyCode = 1
@@ -681,6 +700,9 @@ function Tetris:removeCallBack(sender)
     -- self:roundStart()
 end
 
+--------------------------------
+-- 播放收集星星动画
+-- @function [parent=#Tetris] flyStar
 function Tetris:flyStar(sender)
     local x, y = sender:getPosition()
     local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
@@ -703,7 +725,10 @@ function Tetris:flyStar(sender)
 
     local sequence = cc.Sequence:create(action1, action2, 
                                         cc.CallFunc:create(function() 
+                                            -- 移除自身
                                             star:removeFromParent()
+                                            
+                                            -- 回调父类
                                             if self.parent.updateFlyStar then
                                                 self.parent:updateFlyStar()
                                             end
@@ -791,20 +816,8 @@ end
 function Tetris:createRandomBlock()
     local type = self.parent:nextInt(7, self.randomTimes)
     self.randomTimes = self.randomTimes + 1
-    
-    local angleType = 1
-    local pic = 'tetris/fangkuai.png'
-    angle = 0
-    if angleType == 1 then
-        angle = 0
-    elseif angleType == 2 then
-        angle = self.blockWidth * 3
-    elseif angleType == 3 then
-        angle = 180
-    else
-        angle = 270
-    end
-    return self:createBlock(type, angle, pic)
+
+    return self:createBlock(type, 0, 'tetris/fangkuai.png')
 end
 
 --------------------------------

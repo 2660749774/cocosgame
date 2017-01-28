@@ -24,14 +24,14 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="bg_input" ActionTag="2775652" Tag="98" IconVisible="False" LeftMargin="179.3540" RightMargin="210.6460" TopMargin="1035.0408" BottomMargin="30.9592" TouchEnable="True" Scale9Enable="True" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="21" Scale9Height="21" ctype="ImageViewObjectData">
-                <Size X="250.0000" Y="70.0000" />
+              <AbstractNodeData Name="bg_input" ActionTag="2775652" Tag="98" IconVisible="False" LeftMargin="96.0000" RightMargin="194.0000" TopMargin="1035.0000" BottomMargin="31.0000" TouchEnable="True" Scale9Enable="True" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="21" Scale9Height="21" ctype="ImageViewObjectData">
+                <Size X="350.0000" Y="70.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="304.3540" Y="65.9592" />
+                <Position X="271.0000" Y="66.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4756" Y="0.0581" />
-                <PreSize X="0.3906" Y="0.0616" />
+                <PrePosition X="0.4234" Y="0.0581" />
+                <PreSize X="0.5469" Y="0.0616" />
                 <FileData Type="Normal" Path="res/input_bg.png" Plist="" />
               </AbstractNodeData>
             </Children>

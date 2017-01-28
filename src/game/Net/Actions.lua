@@ -26,6 +26,7 @@ actions.quitFight = Action.new("fight@quit", "")
 actions.readyFight = Action.new("fight@ready", "")
 actions.doUpdate = Action.new("fight@doUpdate", "protoId=%s&frameNum=%s&args=%s")
 actions.writeLog = Action.new("log", "msg=%s")
+actions.ping = Action.new("fight@ping", "seq=%s")
 
 actions.PUSH_FIGHT = "push@fight"
 
@@ -35,6 +36,7 @@ cc.exports.protos = {}
 protos.FIGHT_START = 1
 protos.KEY_PRESS = 100
 protos.REMOVE_LINES = 101
+protos.UPDATE_SERVERFRAME = -100
 
 
 

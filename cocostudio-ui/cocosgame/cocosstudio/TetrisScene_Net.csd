@@ -221,6 +221,17 @@
                 <PreSize X="0.0469" Y="0.0132" />
                 <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/small number.png" Plist="" />
               </AbstractNodeData>
+              <AbstractNodeData Name="lb_ping" ActionTag="230511841" Tag="67" IconVisible="False" LeftMargin="457.2345" RightMargin="83.7655" TopMargin="867.7484" BottomMargin="240.2516" FontSize="24" LabelText="ping: 100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="99.0000" Y="28.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="506.7345" Y="254.2516" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.7918" Y="0.2238" />
+                <PreSize X="0.1547" Y="0.0246" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="320.0000" Y="568.0000" />

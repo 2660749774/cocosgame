@@ -25,8 +25,11 @@ function TetrisMultiPanel:onCreate(host)
     self.btnPlay = layout['btn_play']
     self.btnDown = layout['btn_down']
     self.btnDownLow = layout['btn_down_low']
+    self.lbPing = layout['lb_ping']
     self.randomCache = {}
     self.removeLineNums = 0
+    self.pingSeq = 0
+    self.pingTime = 0
 
 
     local targetBg = layout['tetris_panel_target']
@@ -40,6 +43,7 @@ function TetrisMultiPanel:onCreate(host)
     self:addChild(layout["root"])
     self.scoreText:setString("0")
     self.scoreHang:setString("0")
+    self.lbPing:setString("")
 
     -- 添加事件
     self.btnShift:addClickEventListener(handler(self, self.handleShift))
@@ -56,6 +60,8 @@ function TetrisMultiPanel:onCreate(host)
 
     self.btnDownLow:addClickEventListener(handler(self, self.handleDownLow))
     self.btnDownLow:addLongPressEventListener(handler(self, self.handleDownLow), 0.2)
+
+    self.pingScheduler = scheduler.scheduleGlobal(handler(self, self.handlePing), 2)
 
     self.pushHandler = handler(self, self.handlePush)
     self.connHandler = handler(self, self.handleConnectEvent)
@@ -328,6 +334,25 @@ function TetrisMultiPanel:showHomeBtn(anchorX, anchorY)
     self:addChild(self.btnHome)
 end
 
+--------------------------------
+-- 处理ping值
+-- @function [parent=#TetrisMultiPanel] handlePing
+function TetrisMultiPanel:handlePing()
+    self.pingSeq = self.pingSeq + 1
+    self.pingTime = cc.Util:getCurrentTime()
+    cmgr:send(actions.ping, handler(self, self.handlePingCallback), self.pingSeq)
+end
+
+--------------------------------
+-- 处理ping值服务器返回
+-- @function [parent=#TetrisMultiPanel] handlePingCallback
+function TetrisMultiPanel:handlePingCallback(response)
+    if response.data.seq == self.pingSeq then
+        local delay = cc.Util:getCurrentTime() - self.pingTime
+        self.lbPing:setString("ping: " .. tostring(delay))
+    end
+end
+
 
 --------------------------------
 -- 卸载资源
@@ -339,6 +364,7 @@ function TetrisMultiPanel:onExit()
     cmgr:removeConnCallback(self.connHandler)
     local tipLayer = self:getScene():getLayer("tips")
     tipLayer:removeAllChildren()
+    scheduler.unscheduleGlobal(self.pingScheduler)
 
     -- 移除定时器
     self.tetris:onExit()

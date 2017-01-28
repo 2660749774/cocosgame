@@ -134,13 +134,13 @@ function fixscheduler:update()
 
     -- 逻辑帧率驱动显示帧率
     while (self.fixTime >= self.dt) do
-        self.fixTime = self.fixTime - self.dt
         if self.serverFrameNum ~= -1 
             and self.frameNum >= self.serverFrameNum
             and self.fillFrameNum == 0 then
             -- 锁帧等待
             break
-        elseif self.frameNum < self.serverFrameNum then
+        elseif self.serverFrameNum == -1 or self.frameNum < self.serverFrameNum then
+            self.fixTime = self.fixTime - self.dt
             self.frameNum = self.frameNum + 1
         end
 

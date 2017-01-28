@@ -20,11 +20,11 @@ function TetrisScene:onCreate()
 
     -- 添加事件监听
     self.btnMultiplayer = layout['btn_multiplayer']
-    self.inputHost = cc.EditBox:create(cc.size(250, 70), cc.Scale9Sprite:create(), cc.Scale9Sprite:create())
+    self.inputHost = cc.EditBox:create(cc.size(350, 70), cc.Scale9Sprite:create(), cc.Scale9Sprite:create())
     self.inputHost:setAnchorPoint(0.5, 0.5)
-    self.inputHost:setPosition(125, 35)
+    self.inputHost:setPosition(175, 35)
     self.inputHost:setFontColor(cc.c3b(0, 128, 0))
-    self.inputHost:setText("192.168.0.116")
+    self.inputHost:setText("192.168.1.4")
     self.inputHost:setInputMode(6)
     layout['bg_input']:addChild(self.inputHost)
     
