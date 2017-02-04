@@ -4,7 +4,7 @@
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="15" ctype="GameNodeObjectData">
-        <Size X="640.0000" Y="1136.0000" />
+        <Size X="1136.0000" Y="640.0000" />
         <Children>
           <AbstractNodeData Name="list_view" ActionTag="635234282" Tag="16" IconVisible="False" LeftMargin="280.0000" RightMargin="280.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="0" DirectionType="Vertical" ctype="ListViewObjectData">
             <Size X="400.0000" Y="640.0000" />

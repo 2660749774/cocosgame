@@ -4,30 +4,30 @@
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="8" ctype="GameNodeObjectData">
-        <Size X="640.0000" Y="1136.0000" />
+        <Size X="1136.0000" Y="640.0000" />
         <Children>
-          <AbstractNodeData Name="bg_1" ActionTag="1438189202" Tag="9" IconVisible="False" LeftMargin="1.2221" RightMargin="-177.2222" TopMargin="-210.7778" BottomMargin="-1.2221" ctype="SpriteObjectData">
+          <AbstractNodeData Name="bg_1" ActionTag="1438189202" Tag="9" IconVisible="False" LeftMargin="1.2221" RightMargin="-1.2220" TopMargin="-210.7779" BottomMargin="-1.2221" ctype="SpriteObjectData">
             <Size X="1136.0000" Y="852.0000" />
             <AnchorPoint />
             <Position X="1.2221" Y="-1.2221" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0013" Y="-0.0019" />
-            <PreSize X="1.1833" Y="1.3312" />
+            <PrePosition X="0.0011" Y="-0.0019" />
+            <PreSize X="1.0000" Y="1.3312" />
             <FileData Type="Normal" Path="ui/loading/bg.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="load_bg_2" ActionTag="-1724818776" Tag="11" IconVisible="False" LeftMargin="128.0854" RightMargin="-116.0854" TopMargin="394.1592" BottomMargin="149.8408" ctype="SpriteObjectData">
+          <AbstractNodeData Name="load_bg_2" ActionTag="-1724818776" Tag="11" IconVisible="False" LeftMargin="128.0854" RightMargin="59.9146" TopMargin="394.1592" BottomMargin="149.8408" ctype="SpriteObjectData">
             <Size X="948.0000" Y="96.0000" />
             <Children>
-              <AbstractNodeData Name="load_label" ActionTag="-1043193343" Tag="14" IconVisible="False" LeftMargin="464.4272" RightMargin="435.5728" TopMargin="15.9041" BottomMargin="56.0959" FontSize="24" LabelText="1/20" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="48.0000" Y="24.0000" />
+              <AbstractNodeData Name="load_label" ActionTag="-1043193343" Tag="14" IconVisible="False" LeftMargin="464.9272" RightMargin="436.0728" TopMargin="13.9041" BottomMargin="54.0959" FontSize="24" LabelText="1/20" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="47.0000" Y="28.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="488.4272" Y="68.0959" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5152" Y="0.7093" />
-                <PreSize X="0.0506" Y="0.2500" />
+                <PreSize X="0.0496" Y="0.2917" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -70,8 +70,8 @@
             <Position X="602.0854" Y="197.8408" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6272" Y="0.3091" />
-            <PreSize X="0.9875" Y="0.1500" />
+            <PrePosition X="0.5300" Y="0.3091" />
+            <PreSize X="0.8345" Y="0.1500" />
             <FileData Type="Normal" Path="ui/loading/load_bg.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>

@@ -4,7 +4,7 @@
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="18" ctype="GameNodeObjectData">
-        <Size X="640.0000" Y="1136.0000" />
+        <Size X="1136.0000" Y="640.0000" />
         <Children>
           <AbstractNodeData Name="scroll_view" ActionTag="-1258978519" Tag="19" IconVisible="False" LeftMargin="305.8662" RightMargin="254.1338" TopMargin="104.0605" BottomMargin="135.9395" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="400.0000" Y="400.0000" />

@@ -67,7 +67,7 @@
         </AnimationInfo>
       </AnimationList>
       <ObjectData Name="Scene" Tag="27" ctype="GameNodeObjectData">
-        <Size X="640.0000" Y="1136.0000" />
+        <Size X="1136.0000" Y="640.0000" />
         <Children>
           <AbstractNodeData Name="meteor2" ActionTag="-833199850" Alpha="0" Tag="106" IconVisible="False" RightMargin="614.0000" TopMargin="1110.0000" ctype="SpriteObjectData">
             <Size X="26.0000" Y="26.0000" />
