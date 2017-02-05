@@ -105,6 +105,7 @@
         <Project Name="scrollTestPanel.csd" Type="Scene" />
         <Project Name="SliderTestScene.csd" Type="Scene" />
         <Project Name="TestLuaScene.csd" Type="Scene" />
+        <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
         <Project Name="TetrisMaze.csd" Type="Scene" />
         <Project Name="TetrisMeteor.csd" Type="Scene" />
@@ -114,8 +115,6 @@
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
-        <Project Name="TetrisTimeMode1.csd" Type="Scene" />
-        <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
       </RootFolder>
     </Group>

@@ -399,6 +399,7 @@ lb_left_line:setName("lb_left_line")
 lb_left_line:setTag(25)
 lb_left_line:setCascadeColorEnabled(true)
 lb_left_line:setCascadeOpacityEnabled(true)
+lb_left_line:setVisible(false)
 lb_left_line:setPosition(320.0000, 1066.0000)
 layout = ccui.LayoutComponent:bindLayoutComponent(lb_left_line)
 layout:setPositionPercentX(0.5000)
@@ -411,6 +412,74 @@ layout:setRightMargin(290.0000)
 layout:setTopMargin(45.0001)
 layout:setBottomMargin(1041.0000)
 panel:addChild(lb_left_line)
+
+--Create lb_time_minute
+local lb_time_minute = ccui.TextAtlas:create([[10]],
+													"ui/tetris/power/number_red.png",
+													30,
+													50,
+													"0")
+lb_time_minute:setLayoutComponentEnabled(true)
+lb_time_minute:setName("lb_time_minute")
+lb_time_minute:setTag(66)
+lb_time_minute:setCascadeColorEnabled(true)
+lb_time_minute:setCascadeOpacityEnabled(true)
+lb_time_minute:setPosition(275.0262, 1066.0000)
+layout = ccui.LayoutComponent:bindLayoutComponent(lb_time_minute)
+layout:setPositionPercentX(0.4297)
+layout:setPositionPercentY(0.9384)
+layout:setPercentWidth(0.0938)
+layout:setPercentHeight(0.0440)
+layout:setSize({width = 60.0000, height = 50.0000})
+layout:setLeftMargin(245.0262)
+layout:setRightMargin(334.9738)
+layout:setTopMargin(45.0000)
+layout:setBottomMargin(1041.0000)
+panel:addChild(lb_time_minute)
+
+--Create lb_time_sec
+local lb_time_sec = ccui.TextAtlas:create([[10]],
+													"ui/tetris/power/number_red.png",
+													30,
+													50,
+													"0")
+lb_time_sec:setLayoutComponentEnabled(true)
+lb_time_sec:setName("lb_time_sec")
+lb_time_sec:setTag(67)
+lb_time_sec:setCascadeColorEnabled(true)
+lb_time_sec:setCascadeOpacityEnabled(true)
+lb_time_sec:setPosition(363.8164, 1066.0000)
+layout = ccui.LayoutComponent:bindLayoutComponent(lb_time_sec)
+layout:setPositionPercentX(0.5685)
+layout:setPositionPercentY(0.9384)
+layout:setPercentWidth(0.0938)
+layout:setPercentHeight(0.0440)
+layout:setSize({width = 60.0000, height = 50.0000})
+layout:setLeftMargin(333.8164)
+layout:setRightMargin(246.1836)
+layout:setTopMargin(45.0000)
+layout:setBottomMargin(1041.0000)
+panel:addChild(lb_time_sec)
+
+--Create sp_mh
+local sp_mh = cc.Sprite:create("ui/tetris/power/mh.png")
+sp_mh:setName("sp_mh")
+sp_mh:setTag(68)
+sp_mh:setCascadeColorEnabled(true)
+sp_mh:setCascadeOpacityEnabled(true)
+sp_mh:setPosition(318.6265, 1070.0000)
+layout = ccui.LayoutComponent:bindLayoutComponent(sp_mh)
+layout:setPositionPercentX(0.4979)
+layout:setPositionPercentY(0.9419)
+layout:setPercentWidth(0.0469)
+layout:setPercentHeight(0.0440)
+layout:setSize({width = 30.0000, height = 50.0000})
+layout:setLeftMargin(303.6265)
+layout:setRightMargin(306.3735)
+layout:setTopMargin(41.0000)
+layout:setBottomMargin(1045.0000)
+sp_mh:setBlendFunc({src = 1, dst = 771})
+panel:addChild(sp_mh)
 
 --Create lb_left_bg
 local lb_left_bg = cc.Sprite:create("ui/tetris/power/lb_left_bg.png")

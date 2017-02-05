@@ -17,7 +17,8 @@ local RandomUtil = require "core.util.RandomUtil"
 -- @function [parent=#TetrisTimeModePanel] onCreate
 function TetrisTimeModePanel:onCreate(powerId, armyId)
     TetrisSinglePanel.onCreate(self, "layout.TetrisTimeMode")
-    self.lbTime = self.layout['lb_left_line']
+    self.lbTimeMinute = self.layout['lb_time_minute']
+    self.lbTimeSec = self.layout['lb_time_sec']
     self.lbResult = self.layout['lb_result']
     self.totalTime = 60
     -- self.totalBlockNum = 60
@@ -48,7 +49,12 @@ function TetrisTimeModePanel:updateTime()
         self.tetris:gameOver()
         leftTime = 0
     end
-    self.lbTime:setString(tostring(leftTime))
+
+    local minute = math.floor(leftTime / 60)
+    local sec = math.floor(leftTime % 60)
+    log:info("time %s:%s", minute, sec)
+    self.lbTimeMinute:setString(string.format("%02d", minute))
+    self.lbTimeSec:setString(string.format("%02d", sec))
 end
 
 --------------------------------

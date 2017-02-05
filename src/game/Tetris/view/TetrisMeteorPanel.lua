@@ -17,10 +17,31 @@ local RandomUtil = require "core.util.RandomUtil"
 -- @function [parent=#TetrisMeteorPanel] onCreate
 function TetrisMeteorPanel:onCreate(powerId, armyId)
     TetrisSinglePanel.onCreate(self, "layout.TetrisMeteor")
+
+    -- 对齐
+    app:alignLeft(self.leftBg)
+    app:alignRight(self.rightBg)
+
     self.lbLeftBlockNum = self.layout['lb_left_line']
     self.totalBlockNum = 0
     self.blockNum = 0
+
+    self.lbResult = self.layout['lb_result']
+    self.totalFangkuaiNum = 0 -- 总方块数量
+    self.removeFangkuaiNum = 0 -- 已消除方块数量
+
     self:loadConfig(TetrisSinglePanel.TYPE_METEOR, powerId, armyId)
+
+    -- 设置方块
+    local fangkuaiBg = self.layout['fangkuai_bg']
+    fangkuaiBg:setTexture("tetris/fangkuai9.png")
+    local animationLayout = require("layout.TetrisMeteorAnimation").create()
+    local meteor = animationLayout['root']
+    local animation = animationLayout['animation']
+    fangkuaiBg:addChild(meteor)
+    meteor:runAction(animation)
+    animation:gotoFrameAndPlay(0)
+
     self:updateBlockNum()
 end
 
@@ -57,6 +78,16 @@ end
 function TetrisMeteorPanel:loadConfig(type, powerId, armyId)
     self.conf = TetrisMeteorConf.loadConfig(powerId, armyId)
     self.totalBlockNum = self.conf.maxBlockNum
+
+    -- 统计方块数量
+    local blockArray = self.conf.blockArray
+    for i = 1, #blockArray do
+        for j = 1, #blockArray[i] do
+            if blockArray[i][j] == 2 then
+                self.totalFangkuaiNum = self.totalFangkuaiNum + 1
+            end
+        end
+    end
 end
 
 --------------------------------
@@ -69,6 +100,7 @@ function TetrisMeteorPanel:updateBlockNum()
         blockNum = 0
     end
     self.lbLeftBlockNum:setString(blockNum)
+    self.lbResult:setString(self.removeFangkuaiNum .. "/" .. self.totalFangkuaiNum)
 end
 
 --------------------------------
@@ -77,7 +109,6 @@ end
 function TetrisMeteorPanel:updateScore(removeLineNums)
     --TetrisSinglePanel.updateScore(self, removeLineNums)
     self.blockNum =  self.blockNum + 1
-    self:updateBlockNum()
 
     -- 判断是否胜利
     local grids = self.tetris.grids
@@ -101,8 +132,8 @@ end
 -- 更新收集星星个数
 -- @function [parent=#TetrisMeteorPanel] updateFlyStar
 function TetrisMeteorPanel:updateFlyStar()
-    self.removeLineNums = self.removeLineNums + 1
-    self.scoreText:setString(self.removeLineNums * 10)
+    self.removeFangkuaiNum = self.removeFangkuaiNum + 1
+    self.lbResult:setString(self.removeFangkuaiNum .. "/" .. self.totalFangkuaiNum)
 end
 
 --------------------------------
