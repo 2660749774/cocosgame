@@ -4,7 +4,7 @@
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="44" ctype="GameNodeObjectData">
-        <Size X="1136.0000" Y="640.0000" />
+        <Size X="640.0000" Y="1136.0000" />
         <Children>
           <AbstractNodeData Name="Particle" ActionTag="470624841" Tag="45" IconVisible="True" LeftMargin="469.3993" RightMargin="490.6007" TopMargin="276.7995" BottomMargin="363.2005" ctype="ParticleObjectData">
             <Size X="0.0000" Y="0.0000" />

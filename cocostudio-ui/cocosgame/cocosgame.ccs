@@ -59,10 +59,16 @@
               <Image Name="bg1.png" />
               <Image Name="bg2.png" />
               <Image Name="fangkuai8.png" />
+              <Image Name="lb_left_bg.png" />
+              <Image Name="lb_right_bg.png" />
               <Image Name="line.png" />
               <Image Name="meteor1.png" />
               <Image Name="meteor2.png" />
               <Image Name="meteor3.png" />
+              <Image Name="mh.png" />
+              <Image Name="number.png" />
+              <Image Name="number_red.png" />
+              <Image Name="power_bg.png" />
               <Image Name="square1.png" />
               <Image Name="square2.png" />
               <Image Name="square3.png" />
@@ -99,7 +105,6 @@
         <Project Name="scrollTestPanel.csd" Type="Scene" />
         <Project Name="SliderTestScene.csd" Type="Scene" />
         <Project Name="TestLuaScene.csd" Type="Scene" />
-        <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
         <Project Name="TetrisMaze.csd" Type="Scene" />
         <Project Name="TetrisMeteor.csd" Type="Scene" />
@@ -109,6 +114,8 @@
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
+        <Project Name="TetrisTimeMode1.csd" Type="Scene" />
+        <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
       </RootFolder>
     </Group>

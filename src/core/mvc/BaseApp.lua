@@ -151,6 +151,29 @@ function BaseApp:createScene(sceneName, args, transition, time, more)
     end
 end
 
+--------------------------------
+-- 左对齐
+-- @param node Node 显示对象
+-- @function [parent=#BaseApp] alignLeft
+function BaseApp:alignLeft(node)
+    if node then
+        local x, y = node:getPosition()
+        local size = node:getContentSize()
+        node:setPosition(cc.p(size.width / 2, y))
+    end
+end
+
+--------------------------------
+-- 右对齐
+-- @param node Node 显示对象
+-- @function [parent=#BaseApp] alignLeft
+function BaseApp:alignRight(node)
+    if node then
+        local x, y = node:getPosition()
+        local size = node:getContentSize()
+        node:setPosition(cc.p(display.width - size.width / 2, y))
+    end
+end
 
 
 return BaseApp

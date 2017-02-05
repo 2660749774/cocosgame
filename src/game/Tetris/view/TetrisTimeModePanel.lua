@@ -17,17 +17,16 @@ local RandomUtil = require "core.util.RandomUtil"
 -- @function [parent=#TetrisTimeModePanel] onCreate
 function TetrisTimeModePanel:onCreate(powerId, armyId)
     TetrisSinglePanel.onCreate(self, "layout.TetrisTimeMode")
-    self.lbTime = self.layout['lb_time']
-    self.lbLeftBlockNum = self.layout['lb_left_line']
+    self.lbTime = self.layout['lb_left_line']
+    self.lbResult = self.layout['lb_result']
     self.totalTime = 60
-    self.totalBlockNum = 60
-    self.blockNum = 0
+    -- self.totalBlockNum = 60
+    -- self.blockNum = 0
     self.time = 0
     self.needScore = 0
     self:loadConfig(TetrisSinglePanel.TYPE_TIMEMODE, powerId, armyId)
     self:updateTime()
-    self:updateBlockNum()
-    self.layout['lb_needscore']:setString(self.needScore * 10)
+    self:updateScoreProgress()
 end
 
 --------------------------------
@@ -35,7 +34,7 @@ end
 -- @function [parent=#TetrisTimeModePanel] loadConfig
 function TetrisTimeModePanel:loadConfig(type, powerId, armyId)
     self.conf = TetrisTimeModeConf.loadConfig(powerId, armyId)
-    self.totalBlockNum = self.conf.maxBlockNum
+    -- self.totalBlockNum = self.conf.maxBlockNum
     self.totalTime = self.conf.maxTime
     self.needScore = self.conf.scoreNum
 end
@@ -54,14 +53,21 @@ end
 
 --------------------------------
 -- 更新剩余方块数
--- @function [parent=#TetrisTimeModePanel] roundStart
+-- @function [parent=#TetrisTimeModePanel] updateBlockNum
 function TetrisTimeModePanel:updateBlockNum()
-    local blockNum = self.totalBlockNum - self.blockNum
-    if blockNum <= 0 then
-        self.tetris:gameOver()
-        blockNum = 0
-    end
-    self.lbLeftBlockNum:setString(blockNum)
+    -- local blockNum = self.totalBlockNum - self.blockNum
+    -- if blockNum <= 0 then
+    --     self.tetris:gameOver()
+    --     blockNum = 0
+    -- end
+    -- self.lbLeftBlockNum:setString(blockNum)
+end
+
+--------------------------------
+-- 更新分数
+-- @function [parent=#TetrisTimeModePanel] updateScore
+function TetrisTimeModePanel:updateScoreProgress()
+    self.lbResult:setString(self.score .. "/" .. self.needScore)
 end
 
 --------------------------------
@@ -77,10 +83,10 @@ end
 -- @function [parent=#TetrisTimeModePanel] updateScore
 function TetrisTimeModePanel:updateScore(removeLineNums)
     TetrisSinglePanel.updateScore(self, removeLineNums)
-    self.blockNum =  self.blockNum + 1
-    self:updateBlockNum()
+    -- self.blockNum =  self.blockNum + 1
+    self:updateScoreProgress()
 
-    if self.removeLineNums >= self.needScore then
+    if self.score >= self.needScore then
         -- 胜利了
         Tips.showSceneTips("恭喜您获胜了！！！", 3)
         self.tetris:gameOver()

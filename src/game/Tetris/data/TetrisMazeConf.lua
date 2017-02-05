@@ -64,7 +64,7 @@ function TetrisMazeConf:ctor(powerId, armyId, blockType, maxBlockNum, blockArray
 end
 
 -- 第一章节第一关
-TetrisMazeConf.new(1, 4, "fangkuai3", 2, {
+TetrisMazeConf.new(1, 3, "fangkuai3", 2, {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

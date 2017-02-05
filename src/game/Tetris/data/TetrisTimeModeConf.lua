@@ -24,7 +24,7 @@ function TetrisTimeModeConf:ctor(powerId, armyId, scoreNum, maxTime, maxBlockNum
 end
 
 -- 第一章节第一关
-TetrisTimeModeConf.new(1, 2, 10, 75, 35)
+TetrisTimeModeConf.new(1, 2, 2000, 75, 35)
 
 --------------------------------
 -- 获取配置

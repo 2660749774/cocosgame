@@ -34,10 +34,13 @@ function TetrisSinglePanel:onCreate(layout)
     self.btnPlay = self.layout['btn_play']
     self.btnDown = self.layout['btn_down']
     self.btnDownLow = self.layout['btn_down_low']
+    self.leftBg = self.layout['lb_left_bg']
+    self.rightBg = self.layout['lb_right_bg']
     self.randomCache = {}
     self.removeLineNums = 0
+    self.score = 0
 
-    local bg = self.layout['tetris_bg']
+    local bg = self.layout['tetris_panel']
     self.tetris = Tetris.new(bg, false, true, self)
 
     self:addChild(self.layout["root"])
@@ -124,9 +127,18 @@ end
 -- 更新分数
 -- @function [parent=#TetrisSinglePanel] updateScore
 function TetrisSinglePanel:updateScore(removeLineNums)
+    if removeLineNums == 1 then
+        self.score = self.score + 40
+    elseif removeLineNums == 2 then
+        self.score = self.score + 100
+    elseif removeLineNums == 3 then
+        self.score = self.score + 300
+    elseif removeLineNums == 4 then
+        self.score = self.score + 1200
+    end
     self.removeLineNums = self.removeLineNums + removeLineNums
     -- self.scoreHang:setString(self.removeLineNums)
-    self.scoreText:setString(self.removeLineNums * 10)
+    self.scoreText:setString(self.score)
 end
 
 --------------------------------
