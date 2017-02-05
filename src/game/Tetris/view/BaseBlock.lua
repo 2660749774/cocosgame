@@ -57,11 +57,12 @@ function BaseBlock:doRotation(grids)
         self.curIndex = 1
     end
     self:refreshDisplay()
-    -- if self:checkCollision(grids) then
-    --     self.curIndex = srcIndex
-    --     self:refreshDisplay()
-    -- end
     self:fixPosition()
+    if self:checkCollision(grids) then
+        self.curIndex = srcIndex
+        self:refreshDisplay()
+        self:fixPosition()
+    end
 end
 
 --------------------------------

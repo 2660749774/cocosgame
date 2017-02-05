@@ -5,7 +5,7 @@
        "name": "game",
        "width": 640,
        "height": 1136,
-       "entry": "../../src/main.lua",
+       "entry": "src/main.lua",
        "consolePort": 6050,
        "uploadPort": 6060
     },

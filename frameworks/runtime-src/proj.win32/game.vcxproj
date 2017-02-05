@@ -191,6 +191,7 @@
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\auto\lua_cocos2dx_httprequest_auto.hpp" />
+    <ClInclude Include="..\Classes\auto\lua_cocos2dx_util_auto.hpp" />
     <ClInclude Include="..\Classes\ide-support\CodeIDESupport.h" />
     <ClInclude Include="..\Classes\ide-support\lua_debugger.h" />
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="..\Classes\lua_extensions\lpack\lpack.h" />
     <ClInclude Include="..\Classes\lua_extensions\lua_will_extensions.h" />
     <ClInclude Include="..\Classes\lua_extensions\lua_zlib\lua_zlib.h" />
+    <ClInclude Include="..\Classes\util\Util.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimulatorWin.h" />
@@ -209,6 +211,7 @@
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\auto\lua_cocos2dx_httprequest_auto.cpp" />
+    <ClCompile Include="..\Classes\auto\lua_cocos2dx_util_auto.cpp" />
     <ClCompile Include="..\Classes\ide-support\lua_debugger.c" />
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp" />
     <ClCompile Include="..\Classes\lua_extensions\cjson\fpconv.c" />
@@ -217,6 +220,7 @@
     <ClCompile Include="..\Classes\lua_extensions\lpack\lpack.c" />
     <ClCompile Include="..\Classes\lua_extensions\lua_will_extensions.c" />
     <ClCompile Include="..\Classes\lua_extensions\lua_zlib\lua_zlib.c" />
+    <ClCompile Include="..\Classes\util\Util.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimulatorWin.cpp" />
     <ClCompile Include="stdafx.cpp" />

@@ -25,6 +25,9 @@
     <Filter Include="Classes\auto">
       <UniqueIdentifier>{1555d29a-43ed-4a22-8513-d1cb3a467b14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\util">
+      <UniqueIdentifier>{b291c0f5-5c57-45e7-9fe9-4e633ef44d66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -71,6 +74,12 @@
     <ClInclude Include="..\Classes\auto\lua_cocos2dx_httprequest_auto.hpp">
       <Filter>Classes\auto</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\auto\lua_cocos2dx_util_auto.hpp">
+      <Filter>Classes\auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\util\Util.h">
+      <Filter>Classes\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -109,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\auto\lua_cocos2dx_httprequest_auto.cpp">
       <Filter>Classes\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\auto\lua_cocos2dx_util_auto.cpp">
+      <Filter>Classes\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\util\Util.cpp">
+      <Filter>Classes\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

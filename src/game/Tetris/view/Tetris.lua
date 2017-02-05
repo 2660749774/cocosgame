@@ -198,7 +198,8 @@ function Tetris:roundStart()
     if self.isNet then
         self.block:setPosition(cc.p(165, 435))
     else
-        self.block:setPosition(cc.p(165, 705))
+        -- self.block:setPosition(cc.p(165, 705))
+        self.block:setPosition(cc.p(165, 435))
     end
     self.bg:addChild(self.block)
 
@@ -254,7 +255,7 @@ function Tetris:gameStart(conf)
     if not self.isNet then
         self.fixScheduler:updateServerFrameNum(-1)
     end
-    self.updateTask = self.fixScheduler:scheduleTask(handler(self, self.doUpdate), 1)
+    self.updateTask = self.fixScheduler:scheduleTask(handler(self, self.doUpdate), 0.5)
     if self.isAI then
         self.aiTask = self.fixScheduler:scheduleTask(handler(self, self.aiSimulate))
     end
