@@ -40,6 +40,10 @@ function TetrisSinglePanel:onCreate(layout)
     self.removeLineNums = 0
     self.score = 0
 
+    -- 对齐
+    app:alignLeft(self.leftBg)
+    app:alignRight(self.rightBg)
+
     local bg = self.layout['tetris_panel']
     self.tetris = Tetris.new(bg, false, true, self)
 

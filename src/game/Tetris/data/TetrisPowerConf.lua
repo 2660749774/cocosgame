@@ -43,6 +43,8 @@ TetrisPowerConf.new(1, 1, 1)
 TetrisPowerConf.new(1, 2, 2)
 -- 第一章节第3关
 TetrisPowerConf.new(1, 3, 3)
+-- 第一章节第3关
+TetrisPowerConf.new(1, 4, 4)
 
 --------------------------------
 -- 获取配置

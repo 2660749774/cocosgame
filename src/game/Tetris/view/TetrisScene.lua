@@ -42,7 +42,7 @@ function TetrisScene:createPowerView()
     self.powerStartArmyNum = 59
     self.powerLoopArmyNum = 66
     self.currPowerId = 1
-    self.currArmyId = 3
+    self.currArmyId = 4
 
     -- 创建TableView
     self.tableView = cc.TableView:create(cc.size(display.width, display.height))

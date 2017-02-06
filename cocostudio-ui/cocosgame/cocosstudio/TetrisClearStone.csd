@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="TetrisMaze_0" Type="Scene" ID="6018a8a5-2ed8-448d-b2e3-faa1e75b786f" Version="3.10.0.0" />
+  <PropertyGroup Name="TetrisClearStone" Type="Scene" ID="6018a8a5-2ed8-448d-b2e3-faa1e75b786f" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
