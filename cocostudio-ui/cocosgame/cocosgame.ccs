@@ -102,6 +102,7 @@
         <Project Name="MainScene.csd" Type="Scene" />
         <Project Name="PageTestScene.csd" Type="Scene" />
         <Project Name="ParticleTestPanel.csd" Type="Scene" />
+        <Project Name="Scene.csd" Type="Scene" />
         <Project Name="scrollTestPanel.csd" Type="Scene" />
         <Project Name="SliderTestScene.csd" Type="Scene" />
         <Project Name="TestLuaScene.csd" Type="Scene" />
@@ -116,6 +117,7 @@
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="TestMVVMScene.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
