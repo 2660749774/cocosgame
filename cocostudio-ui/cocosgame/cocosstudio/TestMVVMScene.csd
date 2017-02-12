@@ -6,14 +6,14 @@
       <ObjectData Name="Scene" Tag="9" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="user_name" ActionTag="-471216054" Tag="10" IconVisible="False" LeftMargin="231.5740" RightMargin="219.4260" TopMargin="530.9482" BottomMargin="568.0518" FontSize="32" LabelText="${user.name}" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="189.0000" Y="37.0000" />
+          <AbstractNodeData Name="user_name" ActionTag="-471216054" Tag="10" IconVisible="False" LeftMargin="208.5740" RightMargin="196.4260" TopMargin="530.9482" BottomMargin="568.0518" FontSize="32" LabelText="${user.fullName}" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="235.0000" Y="37.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="326.0740" Y="586.5518" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5095" Y="0.5163" />
-            <PreSize X="0.2953" Y="0.0326" />
+            <PreSize X="0.3672" Y="0.0326" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

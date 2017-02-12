@@ -39,6 +39,7 @@ end
 function BaseViewModel:loadData()
 end
 
+
 --------------------------------
 -- 数据变化回调
 -- @param model BaseModel  model类
@@ -48,7 +49,7 @@ end
 -- @function [parent=#BaseViewModel] onDataChange
 function BaseViewModel:onDataChange(model, key, oldValue, newValue)
     local _key = model._name .. "." .. key
-    log:info("onDataChange model:%s, key:%s", model, _key)
+    log:info("onDataChange model:%s, key:%s, value:%s", model, _key, newValue)
     if self.listeners[_key] then
         for _, listener in pairs(self.listeners[_key]) do
             log:info("fireDataChange model:%s, key:%s, listener:%s", model, _key, listener)
@@ -114,9 +115,9 @@ function BaseViewModel:initProperty(model)
                 -- class, 忽略
             elseif value and type(value) == "function" then
                 -- 函数属性忽略
+                self.watchProps[name .. "." .. key] = {prop=key, type="func"}
             else
-                name = name .. "." .. key
-                self.watchProps[name] = {prop=key}
+                self.watchProps[name .. "." .. key] = {prop=key, type="prop"}
             end
         end
     end

@@ -18,6 +18,10 @@ function User:ctor()
     self.callback = function()
         log:info("callback")
     end 
+    self.fullName = function()
+        return "hello world " .. self.name
+    end
+    self:addComputedProperty("fullName", self.fullName, "name")
 end
 
 return User
