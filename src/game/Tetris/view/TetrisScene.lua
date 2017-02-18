@@ -65,23 +65,7 @@ end
 -- 单机模式
 -- @function [parent=#TetrisScene] playSingle
 function TetrisScene:playSingle(powerId, armyId)
-    local animationLayout = require("layout.TetrisStartAnimation").create()
-    animationLayout['panel']:setAnchorPoint(0.5, 0.5)
-    animationLayout['panel']:setPosition(display.cx, display.cy)
-    self:addObject(animationLayout['root'], "modal")
-
-    local animation = animationLayout['animation']
-    animationLayout['root']:runAction(animation)
-    animation:setLastFrameCallFunc(function()
-        animationLayout['root']:removeFromParent()
-    end)
-    animation:setFrameEventCallFunc(function(frame)
-        if frame:getEvent() == "loadNext" then
-            local conf = TetrisPowerConf.loadConfig(powerId, armyId)
-            self:pushPanel("Tetris.view." .. conf.module, {powerId, armyId})
-        end
-    end)
-    animation:gotoFrameAndPlay(0, false) 
+    self:pushPanel("Tetris.view.TetrisPowerStart", {powerId, armyId})
 end
 
 --------------------------------
@@ -107,7 +91,7 @@ function TetrisScene:handleArmyClick(event)
     local power = math.floor(tag / 1000)
     local army = tag % 1000
 
-    Tips.showSceneTips(string.format("选择了第%s章第%s关", power, army), 1)
+    -- Tips.showSceneTips(string.format("选择了第%s章第%s关", power, army), 1)
     self:playSingle(power, army)
 end
 

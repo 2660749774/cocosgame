@@ -86,7 +86,7 @@ function BaseScene:pushPanel(panelName, args)
     log:info("pushPanel %s %s", panelName, panel)
     if panel then
         -- 隐藏其他
-        self:hideAllPanel()
+        -- self:hideAllPanel()
 
         -- 显示
         self:showPanelWithTransition(panel)
@@ -128,7 +128,7 @@ function BaseScene:popPanel(cleanup)
         local topPanel = table.remove(self.panelStack, #self.panelStack)
         
         -- 移除
-        topPanel:removeFromParent(cleanup)
+        self:removePanel(topPanel, cleanup)
 
         -- 显示新的栈顶面板
         topPanel = self:peekPanel()
@@ -181,7 +181,7 @@ end
 function BaseScene:closeAllPanel(cleanup)
     cleanup = cleanup or true
     for _, panel in pairs(self.panelStack) do
-        panel:removeFromParent(cleanup)
+        self:removePanel(panel, cleanup)
     end
     self.panelStack = {}
 end
@@ -212,31 +212,35 @@ function BaseScene:showPanelWithTransition(panel)
     panel:showWithUI()
     
     if panel:getName() ~= "Loading" then
-        panel:setCascadeOpacityEnabled(true)
-        panel:setOpacity(0)
+        -- 运行打开特效
+        panel:runOpenTransition()
 
-        local fadeIn = cc.FadeIn:create(1)
-        panel:runAction(fadeIn)
+        -- fade特效
+        -- panel:setCascadeOpacityEnabled(true)
+        -- panel:setOpacity(0)
+
+        -- local fadeIn = cc.FadeIn:create(1)
     end
 end
 
 --------------------------------
 -- 关闭Panel，带过度动画
 -- @param userdata panel 面板
--- @function [parent=#BaseScene] showPanelWithTransition
+-- @function [parent=#BaseScene] closePanelWithTransition
 function BaseScene:closePanelWithTransition(panel, callback, cleanup)
     cleanup = cleanup or true
     local _callback = function() 
-        panel:removeFromParent(cleanup)
+        panel:removeFromParent()
         if callback then
             callback()
         end
     end
 
-    panel:setCascadeOpacityEnabled(true)
-    panel:setOpacity(255)
-    local fadeOut = cc.FadeOut:create(1)
-    panel:runAction(fadeOut, _callback)
+    -- panel:setCascadeOpacityEnabled(true)
+    -- panel:setOpacity(255)
+    -- local fadeOut = cc.FadeOut:create(1)
+    -- panel:runAction(fadeOut, _callback)
+    panel:runCloseTransition(_callback)
 end
 
 --------------------------------
@@ -281,6 +285,15 @@ function BaseScene:createPanel(panelName, openMethod, args)
     else
         log:error("已经在当前Panel中 %s", currPanelName)
     end
+end
+
+--------------------------------
+-- 移除面板
+-- @param panel userdata 面板
+-- @function [parent=#BaseScene] removePanel
+function BaseScene:removePanel(panel, cleanup)
+    self:closePanelWithTransition(panel)
+    -- panel:removeFromParent(cleanup)
 end
 
 --------------------------------

@@ -231,19 +231,34 @@
       <ObjectData Name="Scene" Tag="27" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="panel" ActionTag="574730510" Tag="27" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="panel" ActionTag="574730510" Tag="27" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="75" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="640.0000" Y="1136.0000" />
             <Children>
-              <AbstractNodeData Name="sp_count" ActionTag="-1848402198" Tag="28" IconVisible="False" LeftMargin="215.0000" RightMargin="215.0000" TopMargin="528.0000" BottomMargin="528.0000" ctype="SpriteObjectData">
-                <Size X="210.0000" Y="80.0000" />
+              <AbstractNodeData Name="panel_bg" ActionTag="1306295315" Tag="418" IconVisible="False" TopMargin="860.0000" BottomMargin="76.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="640.0000" Y="200.0000" />
+                <Children>
+                  <AbstractNodeData Name="sp_count" ActionTag="-1848402198" Alpha="76" Tag="28" IconVisible="False" LeftMargin="215.0000" RightMargin="215.0000" TopMargin="-408.0000" BottomMargin="528.0000" ctype="SpriteObjectData">
+                    <Size X="210.0000" Y="80.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="320.0000" Y="568.0000" />
+                    <Scale ScaleX="4.0000" ScaleY="4.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="2.8400" />
+                    <PreSize X="0.3281" Y="0.4000" />
+                    <FileData Type="Normal" Path="ui/tetris/power/anim_3.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="320.0000" Y="568.0000" />
+                <Position X="320.0000" Y="176.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="1.3312" Y="1.0000" />
-                <FileData Type="Normal" Path="ui/tetris/power/anim_start.png" Plist="" />
-                <BlendFunc Src="1" Dst="771" />
+                <PrePosition X="0.5000" Y="0.1549" />
+                <PreSize X="1.0000" Y="0.1761" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint />
@@ -252,7 +267,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="1.0000" Y="1.0000" />
-            <SingleColor A="255" R="150" G="200" B="255" />
+            <SingleColor A="255" R="0" G="0" B="0" />
             <FirstColor A="255" R="150" G="200" B="255" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />

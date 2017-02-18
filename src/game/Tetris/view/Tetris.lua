@@ -38,6 +38,15 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     self.block = nil
     self.nextBlock = nil
     self.isAI = false
+    self.pause = false
+end
+
+function Tetris:pauseGame()
+    self.pause = true
+end
+
+function Tetris:resumeGame()
+    self.pause = false
 end
 
 --------------------------------
@@ -47,12 +56,13 @@ function Tetris:doUpdate(dt)
     if self.isSelf then
         -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self:getLocalFrameNum(), self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
     end
-    if nil ~= self.parent and self.parent.doUpdate then
-        self.parent:doUpdate(dt)
+
+    if self.gameOverFlag or self.disableDown or self.pause then
+        return
     end
 
-    if self.gameOverFlag or self.disableDown then
-        return
+    if nil ~= self.parent and self.parent.doUpdate then
+        self.parent:doUpdate(dt)
     end
 
     if self.block ~= nil then
@@ -586,7 +596,7 @@ function Tetris:_handleDown(block, simulate)
         if self.isNet then
             Tips.showTips("Game Over!", self.bg, 1)
         else
-            Tips.showSceneTips("Game Over!", 1)
+            -- Tips.showSceneTips("Game Over!", 1)
         end
         self:gameOver()
     elseif not simulate then

@@ -33,7 +33,7 @@ function Game:startup()
     cc.exports.app = self
     
     -- 切换到入口函数
-    self:changeScene("TestMVVM")
+    self:changeScene("Tetris")
 end
 
 return Game

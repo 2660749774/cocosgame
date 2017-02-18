@@ -79,7 +79,15 @@
               <Image Name="number_red.png" />
               <Image Name="popup_bg.png" />
               <Image Name="power_bg.png" />
+              <Image Name="power_fail_bg.png" />
+              <Image Name="power_fail_retry.png" />
+              <Image Name="power_pass_bg.png" />
+              <Image Name="power_pass_continue.png" />
+              <Image Name="power_pass_star.png" />
+              <Image Name="power_pass_star1.png" />
+              <Image Name="power_pass_succ.png" />
               <Image Name="power_start.png" />
+              <Image Name="power_start_bg.png" />
               <Image Name="power_target.png" />
               <Image Name="powername_bg.png" />
               <Image Name="progress.png" />
@@ -119,6 +127,8 @@
         <Project Name="MainScene.csd" Type="Scene" />
         <Project Name="PageTestScene.csd" Type="Scene" />
         <Project Name="ParticleTestPanel.csd" Type="Scene" />
+        <Project Name="PowerPausePopup.csd" Type="Scene" />
+        <Project Name="PowerStartPopup.csd" Type="Scene" />
         <Project Name="Scene.csd" Type="Scene" />
         <Project Name="scrollTestPanel.csd" Type="Scene" />
         <Project Name="SliderTestScene.csd" Type="Scene" />
@@ -134,10 +144,11 @@
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
-        <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="PowerStartPopup.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
-        <Project Name="PowerPausePopup.csd" Type="Scene" />
+        <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="ModalMask.csd" Type="Scene" />
+        <Project Name="PowerSuccPopup.csd" Type="Scene" />
+        <Project Name="PowerFailPopup.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -137,7 +137,7 @@ function Log:traceback(fmt, ...)
     local msg = "-------------------------------------\n"
     msg = msg .. debug.traceback()
     msg = msg .. "\n------------------------------------"
-    self:info("stack", msg)
+    self:info("stack:%s", msg)
 end
 
 

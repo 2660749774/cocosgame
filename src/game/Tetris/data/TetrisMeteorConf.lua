@@ -17,6 +17,7 @@ function TetrisMeteorConf:ctor(powerId, armyId, blockType, maxBlockNum, blockArr
     self.blockArray = blockArray
     self.blockType = blockType
     self.maxBlockNum = maxBlockNum
+    self.targetName = "收集星星方块"
 
     TetrisMeteorConf.configMap[powerId] = {}
     TetrisMeteorConf.configMap[powerId][armyId] = self

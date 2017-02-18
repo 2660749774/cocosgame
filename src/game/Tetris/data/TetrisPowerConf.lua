@@ -7,6 +7,10 @@
 -- TetrisPowerConf 方块迷阵
 
 local TetrisPowerConf = class("TetrisPowerConf")
+local TetrisMeteorConf = import(".TetrisMeteorConf")
+local TetrisMazeConf = import(".TetrisMazeConf")
+local TetrisClearStoneConf = import(".TetrisClearStoneConf")
+local TetrisTimeModeConf = import(".TetrisTimeModeConf")
 
 TetrisPowerConf.configMap = {}
 
@@ -59,6 +63,22 @@ function TetrisPowerConf.loadConfig(powerId, armyId)
         return TetrisPowerConf.new(powerId, armyId, 2)
     end
     return conf
+end
+
+--------------------------------
+-- 获取配置
+-- @function [parent=#TetrisPowerConf] loadDetailConfig
+function TetrisPowerConf.loadDetailConfig(powerId, armyId)
+    local conf = TetrisPowerConf.loadConfig(powerId, armyId)
+    if conf.armyType == 1 then
+        return TetrisClearStoneConf.loadConfig(powerId, armyId)
+    elseif conf.armyType == 2 then
+        return TetrisTimeModeConf.loadConfig(powerId, armyId)
+    elseif conf.armyType == 3 then
+        return TetrisMeteorConf.loadConfig(powerId, armyId)
+    else
+        return TetrisMazeConf.loadConfig(powerId, armyId)
+    end
 end
 
 

@@ -17,9 +17,17 @@ local RandomUtil = require "core.util.RandomUtil"
 -- @function [parent=#TetrisTimeModePanel] onCreate
 function TetrisTimeModePanel:onCreate(powerId, armyId)
     TetrisSinglePanel.onCreate(self, "layout.TetrisTimeMode")
+
+    self.powerId = powerId
+    self.armyId = armyId
     self.lbTimeMinute = self.layout['lb_time_minute']
     self.lbTimeSec = self.layout['lb_time_sec']
     self.lbResult = self.layout['lb_result']
+    self.pgResult = self.layout['pg_result']
+    self.pgResult:loadSlidBallTextureNormal('', 0)
+    self.pgResult:loadSlidBallTexturePressed('', 0)
+    self.pgResult:loadSlidBallTextureDisabled('', 0)
+    self.pgResult:setPercent(0)
     self.totalTime = 60
     -- self.totalBlockNum = 60
     -- self.blockNum = 0
@@ -73,7 +81,19 @@ end
 -- 更新分数
 -- @function [parent=#TetrisTimeModePanel] updateScore
 function TetrisTimeModePanel:updateScoreProgress()
-    self.lbResult:setString(self.score .. "/" .. self.needScore)
+    self.lbResult:setString(tostring(self.score))
+    self.pgResult:setPercent(math.floor(self.score * 100 / self.needScore))
+end
+
+
+--------------------------------
+-- 游戏结束
+-- @function [parent=#TetrisMazePanel] notifyGameOver
+function TetrisTimeModePanel:notifyGameOver()
+    if self.pass then
+        return
+    end
+    self:getScene():pushPanel("Tetris.view.TetrisPowerFail", {self.powerId, self.armyId, self.score, self.needScore, self})
 end
 
 --------------------------------
@@ -94,8 +114,10 @@ function TetrisTimeModePanel:updateScore(removeLineNums)
 
     if self.score >= self.needScore then
         -- 胜利了
-        Tips.showSceneTips("恭喜您获胜了！！！", 3)
+        -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
+        self.pass = true
         self.tetris:gameOver()
+        self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 2, self.score})
     end
 end
 
@@ -105,6 +127,7 @@ end
 function TetrisTimeModePanel:reset()
     TetrisSinglePanel.reset(self)
 
+    self.score = 0
     self.blockNum = 0
     self.time = 0
     self:updateBlockNum()

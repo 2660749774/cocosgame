@@ -58,6 +58,7 @@ function TetrisMazeConf:ctor(powerId, armyId, blockType, maxBlockNum, blockArray
     self.nextBlockArray = nextBlockArray
     self.blockType = blockType
     self.maxBlockNum = maxBlockNum
+    self.targetName = "方块迷阵"
 
     TetrisMazeConf.configMap[powerId] = {}
     TetrisMazeConf.configMap[powerId][armyId] = self

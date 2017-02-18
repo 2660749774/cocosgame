@@ -18,10 +18,12 @@ function BasePanel:ctor(scene, name, args)
     self.scene = scene
     self.name = name
     self.args = args
+    self.disableTransition = false
 
     -- 调用init方法
     self:init()
 
+   
     -- 调用onCreate方法
     if self.onCreate then
         self:onCreate(unpack(args))
@@ -44,7 +46,6 @@ function BasePanel:getScene()
 end
 
 
-
 --------------------------------
 -- 显示出来
 -- @function [parent=#BasePanel] show
@@ -60,6 +61,39 @@ function BasePanel:showWithUI()
     log:info("showWithUI %s %s", self.name, self.scene:getName())
     self:setVisible(true)
     self.scene:addObject(self, "ui")
+end
+
+--------------------------------
+-- 设置根panel
+-- @function [parent=#BasePanel] setRootPanel
+function BasePanel:setRootPanel(panel)
+    self.rootPanel = panel
+end 
+
+--------------------------------
+-- 添加Layout
+-- @function [parent=#BasePanel] addLayout
+function BasePanel:addLayout(layout)
+    self:fixLayout(layout)
+
+    self.rootPanel = layout['panel']
+    local mask = maskLayout['root']
+    mask:addChild(layout['root'])
+    self:addChild(mask)
+end 
+
+--------------------------------
+-- 添加Layout, 包括模态
+-- @function [parent=#BasePanel] setVisible
+function BasePanel:addLayoutWithMask(layout, maskLayout)
+    local maskLayout = require(maskLayout).create()
+    self:fixLayout(maskLayout)
+    self:fixLayout(layout)
+
+    self.rootPanel = layout['panel']
+    local mask = maskLayout['root']
+    mask:addChild(layout['root'])
+    self:addChild(mask)
 end
 
 --------------------------------
@@ -95,8 +129,8 @@ function BasePanel:setOpacity(value)
 end
 
 --------------------------------
--- 设置递归设置透明度
--- @function [parent=#BasePanel] setOpacity
+-- 运行动画
+-- @function [parent=#BasePanel] runAction
 function BasePanel:runAction(action, callback)
      local childs = self:getChildren()
      local childNum = #childs
@@ -108,9 +142,40 @@ function BasePanel:runAction(action, callback)
         end
      end
      for _, child in pairs(childs) do
-        local action = cc.Sequence:create(action:clone(), cc.CallFunc:create(_callback))
-        child:runAction(action)
+        local _action = cc.Sequence:create(action:clone(), cc.CallFunc:create(_callback))
+        child:runAction(_action)
      end
+end
+
+--------------------------------
+-- 运行打开特效
+-- @function [parent=#BasePanel] runOpenTransition
+function BasePanel:runOpenTransition()
+    if self.rootPanel and not self.disableTransition then
+        self.rootPanel:setScale(0.5)
+        local action = cc.EaseQuinticActionOut:create(cc.ScaleBy:create(0.5, 2, 2))
+        self.rootPanel:runAction(action)
+    end
+end
+
+--------------------------------
+-- 运行关闭特效
+-- @function [parent=#BasePanel] runCloseTransition
+function BasePanel:runCloseTransition(callback)
+    if self.rootPanel and not self.disableTransition then
+        local baseAction = cc.EaseQuinticActionIn:create(cc.ScaleBy:create(0.5, 0, 0))
+        if callback then
+            local action = cc.Sequence:create(baseAction, cc.CallFunc:create(callback))
+            self.rootPanel:runAction(action)
+        else
+            local action = cc.EaseQuinticActionIn:create(baseAction)
+            self.rootPanel:runAction(action)
+        end
+    else
+        if callback then
+            callback()
+        end
+    end
 end
 
 

@@ -22,6 +22,8 @@ function TetrisMazePanel:onCreate(powerId, armyId)
     app:alignLeft(self.leftBg)
     app:alignRight(self.rightBg)
 
+    self.powerId = powerId
+    self.armyId = armyId
     self.lbLeftBlockNum = self.layout['lb_left_line']
     self.totalBlockNum = 0
     self.blockNum = 0
@@ -44,7 +46,7 @@ end
 -- @function [parent=#TetrisMazePanel] gameStart
 function TetrisMazePanel:gameStart(data)
     log:info("gameStart")
-    Tips.showSceneTips("游戏开始！！！")
+    -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
     self.btnPlay:setVisible(false)
@@ -89,12 +91,22 @@ end
 -- @function [parent=#TetrisMazePanel] roundStart
 function TetrisMazePanel:updateBlockNum()
     local blockNum = self.totalBlockNum - self.blockNum
-    if blockNum <= 0 then
+    if blockNum <= 0 and self.removeFangkuaiNum ~= self.totalFangkuaiNum then
         self.tetris:gameOver()
         blockNum = 0
     end
     self.lbLeftBlockNum:setString(blockNum)
     self.lbResult:setString(self.removeFangkuaiNum .. "/" .. self.totalFangkuaiNum)
+end
+
+--------------------------------
+-- 游戏结束
+-- @function [parent=#TetrisMazePanel] notifyGameOver
+function TetrisMazePanel:notifyGameOver()
+    if self.pass then
+        return
+    end
+    self:getScene():pushPanel("Tetris.view.TetrisPowerFail", {self.powerId, self.armyId, self.removeFangkuaiNum, self.totalFangkuaiNum, self})
 end
 
 --------------------------------
@@ -133,8 +145,10 @@ function TetrisMazePanel:updateScore(removeLineNums)
     end
 
     -- 胜利了
-    Tips.showSceneTips("恭喜您获胜了！！！", 3)
+    -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
+    self.pass = true
     self.tetris:gameOver()
+    self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 2, self.removeFangkuaiNum})
 end
 
 --------------------------------

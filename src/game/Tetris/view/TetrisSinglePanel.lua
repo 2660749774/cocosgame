@@ -32,6 +32,7 @@ function TetrisSinglePanel:onCreate(layout)
     self.scoreText = self.layout['lb_score']
     -- self.scoreHang = self.layout['lb_hang']
     self.btnPlay = self.layout['btn_play']
+    self.btnPause = self.layout['btn_pause']
     self.btnDown = self.layout['btn_down']
     self.btnDownLow = self.layout['btn_down_low']
     self.leftBg = self.layout['lb_left_bg']
@@ -39,6 +40,7 @@ function TetrisSinglePanel:onCreate(layout)
     self.randomCache = {}
     self.removeLineNums = 0
     self.score = 0
+    self.playType = 1
 
     -- 对齐
     app:alignLeft(self.leftBg)
@@ -49,6 +51,7 @@ function TetrisSinglePanel:onCreate(layout)
 
     self:addChild(self.layout["root"])
     self.scoreText:setString("0")
+    self.btnPlay:setVisible(false)
     -- self.scoreHang:setString("0")
 
     -- 添加事件
@@ -60,12 +63,39 @@ function TetrisSinglePanel:onCreate(layout)
     self.btnRight:addClickEventListener(handler(self, self.handleRight))
     self.btnRight:addLongPressEventListener(handler(self, self.handleRight), 0.2)
 
-    self.btnPlay:addClickEventListener(handler(self, self.playGame))
+    -- self.btnPlay:addClickEventListener(handler(self, self.playGame))
+    self.btnPause:addClickEventListener(handler(self, self.handlePauseGame))
 
     self.btnDown:addClickEventListener(handler(self, self.handleDown))
 
     self.btnDownLow:addClickEventListener(handler(self, self.handleDownLow))
     self.btnDownLow:addLongPressEventListener(handler(self, self.handleDownLow), 0.2)
+
+    -- 播放开始动画
+    scheduler.performWithDelayGlobal(handler(self, self.playStartAnimation), 1.2)
+end
+
+--------------------------------
+-- 播放开始动画
+-- @function [parent=#TetrisSinglePanel] playGame
+function TetrisSinglePanel:playStartAnimation()
+    -- 播放动画
+    local animationLayout = require("layout.TetrisStartCountAnimation").create()
+    animationLayout['panel']:setAnchorPoint(0.5, 0.5)
+    animationLayout['panel']:setPosition(display.cx, display.cy)
+    self:getScene():addObject(animationLayout['root'], "modal")
+
+    local animation = animationLayout['animation']
+    animationLayout['root']:runAction(animation)
+    animation:setLastFrameCallFunc(function()
+        animationLayout['root']:removeFromParent()
+        if self.playType == 1 then
+            self:playGame()
+        else
+            self.tetris:resumeGame()
+        end
+    end)
+    animation:gotoFrameAndPlay(0, false) 
 end
 
 
@@ -78,11 +108,34 @@ function TetrisSinglePanel:playGame()
 end
 
 --------------------------------
+-- 暂停游戏
+-- @function [parent=#TetrisSinglePanel] pauseGame
+function TetrisSinglePanel:handlePauseGame()
+    self:pauseGame()
+    self:getScene():pushPanel("Tetris.view.TetrisPowerPause", {self})
+end
+
+function TetrisSinglePanel:pauseGame()
+    self.tetris:pauseGame()
+end
+
+function TetrisSinglePanel:resumeGame()
+    self.playType = 2
+    scheduler.performWithDelayGlobal(handler(self, self.playStartAnimation), 0.5)
+end
+
+function TetrisSinglePanel:quitGame()
+    log:info("quitGame")
+    -- 退出游戏
+    self:getScene():popPanel()
+end
+
+--------------------------------
 -- 游戏开始
 -- @function [parent=#TetrisSinglePanel] gameStart
 function TetrisSinglePanel:gameStart(data)
     log:info("gameStart")
-    Tips.showSceneTips("游戏开始！！！")
+    -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
     self.btnPlay:setVisible(false)
@@ -167,9 +220,17 @@ end
 -- 通知比赛结束
 -- @function [parent=#TetrisSinglePanel] reset
 function TetrisSinglePanel:notifyGameOver(isSelf)
-    self.btnPlay:setVisible(true)
+    -- self.btnPlay:setVisible(true)
 
-    self:showHomeBtn(0, 0)
+    -- self:showHomeBtn(0, 0)
+end
+
+--------------------------------
+-- 重新开始
+-- @function [parent=#TetrisSinglePanel] restartGame
+function TetrisSinglePanel:restartGame()
+    self.playType = 1
+    scheduler.performWithDelayGlobal(handler(self, self.playStartAnimation), 0.5)
 end
 
 --------------------------------
