@@ -56,9 +56,18 @@
           </Folder>
           <Folder Name="tetris">
             <Folder Name="power">
+              <Image Name="anim_1.png" />
+              <Image Name="anim_2.png" />
+              <Image Name="anim_3.png" />
+              <Image Name="anim_start.png" />
               <Image Name="bg1.png" />
               <Image Name="bg2.png" />
+              <Image Name="close.png" />
               <Image Name="fangkuai8.png" />
+              <Image Name="game_continue.png" />
+              <Image Name="game_end.png" />
+              <Image Name="game_pause.png" />
+              <Image Name="game_pauseing.png" />
               <Image Name="lb_left_bg.png" />
               <Image Name="lb_right_bg.png" />
               <Image Name="line.png" />
@@ -68,13 +77,21 @@
               <Image Name="mh.png" />
               <Image Name="number.png" />
               <Image Name="number_red.png" />
+              <Image Name="popup_bg.png" />
               <Image Name="power_bg.png" />
+              <Image Name="power_start.png" />
+              <Image Name="power_target.png" />
+              <Image Name="powername_bg.png" />
+              <Image Name="progress.png" />
+              <Image Name="progress_bg.png" />
               <Image Name="square1.png" />
               <Image Name="square2.png" />
               <Image Name="square3.png" />
               <Image Name="square4.png" />
               <Image Name="start_bg.png" />
               <Image Name="unopen_bg.png" />
+              <Image Name="vol_off.png" />
+              <Image Name="vol_on.png" />
             </Folder>
             <Image Name="bg.png" />
             <Image Name="bg_bk.png" />
@@ -106,6 +123,7 @@
         <Project Name="scrollTestPanel.csd" Type="Scene" />
         <Project Name="SliderTestScene.csd" Type="Scene" />
         <Project Name="TestLuaScene.csd" Type="Scene" />
+        <Project Name="TestMVVMScene.csd" Type="Scene" />
         <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
         <Project Name="TetrisMaze.csd" Type="Scene" />
@@ -117,7 +135,9 @@
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TestMVVMScene.csd" Type="Scene" />
+        <Project Name="PowerStartPopup.csd" Type="Scene" />
+        <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
+        <Project Name="PowerPausePopup.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
