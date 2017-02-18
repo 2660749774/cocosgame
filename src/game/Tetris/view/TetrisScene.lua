@@ -14,9 +14,17 @@ local TetrisPowerConf = import("..data.TetrisPowerConf")
 function TetrisScene:onCreate()
     local layout = require("layout.TetrisMainScene").create()
     self:fixLayout(layout)
+    self:addObject(layout["root"], "scene")
 
     -- 创建副本界面
     self:createPowerView()
+
+    -- 创建bar
+    local barLayout = require("layout.TetrisMainBar").create()
+    self:fixLayout(barLayout)
+    local size = barLayout['bar_bg']:getContentSize()
+    barLayout['bar_bg']:setContentSize(cc.size(display.width, size.height))
+    self:addObject(barLayout["root"], "scene")
 
     -- 添加事件监听
     self.btnMultiplayer = layout['btn_multiplayer']
@@ -30,7 +38,7 @@ function TetrisScene:onCreate()
     
     self.btnMultiplayer:addClickEventListener(handler(self, self.playMulti))
 
-    self:addObject(layout["root"], "scene")
+    
 end
 
 --------------------------------

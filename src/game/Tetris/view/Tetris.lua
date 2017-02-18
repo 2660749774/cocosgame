@@ -722,14 +722,15 @@ function Tetris:flyStar(sender)
     star:setPosition(pos.x, pos.y)
     self.parent:addChild(star)
 
+    local offset = display.width - 640
     -- 放大
     local action1 = cc.ScaleTo:create (1, 2.0)
 
     -- 贝塞尔运动
     local bezierConfig = {
         cc.p(pos.x, pos.y - 250),   
-        cc.p(350, 900),  
-        cc.p(510, 1030),  
+        cc.p(350 + offset, 900),  
+        cc.p(510 + offset, 1030),  
     }  
     local action2 = cc.BezierTo:create(1, bezierConfig)
     -- local action2 = cc.MoveTo:create(1, cc.vertex2F(500, 782))

@@ -63,20 +63,24 @@
               <Image Name="bg1.png" />
               <Image Name="bg2.png" />
               <Image Name="close.png" />
+              <Image Name="energy_bg.png" />
               <Image Name="fangkuai8.png" />
               <Image Name="game_continue.png" />
               <Image Name="game_end.png" />
               <Image Name="game_pause.png" />
               <Image Name="game_pauseing.png" />
+              <Image Name="item_bg.png" />
               <Image Name="lb_left_bg.png" />
               <Image Name="lb_right_bg.png" />
               <Image Name="line.png" />
+              <Image Name="main_bar_bg.png" />
               <Image Name="meteor1.png" />
               <Image Name="meteor2.png" />
               <Image Name="meteor3.png" />
               <Image Name="mh.png" />
               <Image Name="number.png" />
               <Image Name="number_red.png" />
+              <Image Name="pay_bg.png" />
               <Image Name="popup_bg.png" />
               <Image Name="power_bg.png" />
               <Image Name="power_fail_bg.png" />
@@ -149,6 +153,7 @@
         <Project Name="ModalMask.csd" Type="Scene" />
         <Project Name="PowerSuccPopup.csd" Type="Scene" />
         <Project Name="PowerFailPopup.csd" Type="Scene" />
+        <Project Name="TetrisMainBar.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
