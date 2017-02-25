@@ -1,4 +1,4 @@
-// queue.cpp - written and placed in the public domain by Wei Dai
+// queue.cpp - originally written and placed in the public domain by Wei Dai
 
 #include "pch.h"
 
@@ -460,11 +460,11 @@ byte ByteQueue::operator[](lword i) const
 	{
 		if (i < current->CurrentSize())
 			return (*current)[(size_t)i];
-		
+
 		i -= current->CurrentSize();
 	}
 
-	assert(i < m_lazyLength);
+	CRYPTOPP_ASSERT(i < m_lazyLength);
 	return m_lazyString[i];
 }
 

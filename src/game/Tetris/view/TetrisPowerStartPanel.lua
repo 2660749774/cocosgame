@@ -23,6 +23,9 @@ function TetrisPowerStartPanel:onCreate(powerId, armyId)
     self.lbTarget = layout['lb_target']
     self.spTarget = layout['sp_target']
     self.btnClose = layout['btn_close']
+    self.star1 = layout['sp_star1']
+    self.star2 = layout['sp_star2']
+    self.star3 = layout['sp_star3']
 
     -- 设置关卡名称
     self.lbPowerName:setString(string.format("第 %s 关", armyId))
@@ -32,6 +35,21 @@ function TetrisPowerStartPanel:onCreate(powerId, armyId)
 
     -- 更新方块内容
     self:setTargetBlock()
+
+    -- 更新star
+    local queryKey = "power." .. powerId .. "." .. armyId
+    local star = utils.gameArchive:queryData(queryKey)
+    if star == nil then
+    elseif star >= 3 then
+        self.star1:setVisible(true)
+        self.star2:setVisible(true)
+        self.star3:setVisible(true)
+    elseif star >= 2 then
+        self.star1:setVisible(true)
+        self.star2:setVisible(true)
+    elseif start >= 1 then
+        self.star1:setVisible(true)
+    end
 
     self:addLayoutWithMask(layout, "layout.ModalMask")
 

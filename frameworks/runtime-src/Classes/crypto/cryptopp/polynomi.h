@@ -1,4 +1,4 @@
-// polynomi.h - written and placed in the public domain by Wei Dai
+// polynomi.h - originally written and placed in the public domain by Wei Dai
 
 //! \file
 //! \headerfile polynomi.h
@@ -28,9 +28,9 @@ public:
 	//! \name ENUMS, EXCEPTIONS, and TYPEDEFS
 	//@{
 		//! division by zero exception
-		class DivideByZero : public Exception 
+		class DivideByZero : public Exception
 		{
-		public: 
+		public:
 			DivideByZero() : Exception(OTHER_ERROR, "PolynomialOver<T>: division by zero") {}
 		};
 

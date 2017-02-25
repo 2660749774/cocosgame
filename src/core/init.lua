@@ -35,6 +35,7 @@ end
 
 -- util init
 cc.exports.utils = require("core.util.init")
+utils.gameArchive:loadData()
 cc.exports.json = require("core.util.json")
 require("core.component.init")
 
@@ -47,6 +48,7 @@ cc.exports.net = require("core.net.init")
 -- game init
 cc.exports.rmgr = require "core.manager.ResourceManager".new()
 cc.exports.cmgr = require "core.manager.ConnectManager".new(false)
+cc.exports.emgr = require "core.manager.EventManager".new()
 
 -- 初始化Actions
 require "game.Net.Actions"

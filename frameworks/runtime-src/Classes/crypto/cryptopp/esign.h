@@ -1,10 +1,11 @@
+// esign.h - originally written and placed in the public domain by Wei Dai
+
+//! \file esign.h
+//! \brief Classes providing ESIGN signature schemes as defined in IEEE P1363a
+//! \since Crypto++ 5.0
+
 #ifndef CRYPTOPP_ESIGN_H
 #define CRYPTOPP_ESIGN_H
-
-/** \file
-	This file contains classes that implement the
-	ESIGN signature schemes as defined in IEEE P1363a.
-*/
 
 #include "cryptlib.h"
 #include "pubkey.h"
@@ -14,12 +15,18 @@
 
 NAMESPACE_BEGIN(CryptoPP)
 
-//! _
+//! \class ESIGNFunction
+//! \brief ESIGN trapdoor function using the public key
+//! \since Crypto++ 5.0
 class ESIGNFunction : public TrapdoorFunction, public ASN1CryptoMaterial<PublicKey>
 {
 	typedef ESIGNFunction ThisClass;
 
 public:
+
+	//! \brief Initialize a ESIGN public key with {n,e}
+	//! \param n the modulus
+	//! \param e the public exponent
 	void Initialize(const Integer &n, const Integer &e)
 		{m_n = n; m_e = e;}
 
@@ -51,15 +58,30 @@ protected:
 	Integer m_n, m_e;
 };
 
-//! _
+//! \class InvertibleESIGNFunction
+//! \brief ESIGN trapdoor function using the private key
+//! \since Crypto++ 5.0
 class InvertibleESIGNFunction : public ESIGNFunction, public RandomizedTrapdoorFunctionInverse, public PrivateKey
 {
 	typedef InvertibleESIGNFunction ThisClass;
 
 public:
+
+	//! \brief Initialize a ESIGN private key with {n,e,p,q}
+	//! \param n modulus
+	//! \param e public exponent
+	//! \param p first prime factor
+	//! \param q second prime factor
+	//! \details This Initialize() function overload initializes a private key from existing parameters.
 	void Initialize(const Integer &n, const Integer &e, const Integer &p, const Integer &q)
 		{m_n = n; m_e = e; m_p = p; m_q = q;}
-	// generate a random private key
+
+	//! \brief Create a ESIGN private key
+	//! \param rng a RandomNumberGenerator derived class
+	//! \param modulusBits the size of the modulud, in bits
+	//! \details This function overload of Initialize() creates a new private key because it
+	//!   takes a RandomNumberGenerator() as a parameter. If you have an existing keypair,
+	//!   then use one of the other Initialize() overloads.
 	void Initialize(RandomNumberGenerator &rng, unsigned int modulusBits)
 		{GenerateRandomWithKeySize(rng, modulusBits);}
 
@@ -85,14 +107,17 @@ protected:
 	Integer m_p, m_q;
 };
 
-//! _
+//! \class EMSA5Pad
+//! \brief EMSA5 padding method
+//! \tparam T Mask Generation Function
+//! \since Crypto++ 5.0
 template <class T>
 class EMSA5Pad : public PK_DeterministicSignatureMessageEncodingMethod
 {
 public:
-	static const char *StaticAlgorithmName() {return "EMSA5";}
-	
-	void ComputeMessageRepresentative(RandomNumberGenerator &rng, 
+	CRYPTOPP_STATIC_CONSTEXPR const char* StaticAlgorithmName() {return "EMSA5";}
+
+	void ComputeMessageRepresentative(RandomNumberGenerator &rng,
 		const byte *recoverableMessage, size_t recoverableMessageLength,
 		HashTransformation &hash, HashIdentifier hashIdentifier, bool messageEmpty,
 		byte *representative, size_t representativeBitLength) const
@@ -109,7 +134,9 @@ public:
 	}
 };
 
-//! EMSA5, for use with ESIGN
+//! \class P1363_EMSA5
+//! \brief EMSA5 padding method, for use with ESIGN
+//! \since Crypto++ 5.0
 struct P1363_EMSA5 : public SignatureStandard
 {
 	typedef EMSA5Pad<P1363_MGF1> SignatureMessageEncodingMethod;
@@ -117,14 +144,18 @@ struct P1363_EMSA5 : public SignatureStandard
 
 struct ESIGN_Keys
 {
-	static std::string StaticAlgorithmName() {return "ESIGN";}
+	CRYPTOPP_STATIC_CONSTEXPR const char* StaticAlgorithmName() {return "ESIGN";}
 	typedef ESIGNFunction PublicKey;
 	typedef InvertibleESIGNFunction PrivateKey;
 };
 
-//! ESIGN, as defined in IEEE P1363a
+//! \class ESIGN
+//! \brief ESIGN signature scheme, IEEE P1363a
+//! \tparam H HashTransformation derived class
+//! \tparam STANDARD Signature encoding method
+//! \since Crypto++ 5.0
 template <class H, class STANDARD = P1363_EMSA5>
-struct ESIGN : public TF_SS<STANDARD, H, ESIGN_Keys>
+struct ESIGN : public TF_SS<ESIGN_Keys, STANDARD, H>
 {
 };
 

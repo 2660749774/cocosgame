@@ -1,4 +1,4 @@
-// pubkey.cpp - written and placed in the public domain by Wei Dai
+// pubkey.cpp - originally written and placed in the public domain by Wei Dai
 
 #include "pch.h"
 #include "config.h"
@@ -56,13 +56,13 @@ void TF_SignerBase::InputRecoverableMessage(PK_MessageAccumulator &messageAccumu
 	size_t maxRecoverableLength = encoding.MaxRecoverableLength(MessageRepresentativeBitLength(), GetHashIdentifier().second, ma.AccessHash().DigestSize());
 
 	if (maxRecoverableLength == 0)
-		{throw NotImplemented("TF_SignerBase: this algorithm does not support messsage recovery or the key is too short");}
+		{throw NotImplemented("TF_SignerBase: this algorithm does not support message recovery or the key is too short");}
 	if (recoverableMessageLength > maxRecoverableLength)
 		throw InvalidArgument("TF_SignerBase: the recoverable message part is too long for the given key and algorithm");
 
 	ma.m_recoverableMessage.Assign(recoverableMessage, recoverableMessageLength);
 	encoding.ProcessRecoverableMessage(
-		ma.AccessHash(), 
+		ma.AccessHash(),
 		recoverableMessage, recoverableMessageLength,
 		NULL, 0, ma.m_semisignature);
 }
@@ -79,8 +79,8 @@ size_t TF_SignerBase::SignAndRestart(RandomNumberGenerator &rng, PK_MessageAccum
 		throw PK_SignatureScheme::KeyTooShort();
 
 	SecByteBlock representative(MessageRepresentativeLength());
-	encoding.ComputeMessageRepresentative(rng, 
-		ma.m_recoverableMessage, ma.m_recoverableMessage.size(), 
+	encoding.ComputeMessageRepresentative(rng,
+		ma.m_recoverableMessage, ma.m_recoverableMessage.size(),
 		ma.AccessHash(), id, ma.m_empty,
 		representative, MessageRepresentativeBitLength());
 	ma.m_empty = true;

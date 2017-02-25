@@ -1,11 +1,11 @@
-// dh2.cpp - written and placed in the public domain by Wei Dai
+// dh2.cpp - originally written and placed in the public domain by Wei Dai
 
 #include "pch.h"
 #include "dh2.h"
 
 NAMESPACE_BEGIN(CryptoPP)
 
-#if !defined(NDEBUG) && !defined(CRYPTOPP_DOXYGEN_PROCESSING)
+#if defined(CRYPTOPP_DEBUG) && !defined(CRYPTOPP_DOXYGEN_PROCESSING)
 void DH2_TestInstantiations()
 {
 	DH2 dh(*(SimpleKeyAgreementDomain*)NULL);
@@ -13,7 +13,7 @@ void DH2_TestInstantiations()
 #endif
 
 bool DH2::Agree(byte *agreedValue,
-		const byte *staticSecretKey, const byte *ephemeralSecretKey, 
+		const byte *staticSecretKey, const byte *ephemeralSecretKey,
 		const byte *staticOtherPublicKey, const byte *ephemeralOtherPublicKey,
 		bool validateStaticOtherPublicKey) const
 {

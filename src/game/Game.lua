@@ -31,7 +31,7 @@ function Game:startup()
     
     -- app暴露给全局
     cc.exports.app = self
-    
+
     -- 切换到入口函数
     self:changeScene("Tetris")
 end

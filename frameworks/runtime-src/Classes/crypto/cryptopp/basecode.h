@@ -1,4 +1,4 @@
-// basecode.h - written and placed in the public domain by Wei Dai
+// basecode.h - originally written and placed in the public domain by Wei Dai
 
 //! \file
 //! \brief Base classes for working with encoders and decoders.
@@ -86,15 +86,15 @@ public:
 	void IsolatedInitialize(const NameValuePairs &parameters);
 	size_t Put2(const byte *begin, size_t length, int messageEnd, bool blocking);
 
-	//! \brief Intializes BaseN lookup array
+	//! \brief Initializes BaseN lookup array
 	//! \param lookup table of values
 	//! \param alphabet table of ASCII characters
 	//! \param base the base for the encoder
-	//! \param caseInsensitive flag indicating whether the alpabet is case sensitivie
+	//! \param caseInsensitive flag indicating whether the alphabet is case sensitivie
 	//! \pre COUNTOF(lookup) == 256
 	//! \pre COUNTOF(alphabet) == base
 	//! \details Internally, the function sets the first 256 elements in the lookup table to
-	//   their value from the alphabet array or -1. base is the number of element (like 32),
+	//!  their value from the alphabet array or -1. base is the number of element (like 32),
 	//!  and not an exponent (like 5 in 2<sup>5</sup>)
 	static void CRYPTOPP_API InitializeDecodingLookupArray(int *lookup, const byte *alphabet, unsigned int base, bool caseInsensitive);
 

@@ -1,4 +1,4 @@
-// iterhash.cpp - written and placed in the public domain by Wei Dai
+// iterhash.cpp - originally written and placed in the public domain by Wei Dai
 
 #ifndef __GNUC__
 #define CRYPTOPP_MANUALLY_INSTANTIATE_TEMPLATES
@@ -23,7 +23,7 @@ template <class T, class BASE> void IteratedHashBase<T, BASE>::Update(const byte
 
 	T* dataBuf = this->DataBuf();
 	byte* data = (byte *)dataBuf;
-	assert(dataBuf && data);
+	CRYPTOPP_ASSERT(dataBuf && data);
 
 	if (num != 0)	// process left over data
 	{
@@ -48,13 +48,13 @@ template <class T, class BASE> void IteratedHashBase<T, BASE>::Update(const byte
 	{
 		if (input == data)
 		{
-			assert(len == blockSize);
+			CRYPTOPP_ASSERT(len == blockSize);
 			HashBlock(dataBuf);
 			return;
 		}
 		else if (IsAligned<T>(input))
 		{
-			size_t leftOver = HashMultipleBlocks((T *)input, len);
+			size_t leftOver = HashMultipleBlocks((T *)(void*)input, len);
 			input += (len - leftOver);
 			len = leftOver;
 		}
@@ -82,6 +82,9 @@ template <class T, class BASE> byte * IteratedHashBase<T, BASE>::CreateUpdateSpa
 
 template <class T, class BASE> size_t IteratedHashBase<T, BASE>::HashMultipleBlocks(const T *input, size_t length)
 {
+	// Hardware based SHA1 and SHA256 correct blocks themselves due to hardware requirements.
+	//  For Intel, SHA1 will effectively call ByteReverse(). SHA256 formats data to Intel
+	//  requirements, which means eight words ABCD EFGH are transformed to ABEF CDGH.
 	unsigned int blockSize = this->BlockSize();
 	bool noReverse = NativeByteOrderIs(this->GetByteOrder());
 	T* dataBuf = this->DataBuf();
@@ -141,7 +144,7 @@ template <class T, class BASE> void IteratedHashBase<T, BASE>::TruncatedFinal(by
 	HashBlock(dataBuf);
 
 	if (IsAligned<HashWordType>(digest) && size%sizeof(HashWordType)==0)
-		ConditionalByteReverse<HashWordType>(order, (HashWordType *)digest, stateBuf, size);
+		ConditionalByteReverse<HashWordType>(order, (HashWordType *)(void*)digest, stateBuf, size);
 	else
 	{
 		ConditionalByteReverse<HashWordType>(order, stateBuf, stateBuf, this->DigestSize());

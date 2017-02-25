@@ -1,4 +1,4 @@
-// files.cpp - written and placed in the public domain by Wei Dai
+// files.cpp - originally written and placed in the public domain by Wei Dai
 
 #include "pch.h"
 
@@ -10,7 +10,7 @@
 
 NAMESPACE_BEGIN(CryptoPP)
 
-#if !defined(NDEBUG) && !defined(CRYPTOPP_DOXYGEN_PROCESSING)
+#if defined(CRYPTOPP_DEBUG) && !defined(CRYPTOPP_DOXYGEN_PROCESSING)
 void Files_TestInstantiations()
 {
 	FileStore f0;
@@ -141,7 +141,7 @@ size_t FileStore::CopyRangeTo2(BufferedTransformation &target, lword &begin, lwo
 	m_stream->seekg(newPosition);
 	try
 	{
-		assert(!m_waiting);
+		CRYPTOPP_ASSERT(!m_waiting);
 		lword copyMax = end-begin;
 		size_t blockedBytes = const_cast<FileStore *>(this)->TransferTo2(target, copyMax, channel, blocking);
 		begin += copyMax;

@@ -46,7 +46,7 @@ local crypto = {}
 function crypto.encryptAES256(plaintext, key)
     plaintext = tostring(plaintext)
     key = tostring(key)
-    return cc.Crypto:encryptAES256(plaintext, string.len(plaintext), key, string.len(key))
+    return cc.CryptoUtil:encryptAES256(plaintext, string.len(plaintext), key, string.len(key))
 end
 
 -- start --
@@ -63,7 +63,7 @@ end
 function crypto.decryptAES256(ciphertext, key)
     ciphertext = tostring(ciphertext)
     key = tostring(key)
-    return cc.Crypto:decryptAES256(ciphertext, string.len(ciphertext), key, string.len(key))
+    return cc.CryptoUtil:decryptAES256(ciphertext, string.len(ciphertext), key, string.len(key))
 end
 
 -- start --
@@ -80,7 +80,7 @@ end
 function crypto.encryptXXTEA(plaintext, key)
     plaintext = tostring(plaintext)
     key = tostring(key)
-    return cc.Crypto:encryptXXTEA(plaintext, string.len(plaintext), key, string.len(key))
+    return cc.CryptoUtil:encryptXXTEA(plaintext, string.len(plaintext), key, string.len(key))
 end
 
 -- start --
@@ -97,7 +97,7 @@ end
 function crypto.decryptXXTEA(ciphertext, key)
     ciphertext = tostring(ciphertext)
     key = tostring(key)
-    return cc.Crypto:decryptXXTEA(ciphertext, string.len(ciphertext), key, string.len(key))
+    return cc.CryptoUtil:decryptXXTEA(ciphertext, string.len(ciphertext), key, string.len(key))
 end
 
 -- start --
@@ -112,7 +112,7 @@ end
 
 function crypto.encodeBase64(plaintext)
     plaintext = tostring(plaintext)
-    return cc.Crypto:encodeBase64(plaintext, string.len(plaintext))
+    return cc.CryptoUtil:encodeBase64(plaintext, string.len(plaintext))
 end
 
 -- start --
@@ -127,7 +127,7 @@ end
 
 function crypto.decodeBase64(ciphertext)
     ciphertext = tostring(ciphertext)
-    return cc.Crypto:decodeBase64(ciphertext)
+    return cc.CryptoUtil:decodeBase64(ciphertext)
 end
 
 -- start --
@@ -144,7 +144,7 @@ end
 function crypto.md5(input, isRawOutput)
     input = tostring(input)
     if type(isRawOutput) ~= "boolean" then isRawOutput = false end
-    return cc.Crypto:MD5(input, isRawOutput)
+    return cc.CryptoUtil:MD5(input, isRawOutput)
 end
 
 -- start --
@@ -166,7 +166,7 @@ function crypto.md5file(path)
     if DEBUG > 1 then
         printInfo("crypto.md5file() - filename: %s", path)
     end
-    return cc.Crypto:MD5File(path)
+    return cc.CryptoUtil:MD5File(path)
 end
 
 return crypto

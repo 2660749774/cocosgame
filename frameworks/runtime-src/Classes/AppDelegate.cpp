@@ -17,6 +17,7 @@
 #include "lua_extensions/lua_will_extensions.h"
 #include "auto/lua_cocos2dx_httprequest_auto.hpp"
 #include "auto/lua_cocos2dx_util_auto.hpp"
+#include "auto/lua_cocos2dx_crypto_auto.hpp"
 
 
 using namespace CocosDenshion;
@@ -64,11 +65,12 @@ static int register_constom_lua(lua_State* L)
     luaopen_lua_will_extensions(L);
     register_all_cocos2dx_httprequest(L);
     register_all_cocos2dx_util(L);
+    register_all_cocos2dx_crypto(L);
 	return 0;
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
-{    
+{
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
 

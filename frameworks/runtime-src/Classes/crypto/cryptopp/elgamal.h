@@ -1,4 +1,4 @@
-// elgamal.h - written and placed in the public domain by Wei Dai
+// elgamal.h - originally written and placed in the public domain by Wei Dai
 
 //! \file elgamal.h
 //! \brief Classes and functions for ElGamal key agreement and encryption schemes
@@ -16,11 +16,16 @@
 
 NAMESPACE_BEGIN(CryptoPP)
 
-class CRYPTOPP_NO_VTABLE ElGamalBase : public DL_KeyAgreementAlgorithm_DH<Integer, NoCofactorMultiplication>, 
-					public DL_KeyDerivationAlgorithm<Integer>, 
+//! \class ElGamalBase
+//! \brief ElGamal key agreement and encryption schemes base class
+//! \since Crypto++ 1.0
+class CRYPTOPP_NO_VTABLE ElGamalBase : public DL_KeyAgreementAlgorithm_DH<Integer, NoCofactorMultiplication>,
+					public DL_KeyDerivationAlgorithm<Integer>,
 					public DL_SymmetricEncryptionAlgorithm
 {
 public:
+	virtual ~ElGamalBase() {}
+
 	void Derive(const DL_GroupParameters<Integer> &groupParams, byte *derivedKey, size_t derivedLength, const Integer &agreedElement, const Integer &ephemeralPublicKey, const NameValuePairs &derivationParams) const
 	{
 		CRYPTOPP_UNUSED(groupParams), CRYPTOPP_UNUSED(ephemeralPublicKey), CRYPTOPP_UNUSED(derivationParams);
@@ -86,16 +91,17 @@ public:
 	}
 
 	virtual const DL_GroupParameters_GFP & GetGroupParameters() const =0;
-	
-#ifndef CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562
-	virtual ~ElGamalBase() {}
-#endif
 };
 
+//! \class ElGamalObjectImpl
+//! \brief ElGamal key agreement and encryption schemes default implementation
+//! \since Crypto++ 1.0
 template <class BASE, class SCHEME_OPTIONS, class KEY>
 class ElGamalObjectImpl : public DL_ObjectImplBase<BASE, SCHEME_OPTIONS, KEY>, public ElGamalBase
 {
 public:
+	virtual ~ElGamalObjectImpl() {}
+
 	size_t FixedMaxPlaintextLength() const {return this->MaxPlaintextLength(FixedCiphertextLength());}
 	size_t FixedCiphertextLength() const {return this->CiphertextLength(0);}
 
@@ -104,16 +110,14 @@ public:
 	DecodingResult FixedLengthDecrypt(RandomNumberGenerator &rng, const byte *cipherText, byte *plainText) const
 		{return Decrypt(rng, cipherText, FixedCiphertextLength(), plainText);}
 
-#ifndef CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562
-	virtual ~ElGamalObjectImpl() {}
-#endif
-
 protected:
 	const DL_KeyAgreementAlgorithm<Integer> & GetKeyAgreementAlgorithm() const {return *this;}
 	const DL_KeyDerivationAlgorithm<Integer> & GetKeyDerivationAlgorithm() const {return *this;}
 	const DL_SymmetricEncryptionAlgorithm & GetSymmetricEncryptionAlgorithm() const {return *this;}
 };
 
+//! \class ElGamalKeys
+//! \brief ElGamal key agreement and encryption schemes keys
 struct ElGamalKeys
 {
 	typedef DL_CryptoKeys_GFP::GroupParameters GroupParameters;
@@ -123,11 +127,12 @@ struct ElGamalKeys
 
 //! \class ElGamal
 //! \brief ElGamal encryption scheme with non-standard padding
+//! \since Crypto++ 1.0
 struct ElGamal
 {
 	typedef DL_CryptoSchemeOptions<ElGamal, ElGamalKeys, int, int, int> SchemeOptions;
 
-	static const char * StaticAlgorithmName() {return "ElgamalEnc/Crypto++Padding";}
+	CRYPTOPP_STATIC_CONSTEXPR const char* StaticAlgorithmName() {return "ElgamalEnc/Crypto++Padding";}
 
 	typedef SchemeOptions::GroupParameters GroupParameters;
 	//! implements PK_Encryptor interface

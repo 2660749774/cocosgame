@@ -110,6 +110,39 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="sp_star1" ActionTag="-1336661010" VisibleForFrame="False" Tag="27" IconVisible="False" LeftMargin="161.4300" RightMargin="355.5700" TopMargin="106.6326" BottomMargin="489.3674" ctype="SpriteObjectData">
+                    <Size X="123.0000" Y="119.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="222.9300" Y="548.8674" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.3483" Y="0.7676" />
+                    <PreSize X="0.1922" Y="0.1664" />
+                    <FileData Type="Normal" Path="ui/tetris/power/power_pass_star.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="sp_star2" ActionTag="1955765338" VisibleForFrame="False" Tag="26" IconVisible="False" LeftMargin="258.3310" RightMargin="258.6690" TopMargin="83.2698" BottomMargin="512.7302" ctype="SpriteObjectData">
+                    <Size X="123.0000" Y="119.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="319.8310" Y="572.2302" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4997" Y="0.8003" />
+                    <PreSize X="0.1922" Y="0.1664" />
+                    <FileData Type="Normal" Path="ui/tetris/power/power_pass_star.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="sp_star3" ActionTag="79819835" VisibleForFrame="False" Tag="25" IconVisible="False" LeftMargin="354.6818" RightMargin="162.3182" TopMargin="105.6138" BottomMargin="490.3862" ctype="SpriteObjectData">
+                    <Size X="123.0000" Y="119.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="416.1818" Y="549.8862" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.6503" Y="0.7691" />
+                    <PreSize X="0.1922" Y="0.1664" />
+                    <FileData Type="Normal" Path="ui/tetris/power/power_pass_star.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="320.0000" Y="644.0000" />

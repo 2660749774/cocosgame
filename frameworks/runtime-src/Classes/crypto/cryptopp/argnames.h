@@ -1,4 +1,4 @@
-// argnames.h - written and placed in the public domain by Wei Dai
+// argnames.h - originally written and placed in the public domain by Wei Dai
 
 //! \file argnames.h
 //! \brief Standard names for retrieving values by name when working with \p NameValuePairs
@@ -20,6 +20,7 @@ CRYPTOPP_DEFINE_NAME_STRING(Seed)				//!< ConstByteArrayParameter
 CRYPTOPP_DEFINE_NAME_STRING(Key)				//!< ConstByteArrayParameter
 CRYPTOPP_DEFINE_NAME_STRING(IV)					//!< ConstByteArrayParameter, also accepts const byte * for backwards compatibility
 CRYPTOPP_DEFINE_NAME_STRING(StolenIV)			//!< byte *
+CRYPTOPP_DEFINE_NAME_STRING(Nonce)				//!< ConstByteArrayParameter
 CRYPTOPP_DEFINE_NAME_STRING(Rounds)				//!< int
 CRYPTOPP_DEFINE_NAME_STRING(FeedbackSize)		//!< int
 CRYPTOPP_DEFINE_NAME_STRING(WordSize)			//!< int, in bytes
@@ -81,6 +82,12 @@ CRYPTOPP_DEFINE_NAME_STRING(TableSize)			//!< int, in bytes
 CRYPTOPP_DEFINE_NAME_STRING(Blinding)			//!< bool, timing attack mitigations, ON by default
 CRYPTOPP_DEFINE_NAME_STRING(DerivedKey)			//!< ByteArrayParameter, key derivation, derived key
 CRYPTOPP_DEFINE_NAME_STRING(DerivedKeyLength)	//!< int, key derivation, derived key length in bytes
+CRYPTOPP_DEFINE_NAME_STRING(Personalization)	//!< ConstByteArrayParameter
+CRYPTOPP_DEFINE_NAME_STRING(PersonalizationSize)	//!< int, in bytes
+CRYPTOPP_DEFINE_NAME_STRING(Salt)				//!< ConstByteArrayParameter
+CRYPTOPP_DEFINE_NAME_STRING(Tweak)				//!< ConstByteArrayParameter
+CRYPTOPP_DEFINE_NAME_STRING(SaltSize)			//!< int, in bytes
+CRYPTOPP_DEFINE_NAME_STRING(TreeMode)			//< byte
 DOCUMENTED_NAMESPACE_END
 
 NAMESPACE_END

@@ -1,4 +1,4 @@
-// dll.cpp - written and placed in the public domain by Wei Dai
+// dll.cpp - originally written and placed in the public domain by Wei Dai
 
 #define CRYPTOPP_MANUALLY_INSTANTIATE_TEMPLATES
 #define CRYPTOPP_DEFAULT_NO_DLL
@@ -23,6 +23,8 @@
 
 NAMESPACE_BEGIN(CryptoPP)
 
+// Guarding based on DLL due to Clang, http://github.com/weidai11/cryptopp/issues/300
+#if defined(CRYPTOPP_IS_DLL)
 template<> const byte PKCS_DigestDecoration<SHA1>::decoration[] = {0x30,0x21,0x30,0x09,0x06,0x05,0x2B,0x0E,0x03,0x02,0x1A,0x05,0x00,0x04,0x14};
 template<> const unsigned int PKCS_DigestDecoration<SHA1>::length = sizeof(PKCS_DigestDecoration<SHA1>::decoration);
 
@@ -38,11 +40,13 @@ template<> const unsigned int PKCS_DigestDecoration<SHA384>::length = sizeof(PKC
 template<> const byte PKCS_DigestDecoration<SHA512>::decoration[] = {0x30,0x51,0x30,0x0d,0x06,0x09,0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x02,0x03,0x05,0x00,0x04,0x40};
 template<> const unsigned int PKCS_DigestDecoration<SHA512>::length = sizeof(PKCS_DigestDecoration<SHA512>::decoration);
 
-template<> const byte EMSA2HashId<SHA>::id = 0x33;
+template<> const byte EMSA2HashId<SHA1>::id = 0x33;
 template<> const byte EMSA2HashId<SHA224>::id = 0x38;
 template<> const byte EMSA2HashId<SHA256>::id = 0x34;
 template<> const byte EMSA2HashId<SHA384>::id = 0x36;
 template<> const byte EMSA2HashId<SHA512>::id = 0x35;
+
+#endif	// CRYPTOPP_IS_DLL
 
 NAMESPACE_END
 
@@ -52,9 +56,7 @@ NAMESPACE_END
 
 USING_NAMESPACE(CryptoPP)
 
-#if !(defined(_MSC_VER) && (_MSC_VER < 1300))
 using std::set_new_handler;
-#endif
 
 static PNew s_pNew = NULL;
 static PDelete s_pDelete = NULL;
@@ -127,7 +129,7 @@ static void SetNewAndDeleteFunctionPointers()
 			return;
 	}
 
-	OutputDebugString("Crypto++ was not able to obtain new and delete function pointers.\n");
+	OutputDebugString("Crypto++ DLL was not able to obtain new and delete function pointers.\n");
 	throw 0;
 }
 
@@ -157,4 +159,4 @@ void operator delete [] (void * p)
 	operator delete (p);
 }
 
-#endif	// #ifdef CRYPTOPP_EXPORTS
+#endif	// CRYPTOPP_EXPORTS

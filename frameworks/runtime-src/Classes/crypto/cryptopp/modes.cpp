@@ -1,4 +1,4 @@
-// modes.cpp - written and placed in the public domain by Wei Dai
+// modes.cpp - originally written and placed in the public domain by Wei Dai
 
 #include "pch.h"
 
@@ -7,13 +7,13 @@
 #include "modes.h"
 #include "misc.h"
 
-#ifndef NDEBUG
+#if defined(CRYPTOPP_DEBUG)
 #include "des.h"
 #endif
 
 NAMESPACE_BEGIN(CryptoPP)
 
-#if !defined(NDEBUG) && !defined(CRYPTOPP_DOXYGEN_PROCESSING)
+#if defined(CRYPTOPP_DEBUG) && !defined(CRYPTOPP_DOXYGEN_PROCESSING)
 void Modes_TestInstantiations()
 {
 	CFB_Mode<DES>::Encryption m0;
@@ -25,20 +25,17 @@ void Modes_TestInstantiations()
 }
 #endif
 
-// Thanks to Zireael, http://github.com/weidai11/cryptopp/pull/46
-#ifndef CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562
 void CipherModeBase::ResizeBuffers()
 {
 	m_register.New(m_cipher->BlockSize());
 }
-#endif
 
 void CFB_ModePolicy::Iterate(byte *output, const byte *input, CipherDir dir, size_t iterationCount)
 {
-	assert(input);
-	assert(output);
-	assert(m_cipher->IsForwardTransformation());	// CFB mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
-	assert(m_feedbackSize == BlockSize());
+	CRYPTOPP_ASSERT(input);
+	CRYPTOPP_ASSERT(output);
+	CRYPTOPP_ASSERT(m_cipher->IsForwardTransformation());	// CFB mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
+	CRYPTOPP_ASSERT(m_feedbackSize == BlockSize());
 
 	const unsigned int s = BlockSize();
 	if (dir == ENCRYPTION)
@@ -60,7 +57,7 @@ void CFB_ModePolicy::Iterate(byte *output, const byte *input, CipherDir dir, siz
 
 void CFB_ModePolicy::TransformRegister()
 {
-	assert(m_cipher->IsForwardTransformation());	// CFB mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
+	CRYPTOPP_ASSERT(m_cipher->IsForwardTransformation());	// CFB mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
 	m_cipher->ProcessBlock(m_register, m_temp);
 	unsigned int updateSize = BlockSize()-m_feedbackSize;
 	memmove_s(m_register, m_register.size(), m_register+m_feedbackSize, updateSize);
@@ -69,7 +66,7 @@ void CFB_ModePolicy::TransformRegister()
 
 void CFB_ModePolicy::CipherResynchronize(const byte *iv, size_t length)
 {
-	assert(length == BlockSize());
+	CRYPTOPP_ASSERT(length == BlockSize());
 	CopyOrZero(m_register, iv, length);
 	TransformRegister();
 }
@@ -89,7 +86,7 @@ void CFB_ModePolicy::ResizeBuffers()
 
 void OFB_ModePolicy::WriteKeystream(byte *keystreamBuffer, size_t iterationCount)
 {
-	assert(m_cipher->IsForwardTransformation());	// OFB mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
+	CRYPTOPP_ASSERT(m_cipher->IsForwardTransformation());	// OFB mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
 	unsigned int s = BlockSize();
 	m_cipher->ProcessBlock(m_register, keystreamBuffer);
 	if (iterationCount > 1)
@@ -100,7 +97,7 @@ void OFB_ModePolicy::WriteKeystream(byte *keystreamBuffer, size_t iterationCount
 void OFB_ModePolicy::CipherResynchronize(byte *keystreamBuffer, const byte *iv, size_t length)
 {
 	CRYPTOPP_UNUSED(keystreamBuffer), CRYPTOPP_UNUSED(length);
-	assert(length == BlockSize());
+	CRYPTOPP_ASSERT(length == BlockSize());
 
 	CopyOrZero(m_register, iv, length);
 }
@@ -124,7 +121,7 @@ void CTR_ModePolicy::IncrementCounterBy256()
 
 void CTR_ModePolicy::OperateKeystream(KeystreamOperation /*operation*/, byte *output, const byte *input, size_t iterationCount)
 {
-	assert(m_cipher->IsForwardTransformation());	// CTR mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
+	CRYPTOPP_ASSERT(m_cipher->IsForwardTransformation());	// CTR mode needs the "encrypt" direction of the underlying block cipher, even to decrypt
 	unsigned int s = BlockSize();
 	unsigned int inputIncrement = input ? s : 0;
 
@@ -145,7 +142,7 @@ void CTR_ModePolicy::OperateKeystream(KeystreamOperation /*operation*/, byte *ou
 void CTR_ModePolicy::CipherResynchronize(byte *keystreamBuffer, const byte *iv, size_t length)
 {
 	CRYPTOPP_UNUSED(keystreamBuffer), CRYPTOPP_UNUSED(length);
-	assert(length == BlockSize());
+	CRYPTOPP_ASSERT(length == BlockSize());
 
 	CopyOrZero(m_register, iv, length);
 	m_counterArray = m_register;
@@ -163,18 +160,15 @@ void BlockOrientedCipherModeBase::UncheckedSetKey(const byte *key, unsigned int 
 	}
 }
 
-// Thanks to Zireael, http://github.com/weidai11/cryptopp/pull/46
-#ifndef CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562
 void BlockOrientedCipherModeBase::ResizeBuffers()
 {
 	CipherModeBase::ResizeBuffers();
 	m_buffer.New(BlockSize());
 }
-#endif
 
 void ECB_OneWay::ProcessData(byte *outString, const byte *inString, size_t length)
 {
-	assert(length%BlockSize()==0);
+	CRYPTOPP_ASSERT(length%BlockSize()==0);
 	m_cipher->AdvancedProcessBlocks(inString, NULL, outString, length, BlockTransformation::BT_AllowParallel);
 }
 
@@ -182,7 +176,7 @@ void CBC_Encryption::ProcessData(byte *outString, const byte *inString, size_t l
 {
 	if (!length)
 		return;
-	assert(length%BlockSize()==0);
+	CRYPTOPP_ASSERT(length%BlockSize()==0);
 
 	unsigned int blockSize = BlockSize();
 	m_cipher->AdvancedProcessBlocks(inString, m_register, outString, blockSize, BlockTransformation::BT_XorInput);
@@ -218,20 +212,17 @@ void CBC_CTS_Encryption::ProcessLastBlock(byte *outString, const byte *inString,
 	memcpy(outString, m_register, BlockSize());
 }
 
-// Thanks to Zireael, http://github.com/weidai11/cryptopp/pull/46
-#ifndef CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562
 void CBC_Decryption::ResizeBuffers()
 {
 	BlockOrientedCipherModeBase::ResizeBuffers();
 	m_temp.New(BlockSize());
 }
-#endif
 
 void CBC_Decryption::ProcessData(byte *outString, const byte *inString, size_t length)
 {
 	if (!length)
 		return;
-	assert(length%BlockSize()==0);
+	CRYPTOPP_ASSERT(length%BlockSize()==0);
 
 	unsigned int blockSize = BlockSize();
 	memcpy(m_temp, inString+length-blockSize, blockSize);	// save copy now in case of in-place decryption

@@ -38,7 +38,9 @@ function TetrisScene:onCreate()
     
     self.btnMultiplayer:addClickEventListener(handler(self, self.playMulti))
 
-    
+    -- 注册事件监听
+    self.eventListener = handler(self, self.updatePowerProgress)
+    emgr:addEventListener(EventDefine.EventDefine, self.eventListener)
 end
 
 --------------------------------
@@ -46,11 +48,19 @@ end
 -- @function [parent=#TetrisScene] createPowerView
 function TetrisScene:createPowerView()
     -- 副本大小
-    self.powerNum = 2
-    self.powerStartArmyNum = 59
-    self.powerLoopArmyNum = 66
-    self.currPowerId = 1
-    self.currArmyId = 4
+    self.powerNum = TetrisPowerConf.MAX_POWER_ID
+    self.powerStartArmyNum = TetrisPowerConf.getPowerMaxArmyId(1)
+    self.powerLoopArmyNum = TetrisPowerConf.getPowerMaxArmyId(2)
+    self.layoutMap = {}
+
+    local progress = utils.gameArchive:queryData("power.progress")
+    if progress then
+        self.currPowerId = progress.powerId
+        self.currArmyId = progress.armyId
+    else
+        self.currPowerId = 1
+        self.currArmyId = 1
+    end
 
     -- 创建TableView
     self.tableView = cc.TableView:create(cc.size(display.width, display.height))
@@ -67,6 +77,25 @@ function TetrisScene:createPowerView()
     self.tableView:setBounceable(false) -- 禁止回弹
 
     self:addChild(self.tableView)
+end
+
+--------------------------------
+-- 更新副本进度
+-- @function [parent=#TetrisScene] updatePowerProgress
+function TetrisScene:updatePowerProgress(progress)
+    log:info("do updatePowerProgress event")
+    log:showTable(progress)
+    self.currPowerId = progress.powerId
+    self.currArmyId = progress.armyId
+
+    local layout = self.layoutMap[self.currPowerId]
+    local btn = layout['btn' .. self.currArmyId]
+    local conf = TetrisPowerConf.loadConfig(self.currPowerId, self.currArmyId)
+    local pic = string.format("ui/tetris/power/%s.png", conf.pic)
+    btn:loadTextureNormal(pic,0)
+    btn:loadTexturePressed(pic,0)
+    btn:loadTextureDisabled(pic,0)
+    btn:setVisible(true)
 end
 
 --------------------------------
@@ -187,6 +216,8 @@ function TetrisScene:initArmyBtn(layout, idx, i)
     local conf = TetrisPowerConf.loadConfig(powerId, i)
     if powerId > self.currPowerId or (powerId == self.currPowerId and i > self.currArmyId) then
         btn:setVisible(false)
+        btn:setTag(powerId * 1000 + i)
+        btn:addClickEventListener(handler(self, self.handleArmyClick))
     else
         local pic = string.format("ui/tetris/power/%s.png", conf.pic)
         btn:loadTextureNormal(pic,0)
@@ -194,6 +225,9 @@ function TetrisScene:initArmyBtn(layout, idx, i)
         btn:loadTextureDisabled(pic,0)
         btn:setTag(powerId * 1000 + i)
         btn:addClickEventListener(handler(self, self.handleArmyClick))
+    end
+    if not self.layoutMap[powerId] then
+        self.layoutMap[powerId] = layout
     end
 end
 
@@ -209,6 +243,8 @@ end
 -- @function [parent=#TetrisScene] onExit
 function TetrisScene:onExit()
     -- 卸载资源
+    -- 移除事件监听
+    emgr:removeEventListener(EventDefine.EventDefine, self.eventListener)
 end
 
 return TetrisScene

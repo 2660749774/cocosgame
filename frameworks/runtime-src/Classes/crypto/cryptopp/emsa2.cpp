@@ -1,4 +1,4 @@
-// emsa2.cpp - written and placed in the public domain by Wei Dai
+// emsa2.cpp - originally written and placed in the public domain by Wei Dai
 
 #include "pch.h"
 #include "emsa2.h"
@@ -7,13 +7,13 @@
 
 NAMESPACE_BEGIN(CryptoPP)
 
-void EMSA2Pad::ComputeMessageRepresentative(RandomNumberGenerator& /*rng*/, 
+void EMSA2Pad::ComputeMessageRepresentative(RandomNumberGenerator& /*rng*/,
 	const byte* recoverableMessage, size_t recoverableMessageLength,
 	HashTransformation &hash, HashIdentifier hashIdentifier, bool messageEmpty,
 	byte *representative, size_t representativeBitLength) const
 {
 	CRYPTOPP_UNUSED(recoverableMessage), CRYPTOPP_UNUSED(recoverableMessageLength), CRYPTOPP_UNUSED(representativeBitLength);
-	assert(representativeBitLength >= MinRepresentativeBitLength(hashIdentifier.second, hash.DigestSize()));
+	CRYPTOPP_ASSERT(representativeBitLength >= MinRepresentativeBitLength(hashIdentifier.second, hash.DigestSize()));
 
 	if (representativeBitLength % 8 != 7)
 		throw PK_SignatureScheme::InvalidKeyLength("EMSA2: EMSA2 requires a key length that is a multiple of 8");

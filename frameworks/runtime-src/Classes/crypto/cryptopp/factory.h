@@ -1,3 +1,8 @@
+// factory.h - originally written and placed in the public domain by Wei Dai
+
+//! \file factory.h
+//! \brief Classes and functions for registering and locating library objects
+
 #ifndef CRYPTOPP_OBJFACT_H
 #define CRYPTOPP_OBJFACT_H
 
@@ -7,7 +12,9 @@
 
 NAMESPACE_BEGIN(CryptoPP)
 
-//! _
+//! \class ObjectFactory
+//! \brief Object factory interface for registering objects
+//! \tparam AbstractClass Base class interface of the object
 template <class AbstractClass>
 class ObjectFactory
 {
@@ -16,7 +23,10 @@ public:
 	virtual AbstractClass * CreateObject() const =0;
 };
 
-//! _
+//! \class DefaultObjectFactory
+//! \brief Object factory for registering objects
+//! \tparam AbstractClass Base class interface of the object
+//! \tparam ConcreteClass Class object
 template <class AbstractClass, class ConcreteClass>
 class DefaultObjectFactory : public ObjectFactory<AbstractClass>
 {
@@ -27,7 +37,10 @@ public:
 	}
 };
 
-//! _
+//! \class ObjectFactoryRegistry
+//! \brief Object factory registry
+//! \tparam AbstractClass Base class interface of the object
+//! \tparam instance unique identifier
 template <class AbstractClass, int instance=0>
 class ObjectFactoryRegistry
 {
@@ -40,7 +53,7 @@ public:
 
 	~ObjectFactoryRegistry()
 	{
-		for (CPP_TYPENAME Map::iterator i = m_map.begin(); i != m_map.end(); ++i)
+		for (typename Map::iterator i = m_map.begin(); i != m_map.end(); ++i)
 		{
 			delete (ObjectFactory<AbstractClass> *)i->second;
 			i->second = NULL;
@@ -54,7 +67,7 @@ public:
 
 	const ObjectFactory<AbstractClass> * GetFactory(const char *name) const
 	{
-		CPP_TYPENAME Map::const_iterator i = m_map.find(name);
+		typename Map::const_iterator i = m_map.find(name);
 		return i == m_map.end() ? NULL : (ObjectFactory<AbstractClass> *)i->second;
 	}
 
@@ -71,7 +84,7 @@ public:
 	std::vector<std::string> GetFactoryNames() const
 	{
 		std::vector<std::string> names;
-		CPP_TYPENAME Map::const_iterator iter;
+		typename Map::const_iterator iter;
 		for (iter = m_map.begin(); iter != m_map.end(); ++iter)
 			names.push_back(iter->first);
 		return names;
@@ -92,46 +105,77 @@ ObjectFactoryRegistry<AbstractClass, instance> & ObjectFactoryRegistry<AbstractC
 	return s_registry;
 }
 
+//! \class RegisterDefaultFactoryFor
+//! \brief Object factory registry helper
+//! \tparam AbstractClass Base class interface of the object
+//! \tparam ConcreteClass Class object
+//! \tparam instance unique identifier
 template <class AbstractClass, class ConcreteClass, int instance = 0>
-struct RegisterDefaultFactoryFor {
-RegisterDefaultFactoryFor(const char *name=NULL)
+struct RegisterDefaultFactoryFor
 {
-	// BCB2006 workaround
-	std::string n = name ? std::string(name) : std::string(ConcreteClass::StaticAlgorithmName());
-	ObjectFactoryRegistry<AbstractClass, instance>::Registry().
+	RegisterDefaultFactoryFor(const char *name=NULL)
+	{
+		// BCB2006 workaround
+		std::string n = name ? std::string(name) : std::string(ConcreteClass::StaticAlgorithmName());
+		ObjectFactoryRegistry<AbstractClass, instance>::Registry().
 		RegisterFactory(n, new DefaultObjectFactory<AbstractClass, ConcreteClass>);
-}};
+	}
+};
 
+//! \fn RegisterAsymmetricCipherDefaultFactories
+//! \brief Register asymmetric ciphers
+//! \tparam SchemeClass interface of the object under a scheme
+//! \details Schemes include asymmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   signature schemes (registers <tt>SchemeClass::Signer</tt> and <tt>SchemeClass::Verifier</tt>),
+//!   symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   authenticated symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>), etc.
 template <class SchemeClass>
-void RegisterAsymmetricCipherDefaultFactories(const char *name=NULL, SchemeClass *dummy=NULL)
+void RegisterAsymmetricCipherDefaultFactories(const char *name=NULL)
 {
-	CRYPTOPP_UNUSED(dummy);
-	RegisterDefaultFactoryFor<PK_Encryptor, CPP_TYPENAME SchemeClass::Encryptor>((const char *)name);
-	RegisterDefaultFactoryFor<PK_Decryptor, CPP_TYPENAME SchemeClass::Decryptor>((const char *)name);
+	RegisterDefaultFactoryFor<PK_Encryptor, typename SchemeClass::Encryptor>((const char *)name);
+	RegisterDefaultFactoryFor<PK_Decryptor, typename SchemeClass::Decryptor>((const char *)name);
 }
 
+//! \fn RegisterSignatureSchemeDefaultFactories
+//! \brief Register signature schemes
+//! \tparam SchemeClass interface of the object under a scheme
+//! \details Schemes include asymmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   signature schemes (registers <tt>SchemeClass::Signer</tt> and <tt>SchemeClass::Verifier</tt>),
+//!   symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   authenticated symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>), etc.
 template <class SchemeClass>
-void RegisterSignatureSchemeDefaultFactories(const char *name=NULL, SchemeClass *dummy=NULL)
+void RegisterSignatureSchemeDefaultFactories(const char *name=NULL)
 {
-	CRYPTOPP_UNUSED(dummy);
-	RegisterDefaultFactoryFor<PK_Signer, CPP_TYPENAME SchemeClass::Signer>((const char *)name);
-	RegisterDefaultFactoryFor<PK_Verifier, CPP_TYPENAME SchemeClass::Verifier>((const char *)name);
+	RegisterDefaultFactoryFor<PK_Signer, typename SchemeClass::Signer>((const char *)name);
+	RegisterDefaultFactoryFor<PK_Verifier, typename SchemeClass::Verifier>((const char *)name);
 }
 
+//! \fn RegisterSymmetricCipherDefaultFactories
+//! \brief Register symmetric ciphers
+//! \tparam SchemeClass interface of the object under a scheme
+//! \details Schemes include asymmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   signature schemes (registers <tt>SchemeClass::Signer</tt> and <tt>SchemeClass::Verifier</tt>),
+//!   symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   authenticated symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>), etc.
 template <class SchemeClass>
-void RegisterSymmetricCipherDefaultFactories(const char *name=NULL, SchemeClass *dummy=NULL)
+void RegisterSymmetricCipherDefaultFactories(const char *name=NULL)
 {
-	CRYPTOPP_UNUSED(dummy);
-	RegisterDefaultFactoryFor<SymmetricCipher, CPP_TYPENAME SchemeClass::Encryption, ENCRYPTION>((const char *)name);
-	RegisterDefaultFactoryFor<SymmetricCipher, CPP_TYPENAME SchemeClass::Decryption, DECRYPTION>((const char *)name);
+	RegisterDefaultFactoryFor<SymmetricCipher, typename SchemeClass::Encryption, ENCRYPTION>((const char *)name);
+	RegisterDefaultFactoryFor<SymmetricCipher, typename SchemeClass::Decryption, DECRYPTION>((const char *)name);
 }
 
+//! \fn RegisterAuthenticatedSymmetricCipherDefaultFactories
+//! \brief Register authenticated symmetric ciphers
+//! \tparam SchemeClass interface of the object under a scheme
+//! \details Schemes include asymmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   signature schemes (registers <tt>SchemeClass::Signer</tt> and <tt>SchemeClass::Verifier</tt>),
+//!   symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>),
+//!   authenticated symmetric ciphers (registers <tt>SchemeClass::Encryptor</tt> and <tt>SchemeClass::Decryptor</tt>), etc.
 template <class SchemeClass>
-void RegisterAuthenticatedSymmetricCipherDefaultFactories(const char *name=NULL, SchemeClass *dummy=NULL)
+void RegisterAuthenticatedSymmetricCipherDefaultFactories(const char *name=NULL)
 {
-	CRYPTOPP_UNUSED(dummy);
-	RegisterDefaultFactoryFor<AuthenticatedSymmetricCipher, CPP_TYPENAME SchemeClass::Encryption, ENCRYPTION>((const char *)name);
-	RegisterDefaultFactoryFor<AuthenticatedSymmetricCipher, CPP_TYPENAME SchemeClass::Decryption, DECRYPTION>((const char *)name);
+	RegisterDefaultFactoryFor<AuthenticatedSymmetricCipher, typename SchemeClass::Encryption, ENCRYPTION>((const char *)name);
+	RegisterDefaultFactoryFor<AuthenticatedSymmetricCipher, typename SchemeClass::Decryption, DECRYPTION>((const char *)name);
 }
 
 NAMESPACE_END

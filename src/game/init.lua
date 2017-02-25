@@ -11,6 +11,7 @@ require "game.Net.Actions"
 
 -- 申明全局Tips
 cc.exports.Tips = require "game.Common.Tips"
+cc.exports.EventDefine = require "game.Common.EventDefine"
 
 
 

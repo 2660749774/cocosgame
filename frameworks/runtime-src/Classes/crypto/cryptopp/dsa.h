@@ -1,4 +1,4 @@
-// dsa.h - written and placed in the public domain by Wei Dai
+// dsa.h - originally written and placed in the public domain by Wei Dai
 
 //! \file dsa.h
 //! \brief Classes for the DSA signature algorithm
@@ -33,7 +33,8 @@ enum DSASignatureFormat {
 //! \details This function converts between these formats, and returns length
 //!   of signature in the target format. If <tt>toFormat == DSA_P1363</tt>, then
 //!   <tt>bufferSize</tt> must equal <tt>publicKey.SignatureLength()</tt>
-size_t DSAConvertSignatureFormat(byte *buffer, size_t bufferSize, DSASignatureFormat toFormat, 
+//! \since Crypto++ 1.0
+size_t DSAConvertSignatureFormat(byte *buffer, size_t bufferSize, DSASignatureFormat toFormat,
 	const byte *signature, size_t signatureLen, DSASignatureFormat fromFormat);
 
 NAMESPACE_END

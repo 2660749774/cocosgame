@@ -13,6 +13,7 @@ local TetrisClearStoneConf = import(".TetrisClearStoneConf")
 local TetrisTimeModeConf = import(".TetrisTimeModeConf")
 
 TetrisPowerConf.configMap = {}
+TetrisPowerConf.powerInfoMap = {}
 
 --------------------------------
 -- 构造函数
@@ -50,6 +51,10 @@ TetrisPowerConf.new(1, 3, 3)
 -- 第一章节第3关
 TetrisPowerConf.new(1, 4, 4)
 
+TetrisPowerConf.MAX_POWER_ID = 2
+TetrisPowerConf.powerInfoMap[1] = 59
+TetrisPowerConf.powerInfoMap[2] = 66
+
 --------------------------------
 -- 获取配置
 -- @function [parent=#TetrisPowerConf] loadConfig
@@ -63,6 +68,13 @@ function TetrisPowerConf.loadConfig(powerId, armyId)
         return TetrisPowerConf.new(powerId, armyId, 2)
     end
     return conf
+end
+
+--------------------------------
+-- 获取副本最大章节数
+-- @function [parent=#TetrisPowerConf] getPowerMaxArmyId
+function TetrisPowerConf.getPowerMaxArmyId(powerId)
+    return TetrisPowerConf.powerInfoMap[powerId]
 end
 
 --------------------------------

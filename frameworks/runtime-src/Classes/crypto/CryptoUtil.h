@@ -6,52 +6,34 @@
 //
 //
 
-#ifndef CCCryptoUtil_hpp
-#define CCCryptoUtil_hpp
+#ifndef CryptoUtil_h
+#define CryptoUtil_h
 
-#include <stdio.h>
+#include <string>
+using namespace std;
 
-namespace cocos2djun {
+class CryptoUtil {
+public:
+    CryptoUtil();
+    ~CryptoUtil();
     
-    enum CCCryptoMode {
-        COCOS_DES = 1,
-        COCOS_DES2 = 2,
-        COCOS_DES3 = 3,
-        COCOS_AES = 4
-    };
-    
-    class CCCryptoUtil {
-        
-    private:
-        int crypto_type;
-        int crypto_length;
-        
-    private:
-        std::string base64Enc(std::string strSrc);
-        std::string base64Dec(std::string strSrc);
-    
-    public:
-        CCCryptoUtil();
-        virtual ~CCCryptoUtil();
-        
-        //key&mode init
-        void init(std::string key, int type);
-        
-        //set crypto mode
-        bool encryptResource(std::string inputPath, std::string outputPath);
-        bool decryptResource(std::string inputPath, std::string outputPath);
-        std::vector<char> decryptResourceStream(std::string inputPath);
-        std::string encryptString(std::string inputStr);
-        std::string decryptString(std::string inputStr);
-        
-        //other help method
-        std::string md5StrInfo(std::string inputStr);
-        std::string md5FileInfo(std::string filePath);
-        
-        //Base64
-        std::string fileBase64Enc(std::string strFileName);
-        void fileBase64Dec(std::string strBase64, std::string strFileName);
-    };
-    
-}
-#endif /* CCCryptoUtil_hpp */
+    // aes加密
+    static std::string encryptAES256(std::string plaintext, int textLen, std::string key, int keyLen);
+
+    // aes解密
+    static std::string decryptAES256(std::string ciphertext, int textLen, std::string key, int keyLen);
+
+    // base64Encode
+    static std::string encodeBase64(std::string plaintext);
+
+    // base64Decode
+    static std::string decodeBase64(std::string ciphertext);
+
+    // md5
+    static std::string md5(std::string plaintext);
+
+    // md5File
+    static std::string md5File(std::string filePath);
+};
+
+#endif /* CryptoUtil_h */

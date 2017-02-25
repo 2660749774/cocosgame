@@ -77,9 +77,7 @@ function BasePanel:addLayout(layout)
     self:fixLayout(layout)
 
     self.rootPanel = layout['panel']
-    local mask = maskLayout['root']
-    mask:addChild(layout['root'])
-    self:addChild(mask)
+    self:addChild(layout['root'])
 end 
 
 --------------------------------

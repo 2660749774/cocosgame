@@ -1,4 +1,4 @@
-// blowfish.h - written and placed in the public domain by Wei Dai
+// blowfish.h - originally written and placed in the public domain by Wei Dai
 
 //! \file blowfish.h
 //! \brief Classes for the Blowfish block cipher
@@ -12,16 +12,17 @@
 NAMESPACE_BEGIN(CryptoPP)
 
 //! \class Blowfish_Info
-//! \brief The cipher's key, iv, block size and name information.
+//! \brief Blowfish block cipher information
 struct Blowfish_Info : public FixedBlockSize<8>, public VariableKeyLength<16, 4, 56>, public FixedRounds<16>
 {
-	static const char *StaticAlgorithmName() {return "Blowfish";}
+	CRYPTOPP_STATIC_CONSTEXPR const char* StaticAlgorithmName() {return "Blowfish";}
 };
 
 // <a href="http://www.weidai.com/scan-mirror/cs.html#Blowfish">Blowfish</a>
 
 //! \class Blowfish
-//! \brief Provides Blowfish encryption and decryption
+//! \brief Blowfish block cipher
+//! \since Crypto++ 1.0
 class Blowfish : public Blowfish_Info, public BlockCipherDocumentation
 {
 	//! \class Base

@@ -1,4 +1,4 @@
-// authenc.cpp - written and placed in the public domain by Wei Dai
+// authenc.cpp - originally written and placed in the public domain by Wei Dai
 
 #include "pch.h"
 
@@ -97,7 +97,7 @@ void AuthenticatedSymmetricCipherBase::Update(const byte *input, size_t length)
 		m_totalFooterLength += length;
 		break;
 	default:
-		assert(false);
+		CRYPTOPP_ASSERT(false);
 	}
 }
 
@@ -129,7 +129,7 @@ reswitch:
 		AuthenticateData(outString, length);
 		break;
 	default:
-		assert(false);
+		CRYPTOPP_ASSERT(false);
 	}
 }
 
@@ -169,7 +169,7 @@ void AuthenticatedSymmetricCipherBase::TruncatedFinal(byte *mac, size_t macSize)
 		break;
 
 	default:
-		assert(false);
+		CRYPTOPP_ASSERT(false);
 	}
 
 	m_state = State_KeySet;
