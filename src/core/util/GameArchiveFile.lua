@@ -23,6 +23,9 @@ function GameArchiveFile:getData()
     return self.data
 end
 
+--------------------------------
+-- 查询指定Key
+-- @function [parent=#GameArchiveFile] putData
 function GameArchiveFile:queryData(key)
     local array = string.split(key, ".")
     local _data = self.data
@@ -37,6 +40,9 @@ function GameArchiveFile:queryData(key)
     return _data
 end
 
+--------------------------------
+-- 存入指定Key
+-- @function [parent=#GameArchiveFile] putData
 function GameArchiveFile:putData(key, value)
     local array = string.split(key, ".")
     local _data = self.data
@@ -55,6 +61,9 @@ function GameArchiveFile:putData(key, value)
     end
 end
 
+--------------------------------
+-- 打印存档
+-- @function [parent=#GameArchiveFile] printData
 function GameArchiveFile:printData()
     log:info("archivedata:%s", json.encode(self.data))
 end
