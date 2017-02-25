@@ -30,7 +30,6 @@ function GameArchiveFile:queryData(key)
     local array = string.split(key, ".")
     local _data = self.data
     for _, k in pairs(array) do
-        log:info("key:%s,%s", k, type(k))
         if type(_data) == "table" and _data[k] then
             _data = _data[k]
         else
@@ -47,7 +46,6 @@ function GameArchiveFile:putData(key, value)
     local array = string.split(key, ".")
     local _data = self.data
     for id, k in pairs(array) do
-        log:info("key:%s,%s", k, type(k))
         if id == #array then
             _data[k] = value
             return
