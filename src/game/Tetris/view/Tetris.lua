@@ -39,6 +39,12 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     self.nextBlock = nil
     self.isAI = false
     self.pause = false
+    if self.isSelf then
+        self.blockPic = 'tetris/fangkuai.png'
+    else
+        self.blockPic = 'tetris/fangkuai3.png'
+    end
+
 end
 
 function Tetris:pauseGame()
@@ -779,7 +785,7 @@ function Tetris:addLines(lines)
         for i=1, #line do
             local value = line[i]
             if value == 1 then
-                local sprite = cc.Sprite:create("tetris/fangkuai.png")
+                local sprite = cc.Sprite:create(self.blockPic)
                 local x = (i - 1) * self.blockWidth + self.fixPixel
                 local y = (index - 1) * self.blockWidth + self.fixPixel
                 sprite:setPosition(cc.p(x, y))
@@ -837,7 +843,7 @@ function Tetris:createRandomBlock()
     local type = self.parent:nextInt(7, self.randomTimes)
     self.randomTimes = self.randomTimes + 1
 
-    return self:createBlock(type, 0, 'tetris/fangkuai.png')
+    return self:createBlock(type, 0, self.blockPic)
 end
 
 --------------------------------

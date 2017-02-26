@@ -18,7 +18,7 @@ function BaseBlock:ctor(blockType, angle, min, max, pic)
     self.offsetRight = 0
     self.min = min
     self.max = max
-    self.pic = 'tetris/fangkuai.png'
+    self.pic = pic
 end
 
 --------------------------------

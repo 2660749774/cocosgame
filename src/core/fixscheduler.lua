@@ -164,16 +164,16 @@ function fixscheduler:update()
     self.currTime = currTime
 
     -- 加速追帧逻辑
-    -- local diff = self.serverFrameNum - self.frameNum
+    local diff = self.serverFrameNum - self.frameNum
     -- if diff > 1 then
     --     log:info("frame diff :%s", diff)
     --     log:info("update frame serverFrameNum:%s, localFrameNum:%s, fillFrameNum:%s", self.serverFrameNum, self.frameNum, self.fillFrameNum)
     -- end
-    -- if diff < 4 then
-    --     self.fixTimeScale = 1
-    -- else
-    --     self.fixTimeScale = 10
-    -- end
+    if diff < 4 then
+        self.fixTimeScale = 1
+    else
+        self.fixTimeScale = 10
+    end
 end
 
 --------------------------------
