@@ -67,7 +67,7 @@ std::string CryptoUtil::encodeBase64(std::string plaintext)
     Base64Encoder *base64Enc = new Base64Encoder(sink);
     StringSource source(plaintext, true, base64Enc);
     
-    ssize_t iPos=-1;
+    size_t iPos=-1;
     iPos = ciphertext.find("\n", 0);
     while(iPos>=0)
     {

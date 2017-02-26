@@ -15,6 +15,13 @@
 #  include <ioapiset.h>
 #  define USE_WINDOWS8_API
 # endif
+
+#ifdef UNICODE
+typedef LPWSTR LPTSTR;
+#else
+typedef LPSTR LPTSTR;
+#endif
+
 #endif
 
 #ifdef USE_BERKELEY_STYLE_SOCKETS
@@ -86,7 +93,8 @@ int inet_pton(int af, const char *src, void *dst)
 
 
 	int size = sizeof(ss);
-	if (WSAStringToAddress(temp, af, NULL, (struct sockaddr *)&ss, &size) == 0) {
+	LPWSTR _tmp = (LPWSTR)temp;
+	if (WSAStringToAddress(_tmp, af, NULL, (struct sockaddr *)&ss, &size) == 0) {
 		switch (af) {
 		case AF_INET:
 			*(struct in_addr *)dst = ((struct sockaddr_in *)&ss)->sin_addr;
