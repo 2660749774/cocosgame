@@ -247,7 +247,7 @@ function TetrisMultiPanel:doRoundStart(playerInfo, oldNextBlock, newNextBlock)
 
     -- 显示下一个方块
     local offsetx, offsety = newNextBlock:getOffSet()
-    log:info("Show Next, offsetx:%s, offsety:%s", offsetx, offsety)
+    -- log:info("Show Next, offsetx:%s, offsety:%s", offsetx, offsety)
     if newNextBlock.blockType == 3 then
         -- 长条特殊处理
         newNextBlock:setPosition(cc.p(27 * 0.6, -offsety * 0.6 + 27))
