@@ -24,7 +24,7 @@ actions.joinFight = Action.new("fight@join", "")
 actions.cancelFight = Action.new("fight@cancel", "")
 actions.quitFight = Action.new("fight@quit", "")
 actions.readyFight = Action.new("fight@ready", "")
-actions.doUpdate = Action.new("fight@doUpdate", "protoId=%s&frameNum=%s&args=%s")
+actions.doUpdate = Action.new("fight@doUpdate", "protoId=%s&frameNum=%s&serverFrameNum=%s&args=%s")
 actions.writeLog = Action.new("log", "msg=%s")
 actions.ping = Action.new("fight@ping", "seq=%s")
 

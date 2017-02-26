@@ -60,7 +60,7 @@ end
 -- @function [parent=#Tetris] playGame
 function Tetris:doUpdate(dt)
     if self.isSelf then
-        -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self:getLocalFrameNum(), self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
+        -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
     end
 
     if self.gameOverFlag or self.disableDown or self.pause then
@@ -182,7 +182,7 @@ function Tetris:addServerFrame(frameNum, event)
         -- if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
             -- local delay = cc.Util:getCurrentTime() - self.leftTime
             -- log:info("recive tcp callback, delay:%s, localFramNum:%s, serverFrame:%s, updateTime:%s", 
-            -- delay, self:getLocalFrameNum(), self.fixScheduler.serverFrameNum, self.fixScheduler.updateTime)
+            -- delay, self.fixScheduler.serverFrameNum, self.fixScheduler.updateTime)
         -- end
     end
 end
@@ -402,7 +402,7 @@ function Tetris:handleShift(event, keyCode)
     else
         -- 发送玩家按钮事件
         if event ~= nil and self.isNet then
-            cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), 3)
+            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 3)
             return
         end
 
@@ -442,7 +442,7 @@ function Tetris:handleLeft(event, keyCode)
         end
 
         if self.isNet then
-            cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), keyCode)
+            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
             return
         end
     end
@@ -479,7 +479,7 @@ function Tetris:handleRight(event, keyCode)
         end
 
         if self.isNet then
-            cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), keyCode)
+            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
             return
         end
     end
@@ -505,7 +505,7 @@ function Tetris:handleDown(event, keyCode)
     end
 
     if nil ~= event and self.isNet then
-        cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), 4)
+        self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 4)
         return
     end
 
@@ -530,7 +530,7 @@ function Tetris:handleDownLow(event, keyCode)
         end
 
         if self.isNet then
-            cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), keyCode)
+            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
             return
         end
     end
@@ -554,7 +554,7 @@ function Tetris:handleDownLow(event, keyCode)
         --         self.downScheduler = nil
 
         --         if self.isNet then
-        --             cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), 52)
+        --             self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 52)
         --         else
         --             self.fixScheduler:setTimeScale(1)
         --         end
@@ -690,16 +690,16 @@ function Tetris:removeCallBack(sender)
     -- 通知服务器消除
     if self.isNet and self.removeLineNums > 0 then
         if self.isSelf then
-            cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums)
+            self.fixScheduler:send(actions.doUpdate, protos.REMOVE_LINES, self.removeLineNums)
         elseif self.isAI then
-            cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums .. ",true")
+            self.fixScheduler:send(actions.doUpdate, protos.REMOVE_LINES, self.removeLineNums .. ",true")
         end
     end
     -- if self.isSelf then
     --     self.parent:updateScore(self.removeLineNums)
     -- elseif self.removeLineNums > 0 then
     --     -- 通知服务器
-    --     cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums .. ",true")
+    --     self.fixScheduler:send(actions.doUpdate, protos.REMOVE_LINES, self.removeLineNums .. ",true")
     -- end
 
     -- 更新统计数据
@@ -711,7 +711,7 @@ function Tetris:removeCallBack(sender)
     -- log:info("call roundStart")
     -- if self.isNet then
     --     self.disableDown = true
-    --     cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self:getLocalFrameNum(), 100)
+    --     self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 100)
     -- else
     self:roundStart()
     -- end

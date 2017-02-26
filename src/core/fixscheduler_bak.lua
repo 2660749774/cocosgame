@@ -59,7 +59,6 @@ function fixscheduler:ctor(dt)
     self.fillFrameNum = 0 -- 补充帧
     self.fixTimeScale = 1
     self.updateTime = 0
-    self.framePacks = {}
 end
 
 --------------------------------
@@ -136,16 +135,13 @@ function fixscheduler:update()
     -- 逻辑帧率驱动显示帧率
     while (self.fixTime >= self.dt) do
         if self.serverFrameNum ~= -1 
-            and self.frameNum >= self.serverFrameNum
+            and self.frameNum >= (self.serverFrameNum + 5)
             and self.fillFrameNum == 0 then
             -- 锁帧等待
             break
-        elseif self.serverFrameNum == -1 or self.frameNum < self.serverFrameNum then
+        elseif self.serverFrameNum == -1 or self.frameNum < (self.serverFrameNum + 5) then
             self.fixTime = self.fixTime - self.dt
             self.frameNum = self.frameNum + 1
-
-            -- 发送网络请求
-            self:sendFramePack()
         end
 
         -- 加速帧处理
@@ -163,6 +159,8 @@ function fixscheduler:update()
 
         -- 处理服务器网络返回
         self:doServerFrame()
+
+        log:info("fixscheduler update localFrameNum:%s, serverFrameNum:%s", self.frameNum, self.serverFrameNum)
     end
 
     self.currTime = currTime
@@ -178,43 +176,6 @@ function fixscheduler:update()
     else
         self.fixTimeScale = 10
     end
-end
-
---------------------------------
--- 发送网络包
--- @function [parent=#fixscheduler] doUpdate
-function fixscheduler:send(action, protoId, ...)
-    -- if not self.sendPack then
-    local args = { ... }
-    local key = "" .. protoId
-    for _, v in pairs(args) do
-        key = key .. "-" .. v
-    end
-    if self.framePacks[key] == nil then
-        table.insert(args, 1, self.frameNum)
-        table.insert(args, 2, self.serverFrameNum)
-        self.framePacks[key] = {action=action, protoId=protoId, args=args}
-        -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
-    end
-        -- cmgr:send(action, nil, protoId, unpack(args))
-    -- end
-end
-
---------------------------------
--- 发送网络包
--- @function [parent=#fixscheduler] doUpdate
-function fixscheduler:sendFramePack()
-    for _, pack in pairs(self.framePacks) do
-        cmgr:send(pack.action, nil, pack.protoId, unpack(pack.args))
-    end
-    self.framePacks = {}
-    -- if not self.sendPack then
-        -- local args = { ... }
-        -- table.insert(args, 1, self.frameNum)
-        -- table.insert(args, 2, self.serverFrameNum)
-        -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
-        -- cmgr:send(action, nil, protoId, unpack(args))
-    -- end
 end
 
 --------------------------------
@@ -234,12 +195,13 @@ function fixscheduler:doServerFrame()
         return
     end
 
- 
-    local eventList = self.serverFrame[self.frameNum]
-    if nil ~= eventList then
-        self.serverFrameHandler(eventList)
+    for i=1, self.frameNum do 
+        local eventList = self.serverFrame[i]
+        if nil ~= eventList and #eventList > 0 then
+            self.serverFrameHandler(eventList)
+        end
+        self.serverFrame[i] = {}
     end
-    self.serverFrame[self.frameNum] = {}
 end
 
 --------------------------------
