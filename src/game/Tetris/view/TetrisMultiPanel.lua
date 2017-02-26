@@ -16,24 +16,32 @@ function TetrisMultiPanel:onCreate(host)
     local layout = require("layout.TetrisScene_Net").create()
     self:fixLayout(layout)
     
+    -- 按钮相关
     self.btnLeft = layout['btn_left']
     self.btnShift = layout['btn_shift']
     self.btnRight = layout['btn_right']
-    self.nextBg = layout['next_bg']
-    self.scoreText = layout['lb_score']
-    self.scoreHang = layout['lb_hang']
     self.btnPlay = layout['btn_play']
     self.btnDown = layout['btn_down']
     self.btnDownLow = layout['btn_down_low']
+
+    -- 信息部分
+    self.playerInfo = {}
+    self.targetPlayerInfo = {}
+    
+    self:initPlayerInfo(layout, self.playerInfo, "_self")
+    self:initPlayerInfo(layout, self.targetPlayerInfo, "_target")
+    app:alignLeft(layout['player_panel_self'])
+    app:alignRight(layout['player_panel_target'])
+   
+    -- ping相关
     self.lbPing = layout['lb_ping']
     self.randomCache = {}
     self.removeLineNums = 0
     self.pingSeq = 0
     self.pingTime = 0
 
-
+    -- 初始化游戏块
     local targetBg = layout['tetris_panel_target']
-    targetBg:setFlippedY(true)
     self.targetTetris = Tetris.new(targetBg, true, false, self)
 
     local bg = layout['tetris_panel_self']
@@ -41,9 +49,10 @@ function TetrisMultiPanel:onCreate(host)
 
 
     self:addChild(layout["root"])
-    self.scoreText:setString("0")
-    self.scoreHang:setString("0")
-    self.lbPing:setString("")
+
+    -- 重置一下'
+    self:reset(true)
+    
 
     -- 添加事件
     self.btnShift:addClickEventListener(handler(self, self.handleShift))
@@ -76,6 +85,19 @@ function TetrisMultiPanel:onCreate(host)
 end
 
 --------------------------------
+-- 初始化玩家数据
+-- @function [parent=#TetrisMultiPanel] initPlayerInfo
+function TetrisMultiPanel:initPlayerInfo(layout, playerInfo, suffix)
+    playerInfo.lbPlayerName = layout['lb_player_name' .. suffix]
+    playerInfo.lbPlayerScore = layout['lb_player_score' .. suffix]
+
+    playerInfo.lbScore = layout['lb_score' .. suffix]
+    playerInfo.score = 0
+
+    playerInfo.nextBg = layout['next_bg' .. suffix]
+end
+
+--------------------------------
 -- 处理连接事件
 -- @function [parent=#TetrisMultiPanel] handleConnectEvent
 function TetrisMultiPanel:handleConnectEvent(event)
@@ -101,6 +123,8 @@ end
 function TetrisMultiPanel:onGetPlayerInfo(response)
     if response.state == 1 then
         self.playerId = response.data.playerId
+        self:updatePlayerInfo(self.playerInfo, response.data)
+
         cmgr:send(actions.quitFight)
         cmgr:send(actions.joinFight)
     end
@@ -117,6 +141,9 @@ function TetrisMultiPanel:handlePush(response)
     if response.data.schedule ~= nil then
         if response.data.schedule.def == nil then
             self.targetTetris.isAI = true
+            self:updatePlayerInfo(self.targetPlayerInfo, {playerId="机器人小I", score=100})
+        else
+            self:updatePlayerInfo(self.targetPlayerInfo, response.data.schedule.def)
         end
         cmgr:send(actions.readyFight)
     elseif response.data.event then
@@ -175,18 +202,10 @@ function TetrisMultiPanel:gameStart(data)
 
     -- 重置游戏
     self.btnPlay:setVisible(false)
-    self:reset()
+    self:reset(false)
 
     -- 初始化随机数
     RandomUtil:setRandomseed(data.randomseed)
-
-    -- 随机下一块方块
-    local nextBlock = self.tetris:createNextBlock()
-
-    -- 处理居中
-    local offsetx, offsety = nextBlock:getOffSet()
-    nextBlock:setPosition(cc.p(0, -offsety))
-    self.nextBg:addChild(nextBlock)
 
     -- 游戏开始
     self.tetris:gameStart()
@@ -198,58 +217,115 @@ end
 --------------------------------
 -- 回合开始
 -- @function [parent=#TetrisMultiPanel] roundStart
-function TetrisMultiPanel:roundStart(oldNextBlock, newNextBlock)
+function TetrisMultiPanel:roundStart(oldNextBlock, newNextBlock, isSelf)
+    if isSelf then
+        self:doRoundStart(self.playerInfo, oldNextBlock, newNextBlock)
+
+        -- 解除长按状态
+        if self.tetris.btnDownLowLongPress then
+            cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self.tetris:getLocalFrameNum(), 52)
+        end
+
+        -- 按钮状态重置
+        self.btnShift.ended = true
+        self.btnLeft.ended = true
+        self.btnRight.ended = true
+        self.btnDownLow.ended = true
+    else
+        self:doRoundStart(self.targetPlayerInfo, oldNextBlock, newNextBlock)
+    end
+end
+
+--------------------------------
+-- 处理回合开始
+-- @function [parent=#TetrisMultiPanel] doRoundStart
+function TetrisMultiPanel:doRoundStart(playerInfo, oldNextBlock, newNextBlock)
     -- 移除之前的方块
     if oldNextBlock then
-        self.nextBg:removeChild(oldNextBlock)
+        playerInfo.nextBg:removeChild(oldNextBlock)
     end
 
     -- 显示下一个方块
     local offsetx, offsety = newNextBlock:getOffSet()
-    newNextBlock:setPosition(cc.p(0, -offsety))
-    self.nextBg:addChild(newNextBlock)
-
-    -- 解除长按状态
-    if self.tetris.btnDownLowLongPress then
-        cmgr:send(actions.doUpdate, nil, protos.KEY_PRESS, self.tetris:getLocalFrameNum(), 52)
+    log:info("Show Next, offsetx:%s, offsety:%s", offsetx, offsety)
+    if newNextBlock.blockType == 3 then
+        -- 长条特殊处理
+        newNextBlock:setPosition(cc.p(27 * 0.6, -offsety * 0.6 + 27))
+    else
+        newNextBlock:setPosition(cc.p(27 - offsetx * 0.6, -offsety * 0.6 + 27))
     end
-
-    -- 按钮状态重置
-    self.btnShift.ended = true
-    self.btnLeft.ended = true
-    self.btnRight.ended = true
-    self.btnDownLow.ended = true
+    newNextBlock:setScale(0.6)
+    playerInfo.nextBg:addChild(newNextBlock)
 end
 
 --------------------------------
 -- 更新分数
--- @function [parent=#TetrisMultiPanel] roundStart
-function TetrisMultiPanel:updateScore(removeLineNums)
-    self.removeLineNums = self.removeLineNums + removeLineNums
-    self.scoreHang:setString(self.removeLineNums)
-    self.scoreText:setString(self.removeLineNums * 10)
+-- @function [parent=#TetrisMultiPanel] updateScore
+function TetrisMultiPanel:updateScore(removeLineNums, isSelf)
+    if isSelf then
+        self:updatePlayerScore(self.playerInfo, removeLineNums)
+    else
+        self:updatePlayerScore(self.targetPlayerInfo, removeLineNums)
+    end 
+end
 
-    -- 通知服务器
-    cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self.tetris:getLocalFrameNum(), removeLineNums)
+--------------------------------
+-- 更新分数
+-- @function [parent=#TetrisMultiPanel] updatePlayerScore
+function TetrisMultiPanel:updatePlayerScore(playerInfo, removeLineNums)
+    if removeLineNums == 1 then
+        playerInfo.score = playerInfo.score + 40
+    elseif removeLineNums == 2 then
+        playerInfo.score = playerInfo.score + 100
+    elseif removeLineNums == 3 then
+        playerInfo.score = playerInfo.score + 300
+    elseif removeLineNums == 4 then
+        playerInfo.score = playerInfo.score + 1200
+    end
+    playerInfo.lbScore:setString(playerInfo.score)
+end 
+
+--------------------------------
+-- 更新玩家信息
+-- @function [parent=#TetrisMultiPanel] updatePlayerScore
+function TetrisMultiPanel:updatePlayerInfo(playerInfo, data)
+    playerInfo.lbPlayerName:setString(tostring(data.playerId))
+    playerInfo.lbPlayerScore:setString("分数" .. data.score)
 end
 
 --------------------------------
 -- 清理
 -- @function [parent=#TetrisMultiPanel] reset
-function TetrisMultiPanel:reset() 
+function TetrisMultiPanel:reset(resetName) 
     self.tetris:reset()
     if self.targetTetris then
         self.targetTetris:reset()
     end
-    self.nextBg:removeAllChildren()
+
+    self:resetPlayerInfo(self.playerInfo, resetName)
+    self:resetPlayerInfo(self.targetPlayerInfo, resetName)
     self.randomCache = {}
-    self.scoreText:setString("0")
+    self.lbPing:setString("")
     if self.btnHome then
         if not tolua.isnull(self.btnHome) then
             self.btnHome:removeFromParent()
         end
         self.btnHome = nil
     end
+end
+
+
+--------------------------------
+-- 重置玩家数据
+-- @function [parent=#TetrisMultiPanel] reset
+function TetrisMultiPanel:resetPlayerInfo(playerInfo, resetName)
+    if resetName then
+        playerInfo.lbPlayerName:setString("")
+        playerInfo.lbPlayerScore:setString("")
+    end
+    playerInfo.nextBg:removeAllChildren()
+    playerInfo.lbScore:setString(0)
+    playerInfo.score = 0
 end
 
 --------------------------------
@@ -352,7 +428,6 @@ function TetrisMultiPanel:handlePingCallback(response)
         self.lbPing:setString("ping: " .. tostring(delay))
     end
 end
-
 
 --------------------------------
 -- 卸载资源

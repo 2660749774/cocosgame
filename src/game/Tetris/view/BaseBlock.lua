@@ -239,8 +239,8 @@ function BaseBlock:handleDown(grids, simulate)
                 -- log:info("fill grid y:%s, x:%s", fitY + value[2], gridX + value[1])
                 grids[fitY + value[2]][gridX + value[1]] = value[3]
             end
+            self:setPosition(cc.p(x, (fitY - 1) * self.blockWidth + self.fixPixel))
         end
-        self:setPosition(cc.p(x, (fitY - 1) * self.blockWidth + self.fixPixel))
         return true
     end
     

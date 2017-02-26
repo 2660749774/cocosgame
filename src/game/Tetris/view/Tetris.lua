@@ -206,9 +206,8 @@ function Tetris:roundStart()
     -- 创建方块
     self.block = self:createBlock(self.nextBlock.blockType, self.nextBlock.angle, self.nextBlock.pic)
     if self.isNet then
-        self.block:setPosition(cc.p(165, 435))
+        self.block:setPosition(cc.p(138, 435))
     else
-        -- self.block:setPosition(cc.p(165, 705))
         self.block:setPosition(cc.p(165, 435))
     end
     self.bg:addChild(self.block)
@@ -217,15 +216,7 @@ function Tetris:roundStart()
     self:createNextBlock()
 
     -- 充值下一个方块状态
-    if self.isSelf then
-        self.parent:roundStart(oldNextBlock, self.nextBlock)
-    else
-        if oldNextBlock then
-            oldNextBlock:removeFromParent()
-        end
-        self.nextBlock:setVisible(false)
-        self.bg:addChild(self.nextBlock)
-    end
+    self.parent:roundStart(oldNextBlock, self.nextBlock, self.isSelf)
 
     -- 重置按钮状态
     if self.downScheduler then
@@ -321,7 +312,7 @@ function Tetris:reset()
 
     -- 初始化grid
     if self.isNet then
-        self:initGrid(378, 540)
+        self:initGrid(270, 540)
     else
         self:initGrid(378, 810)
     end
@@ -687,13 +678,23 @@ function Tetris:removeCallBack(sender)
         end
     end
 
-    -- 告知服务器
-    if self.isSelf then
-        self.parent:updateScore(self.removeLineNums)
-    elseif self.removeLineNums > 0 then
-        -- 通知服务器
-        cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums .. ",true")
+    -- 更新视图
+    self.parent:updateScore(self.removeLineNums, self.isSelf)
+
+    -- 通知服务器消除
+    if self.isNet and self.removeLineNums > 0 then
+        if self.isSelf then
+            cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), removeLineNums)
+        elseif self.isAI then
+            cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums .. ",true")
+        end
     end
+    -- if self.isSelf then
+    --     self.parent:updateScore(self.removeLineNums)
+    -- elseif self.removeLineNums > 0 then
+    --     -- 通知服务器
+    --     cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums .. ",true")
+    -- end
 
     -- 更新统计数据
     self.hang = self.hang + self.removeLineNums
@@ -759,6 +760,7 @@ function Tetris:addLines(lines)
         for j = 1, #self.grids[i] do
             if self.grids[i][j] ~= 0 then
                 local block = self.grids[i][j]
+                -- log:info("addLines i:%s, j:%s, block:%s", i, j, block)
                 if not ((i + num) > #self.grids) then
                     local x, y = block:getPosition()
                     block:setPosition(cc.p(x, y + self.blockWidth * num))
@@ -787,6 +789,12 @@ function Tetris:addLines(lines)
             end
         end
         index = index + 1
+    end
+
+    -- 如果当前方块已经不能下落
+    if not self.block:handleDown(self.grids, true) then
+        local x, y = self.block:getPosition()
+        self.block:setPosition(cc.p(x, y + self.blockWidth * num))
     end
 end
 
