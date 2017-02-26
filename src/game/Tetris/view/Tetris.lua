@@ -173,11 +173,11 @@ end
 function Tetris:addServerFrame(frameNum, event)
     if self.fixScheduler then
         self.fixScheduler:addServerFrame(frameNum, event)
-        if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
-            local delay = cc.Util:getCurrentTime() - self.leftTime
-            log:info("recive tcp callback, delay:%s, localFramNum:%s, serverFrame:%s, updateTime:%s", 
-            delay, self:getLocalFrameNum(), self.fixScheduler.serverFrameNum, self.fixScheduler.updateTime)
-        end
+        -- if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
+            -- local delay = cc.Util:getCurrentTime() - self.leftTime
+            -- log:info("recive tcp callback, delay:%s, localFramNum:%s, serverFrame:%s, updateTime:%s", 
+            -- delay, self:getLocalFrameNum(), self.fixScheduler.serverFrameNum, self.fixScheduler.updateTime)
+        -- end
     end
 end
 
@@ -414,16 +414,16 @@ function Tetris:handleLeft(event, keyCode)
     if self.block == nil then
         return
     end
-    if self.isSelf then
-        local serverFrame = (event == nil)
-        if not serverFrame then
-            self.leftTime = cc.Util:getCurrentTime()
-            self.delay = 0
-        else
-            self.delay = cc.Util:getCurrentTime() - self.leftTime
-        end
-        log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
-    end
+    -- if self.isSelf then
+    --     local serverFrame = (event == nil)
+    --     if not serverFrame then
+    --         self.leftTime = cc.Util:getCurrentTime()
+    --         self.delay = 0
+    --     else
+    --         self.delay = cc.Util:getCurrentTime() - self.leftTime
+    --     end
+    --     log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
+    -- end
     -- 发送按钮事件
     if event ~= nil then
         keyCode = 1
