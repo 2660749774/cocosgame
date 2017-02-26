@@ -251,7 +251,7 @@ function Tetris:gameStart(conf)
     end
 
     -- 设置定时器
-    self.fixScheduler = require "core.fixscheduler".new(0.05)
+    self.fixScheduler = require "core.fixscheduler".new(0.03)
     self.fixScheduler:addServerFrameHandler(handler(self, self.handleServerFrame))
     if not self.isNet then
         self.fixScheduler:updateServerFrameNum(-1)
