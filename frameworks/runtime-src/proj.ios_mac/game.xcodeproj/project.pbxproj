@@ -62,6 +62,10 @@
 		842CEEB21D51D18E00F2D4B8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DD69AF1D4B31C900196C33 /* libssl.a */; };
 		844AE5291E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
 		844AE52A1E14E95F00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
+		8478610B1E629E6000A6266A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8478610A1E629E6000A6266A /* GameKit.framework */; };
+		8478610D1E629E7700A6266A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8478610C1E629E7700A6266A /* GameKit.framework */; };
+		8478610F1E629F6500A6266A /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8478610E1E629F6500A6266A /* GameCenter.mm */; };
+		847861121E62A18200A6266A /* SDKGameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 847861111E62A18200A6266A /* SDKGameCenter.mm */; };
 		847B161A1E61436700EDE087 /* CryptoUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847B16191E61436700EDE087 /* CryptoUtil.cpp */; };
 		847B17C41E61439800EDE087 /* CryptoUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847B16191E61436700EDE087 /* CryptoUtil.cpp */; };
 		847B18511E615B4700EDE087 /* lua_cocos2dx_crypto_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847B18501E615B4700EDE087 /* lua_cocos2dx_crypto_auto.cpp */; };
@@ -508,6 +512,12 @@
 		842CEEAD1D51C98200F2D4B8 /* CCHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHTTPRequestDelegate.h; path = "../../cocos2d-x/tools/simulator/libsimulator/lib/network/CCHTTPRequestDelegate.h"; sourceTree = "<group>"; };
 		844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_util_auto.cpp; path = ../Classes/auto/lua_cocos2dx_util_auto.cpp; sourceTree = "<group>"; };
 		844AE5281E14E86B00FAB16E /* lua_cocos2dx_util_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_util_auto.hpp; path = ../Classes/auto/lua_cocos2dx_util_auto.hpp; sourceTree = "<group>"; };
+		847861091E629DD100A6266A /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
+		8478610A1E629E6000A6266A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		8478610C1E629E7700A6266A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
+		8478610E1E629F6500A6266A /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
+		847861101E62A15800A6266A /* SDKGameCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDKGameCenter.h; sourceTree = "<group>"; };
+		847861111E62A18200A6266A /* SDKGameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SDKGameCenter.mm; sourceTree = "<group>"; };
 		847937AA1DD8AADF00463B35 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		847B16181E61436700EDE087 /* CryptoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CryptoUtil.h; path = ../Classes/crypto/CryptoUtil.h; sourceTree = "<group>"; };
 		847B16191E61436700EDE087 /* CryptoUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CryptoUtil.cpp; path = ../Classes/crypto/CryptoUtil.cpp; sourceTree = "<group>"; };
@@ -841,6 +851,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8478610B1E629E6000A6266A /* GameKit.framework in Frameworks */,
 				841BE8F11DFBED8800F496E4 /* libcrypto.a in Frameworks */,
 				841BE8F21DFBED8800F496E4 /* libcurl.a in Frameworks */,
 				841BE8F31DFBED8800F496E4 /* libssl.a in Frameworks */,
@@ -866,6 +877,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8478610D1E629E7700A6266A /* GameKit.framework in Frameworks */,
 				84E6CEC61E168EF800B7607D /* CoreText.framework in Frameworks */,
 				842CEEB01D51D18E00F2D4B8 /* libcrypto.a in Frameworks */,
 				842CEEB11D51D18E00F2D4B8 /* libcurl.a in Frameworks */,
@@ -906,6 +918,7 @@
 		5023810617EBBCAC00990C9B /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				847861061E629CCC00A6266A /* gamecenter */,
 				521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */,
 				521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */,
 				5023810717EBBCAC00990C9B /* AppController.h */,
@@ -977,6 +990,17 @@
 				84E6CEC81E16921600B7607D /* Util.cpp */,
 			);
 			name = util;
+			sourceTree = "<group>";
+		};
+		847861061E629CCC00A6266A /* gamecenter */ = {
+			isa = PBXGroup;
+			children = (
+				847861101E62A15800A6266A /* SDKGameCenter.h */,
+				847861091E629DD100A6266A /* GameCenter.h */,
+				8478610E1E629F6500A6266A /* GameCenter.mm */,
+				847861111E62A18200A6266A /* SDKGameCenter.mm */,
+			);
+			name = gamecenter;
 			sourceTree = "<group>";
 		};
 		847B16141E61433D00EDE087 /* crypto */ = {
@@ -1379,6 +1403,8 @@
 		F293B3CB15EB7BE500256477 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8478610C1E629E7700A6266A /* GameKit.framework */,
+				8478610A1E629E6000A6266A /* GameKit.framework */,
 				847B18591E61A38D00EDE087 /* libcryptopp.a */,
 				84E6CEC51E168EF800B7607D /* CoreText.framework */,
 				841BE8EE1DFBED8800F496E4 /* libcrypto.a */,
@@ -1867,6 +1893,7 @@
 				847B19661E61A86B00EDE087 /* xtr.cpp in Sources */,
 				847B19C91E61A86B00EDE087 /* cryptlib_bds.cpp in Sources */,
 				847B19C11E61A86B00EDE087 /* dsa.cpp in Sources */,
+				8478610F1E629F6500A6266A /* GameCenter.mm in Sources */,
 				847B199D1E61A86B00EDE087 /* modes.cpp in Sources */,
 				847B19731E61A86B00EDE087 /* strciphr.cpp in Sources */,
 				847B19721E61A86B00EDE087 /* tea.cpp in Sources */,
@@ -1922,6 +1949,7 @@
 				847B19801E61A86B00EDE087 /* seed.cpp in Sources */,
 				847B19651E61A86B00EDE087 /* xtrcrypt.cpp in Sources */,
 				9FFE00A11ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
+				847861121E62A18200A6266A /* SDKGameCenter.mm in Sources */,
 				84A186DA1D152ABA0004995F /* lua_will_extensions.c in Sources */,
 				847B19CC1E61A86B00EDE087 /* cmac.cpp in Sources */,
 				847B19CD1E61A86B00EDE087 /* channels.cpp in Sources */,

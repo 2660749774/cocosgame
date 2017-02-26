@@ -113,8 +113,12 @@
             <Image Name="fangkuai.png" />
             <Image Name="hang.png" />
             <Image Name="left.png" />
+            <Image Name="net_bg.png" />
+            <Image Name="net_title_bg.png" />
             <Image Name="NEXT.png" />
             <Image Name="number.png" />
+            <Image Name="pic_blue_bg.png" />
+            <Image Name="pic_red_bg.png" />
             <Image Name="right.png" />
             <Image Name="scene_bg.png" />
             <Image Name="shift.png" />
