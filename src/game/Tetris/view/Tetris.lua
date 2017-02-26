@@ -684,7 +684,7 @@ function Tetris:removeCallBack(sender)
     -- 通知服务器消除
     if self.isNet and self.removeLineNums > 0 then
         if self.isSelf then
-            cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), removeLineNums)
+            cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums)
         elseif self.isAI then
             cmgr:send(actions.doUpdate, nil, protos.REMOVE_LINES, self:getLocalFrameNum(), self.removeLineNums .. ",true")
         end
