@@ -105,7 +105,8 @@ end
 -- 更新网络帧频
 -- @function [parent=#fixscheduler] updateServerFrameNum
 function fixscheduler:updateServerFrameNum(frameNum)
-    table.insert(self.jitterBuffer, {frameNum = frameNum, span = 0})
+    self.serverFrameNum = frameNum
+    -- table.insert(self.jitterBuffer, {frameNum = frameNum, span = 0})
     -- if self.timeScale > 1 and self.serverFrameNum > 0 then
     --     self.fillFrameNum = self.timeScale - 1
     -- end
@@ -176,14 +177,14 @@ function fixscheduler:update()
     -- 逻辑帧率
     self.fixTime = self.fixTime + (_dt * self.fixTimeScale)
     self.updateTime = self.updateTime + 1
-    self.jitterTime = self.jitterTime  + _dt
+    -- self.jitterTime = self.jitterTime  + _dt
 
-    while (self.jitterTime >= self.jitterdt) do
-        self.jitterTime = self.jitterTime - self.jitterdt
+    -- while (self.jitterTime >= self.jitterdt) do
+    --     self.jitterTime = self.jitterTime - self.jitterdt
 
-        -- tickJitter
-        self:tickJitter(self.jitterdt)
-    end
+    --     -- tickJitter
+    --     self:tickJitter(self.jitterdt)
+    -- end
 
     -- log:info("loop jitter cost:%s", (cc.Util:getCurrentTime() - currTime))
 
