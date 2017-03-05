@@ -171,7 +171,7 @@ function fixscheduler:update()
     local diff = self.serverFrameNum - self.frameNum
     -- if diff > 1 then
     --     log:info("frame diff :%s", diff)
-    --     log:info("update frame serverFrameNum:%s, localFrameNum:%s, fillFrameNum:%s", self.serverFrameNum, self.frameNum, self.fillFrameNum)
+    -- log:info("update frame serverFrameNum:%s, localFrameNum:%s, fillFrameNum:%s", self.serverFrameNum, self.frameNum, self.fillFrameNum)
     -- end
     if diff < 4 then
         self.fixTimeScale = 1
@@ -194,6 +194,13 @@ function fixscheduler:send(action, protoId, ...)
         table.insert(args, 1, self.frameNum)
         table.insert(args, 2, self.serverFrameNum)
         self.framePacks[key] = {action=action, protoId=protoId, args=args}
+
+        if ucmgr:isConnected() then
+            ucmgr:send(action, protoId, unpack(args))
+        else
+            cmgr:send(action, nil, protoId, unpack(args))
+        end
+        
         -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
     end
         -- cmgr:send(action, nil, protoId, unpack(args))
@@ -204,9 +211,9 @@ end
 -- 发送网络包
 -- @function [parent=#fixscheduler] doUpdate
 function fixscheduler:sendFramePack()
-    for _, pack in pairs(self.framePacks) do
-        cmgr:send(pack.action, nil, pack.protoId, unpack(pack.args))
-    end
+    -- for _, pack in pairs(self.framePacks) do
+    --     cmgr:send(pack.action, nil, pack.protoId, unpack(pack.args))
+    -- end
     self.framePacks = {}
     -- if not self.sendPack then
         -- local args = { ... }

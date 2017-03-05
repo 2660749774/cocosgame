@@ -32,6 +32,11 @@ function Game:startup()
     -- app暴露给全局
     cc.exports.app = self
 
+
+    -- ucmgr:open(1, "127.0.0.1", "8010")
+    -- ucmgr:send(actions.doUpdate, protos.KEY_PRESS, 1, 1, 3)
+
+
     -- 切换到入口函数
     self:changeScene("Tetris")
 end

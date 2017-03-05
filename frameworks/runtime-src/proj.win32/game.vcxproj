@@ -340,6 +340,9 @@
     <ClInclude Include="..\Classes\ide-support\CodeIDESupport.h" />
     <ClInclude Include="..\Classes\ide-support\lua_debugger.h" />
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h" />
+    <ClInclude Include="..\Classes\kcp\ikcp.h" />
+    <ClInclude Include="..\Classes\kcp\lkcp.h" />
+    <ClInclude Include="..\Classes\kcp\lutil.h" />
     <ClInclude Include="..\Classes\lua_extensions\cjson\fpconv.h" />
     <ClInclude Include="..\Classes\lua_extensions\cjson\lua_cjson.h" />
     <ClInclude Include="..\Classes\lua_extensions\cjson\strbuf.h" />
@@ -484,6 +487,9 @@
     <ClCompile Include="..\Classes\crypto\CryptoUtil.cpp" />
     <ClCompile Include="..\Classes\ide-support\lua_debugger.c" />
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp" />
+    <ClCompile Include="..\Classes\kcp\ikcp.c" />
+    <ClCompile Include="..\Classes\kcp\lkcp.c" />
+    <ClCompile Include="..\Classes\kcp\lutil.c" />
     <ClCompile Include="..\Classes\lua_extensions\cjson\fpconv.c" />
     <ClCompile Include="..\Classes\lua_extensions\cjson\lua_cjson.c" />
     <ClCompile Include="..\Classes\lua_extensions\cjson\strbuf.c" />

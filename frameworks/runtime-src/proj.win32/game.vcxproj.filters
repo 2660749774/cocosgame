@@ -34,6 +34,9 @@
     <Filter Include="Classes\crypto\cryptopp">
       <UniqueIdentifier>{df5f0af2-cd77-486e-81f5-e9436c65f37b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\kcp">
+      <UniqueIdentifier>{854c28c3-d406-45fb-852b-8270039d0c77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -518,6 +521,15 @@
     <ClInclude Include="..\Classes\crypto\cryptopp\zinflate.h">
       <Filter>Classes\crypto\cryptopp</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\kcp\ikcp.h">
+      <Filter>Classes\kcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\kcp\lutil.h">
+      <Filter>Classes\kcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\kcp\lkcp.h">
+      <Filter>Classes\kcp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -937,6 +949,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\crypto\cryptopp\zinflate.cpp">
       <Filter>Classes\crypto\cryptopp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\kcp\ikcp.c">
+      <Filter>Classes\kcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\kcp\lkcp.c">
+      <Filter>Classes\kcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\kcp\lutil.c">
+      <Filter>Classes\kcp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
