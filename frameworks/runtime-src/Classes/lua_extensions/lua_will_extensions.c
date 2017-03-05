@@ -3,6 +3,8 @@
 #include "lpack/lpack.h"
 #include "lua_zlib/lua_zlib.h"
 #include "cjson/lua_cjson.h"
+#include "kcp/lkcp.h"
+#include "kcp/lutil.h"
  
 #if __cplusplus
 extern "C" {
@@ -22,6 +24,8 @@ static luaL_Reg luax_will_exts[] = {
     { "pack", luaopen_pack},
     { "zlib", luaopen_zlib},
     { "cjson", luaopen_cjson_safe},
+	{"kcp", luaopen_lkcp},
+	{"kcputil", luaopen_lutil},
     {NULL, NULL}
 };
 

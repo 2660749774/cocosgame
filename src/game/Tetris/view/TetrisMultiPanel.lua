@@ -39,6 +39,7 @@ function TetrisMultiPanel:onCreate(host)
     self.removeLineNums = 0
     self.pingSeq = 0
     self.pingTime = 0
+    self.host = host
 
     -- 初始化游戏块
     local targetBg = layout['tetris_panel_target']
@@ -138,14 +139,28 @@ function TetrisMultiPanel:handlePush(response)
         return
     end
 
+    local udpConv = nil
     if response.data.schedule ~= nil then
         if response.data.schedule.def == nil then
             self.targetTetris.isAI = true
             self:updatePlayerInfo(self.targetPlayerInfo, {playerId="机器人小I", score=100})
-        else
+            udpConv = response.data.schedule.att.udpConv
+        elseif response.data.schedule.att.playerId == self.playerId then
             self:updatePlayerInfo(self.targetPlayerInfo, response.data.schedule.def)
+            udpConv = response.data.schedule.att.udpConv
+        else
+            self:updatePlayerInfo(self.targetPlayerInfo, response.data.schedule.att)
+            udpConv = response.data.schedule.def.udpConv
         end
         cmgr:send(actions.readyFight)
+
+        -- 建立udp连接
+        if (udpConv) then
+            log:info("udpConv:%s", udpConv)
+            ucmgr:open(udpConv, self.host, 8010)
+            -- 添加PushHandler
+            ucmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
+        end
     elseif response.data.event then
         event = response.data.event
         self.frameNum = event.frameNum

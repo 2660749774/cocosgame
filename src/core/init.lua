@@ -48,6 +48,7 @@ cc.exports.net = require("core.net.init")
 -- game init
 cc.exports.rmgr = require "core.manager.ResourceManager".new()
 cc.exports.cmgr = require "core.manager.ConnectManager".new(false)
+cc.exports.ucmgr = require "core.manager.UDPConnectManager".new(false)
 cc.exports.emgr = require "core.manager.EventManager".new()
 
 -- 初始化Actions
