@@ -247,7 +247,6 @@ function fixscheduler:send(action, protoId, ...)
     if self.framePacks[key] == nil then
         table.insert(args, 1, self.frameNum)
         table.insert(args, 2, self.serverFrameNum)
-        cmgr:send(action, nil, protoId, unpack(args))
         self.framePacks[key] = {action=action, protoId=protoId, args=args}
 
         if ucmgr:isConnected() then
