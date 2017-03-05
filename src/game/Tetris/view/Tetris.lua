@@ -427,14 +427,8 @@ function Tetris:handleLeft(event, keyCode)
             self.delay = 0
         else
             self.delay = cc.Util:getCurrentTime() - self.leftTime
-<<<<<<< HEAD
             log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
         end
-        
-=======
-             log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
-        end
->>>>>>> 84c9b34c94d38d1f5d4d37e2548b9d32399b78c6
     end
     -- 发送按钮事件
     if event ~= nil then
