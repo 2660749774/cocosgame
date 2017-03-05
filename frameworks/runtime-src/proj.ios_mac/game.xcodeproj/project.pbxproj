@@ -324,6 +324,12 @@
 		84A186EF1D152B3F0004995F /* lua_cjson.c in Sources */ = {isa = PBXBuildFile; fileRef = 84A186E21D152AFC0004995F /* lua_cjson.c */; };
 		84A186F01D152B420004995F /* strbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 84A186E41D152AFC0004995F /* strbuf.c */; };
 		84A186F21D152B4A0004995F /* lua_zlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 84A186DC1D152AD90004995F /* lua_zlib.c */; };
+		84BA0F3A1E6C08980065FDBB /* lutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F341E6C08980065FDBB /* lutil.c */; };
+		84BA0F3B1E6C08980065FDBB /* lkcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F361E6C08980065FDBB /* lkcp.c */; };
+		84BA0F3C1E6C08980065FDBB /* ikcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F381E6C08980065FDBB /* ikcp.c */; };
+		84BA0F3D1E6C09CE0065FDBB /* lutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F341E6C08980065FDBB /* lutil.c */; };
+		84BA0F3E1E6C09CE0065FDBB /* lkcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F361E6C08980065FDBB /* lkcp.c */; };
+		84BA0F3F1E6C09CE0065FDBB /* ikcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F381E6C08980065FDBB /* ikcp.c */; };
 		84DD69AD1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84DD69AB1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp */; };
 		84E6CEC61E168EF800B7607D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E6CEC51E168EF800B7607D /* CoreText.framework */; };
 		84E6CEC91E16921600B7607D /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E6CEC81E16921600B7607D /* Util.cpp */; };
@@ -799,6 +805,12 @@
 		84A186E31D152AFC0004995F /* lua_cjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lua_cjson.h; path = ../Classes/lua_extensions/cjson/lua_cjson.h; sourceTree = "<group>"; };
 		84A186E41D152AFC0004995F /* strbuf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = strbuf.c; path = ../Classes/lua_extensions/cjson/strbuf.c; sourceTree = "<group>"; };
 		84A186E51D152AFC0004995F /* strbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strbuf.h; path = ../Classes/lua_extensions/cjson/strbuf.h; sourceTree = "<group>"; };
+		84BA0F331E6C08980065FDBB /* lutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lutil.h; path = ../Classes/kcp/lutil.h; sourceTree = "<group>"; };
+		84BA0F341E6C08980065FDBB /* lutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lutil.c; path = ../Classes/kcp/lutil.c; sourceTree = "<group>"; };
+		84BA0F351E6C08980065FDBB /* lkcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lkcp.h; path = ../Classes/kcp/lkcp.h; sourceTree = "<group>"; };
+		84BA0F361E6C08980065FDBB /* lkcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lkcp.c; path = ../Classes/kcp/lkcp.c; sourceTree = "<group>"; };
+		84BA0F371E6C08980065FDBB /* ikcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ikcp.h; path = ../Classes/kcp/ikcp.h; sourceTree = "<group>"; };
+		84BA0F381E6C08980065FDBB /* ikcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ikcp.c; path = ../Classes/kcp/ikcp.c; sourceTree = "<group>"; };
 		84DD69A81D4B30D400196C33 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = "../../cocos2d-x/external/curl/prebuilt/ios/libcurl.a"; sourceTree = "<group>"; };
 		84DD69AB1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_httprequest_auto.cpp; path = ../Classes/auto/lua_cocos2dx_httprequest_auto.cpp; sourceTree = "<group>"; };
 		84DD69AC1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_httprequest_auto.hpp; path = ../Classes/auto/lua_cocos2dx_httprequest_auto.hpp; sourceTree = "<group>"; };
@@ -1328,6 +1340,19 @@
 			name = lpack;
 			sourceTree = "<group>";
 		};
+		84BA0F2F1E6C08870065FDBB /* kcp */ = {
+			isa = PBXGroup;
+			children = (
+				84BA0F331E6C08980065FDBB /* lutil.h */,
+				84BA0F341E6C08980065FDBB /* lutil.c */,
+				84BA0F351E6C08980065FDBB /* lkcp.h */,
+				84BA0F361E6C08980065FDBB /* lkcp.c */,
+				84BA0F371E6C08980065FDBB /* ikcp.h */,
+				84BA0F381E6C08980065FDBB /* ikcp.c */,
+			);
+			name = kcp;
+			sourceTree = "<group>";
+		};
 		84DD69AA1D4B30F200196C33 /* auto */ = {
 			isa = PBXGroup;
 			children = (
@@ -1445,6 +1470,7 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				84BA0F2F1E6C08870065FDBB /* kcp */,
 				847B16141E61433D00EDE087 /* crypto */,
 				844AE5231E14E63500FAB16E /* util */,
 				842CEEAA1D51C7F000F2D4B8 /* network */,
@@ -1714,6 +1740,7 @@
 				847B19EF1E61BCF800EDE087 /* ttmac.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
 				84107B261D156A7500F65181 /* lpack.c in Sources */,
+				84BA0F3D1E6C09CE0065FDBB /* lutil.c in Sources */,
 				847B1A151E61BCF800EDE087 /* pkcspad.cpp in Sources */,
 				847B1A291E61BCF800EDE087 /* ida.cpp in Sources */,
 				847B19FE1E61BCF800EDE087 /* sha3.cpp in Sources */,
@@ -1735,6 +1762,7 @@
 				847B19FF1E61BCF800EDE087 /* sha.cpp in Sources */,
 				847B1A471E61BCF800EDE087 /* cryptlib.cpp in Sources */,
 				847B1A271E61BCF800EDE087 /* integer.cpp in Sources */,
+				84BA0F3F1E6C09CE0065FDBB /* ikcp.c in Sources */,
 				847B19FA1E61BCF800EDE087 /* simple.cpp in Sources */,
 				847B19F71E61BCF800EDE087 /* sosemanuk.cpp in Sources */,
 				847B1A581E61BCF800EDE087 /* asn.cpp in Sources */,
@@ -1753,6 +1781,7 @@
 				847B1A2D1E61BCF800EDE087 /* gzip.cpp in Sources */,
 				842CEEA31D51BE5B00F2D4B8 /* lua_cocos2dx_httprequest_auto.cpp in Sources */,
 				847B1A001E61BCF800EDE087 /* serpent.cpp in Sources */,
+				84BA0F3E1E6C09CE0065FDBB /* lkcp.c in Sources */,
 				847B1A111E61BCF800EDE087 /* queue.cpp in Sources */,
 				847B1A431E61BCF800EDE087 /* dh.cpp in Sources */,
 				847B1A0B1E61BCF800EDE087 /* rdrand.cpp in Sources */,
@@ -1886,6 +1915,7 @@
 				847B19CB1E61A86B00EDE087 /* cpu.cpp in Sources */,
 				847B19DC1E61A86B00EDE087 /* algparam.cpp in Sources */,
 				847B19861E61A86B00EDE087 /* rng.cpp in Sources */,
+				84BA0F3A1E6C08980065FDBB /* lutil.c in Sources */,
 				847B19D91E61A86B00EDE087 /* authenc.cpp in Sources */,
 				847B19D31E61A86B00EDE087 /* blumshub.cpp in Sources */,
 				847B19CA1E61A86B00EDE087 /* crc.cpp in Sources */,
@@ -1951,8 +1981,10 @@
 				9FFE00A11ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
 				847861121E62A18200A6266A /* SDKGameCenter.mm in Sources */,
 				84A186DA1D152ABA0004995F /* lua_will_extensions.c in Sources */,
+				84BA0F3C1E6C08980065FDBB /* ikcp.c in Sources */,
 				847B19CC1E61A86B00EDE087 /* cmac.cpp in Sources */,
 				847B19CD1E61A86B00EDE087 /* channels.cpp in Sources */,
+				84BA0F3B1E6C08980065FDBB /* lkcp.c in Sources */,
 				847B19B81E61A86B00EDE087 /* files.cpp in Sources */,
 				847B19701E61A86B00EDE087 /* tiger.cpp in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,

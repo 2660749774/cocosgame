@@ -16,9 +16,11 @@
 #include <sys/types.h>
 #endif
 
+USING_NS_CC;
+
 static int _l_gettimeofday(lua_State * L){
     struct timeval tv;
-	cocos2d::gettimeofday(&tv, NULL);
+    gettimeofday(&tv, NULL);
 
     uint32_t r = (uint32_t)(((uint64_t)tv.tv_sec * 1000 + (uint64_t)tv.tv_usec / 1000) & 0x7ffffffful);
     lua_pushinteger(L, r);
