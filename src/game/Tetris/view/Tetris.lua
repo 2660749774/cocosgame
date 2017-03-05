@@ -627,10 +627,26 @@ function Tetris:_handleDown(block, simulate)
             end
         end
 
-        self.maxLine = maxLine
+        -- 处理上面的方块
         self.removeLineNums = #removeLines
         self.callbackNums = #removeBlocks
         self.callbackCount = 0
+        if maxLine ~= -1 then
+            self.upperBlockList = {}
+            local removeLineNums = self.removeLineNums
+            for i = maxLine + 1, #self.grids do
+                for j = 1, #self.grids[i] do
+                    -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
+                    if self.grids[i][j] ~= 0 then
+                        local block = self.grids[i][j]
+                        self.grids[i][j] = 0
+                        self.grids[i - removeLineNums][j] = block
+
+                        table.insert(self.upperBlockList, block)
+                    end
+                end           
+            end
+        end
 
         -- 闪烁效果
         if #removeBlocks > 0 then
@@ -668,20 +684,13 @@ function Tetris:removeCallBack(sender)
     end
 
     -- 处理上面的方块
-    if self.maxLine ~= -1 then
+    if self.upperBlockList and #self.upperBlockList > 0 then
         local removeLineNums = self.removeLineNums
-        for i = self.maxLine + 1, #self.grids do
-            for j = 1, #self.grids[i] do
-                -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
-                if self.grids[i][j] ~= 0 then
-                    local block = self.grids[i][j]
-                    local x, y = block:getPosition()
-                    block:setPosition(cc.p(x, y - self.blockWidth * removeLineNums))
-                    self.grids[i][j] = 0
-                    self.grids[i - removeLineNums][j] = block
-                end
-            end           
+        for _, block in pairs(self.upperBlockList) do 
+            local x, y = block:getPosition()
+            block:setPosition(cc.p(x, y - self.blockWidth * removeLineNums))
         end
+        self.upperBlockList = {}
     end
 
     -- 更新视图
@@ -704,7 +713,6 @@ function Tetris:removeCallBack(sender)
 
     -- 更新统计数据
     self.hang = self.hang + self.removeLineNums
-    self.maxLine = -1
     self.removeLineNums = 0
 
     -- 随机下一个
