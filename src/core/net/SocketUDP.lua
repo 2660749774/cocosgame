@@ -64,6 +64,8 @@ function SocketUDP:connect(__conv, __host, __port)
 
 	self.tickHandler = scheduler.scheduleUpdateGlobal(handler(self, self._tick))
 	self.isConnected = true
+	-- self.seq_map = {}
+	-- self.seq = 1
 
 	self:dispatchEvent({name=SocketUDP.EVENT_CONNECTED})
 end
@@ -74,6 +76,13 @@ end
 function SocketUDP:send(data)
 	if self.kcp then
 		self.kcp:lkcp_send(data)
+
+		-- table.insert(self.seq_map, self.seq)
+		
+		-- 记录延迟
+        -- actions.recordDelay(self.seq, "kcpsend", cc.Util:getCurrentTime())
+
+		-- self.seq = self.seq + 1
 	end
 end
 
@@ -104,18 +113,18 @@ function SocketUDP:_tick()
 		self.kcp:lkcp_input(data)
 	end
 
+	-- recv data
+	local dataLen, data = self.kcp:lkcp_recv()
+	if dataLen > 0 then
+		self:dispatchEvent({name=SocketUDP.EVENT_DATA, data=data})
+	end
+
+	-- update
 	local currTime = cc.Util:getCurrentTime()
 	local nextUpdateTime = self.kcp:lkcp_check(currTime)
 	local diff = nextUpdateTime - currTime 
 	if diff <= 0 then
-		-- update
 		self.kcp:lkcp_update(currTime)
-
-		-- recv data
-		dataLen, data = self.kcp:lkcp_recv()
-		if dataLen > 0 then
-			self:dispatchEvent({name=SocketUDP.EVENT_DATA, data=data})
-		end
 	end
 end
 
@@ -125,6 +134,11 @@ end
 function SocketUDP:_rawsend(buf)
 	if self.udp then
 		self.udp:send(buf)
+
+		-- local seq = table.remove(self.seq_map)
+
+		-- 记录延迟
+        -- actions.recordDelay(seq, "rawsend", cc.Util:getCurrentTime())
 	end
 end
 

@@ -15,7 +15,7 @@ class Util
 {
 public:
     // 获取当前系统时间
-    static int64_t getCurrentTime();
+    static int32_t getCurrentTime();
     
     // 析构函数
     ~Util(void);

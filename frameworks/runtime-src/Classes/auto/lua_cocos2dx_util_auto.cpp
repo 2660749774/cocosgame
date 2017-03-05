@@ -25,7 +25,7 @@ int lua_cocos2dx_util_Util_getCurrentTime(lua_State* tolua_S)
             tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_util_Util_getCurrentTime'", nullptr);
             return 0;
         }
-        long long ret = Util::getCurrentTime();
+        int32_t ret = Util::getCurrentTime();
         tolua_pushnumber(tolua_S,(lua_Number)ret);
         return 1;
     }

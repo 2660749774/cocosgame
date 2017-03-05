@@ -11,10 +11,10 @@
 using namespace std;
 
 // 获取当前系统时间
-int64_t Util::getCurrentTime()
+int32_t Util::getCurrentTime()
 {
     auto now = std::chrono::steady_clock::now();
-    return  std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() & 0x7ffffffful;
 }
 
 // 析构函数

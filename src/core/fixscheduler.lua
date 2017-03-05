@@ -64,6 +64,7 @@ function fixscheduler:ctor(dt)
     self.jitterBuffer = {}
     self.jitterdt = 10
     self.delay = 0
+    self.seq = 1
 
 end
 
@@ -155,6 +156,11 @@ function fixscheduler:addServerFrame(frameNum, event)
         self.serverFrame[frameNum] = {}
     end
     table.insert(self.serverFrame[frameNum], event)
+
+    if event.seq then
+        -- 记录延迟
+        actions.recordDelay(event.seq, "recv", cc.Util:getCurrentTime())
+    end
     -- if event.protoId == 1 and event.keyCode == 100 then
     --     -- log:info("addServerFrame keyCode 100 frameNum:%s, localFrameNum:%s", frameNum, self.frameNum)
     -- end
@@ -245,9 +251,16 @@ function fixscheduler:send(action, protoId, ...)
         key = key .. "-" .. v
     end
     if self.framePacks[key] == nil then
+        local seq = self.seq
+        self.seq = self.seq + 1
+
         table.insert(args, 1, self.frameNum)
         table.insert(args, 2, self.serverFrameNum)
-        self.framePacks[key] = {action=action, protoId=protoId, args=args}
+        table.insert(args, 3, seq)
+        self.framePacks[key] = {action=action, protoId=protoId, seq=seq, args=args}
+
+        -- 记录延迟
+        actions.recordDelay(seq, "send", cc.Util:getCurrentTime())
 
         if ucmgr:isConnected() then
             ucmgr:send(action, protoId, unpack(args))
