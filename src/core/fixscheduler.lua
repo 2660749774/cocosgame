@@ -60,6 +60,11 @@ function fixscheduler:ctor(dt)
     self.fixTimeScale = 1
     self.updateTime = 0
     self.framePacks = {}
+    self.jitterTime = 0
+    self.jitterBuffer = {}
+    self.jitterdt = 10
+    self.delay = 0
+
 end
 
 --------------------------------
@@ -99,10 +104,43 @@ end
 -- 更新网络帧频
 -- @function [parent=#fixscheduler] updateServerFrameNum
 function fixscheduler:updateServerFrameNum(frameNum)
-    self.serverFrameNum = frameNum
+    table.insert(self.jitterBuffer, {frameNum = frameNum, span = 0})
     -- if self.timeScale > 1 and self.serverFrameNum > 0 then
     --     self.fillFrameNum = self.timeScale - 1
     -- end
+end
+
+--------------------------------
+-- jitter tick
+-- @function [parent=#fixscheduler] tickJitter
+function fixscheduler:tickJitter(dt)
+    local frame = self.jitterBuffer[1]
+    if nil == frame then
+        self.delay = self.delay + dt
+        return
+    end
+
+    -- 增加积累包的延迟
+    for _, value in pairs(self.jitterBuffer) do
+        value.span = value.span + dt
+    end
+
+    -- 低于指定延迟
+    if frame.span < self.delay then
+        return
+    end
+
+    self.serverFrameNum = frame.frameNum
+    table.remove(self.jitterBuffer, 1)
+
+    -- 网络环境改善，降低延迟，缓冲区里面还有包
+    local len = #self.jitterBuffer 
+    if len > 0 and self.delay >= dt then
+        self.delay = self.delay - dt
+    elseif len == 0 then
+        self.delay = self.delay + dt
+    end
+    -- log:info("tick jitter frameNum:%s, span:%s, buffSize:%s, sysDelay:%s", frame.frameNum, frame.span, #self.jitterBuffer, self.delay)
 end
 
 --------------------------------
@@ -132,6 +170,16 @@ function fixscheduler:update()
     -- 逻辑帧率
     self.fixTime = self.fixTime + (_dt * self.fixTimeScale)
     self.updateTime = self.updateTime + 1
+    self.jitterTime = self.jitterTime  + _dt
+
+    while (self.jitterTime >= self.jitterdt) do
+        self.jitterTime = self.jitterTime - self.jitterdt
+
+        -- tickJitter
+        self:tickJitter(self.jitterdt)
+    end
+
+    -- log:info("loop jitter cost:%s", (cc.Util:getCurrentTime() - currTime))
 
     -- 逻辑帧率驱动显示帧率
     while (self.fixTime >= self.dt) do
@@ -156,13 +204,19 @@ function fixscheduler:update()
             end
         end
 
+        -- log:info("loop self cost:%s", (cc.Util:getCurrentTime() - currTime))
+
         -- 调用显示帧
         for i=1, self.timeScale do
             self:doUpdate(self.dt, self.callbackdt)
         end
 
+        -- log:info("loop update cost:%s", (cc.Util:getCurrentTime() - currTime))
+
         -- 处理服务器网络返回
         self:doServerFrame()
+
+        -- log:info("loop serverFramecost:%s", (cc.Util:getCurrentTime() - currTime))
     end
 
     self.currTime = currTime
@@ -193,6 +247,7 @@ function fixscheduler:send(action, protoId, ...)
     if self.framePacks[key] == nil then
         table.insert(args, 1, self.frameNum)
         table.insert(args, 2, self.serverFrameNum)
+        cmgr:send(action, nil, protoId, unpack(args))
         self.framePacks[key] = {action=action, protoId=protoId, args=args}
         -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
     end
@@ -204,9 +259,9 @@ end
 -- 发送网络包
 -- @function [parent=#fixscheduler] doUpdate
 function fixscheduler:sendFramePack()
-    for _, pack in pairs(self.framePacks) do
-        cmgr:send(pack.action, nil, pack.protoId, unpack(pack.args))
-    end
+    -- for _, pack in pairs(self.framePacks) do
+    --     cmgr:send(pack.action, nil, pack.protoId, unpack(pack.args))
+    -- end
     self.framePacks = {}
     -- if not self.sendPack then
         -- local args = { ... }

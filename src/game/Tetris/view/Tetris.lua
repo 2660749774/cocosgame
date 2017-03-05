@@ -257,7 +257,7 @@ function Tetris:gameStart(conf)
     end
 
     -- 设置定时器
-    self.fixScheduler = require "core.fixscheduler".new(0.03)
+    self.fixScheduler = require "core.fixscheduler".new(0.05)
     self.fixScheduler:addServerFrameHandler(handler(self, self.handleServerFrame))
     if not self.isNet then
         self.fixScheduler:updateServerFrameNum(-1)
@@ -401,7 +401,7 @@ function Tetris:handleShift(event, keyCode)
         return
     else
         -- 发送玩家按钮事件
-        if event ~= nil and self.isNet then
+        if event ~= nil and self.isNet and self.fixScheduler then
             self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 3)
             return
         end
@@ -420,16 +420,17 @@ function Tetris:handleLeft(event, keyCode)
     if self.block == nil then
         return
     end
-    -- if self.isSelf then
-    --     local serverFrame = (event == nil)
-    --     if not serverFrame then
-    --         self.leftTime = cc.Util:getCurrentTime()
-    --         self.delay = 0
-    --     else
-    --         self.delay = cc.Util:getCurrentTime() - self.leftTime
-    --     end
-    --     log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
-    -- end
+    if self.isSelf then
+        local serverFrame = (event == nil)
+        if not serverFrame then
+            self.leftTime = cc.Util:getCurrentTime()
+            self.delay = 0
+        else
+            self.delay = cc.Util:getCurrentTime() - self.leftTime
+            log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
+        end
+        
+    end
     -- 发送按钮事件
     if event ~= nil then
         keyCode = 1
@@ -441,7 +442,7 @@ function Tetris:handleLeft(event, keyCode)
             end
         end
 
-        if self.isNet then
+        if self.isNet and self.fixScheduler then
             self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
             return
         end
@@ -478,7 +479,7 @@ function Tetris:handleRight(event, keyCode)
             end
         end
 
-        if self.isNet then
+        if self.isNet and self.fixScheduler then
             self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
             return
         end
@@ -504,7 +505,7 @@ function Tetris:handleDown(event, keyCode)
         return
     end
 
-    if nil ~= event and self.isNet then
+    if nil ~= event and self.isNet and self.fixScheduler then
         self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 4)
         return
     end
@@ -529,7 +530,7 @@ function Tetris:handleDownLow(event, keyCode)
             end
         end
 
-        if self.isNet then
+        if self.isNet and self.fixScheduler then
             self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
             return
         end
@@ -688,7 +689,7 @@ function Tetris:removeCallBack(sender)
     self.parent:updateScore(self.removeLineNums, self.isSelf)
 
     -- 通知服务器消除
-    if self.isNet and self.removeLineNums > 0 then
+    if self.isNet and self.removeLineNums > 0 and self.fixScheduler then
         if self.isSelf then
             self.fixScheduler:send(actions.doUpdate, protos.REMOVE_LINES, self.removeLineNums)
         elseif self.isAI then

@@ -6,7 +6,7 @@ Creation: 2013-11-12
 Last Modification: 2013-12-05
 @see http://cn.quick-x.com/?topic=quickkydsocketfzl
 ]]
-local SOCKET_TICK_TIME = 0.1 			-- check socket data interval
+local SOCKET_TICK_TIME = 0 			-- check socket data interval
 local SOCKET_CONNECT_TIMEOUT_TICK_TIME = 0.5 -- check socket connect timeout interval
 local SOCKET_RECONNECT_TIME = 5			-- socket reconnect try interval
 local SOCKET_CONNECT_FAIL_TIMEOUT = 3	-- socket failure timeout

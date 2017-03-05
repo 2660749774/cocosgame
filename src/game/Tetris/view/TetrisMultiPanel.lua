@@ -426,6 +426,12 @@ function TetrisMultiPanel:handlePingCallback(response)
     if response.data.seq == self.pingSeq then
         local delay = cc.Util:getCurrentTime() - self.pingTime
         self.lbPing:setString("ping: " .. tostring(delay))
+    else
+        self.lbPing:setString("ping lost")
+    end
+
+    if self.tetris.fixScheduler then
+        self.lbPing:setString(self.lbPing:getString() .. ", delay: " .. self.tetris.fixScheduler.delay)
     end
 end
 
