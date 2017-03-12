@@ -598,6 +598,8 @@ function Tetris:_handleDown(block, simulate)
         self:gameOver()
     elseif not simulate then
         self.disableDown = true
+        self.block = nil
+
         -- 消除判断
         local maxLine = -1
         local removeLines = {}
@@ -806,7 +808,7 @@ function Tetris:addLines(lines)
     end
 
     -- 如果当前方块已经不能下落
-    if not self.block:handleDown(self.grids, true) then
+    if self.block and not self.block:handleDown(self.grids, true) then
         local x, y = self.block:getPosition()
         self.block:setPosition(cc.p(x, y + self.blockWidth * num))
     end
