@@ -144,11 +144,11 @@ function TetrisMazePanel:updateScore(removeLineNums)
         return
     end
 
-    -- 胜利了
+    -- 胜利了，该模式下胜利即3颗星星通关
     -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
     self.pass = true
     self.tetris:gameOver()
-    self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 2, self.removeFangkuaiNum})
+    self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 3, self.removeFangkuaiNum})
 end
 
 --------------------------------

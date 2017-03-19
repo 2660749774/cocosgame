@@ -74,6 +74,7 @@ end
 function TetrisClearStonePanel:loadConfig(type, powerId, armyId)
     self.conf = TetrisClearStoneConf.loadConfig(powerId, armyId)
     self.totalBlockNum = self.conf.maxBlockNum
+    self.starArray = self.conf.starArray
 
     -- 统计方块数量
     local blockArray = self.conf.blockArray
@@ -136,11 +137,21 @@ function TetrisClearStonePanel:updateScore(removeLineNums)
         return
     end
 
-    -- 胜利了
+    -- 胜利了，该模式下胜利即3颗星星通关
+    local starArray = self.starArray
+    local blockNum = self.blockNum
+    for i=3, 1, -1 do
+        log:info("cmp score star:%s, need:%s, value:%s", i, starArray[i], blockNum)
+        if blockNum <= starArray[i] then
+            star = i
+            break
+        end
+    end
+
     -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
     self.pass = true
     self.tetris:gameOver()
-    self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 3, self.removeFangkuaiNum})
+    self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, star, self.removeFangkuaiNum})
 end
 
 --------------------------------

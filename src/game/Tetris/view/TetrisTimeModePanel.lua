@@ -46,6 +46,7 @@ function TetrisTimeModePanel:loadConfig(type, powerId, armyId)
     -- self.totalBlockNum = self.conf.maxBlockNum
     self.totalTime = self.conf.maxTime
     self.needScore = self.conf.scoreNum
+    self.starArray = self.conf.starArray
 end
 
 --------------------------------
@@ -60,7 +61,6 @@ function TetrisTimeModePanel:updateTime()
 
     local minute = math.floor(leftTime / 60)
     local sec = math.floor(leftTime % 60)
-    log:info("time %s:%s", minute, sec)
     self.lbTimeMinute:setString(string.format("%02d", minute))
     self.lbTimeSec:setString(string.format("%02d", sec))
 end
@@ -113,11 +113,21 @@ function TetrisTimeModePanel:updateScore(removeLineNums)
     self:updateScoreProgress()
 
     if self.score >= self.needScore then
+        local useTime = self.time
+        local starArray = self.starArray
+        local star = 1
+        for i=3, 1, -1 do
+            log:info("cmp score star:%s, need:%s, value:%s", i, starArray[i], useTime)
+            if useTime <= starArray[i] then
+                star = i
+                break
+            end
+        end
         -- 胜利了
         -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
         self.pass = true
         self.tetris:gameOver()
-        self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 2, self.score})
+        self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, star, self.score})
     end
 end
 

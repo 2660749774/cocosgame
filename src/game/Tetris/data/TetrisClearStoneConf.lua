@@ -18,6 +18,7 @@ function TetrisClearStoneConf:ctor(powerId, armyId, blockType, maxBlockNum, bloc
     self.blockType = blockType
     self.maxBlockNum = maxBlockNum
     self.targetName = "清理陨石方块"
+    self.starArray = {maxBlockNum, math.floor(maxBlockNum * 0.8), math.floor(maxBlockNum * 0.5)}
 
     TetrisClearStoneConf.configMap[powerId] = {}
     TetrisClearStoneConf.configMap[powerId][armyId] = self

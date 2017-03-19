@@ -18,6 +18,7 @@ function TetrisTimeModeConf:ctor(powerId, armyId, scoreNum, maxTime, maxBlockNum
     self.maxTime = maxTime
     self.maxBlockNum = maxBlockNum
     self.targetName = "挑战最高分"
+    self.starArray = {self.maxTime, math.floor(maxTime * 0.8), math.floor(maxTime * 0.5)}
     
 
     TetrisTimeModeConf.configMap[powerId] = {}
@@ -25,7 +26,7 @@ function TetrisTimeModeConf:ctor(powerId, armyId, scoreNum, maxTime, maxBlockNum
 end
 
 -- 第一章节第一关
-TetrisTimeModeConf.new(1, 2, 40, 75, 35)
+TetrisTimeModeConf.new(1, 2, 100, 75, 35)
 
 --------------------------------
 -- 获取配置
