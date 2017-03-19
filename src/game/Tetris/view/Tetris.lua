@@ -808,7 +808,7 @@ function Tetris:addLines(lines)
     end
 
     -- 如果当前方块已经不能下落
-    if not self.block:handleDown(self.grids, true) then
+    if self.block and not self.block:handleDown(self.grids, true) then
         local x, y = self.block:getPosition()
         self.block:setPosition(cc.p(x, y + self.blockWidth * num))
     end
