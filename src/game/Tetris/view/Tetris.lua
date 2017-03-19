@@ -598,6 +598,8 @@ function Tetris:_handleDown(block, simulate)
         self:gameOver()
     elseif not simulate then
         self.disableDown = true
+        self.block = nil
+
         -- 消除判断
         local maxLine = -1
         local removeLines = {}
