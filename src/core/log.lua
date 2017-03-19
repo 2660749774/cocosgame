@@ -14,6 +14,7 @@ Log.INFO = 1
 Log.WARN = 2
 Log.ERROR = 3
 
+Log.MAX_HISTORY = 500
 
 --------------------------------
 -- 构造函数
@@ -21,6 +22,7 @@ Log.ERROR = 3
 function Log:ctor(logLevel)
     local level = logLevel or Log.INFO
     self.logLevel = level
+    self.history = {}
 end
 
 --------------------------------
@@ -55,7 +57,15 @@ function Log:formatLog(tag, fmt, ...)
         "] ",
         string.format(tostring(fmt), ...)
     }
-    return table.concat(t)
+    local logStr = table.concat(t)
+
+    -- 计入缓存
+    table.insert(self.history, logStr)
+    if #self.history > Log.MAX_HISTORY then
+        table.remove(self.history, 0)
+    end
+
+    return logStr
 end
 
 --------------------------------
@@ -148,6 +158,23 @@ end
 function Log:showTable(t)
     local msg = json.encode(t)
     self:info(msg)
+end
+
+--------------------------------
+-- 查看日志历史记录
+-- @param n number 条目
+-- @function [parent=#Log] getHistory
+function Log:getHistory(n)
+    local rtn = {}
+    for i=#self.history, 1, -1 do
+        table.insert(rtn, self.history[i])
+        n = n - 1
+        if n == 0 then
+            break
+        end
+    end
+
+    return rtn
 end
 
 --------------------------------

@@ -268,10 +268,6 @@ function ConnectManger:reciveDate(event)
     end
 end
 
-function trim(s)
-    return string.gsub(s, '%z', "")
-end
-
 --------------------------------
 -- 解码包
 -- @function [parent=#ConnectManger] decode 解码

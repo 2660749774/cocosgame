@@ -11,5 +11,6 @@ utils.crypto = import(".crypto")
 utils.gameArchive = import(".GameArchiveFile").new()
 cc.exports.RandomUtil = import(".RandomUtil")
 RandomUtil:init()
+import(".corefunctions")
 
 return utils
