@@ -87,7 +87,7 @@ function ConsolePanel:doLOG(args)
         num = tonumber(args[2])
     end
 
-    if num == nil or num <= 0 then
+    if num <= 0 then
         self:pushTextToList("参数错误，请输入一个大于0的数字", ConsolePanel.ERROR)
         return
     end
@@ -97,6 +97,21 @@ function ConsolePanel:doLOG(args)
     local len = #logArray
     for i=1, len do
         self:pushTextToList(string.format("L%s:%s", i, logArray[len - i + 1]))
+    end
+end
+
+--------------------------------
+-- 错误日志查询
+-- @function [parent=#ConsolePanel] doERROR
+function ConsolePanel:doERROR(args)
+    self:pushTextToList("错误日志查询结果如下：", ConsolePanel.HINT)
+    local logArray = log:getErrorHistory()
+    local len = #logArray
+    log:info("error len:%s", #logArray)
+    for i=1, len do
+        self:pushTextToList(string.format("-----------第%s条错误日志开始-----------", i))
+        self:pushTextToList(logArray[len - i + 1])
+        self:pushTextToList(string.format("-----------第%s条错误日志结束-----------", i))
     end
 end
 

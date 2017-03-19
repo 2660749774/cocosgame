@@ -23,6 +23,7 @@ function Log:ctor(logLevel)
     local level = logLevel or Log.INFO
     self.logLevel = level
     self.history = {}
+    self.errorHistory = {}
 end
 
 --------------------------------
@@ -122,7 +123,7 @@ function Log:error(fmt, ...)
     local log = self:formatLog("ERROR", fmt, ...)
     print(log)
 
-    cmgr:send(actions.writeLog, nil, log)
+    self:pushErrorHistory(log)
     
 end
 
@@ -175,6 +176,21 @@ function Log:getHistory(n)
     end
 
     return rtn
+end
+
+--------------------------------
+-- 查看错误日志
+-- @function [parent=#Log] getErrorHistory
+function Log:getErrorHistory()
+    return self.errorHistory
+end
+
+--------------------------------
+-- 记录错误消息
+-- @param error string 错误消息
+-- @function [parent=#Log] pushErrorHistory
+function Log:pushErrorHistory(error)
+    table.insert(self.errorHistory, error)
 end
 
 --------------------------------
