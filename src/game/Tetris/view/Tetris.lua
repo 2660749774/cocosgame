@@ -102,7 +102,7 @@ function Tetris:aiSimulate(dt)
         self.aicd = self.aicd - dt
         return
     elseif self.aicd == nil then
-        self.aicd = 1.5
+        self.aicd = 1
         return
     end
 
@@ -132,7 +132,7 @@ function Tetris:doAction(action)
             self:handleShift(nil, 3)
         else
             self:handleDownLow(nil, 5)
-            self.aicd = 5
+            self.aicd = 1
         end
     end
 end
