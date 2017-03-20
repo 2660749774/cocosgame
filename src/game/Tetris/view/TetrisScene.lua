@@ -41,8 +41,6 @@ function TetrisScene:onCreate()
     -- 注册事件监听
     self.eventListener = handler(self, self.updatePowerProgress)
     emgr:addEventListener(EventDefine.EventDefine, self.eventListener)
-
-    self:pushPanel("Common.Console")
 end
 
 --------------------------------

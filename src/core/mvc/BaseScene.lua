@@ -8,6 +8,10 @@
 
 local BaseScene = class("BaseScene", cc.Node)
 
+BaseScene.RECT_RADIUS = 60
+BaseScene.RECT_1 = {x = 0, y = 0, width = BaseScene.RECT_RADIUS, height = BaseScene.RECT_RADIUS }
+BaseScene.RECT_2 = {x = display.width - BaseScene.RECT_RADIUS, y = display.height - BaseScene.RECT_RADIUS, width = BaseScene.RECT_RADIUS, height = BaseScene.RECT_RADIUS }
+
 --------------------------------
 -- 构造函数
 -- @function [parent=#BaseScene] ctor
@@ -21,6 +25,7 @@ function BaseScene:ctor(app, name, args)
     self.name = name
     self.args = args
     self.panelStack = {}
+    self.touchEvents = {}
 
     -- 调用init方法
     self:init()
@@ -40,6 +45,19 @@ function BaseScene:init()
         local layer = cc.Layer:create()
         self:addChild(layer, value * 100, value)
     end
+
+    local topLayer = self:getLayer("top")
+    local listener = cc.EventListenerTouchOneByOne:create()
+    listener:registerScriptHandler(function(touch, event) 
+        local location = touch:getLocation()
+        if cc.rectContainsPoint(BaseScene.RECT_1, location) then
+            self:_recordTouch(1)
+        elseif cc.rectContainsPoint(BaseScene.RECT_2, location) then
+            self:_recordTouch(2)
+        end
+    end,cc.Handler.EVENT_TOUCH_BEGAN )
+    local eventDispatcher = topLayer:getEventDispatcher()
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, topLayer)
 end
 
 
@@ -406,6 +424,36 @@ function BaseScene:cleanResources(resources)
         end
     end
     rmgr:removeUnusedTextures()
+end
+
+--------------------------------
+-- 记录touch
+-- @function [parent=#BaseScene] _recordTouch
+function BaseScene:_recordTouch(touchType)
+    local currTime = cc.Util:getCurrentTime()
+    local lastTime = currTime
+    if #self.touchEvents > 0 then
+        lastTime = self.touchEvents[#self.touchEvents].touchTime
+    end
+
+    if (currTime - lastTime) > 1500 then
+        self.touchEvents = {}
+    end
+
+    table.insert(self.touchEvents, {touchType = touchType, touchTime = currTime})
+    local touchSequence = ""
+    if #self.touchEvents >= 4 then
+        for _, value in pairs(self.touchEvents) do
+            touchSequence = touchSequence .. value.touchType
+        end
+        
+        if string.find(touchSequence, "1212") then
+            self.touchEvents = {}
+
+            -- 弹出控制台
+            self:pushPanel("Common.Console")
+        end
+    end
 end
 
 return BaseScene

@@ -36,13 +36,23 @@ function ConsolePanel:onCreate()
     layout['input_bg']:addChild(self.inputHolder)
 
     self.useage = {
-        "log [n=100] 查看最近100条日志"
+        "help 查看帮助",
+        "log [n=100] 查看最近100条日志",
+        "error  查看错误日志"
+
     }
     
     self:addLayoutWithMask(layout, 'layout.ModalMask')
 
     -- 绑定事件
     self.btnSend:addClickEventListener(handler(self, self.sendCommand))
+    self.btnClose:addClickEventListener(function() 
+        self:getScene():popPanel()
+    end)
+    self.btnClear:addClickEventListener(function() 
+        self.listView:removeAllItems()
+    end)
+    log:info("添加控制台")
 end
 
 --------------------------------
