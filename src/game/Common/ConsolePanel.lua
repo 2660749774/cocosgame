@@ -33,6 +33,7 @@ function ConsolePanel:onCreate()
     self.inputHolder:setFontColor(cc.c3b(0, 128, 0))
     self.inputHolder:setPlaceHolder("请输入命令，帮助请输入help")
     self.inputHolder:setFontSize(24)
+    self.inputHolder:setInputMode(6)
     layout['input_bg']:addChild(self.inputHolder)
 
     self.useage = {
