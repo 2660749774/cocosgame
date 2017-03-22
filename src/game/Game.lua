@@ -39,6 +39,16 @@ function Game:startup()
 
     -- 切换到入口函数
     self:changeScene("Tetris")
+    self:text()
+end
+
+function Game:text()
+    local text = "<font color='#09126'>sdf</font>abc<font color='#09126'>def</font>111[dsfsdf]"
+
+    text = string.gsub(text, "<font color='(.-)' size=([0-9]-)>(.-)</font>", "<color=%1><size=%2>%3</size></color>")
+    text = string.gsub(text, "<font color='(.-)'>(.-)</font>", "<color=%1>%2</color>")
+    text = string.gsub(text, "%[(.-)%]", "<color=blue>%1</color>")
+    log:info("text:%s", text)
 end
 
 return Game
