@@ -8,6 +8,7 @@
 
 local TetrisPowerConf = class("TetrisPowerConf")
 local TetrisMeteorConf = import(".TetrisMeteorConf")
+local TetrisMeteor2Conf = import(".TetrisMeteor2Conf")
 local TetrisMazeConf = import(".TetrisMazeConf")
 local TetrisClearStoneConf = import(".TetrisClearStoneConf")
 local TetrisTimeModeConf = import(".TetrisTimeModeConf")
@@ -30,7 +31,7 @@ function TetrisPowerConf:ctor(powerId, armyId, armyType)
         self.module = "TetrisTimeMode"
     elseif self.armyType == 3 then
         self.pic = "square4"
-        self.module = "TetrisMeteor"
+        self.module = "TetrisMeteor2"
     else
         self.pic = "square1"
         self.module = "TetrisMaze"
@@ -87,7 +88,7 @@ function TetrisPowerConf.loadDetailConfig(powerId, armyId)
     elseif conf.armyType == 2 then
         return TetrisTimeModeConf.loadConfig(powerId, armyId)
     elseif conf.armyType == 3 then
-        return TetrisMeteorConf.loadConfig(powerId, armyId)
+        return TetrisMeteor2Conf.loadConfig(powerId, armyId)
     else
         return TetrisMazeConf.loadConfig(powerId, armyId)
     end

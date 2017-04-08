@@ -15,8 +15,10 @@ TetrisSinglePanel.TYPE_CLEAR_STONE = 1
 TetrisSinglePanel.TYPE_TIMEMODE = 2
 -- 关卡模式3 -- 星际迷阵
 TetrisSinglePanel.TYPE_METEOR = 3
--- 关卡模式3 -- 方块迷阵
+-- 关卡模式4 -- 方块迷阵
 TetrisSinglePanel.TYPE_MAZE = 4
+-- 关卡模式5 -- 星际迷阵2
+TetrisSinglePanel.TYPE_METEOR2 = 5
 
 --------------------------------
 -- 创建方法
@@ -278,6 +280,21 @@ function TetrisSinglePanel:nextInt(range, times)
     self.randomCache[times] = RandomUtil:nextInt(range)
     return self.randomCache[times]
 end
+
+--------------------------------
+-- 更新下一个Block
+-- @function [parent=#TetrisSinglePanel] updateNextBlock
+function TetrisSinglePanel:updateNextBlock(nextBlock)
+    return nextBlock
+end
+
+--------------------------------
+-- 检查移除的行
+-- @function [parent=#TetrisSinglePanel] checkRemoveLines
+function TetrisSinglePanel:checkRemoveLines(removeBlocks)
+    return
+end
+
 
 --------------------------------
 -- 创建返回主页按钮

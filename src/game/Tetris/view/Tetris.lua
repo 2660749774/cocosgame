@@ -211,6 +211,7 @@ function Tetris:roundStart()
 
     -- 创建方块
     self.block = self:createBlock(self.nextBlock.blockType, self.nextBlock.angle, self.nextBlock.pic)
+    self:updateBlock(self.block, self.nextBlock)
     if self.isNet then
         self.block:setPosition(cc.p(138, 435))
     else
@@ -652,6 +653,9 @@ function Tetris:_handleDown(block, simulate)
 
         -- 闪烁效果
         if #removeBlocks > 0 then
+            -- 检查移除行
+            self.parent:checkRemoveLines(removeBlocks)
+
             self.fixScheduler:setTimeScale(1)
             local action = cc.Blink:create(0.5, 3)
             for _, block in pairs(removeBlocks) do
@@ -843,7 +847,28 @@ end
 -- @function [parent=#Tetris] createNextBlock
 function Tetris:createNextBlock()
     self.nextBlock = self:createRandomBlock()
+
+    -- 更新下一个节点
+    self.nextBlock = self.parent:updateNextBlock(self.nextBlock)
+
     return self.nextBlock
+end
+
+--------------------------------
+-- 更新block
+-- @function [parent=#Tetris] updateBlock
+function Tetris:updateBlock(block, nextBlock)
+    for i=1, #nextBlock.blocks do 
+        local sprite = nextBlock.blocks[i]
+        if sprite.hasStar then
+            sprite:retain()
+            sprite:removeFromParent()
+            
+            block.blocks[i]:removeFromParent()
+            block.blocks[i] = sprite
+            block:addChild(sprite)
+        end
+    end
 end
 
 --------------------------------

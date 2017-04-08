@@ -129,6 +129,7 @@
         </Folder>
         <Project Name="ButtonTestScene.csd" Type="Scene" />
         <Project Name="CommTips.csd" Type="Node" />
+        <Project Name="ConsolePanel.csd" Type="Scene" />
         <Project Name="ListTestPanel.csd" Type="Scene" />
         <Project Name="LoadingPanel.csd" Type="Layer" />
         <Project Name="LoadingScene.csd" Type="Scene" />
@@ -158,7 +159,7 @@
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="ConsolePanel.csd" Type="Scene" />
+        <Project Name="TetrisMeteor2.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
