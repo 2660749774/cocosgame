@@ -57,38 +57,26 @@ function TetrisPowerConf:ctor(powerId, armyId, confId, armyType)
     TetrisPowerConf.configMap[powerId][armyId] = self
 end
 
--- 第一章节第1关
 TetrisPowerConf.new(1, 1, 1, TetrisPowerConf.TYPE_CLEAR_STONE)
--- 第一章节第2关
-TetrisPowerConf.new(1, 2, 2, TetrisPowerConf.TYPE_CLEAR_STONE)
--- 第一章节第3关
-TetrisPowerConf.new(1, 3, 1, TetrisPowerConf.TYPE_TIMEMODE)
--- 第一章节第4关
-TetrisPowerConf.new(1, 4, 2, TetrisPowerConf.TYPE_TIMEMODE)
--- 第一章节第5关
-TetrisPowerConf.new(1, 5, 1, TetrisPowerConf.TYPE_MAZE)
--- 第一章节第6关
-TetrisPowerConf.new(1, 6, 2, TetrisPowerConf.TYPE_MAZE)
--- 第一章节第7关
-TetrisPowerConf.new(1, 7, 3, TetrisPowerConf.TYPE_CLEAR_STONE)
--- 第一章节第8关
-TetrisPowerConf.new(1, 8, 4, TetrisPowerConf.TYPE_CLEAR_STONE)
--- 第一章节第9关
-TetrisPowerConf.new(1, 9, 3, TetrisPowerConf.TYPE_TIMEMODE)
--- 第一章节第10关
-TetrisPowerConf.new(1, 10, 4, TetrisPowerConf.TYPE_TIMEMODE)
--- 第一章节第11关
+TetrisPowerConf.new(1, 2, 1, TetrisPowerConf.TYPE_TIMEMODE)
+TetrisPowerConf.new(1, 3, 1, TetrisPowerConf.TYPE_MAZE)
+TetrisPowerConf.new(1, 4, 1, TetrisPowerConf.TYPE_METEOR2)
+TetrisPowerConf.new(1, 5, 2, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 6, 2, TetrisPowerConf.TYPE_TIMEMODE)
+TetrisPowerConf.new(1, 7, 2, TetrisPowerConf.TYPE_MAZE)
+TetrisPowerConf.new(1, 8, 2, TetrisPowerConf.TYPE_METEOR2)
+TetrisPowerConf.new(1, 9, 3, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 10, 3, TetrisPowerConf.TYPE_TIMEMODE)
 TetrisPowerConf.new(1, 11, 3, TetrisPowerConf.TYPE_MAZE)
--- 第一章节第12关
-TetrisPowerConf.new(1, 12, 4, TetrisPowerConf.TYPE_MAZE)
--- 第一章节第13关
-TetrisPowerConf.new(1, 13, 5, TetrisPowerConf.TYPE_CLEAR_STONE)
--- 第一章节第14关
-TetrisPowerConf.new(1, 14, 5, TetrisPowerConf.TYPE_TIMEMODE)
--- 第一章节第15关
-TetrisPowerConf.new(1, 15, 5, TetrisPowerConf.TYPE_MAZE)
--- 第一章节第16关
-TetrisPowerConf.new(1, 15, 1, TetrisPowerConf.TYPE_METEOR2)
+TetrisPowerConf.new(1, 12, 5, TetrisPowerConf.TYPE_METEOR2)
+TetrisPowerConf.new(1, 13, 4, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 14, 4, TetrisPowerConf.TYPE_TIMEMODE)
+TetrisPowerConf.new(1, 15, 4, TetrisPowerConf.TYPE_MAZE)
+TetrisPowerConf.new(1, 16, 5, TetrisPowerConf.TYPE_METEOR2)
+TetrisPowerConf.new(1, 17, 5, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 18, 5, TetrisPowerConf.TYPE_TIMEMODE)
+TetrisPowerConf.new(1, 19, 5, TetrisPowerConf.TYPE_MAZE)
+TetrisPowerConf.new(1, 20, 5, TetrisPowerConf.TYPE_METEOR2)
 
 TetrisPowerConf.MAX_POWER_ID = 2
 TetrisPowerConf.powerInfoMap[1] = 59

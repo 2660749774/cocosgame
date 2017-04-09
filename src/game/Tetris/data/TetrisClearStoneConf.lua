@@ -25,7 +25,7 @@ function TetrisClearStoneConf:ctor(confId, blockType, maxBlockNum, blockArray)
 end
 
 -- 第一章节第一关
-TetrisClearStoneConf.new(1, "fangkuai5", 5, {
+TetrisClearStoneConf.new(1, "fangkuai5", 10, {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -49,7 +49,7 @@ TetrisClearStoneConf.new(1, "fangkuai5", 5, {
 })
 
 -- 第1章节第2关
-TetrisClearStoneConf.new(2, "fangkuai5", 30, {
+TetrisClearStoneConf.new(2, "fangkuai5", 60, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
@@ -73,7 +73,7 @@ TetrisClearStoneConf.new(2, "fangkuai5", 30, {
 })
 
 -- 第1章节第3关
-TetrisClearStoneConf.new(3, "fangkuai5", 50, {
+TetrisClearStoneConf.new(3, "fangkuai5", 100, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -98,7 +98,7 @@ TetrisClearStoneConf.new(3, "fangkuai5", 50, {
 
 
 -- 第1章节第4关
-TetrisClearStoneConf.new(4, "fangkuai5", 60, {
+TetrisClearStoneConf.new(4, "fangkuai5", 120, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },

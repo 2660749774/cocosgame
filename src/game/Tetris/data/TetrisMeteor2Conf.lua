@@ -24,8 +24,11 @@ function TetrisMeteor2Conf:ctor(confId, blockType, comboNum, scoreNum, maxTime)
     TetrisMeteor2Conf.configMap[confId] = self
 end
 
--- 第一章节第一关
-TetrisMeteor2Conf.new(1, "fangkuai5", 3, 10, 100)
+TetrisMeteor2Conf.new(1, "fangkuai5", 3, 3, 60)
+TetrisMeteor2Conf.new(2, "fangkuai5", 3, 6, 90)
+TetrisMeteor2Conf.new(3, "fangkuai5", 3, 8, 120)
+TetrisMeteor2Conf.new(4, "fangkuai5", 3, 12, 150)
+TetrisMeteor2Conf.new(5, "fangkuai5", 3, 15, 180)
 
 --------------------------------
 -- 获取配置

@@ -60,12 +60,12 @@ end
 function TetrisPowerFailPanel:setTargetBlock()
     local armyType = self.powerConf.armyType
 
-    if armyType == 1 or armyType == 4 then
+    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
         local pic = string.format("tetris/%s.png", self.powerDetailconf.blockType)
         self.spTarget:setTexture(pic)
-    elseif armyType == 2 then
+    elseif armyType == TetrisPowerConf.TYPE_TIMEMODE then
         self.spTarget:setVisible(false)
-    elseif armyType == 3 then
+    elseif armyType == TetrisPowerConf.TYPE_METEOR2 then
         self.spTarget:setTexture("tetris/fangkuai9.png")
         local animationLayout = require("layout.TetrisMeteorAnimation").create()
         local meteor = animationLayout['root']
