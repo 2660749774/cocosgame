@@ -8,7 +8,7 @@
 -- 指定块数内清理障碍
 local TetrisSinglePanel = import(".TetrisSinglePanel")
 local TetrisClearStonePanel = class("TetrisClearStonePanel", TetrisSinglePanel)
-local TetrisClearStoneConf = import("..data.TetrisClearStoneConf")
+local TetrisPowerConf = import("..data.TetrisPowerConf")
 local Tetris = import (".Tetris")
 local RandomUtil = require "core.util.RandomUtil"
 
@@ -31,7 +31,7 @@ function TetrisClearStonePanel:onCreate(powerId, armyId)
     self.totalFangkuaiNum = 0 -- 总方块数量
     self.removeFangkuaiNum = 0 -- 已消除方块数量
 
-    self:loadConfig(TetrisSinglePanel.TYPE_CLEAR_STONE, powerId, armyId)
+    self:loadConfig(TetrisPowerConf.TYPE_CLEAR_STONE, powerId, armyId)
 
      -- 设置方块
     local pic = string.format("tetris/%s.png", self.conf.blockType)
@@ -72,7 +72,7 @@ end
 -- 载入配置
 -- @function [parent=#TetrisClearStonePanel] loadConfig
 function TetrisClearStonePanel:loadConfig(type, powerId, armyId)
-    self.conf = TetrisClearStoneConf.loadConfig(powerId, armyId)
+    self.conf = TetrisPowerConf.loadDetailConfig(powerId, armyId)
     self.totalBlockNum = self.conf.maxBlockNum
     self.starArray = self.conf.starArray
 

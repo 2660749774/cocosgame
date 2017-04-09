@@ -8,7 +8,7 @@
 -- 规定时间内达到指定分数
 local TetrisSinglePanel = import(".TetrisSinglePanel")
 local TetrisTimeModePanel = class("TetrisTimeModePanel", TetrisSinglePanel)
-local TetrisTimeModeConf = import("..data.TetrisTimeModeConf")
+local TetrisPowerConf = import("..data.TetrisPowerConf")
 local Tetris = import (".Tetris")
 local RandomUtil = require "core.util.RandomUtil"
 
@@ -33,7 +33,7 @@ function TetrisTimeModePanel:onCreate(powerId, armyId)
     -- self.blockNum = 0
     self.time = 0
     self.needScore = 0
-    self:loadConfig(TetrisSinglePanel.TYPE_TIMEMODE, powerId, armyId)
+    self:loadConfig(TetrisPowerConf.TYPE_TIMEMODE, powerId, armyId)
     self:updateTime()
     self:updateScoreProgress()
 end
@@ -42,7 +42,7 @@ end
 -- 载入配置
 -- @function [parent=#TetrisTimeModePanel] loadConfig
 function TetrisTimeModePanel:loadConfig(type, powerId, armyId)
-    self.conf = TetrisTimeModeConf.loadConfig(powerId, armyId)
+    self.conf = TetrisPowerConf.loadDetailConfig(powerId, armyId)
     -- self.totalBlockNum = self.conf.maxBlockNum
     self.totalTime = self.conf.maxTime
     self.needScore = self.conf.scoreNum

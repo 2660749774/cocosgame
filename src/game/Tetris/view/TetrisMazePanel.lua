@@ -8,7 +8,7 @@
 -- 方块迷阵
 local TetrisSinglePanel = import(".TetrisSinglePanel")
 local TetrisMazePanel = class("TetrisMazePanel", TetrisSinglePanel)
-local TetrisMazeConf = import("..data.TetrisMazeConf")
+local TetrisPowerConf = import("..data.TetrisPowerConf")
 local Tetris = import (".Tetris")
 local RandomUtil = require "core.util.RandomUtil"
 
@@ -31,7 +31,7 @@ function TetrisMazePanel:onCreate(powerId, armyId)
     self.lbResult = self.layout['lb_result']
     self.totalFangkuaiNum = 0 -- 总方块数量
     self.removeFangkuaiNum = 0 -- 已消除方块数量
-    self:loadConfig(TetrisSinglePanel.TYPE_MAZE, powerId, armyId)
+    self:loadConfig(TetrisPowerConf.TYPE_MAZE, powerId, armyId)
 
     -- 设置方块
     local pic = string.format("tetris/%s.png", self.conf.blockType)
@@ -72,7 +72,7 @@ end
 -- 载入配置
 -- @function [parent=#TetrisMazePanel] loadConfig
 function TetrisMazePanel:loadConfig(type, powerId, armyId)
-    self.conf = TetrisMazeConf.loadConfig(powerId, armyId)
+    self.conf = TetrisPowerConf.loadDetailConfig(powerId, armyId)
     self.totalBlockNum = self.conf.maxBlockNum
 
     -- 统计方块数量

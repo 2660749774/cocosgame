@@ -13,18 +13,18 @@ TetrisMeteorConf.configMap = {}
 --------------------------------
 -- 构造函数
 -- @function [parent=#TetrisMeteorConf] ctor
-function TetrisMeteorConf:ctor(powerId, armyId, blockType, maxBlockNum, blockArray)
+function TetrisMeteorConf:ctor(confId, blockType, maxBlockNum, blockArray)
+    self.confId = confId
     self.blockArray = blockArray
     self.blockType = blockType
     self.maxBlockNum = maxBlockNum
     self.targetName = "收集星星方块"
 
-    TetrisMeteorConf.configMap[powerId] = {}
-    TetrisMeteorConf.configMap[powerId][armyId] = self
+    TetrisMeteorConf.configMap[confId] = self
 end
 
 -- 第一章节第一关
-TetrisMeteorConf.new(1, 3, "fangkuai5", 5, {
+TetrisMeteorConf.new(1, "fangkuai5", 5, {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -50,8 +50,8 @@ TetrisMeteorConf.new(1, 3, "fangkuai5", 5, {
 --------------------------------
 -- 获取配置
 -- @function [parent=#TetrisMeteorConf] loadConfig
-function TetrisMeteorConf.loadConfig(powerId, armyId)
-    return TetrisMeteorConf.configMap[powerId][armyId]
+function TetrisMeteorConf.loadConfig(confId)
+    return TetrisMeteorConf.configMap[confId]
 end
 
 

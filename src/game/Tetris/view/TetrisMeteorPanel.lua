@@ -8,7 +8,7 @@
 -- 指定块数内清理障碍
 local TetrisSinglePanel = import(".TetrisSinglePanel")
 local TetrisMeteorPanel = class("TetrisMeteorPanel", TetrisSinglePanel)
-local TetrisMeteorConf = import("..data.TetrisMeteorConf")
+local TetrisPowerConf = import("..data.TetrisPowerConf")
 local Tetris = import (".Tetris")
 local RandomUtil = require "core.util.RandomUtil"
 
@@ -32,7 +32,7 @@ function TetrisMeteorPanel:onCreate(powerId, armyId)
     self.totalFangkuaiNum = 0 -- 总方块数量
     self.removeFangkuaiNum = 0 -- 已消除方块数量
 
-    self:loadConfig(TetrisSinglePanel.TYPE_METEOR, powerId, armyId)
+    self:loadConfig(TetrisPowerConf.TYPE_METEOR, powerId, armyId)
 
     -- 设置方块
     local fangkuaiBg = self.layout['fangkuai_bg']
@@ -78,7 +78,7 @@ end
 -- 载入配置
 -- @function [parent=#TetrisMeteorPanel] loadConfig
 function TetrisMeteorPanel:loadConfig(type, powerId, armyId)
-    self.conf = TetrisMeteorConf.loadConfig(powerId, armyId)
+    self.conf = TetrisPowerConf.loadDetailConfig(powerId, armyId)
     self.totalBlockNum = self.conf.maxBlockNum
 
     -- 统计方块数量

@@ -9,7 +9,7 @@
 
 local TetrisSinglePanel = import(".TetrisSinglePanel")
 local TetrisMeteor2Panel = class("TetrisMeteor2Panel", TetrisSinglePanel)
-local TetrisMeteor2Conf = import("..data.TetrisMeteor2Conf")
+local TetrisPowerConf = import("..data.TetrisPowerConf")
 local Tetris = import (".Tetris")
 local RandomUtil = require "core.util.RandomUtil"
 
@@ -34,7 +34,7 @@ function TetrisMeteor2Panel:onCreate(powerId, armyId)
     self.needScore = 0 -- 需要的分数
     self.scoreNum = 0 -- 当前的分数
 
-    self:loadConfig(TetrisSinglePanel.TYPE_METEOR2, powerId, armyId)
+    self:loadConfig(TetrisPowerConf.TYPE_METEOR2, powerId, armyId)
 
     -- 设置方块
     local fangkuaiBg = self.layout['fangkuai_bg']
@@ -54,9 +54,10 @@ end
 -- 载入配置
 -- @function [parent=#TetrisMeteor2Panel] loadConfig
 function TetrisMeteor2Panel:loadConfig(type, powerId, armyId)
-    self.conf = TetrisMeteor2Conf.loadConfig(powerId, armyId)
+    self.conf = TetrisPowerConf.loadDetailConfig(powerId, armyId)
     self.totalTime = self.conf.maxTime
     self.needScore = self.conf.scoreNum
+    self.comboNum = self.conf.comboNum
 end
 
 --------------------------------
@@ -94,11 +95,23 @@ end
 -- 更新下一个方块
 -- @function [parent=#TetrisMeteor2Panel] updateNextBlock
 function TetrisMeteor2Panel:updateNextBlock(nextBlock)
-    if RandomUtil:nextBoolean() then
-        log:info("updateNextBlock add star")
+
+    log:info("updateNextBlock add star")
+    local addNum = RandomUtil:nextInt(2)
+
+    for i = 1, addNum do
+        if addNum > #nextBlock.blocks then
+            break
+        end
+
         -- 添加星星
         local index = RandomUtil:nextInt(#nextBlock.blocks)
         local oldSprite = nextBlock.blocks[index]
+        while (oldSprite.hasStar) do
+            index = RandomUtil:nextInt(#nextBlock.blocks)
+            oldSprite = nextBlock.blocks[index]
+        end
+
         local sprite = cc.Sprite:create("tetris/fangkuai9.png")
         sprite:setAnchorPoint(0, 0)
         sprite:setPosition(oldSprite:getPosition())
@@ -143,7 +156,7 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
     -- 分数记录器
     local sprites = {}
     local scoreSprites = {}
-    local concatNum = 2
+    local concatNum = self.comboNum
 
     -- 横向搜索
     for i = 1, #grids do
@@ -159,6 +172,13 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
                 end
                 sprites = {}
             end
+        end
+    end
+
+    -- 最後檢查下
+    if #sprites >= concatNum then
+        for _, block in pairs(sprites) do
+            scoreSprites[block] = 1
         end
     end
 
@@ -179,6 +199,12 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
                     sprites = {}
                 end
             end
+        end
+    end
+    -- 最後檢查下
+    if #sprites >= concatNum then
+        for _, block in pairs(sprites) do
+            scoreSprites[block] = 1
         end
     end
 

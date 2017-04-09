@@ -9,16 +9,6 @@ local TetrisSinglePanel = class("TetrisSinglePanel", BasePanel)
 local Tetris = import (".Tetris")
 local RandomUtil = require "core.util.RandomUtil"
 
--- 关卡模式1 -- 清理陨石
-TetrisSinglePanel.TYPE_CLEAR_STONE = 1
--- 关卡模式2 -- 极速挑战
-TetrisSinglePanel.TYPE_TIMEMODE = 2
--- 关卡模式3 -- 星际迷阵
-TetrisSinglePanel.TYPE_METEOR = 3
--- 关卡模式4 -- 方块迷阵
-TetrisSinglePanel.TYPE_MAZE = 4
--- 关卡模式5 -- 星际迷阵2
-TetrisSinglePanel.TYPE_METEOR2 = 5
 
 --------------------------------
 -- 创建方法

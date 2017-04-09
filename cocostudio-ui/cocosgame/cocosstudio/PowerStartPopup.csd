@@ -41,14 +41,14 @@
                   <AbstractNodeData Name="powername_bg_2" ActionTag="-1411249087" Tag="49" IconVisible="False" LeftMargin="182.0000" RightMargin="182.0000" TopMargin="17.5000" BottomMargin="622.5000" ctype="SpriteObjectData">
                     <Size X="276.0000" Y="75.0000" />
                     <Children>
-                      <AbstractNodeData Name="lb_powername" ActionTag="-2057125422" Tag="52" IconVisible="False" LeftMargin="86.1547" RightMargin="89.8453" TopMargin="18.5402" BottomMargin="19.4598" FontSize="32" LabelText="第 5 关" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                        <Size X="100.0000" Y="37.0000" />
+                      <AbstractNodeData Name="lb_powername" ActionTag="-2057125422" Tag="52" IconVisible="False" LeftMargin="80.1547" RightMargin="83.8453" TopMargin="20.5402" BottomMargin="21.4598" FontSize="32" LabelText="第 5 关" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                        <Size X="112.0000" Y="33.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="136.1547" Y="37.9598" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <PrePosition X="0.4933" Y="0.5061" />
-                        <PreSize X="0.3623" Y="0.4933" />
+                        <PreSize X="0.4058" Y="0.4400" />
                         <OutlineColor A="255" R="255" G="0" B="0" />
                         <ShadowColor A="255" R="0" G="0" B="0" />
                       </AbstractNodeData>
@@ -62,6 +62,17 @@
                     <FileData Type="Normal" Path="ui/tetris/power/powername_bg.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="lb_target_intro" ActionTag="-1588042481" Tag="102" IconVisible="False" LeftMargin="272.0000" RightMargin="272.0000" TopMargin="297.0000" BottomMargin="394.0000" FontSize="24" LabelText="目标说明" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="96.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="320.0000" Y="406.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.5678" />
+                    <PreSize X="0.1500" Y="0.0336" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="55" G="168" B="245" />
+                  </AbstractNodeData>
                   <AbstractNodeData Name="sp_target" ActionTag="-1191088162" Tag="56" IconVisible="False" LeftMargin="297.0000" RightMargin="297.0000" TopMargin="285.2587" BottomMargin="383.7413" ctype="SpriteObjectData">
                     <Size X="46.0000" Y="46.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -73,25 +84,25 @@
                     <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="lb_target_title" ActionTag="1122132846" Tag="53" IconVisible="False" LeftMargin="283.5000" RightMargin="283.5000" TopMargin="223.9601" BottomMargin="454.0399" FontSize="32" LabelText="目 标" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="73.0000" Y="37.0000" />
+                  <AbstractNodeData Name="lb_target_title" ActionTag="1122132846" Tag="53" IconVisible="False" LeftMargin="280.0000" RightMargin="280.0000" TopMargin="225.9601" BottomMargin="456.0399" FontSize="32" LabelText="目 标" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="80.0000" Y="33.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="320.0000" Y="472.5399" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.6609" />
-                    <PreSize X="0.1141" Y="0.0517" />
+                    <PreSize X="0.1250" Y="0.0462" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="55" G="168" B="245" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="lb_target" ActionTag="-1289675439" Tag="54" IconVisible="False" LeftMargin="224.0000" RightMargin="224.0000" TopMargin="358.1520" BottomMargin="319.8480" FontSize="32" LabelText="清理岩石方块" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="192.0000" Y="37.0000" />
+                  <AbstractNodeData Name="lb_target" ActionTag="-1289675439" Tag="54" IconVisible="False" LeftMargin="224.0000" RightMargin="224.0000" TopMargin="360.1520" BottomMargin="321.8480" FontSize="32" LabelText="清理岩石方块" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="192.0000" Y="33.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="320.0000" Y="338.3480" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4732" />
-                    <PreSize X="0.3000" Y="0.0517" />
+                    <PreSize X="0.3000" Y="0.0462" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="55" G="168" B="245" />
                   </AbstractNodeData>

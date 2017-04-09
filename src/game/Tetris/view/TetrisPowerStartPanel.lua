@@ -22,6 +22,7 @@ function TetrisPowerStartPanel:onCreate(powerId, armyId)
     self.btnPowerStart = layout['btn_powerstart']
     self.lbTarget = layout['lb_target']
     self.spTarget = layout['sp_target']
+    self.targetIntro = layout['lb_target_intro']
     self.btnClose = layout['btn_close']
     self.star1 = layout['sp_star1']
     self.star2 = layout['sp_star2']
@@ -87,12 +88,16 @@ end
 function TetrisPowerStartPanel:setTargetBlock()
     local armyType = self.powerConf.armyType
 
-    if armyType == 1 or armyType == 4 then
+    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
         local pic = string.format("tetris/%s.png", self.powerDetailconf.blockType)
         self.spTarget:setTexture(pic)
-    elseif armyType == 2 then
+        self.targetIntro:setVisible(false)
+    elseif armyType == TetrisPowerConf.TYPE_TIMEMODE then
         self.spTarget:setVisible(false)
-    elseif armyType == 3 then
+        self.targetIntro:setString(self.powerDetailconf.targetIntro)
+        self.targetIntro:setColor(cc.c3b(218, 88, 100))
+    elseif armyType == TetrisPowerConf.TYPE_METEOR2 then
+        self.targetIntro:setVisible(false)
         self.spTarget:setTexture("tetris/fangkuai9.png")
         local animationLayout = require("layout.TetrisMeteorAnimation").create()
         local meteor = animationLayout['root']
