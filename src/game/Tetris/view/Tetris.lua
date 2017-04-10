@@ -680,6 +680,8 @@ function Tetris:removeCallBack(sender)
     if sender then
         if sender.hasStar then
             self:flyStar(sender)
+        elseif sender.extraAttributes then
+            self:handleExtraAttributes(sender)
         end
         sender:removeFromParent()
     end
@@ -767,6 +769,13 @@ function Tetris:flyStar(sender)
                                             end
                                         end))
     star:runAction(sequence)
+end
+
+--------------------------------
+-- 处理额外属性
+-- @function [parent=#Tetris] handleExtraAttributes
+function Tetris:handleExtraAttributes(sender)
+    self.parent:handleExtraAttributes(sender)
 end
 
 --------------------------------
@@ -860,7 +869,7 @@ end
 function Tetris:updateBlock(block, nextBlock)
     for i=1, #nextBlock.blocks do 
         local sprite = nextBlock.blocks[i]
-        if sprite.hasStar then
+        if sprite.hasStar or sprite.extraAttributes then
             sprite:retain()
             sprite:removeFromParent()
             

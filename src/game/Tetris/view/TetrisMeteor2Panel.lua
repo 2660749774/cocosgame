@@ -58,6 +58,7 @@ function TetrisMeteor2Panel:loadConfig(type, powerId, armyId)
     self.totalTime = self.conf.maxTime
     self.needScore = self.conf.scoreNum
     self.comboNum = self.conf.comboNum
+    self.starProb = self.conf.starProb
 end
 
 --------------------------------
@@ -95,38 +96,38 @@ end
 -- 更新下一个方块
 -- @function [parent=#TetrisMeteor2Panel] updateNextBlock
 function TetrisMeteor2Panel:updateNextBlock(nextBlock)
+    if RandomUtil:nextDouble() < self.starProb then
+        log:info("updateNextBlock add star")
+        local addNum = RandomUtil:nextInt(2)
+        for i = 1, addNum do
+            if addNum > #nextBlock.blocks then
+                break
+            end
 
-    log:info("updateNextBlock add star")
-    local addNum = RandomUtil:nextInt(2)
+            -- 添加星星
+            local index = RandomUtil:nextInt(#nextBlock.blocks)
+            local oldSprite = nextBlock.blocks[index]
+            while (oldSprite.hasStar) do
+                index = RandomUtil:nextInt(#nextBlock.blocks)
+                oldSprite = nextBlock.blocks[index]
+            end
 
-    for i = 1, addNum do
-        if addNum > #nextBlock.blocks then
-            break
+            local sprite = cc.Sprite:create("tetris/fangkuai9.png")
+            sprite:setAnchorPoint(0, 0)
+            sprite:setPosition(oldSprite:getPosition())
+            sprite.hasStar = true
+            sprite.pic = "tetris/fangkuai9.png"
+            nextBlock.blocks[index] = sprite
+
+            local animationLayout = require("layout.TetrisMeteorAnimation").create()
+            local meteor = animationLayout['root']
+            local animation = animationLayout['animation']
+            sprite:addChild(meteor)
+            meteor:runAction(animation)
+            animation:gotoFrameAndPlay(0)  
+            oldSprite:removeFromParent()
+            nextBlock:addChild(sprite)
         end
-
-        -- 添加星星
-        local index = RandomUtil:nextInt(#nextBlock.blocks)
-        local oldSprite = nextBlock.blocks[index]
-        while (oldSprite.hasStar) do
-            index = RandomUtil:nextInt(#nextBlock.blocks)
-            oldSprite = nextBlock.blocks[index]
-        end
-
-        local sprite = cc.Sprite:create("tetris/fangkuai9.png")
-        sprite:setAnchorPoint(0, 0)
-        sprite:setPosition(oldSprite:getPosition())
-        sprite.hasStar = true
-        sprite.pic = "tetris/fangkuai9.png"
-        nextBlock.blocks[index] = sprite
-
-        local animationLayout = require("layout.TetrisMeteorAnimation").create()
-        local meteor = animationLayout['root']
-        local animation = animationLayout['animation']
-        sprite:addChild(meteor)
-        meteor:runAction(animation)
-        animation:gotoFrameAndPlay(0)  
-        oldSprite:removeFromParent()
-        nextBlock:addChild(sprite)
     end
 
     return nextBlock

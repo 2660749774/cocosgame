@@ -285,6 +285,13 @@ function TetrisSinglePanel:checkRemoveLines(removeBlocks)
     return
 end
 
+--------------------------------
+-- 处理额外属性
+-- @function [parent=#TetrisSinglePanel] handleExtraAttributes
+function TetrisSinglePanel:handleExtraAttributes(attributes)
+
+end
+
 
 --------------------------------
 -- 创建返回主页按钮

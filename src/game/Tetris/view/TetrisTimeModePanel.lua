@@ -33,6 +33,7 @@ function TetrisTimeModePanel:onCreate(powerId, armyId)
     -- self.blockNum = 0
     self.time = 0
     self.needScore = 0
+    self.score = 0
     self:loadConfig(TetrisPowerConf.TYPE_TIMEMODE, powerId, armyId)
     self:updateTime()
     self:updateScoreProgress()
@@ -63,18 +64,6 @@ function TetrisTimeModePanel:updateTime()
     local sec = math.floor(leftTime % 60)
     self.lbTimeMinute:setString(string.format("%02d", minute))
     self.lbTimeSec:setString(string.format("%02d", sec))
-end
-
---------------------------------
--- 更新剩余方块数
--- @function [parent=#TetrisTimeModePanel] updateBlockNum
-function TetrisTimeModePanel:updateBlockNum()
-    -- local blockNum = self.totalBlockNum - self.blockNum
-    -- if blockNum <= 0 then
-    --     self.tetris:gameOver()
-    --     blockNum = 0
-    -- end
-    -- self.lbLeftBlockNum:setString(blockNum)
 end
 
 --------------------------------
@@ -131,6 +120,86 @@ function TetrisTimeModePanel:updateScore(removeLineNums)
     end
 end
 
+
+--------------------------------
+-- 更新下一个方块
+-- @function [parent=#TetrisTimeModePanel] updateNextBlock
+function TetrisTimeModePanel:updateNextBlock(nextBlock)
+    if RandomUtil:nextDouble() < 1 then
+        log:info("updateNextBlock add time or score")
+
+        local label = ccui.Text:create()
+        label:setFontSize(20)
+        label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
+        local index = RandomUtil:nextInt(#nextBlock.blocks)
+
+        nextBlock.blocks[index].extraAttributes = true
+        if RandomUtil:nextBoolean() then
+            nextBlock.blocks[index].time = 5
+            label:setString("时")
+            label:setPosition(13.5, 13.5)
+            nextBlock.blocks[index]:addChild(label)
+        else
+            nextBlock.blocks[index].score = 100
+            label:setString("分")
+            label:setPosition(13.5, 13.5)
+            nextBlock.blocks[index]:addChild(label)
+
+        end
+    end
+
+    return nextBlock
+end
+
+--------------------------------
+-- 处理额外属性
+-- @function [parent=#TetrisSinglePanel] handleExtraAttributes
+function TetrisSinglePanel:handleExtraAttributes(attributes)
+    if attributes.time then
+        self.time = self.time - attributes.time
+
+        local label = ccui.Text:create()
+        label:setFontSize(32)
+        label:setColor(cc.c3b(39, 82, 86))
+        label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
+        label:setString("+"..attributes.time)
+
+        local x, y = self.lbTimeSec:getPosition()
+        label:setPosition(x + 50, y)
+        self:addChild(label)
+
+        local action1 = cc.MoveTo:create(0.5, cc.p(x, y))
+        local action2 = cc.FadeOut:create(0.5)
+        local sequence = cc.Sequence:create(action1, action2, cc.CallFunc:create(function() 
+            label:removeFromParent()
+            self:updateTime()
+        end))
+        label:runAction(sequence)
+    else
+        self.score = self.score + attributes.score
+
+        local label = ccui.Text:create()
+        label:setFontSize(32)
+        label:setColor(cc.c3b(39, 82, 86))
+        label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
+        label:setString("+"..attributes.score)
+
+        local x, y = self.lbResult:getPosition()
+        local pos = self.lbResult:convertToWorldSpace(cc.vertex2F(0, 0))
+        x, y = pos.x, pos.y
+        label:setPosition(x + 50, y)
+        self:addChild(label)
+
+        local action1 = cc.MoveTo:create(0.5, cc.p(x, y))
+        local action2 = cc.FadeOut:create(0.5)
+        local sequence = cc.Sequence:create(action1, action2, cc.CallFunc:create(function() 
+            label:removeFromParent()
+            self:updateScore(0)
+        end))
+        label:runAction(sequence)
+    end
+end
+
 --------------------------------
 -- 重置
 -- @function [parent=#TetrisTimeModePanel] reset
@@ -140,7 +209,6 @@ function TetrisTimeModePanel:reset()
     self.score = 0
     self.blockNum = 0
     self.time = 0
-    self:updateBlockNum()
     self:updateTime()
 end
 
