@@ -48,6 +48,10 @@ function TetrisTimeModePanel:loadConfig(type, powerId, armyId)
     self.totalTime = self.conf.maxTime
     self.needScore = self.conf.scoreNum
     self.starArray = self.conf.starArray
+    self.bonusProb = self.conf.bonusProb
+    if self.conf.probIndex ~= 0 then
+        self.probArray = self.conf.probArray[self.conf.probIndex]
+    end
 end
 
 --------------------------------
@@ -120,12 +124,27 @@ function TetrisTimeModePanel:updateScore(removeLineNums)
     end
 end
 
+--------------------------------
+-- 获取随机数
+-- @function [parent=#TetrisSinglePanel] nextInt
+function TetrisTimeModePanel:nextInt(range, times)
+    if self.randomCache[times] then
+        return self.randomCache[times]
+    end
+    if self.probArray then
+        self.randomCache[times] = RandomUtil:nextDoubleIndex(self.probArray)
+    else
+        self.randomCache[times] = RandomUtil:nextInt(range)
+    end
+    return self.randomCache[times]
+end
+
 
 --------------------------------
 -- 更新下一个方块
 -- @function [parent=#TetrisTimeModePanel] updateNextBlock
 function TetrisTimeModePanel:updateNextBlock(nextBlock)
-    if RandomUtil:nextDouble() < 1 then
+    if RandomUtil:nextDouble() < self.bonusProb then
         log:info("updateNextBlock add time or score")
 
         local label = ccui.Text:create()
@@ -135,7 +154,7 @@ function TetrisTimeModePanel:updateNextBlock(nextBlock)
 
         nextBlock.blocks[index].extraAttributes = true
         if RandomUtil:nextBoolean() then
-            nextBlock.blocks[index].time = 5
+            nextBlock.blocks[index].time = 10
             label:setString("时")
             label:setPosition(13.5, 13.5)
             nextBlock.blocks[index]:addChild(label)

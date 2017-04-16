@@ -35,6 +35,22 @@ function RandomUtil:nextInt(n)
     return math.random(1, n)
 end
 
+--------------------------------
+-- 从指定概率配置随机一个下标
+-- @function [parent=#RandomUtil] nextDoubleIndex
+function RandomUtil:nextDoubleIndex(probArray)
+    local prob = self:nextDouble()
+    local index = -1
+    local temp = 0
+    for i = 1, #probArray do
+        index = i
+        temp = temp + probArray[i]
+        if prob < temp then
+            break
+        end
+    end
+    return index
+end
 
 --------------------------------
 -- 随机一个[0 - 1)的浮点数

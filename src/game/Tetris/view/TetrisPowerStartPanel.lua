@@ -48,7 +48,7 @@ function TetrisPowerStartPanel:onCreate(powerId, armyId)
     elseif star >= 2 then
         self.star1:setVisible(true)
         self.star2:setVisible(true)
-    elseif start >= 1 then
+    elseif star >= 1 then
         self.star1:setVisible(true)
     end
 
