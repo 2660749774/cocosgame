@@ -57,11 +57,11 @@ function TetrisPowerConf:ctor(powerId, armyId, confId, armyType)
     TetrisPowerConf.configMap[powerId][armyId] = self
 end
 
-TetrisPowerConf.new(1, 1, 1, TetrisPowerConf.TYPE_TIMEMODE)
-TetrisPowerConf.new(1, 2, 2, TetrisPowerConf.TYPE_TIMEMODE)
-TetrisPowerConf.new(1, 3, 3, TetrisPowerConf.TYPE_TIMEMODE)
-TetrisPowerConf.new(1, 4, 4, TetrisPowerConf.TYPE_TIMEMODE)
-TetrisPowerConf.new(1, 5, 5, TetrisPowerConf.TYPE_TIMEMODE)
+TetrisPowerConf.new(1, 1, 1, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 2, 2, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 3, 3, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 4, 4, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(1, 5, 5, TetrisPowerConf.TYPE_CLEAR_STONE)
 TetrisPowerConf.new(1, 6, 6, TetrisPowerConf.TYPE_TIMEMODE)
 TetrisPowerConf.new(1, 7, 7, TetrisPowerConf.TYPE_TIMEMODE)
 TetrisPowerConf.new(1, 8, 8, TetrisPowerConf.TYPE_TIMEMODE)
