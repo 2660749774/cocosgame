@@ -60,8 +60,16 @@
               <Image Name="anim_2.png" />
               <Image Name="anim_3.png" />
               <Image Name="anim_start.png" />
+              <Image Name="bar_bg.png" />
+              <Image Name="bar_choose.png" />
+              <Image Name="bar_light.png" />
+              <Image Name="bar_unchoose.png" />
               <Image Name="bg1.png" />
               <Image Name="bg2.png" />
+              <Image Name="btn_arrow.png" />
+              <Image Name="btn_multi.png" />
+              <Image Name="btn_shop.png" />
+              <Image Name="btn_single.png" />
               <Image Name="close.png" />
               <Image Name="energy_bg.png" />
               <Image Name="fangkuai8.png" />

@@ -25,6 +25,8 @@ function TetrisScene:onCreate()
     local size = barLayout['bar_bg']:getContentSize()
     barLayout['bar_bg']:setContentSize(cc.size(display.width, size.height))
     self:addObject(barLayout["root"], "scene")
+    self:initBottomBar(barLayout)
+    
 
     -- 添加事件监听
     self.btnMultiplayer = layout['btn_multiplayer']
@@ -236,6 +238,123 @@ end
 -- @function [parent=#TetrisScene] numberOfCellsInTableView
 function TetrisScene:numberOfCellsInTableView(view)
     return self.powerNum
+end
+
+--------------------------------
+-- 初始化底部bar
+-- @function [parent=#TetrisScene] initBottomBar
+function TetrisScene:initBottomBar(barLayout)
+    self.btnShop = barLayout['btn_shop']
+    self.btnSingle = barLayout['btn_single']
+    self.btnMulti = barLayout['btn_multi']
+    self.btnLeft = barLayout['btn_left']
+    self.btnRight = barLayout['btn_right']
+    self.bar1 = barLayout['bar1']
+    self.bar2 = barLayout['bar2']
+    self.bar3 = barLayout['bar3']
+    self.barChoose = barLayout['bar_choose']
+    self.barLight = barLayout['bar_light']
+    self.lbIntro = barLayout['lb_intro']
+    self.currBtn = ""
+
+    self.btnLeft:setVisible(false)
+    self.btnRight:setVisible(false)
+
+    self.btnSingle:addClickEventListener(handler(self, self.handleClickSingle))
+    self.btnMulti:addClickEventListener(handler(self, self.handleClickMulti))
+    self.btnShop:addClickEventListener(handler(self, self.handleClickShop))
+
+    self:handleClickSingle()
+end
+
+function TetrisScene:handleClickSingle()
+    if (self.currBtn == "single") then
+        return
+    end
+
+    self.barChoose:setPosition(cc.p(320, 50))
+    self.barLight:runAction(cc.MoveTo:create(0.2, cc.p(320, 50) ))
+    
+    self.bar1:setPosition(cc.p(82.5, 50))
+    self.btnShop:setPosition(cc.p(82.5, 55))
+    self.btnShop:setScale(0.8)
+
+    self.bar2:setPosition(cc.p(320, 50))
+    self.btnSingle:setPosition(cc.p(320, 85))
+    self.btnSingle:setScale(1)
+    self.lbIntro:setString("副 本")
+    self.lbIntro:setPosition(cc.p(320, 20))
+
+    self.bar3:setPosition(cc.p(557.50, 50))
+    self.btnMulti:setPosition(cc.p(557.50, 55))
+    self.btnMulti:setScale(0.8)
+
+    self.btnLeft:setPosition(cc.p(223, 50))
+    self.btnLeft:setVisible(true)
+    self.btnRight:setPosition(cc.p(417, 50))
+    self.btnRight:setVisible(true)
+
+
+    self.currBtn = "single"
+end
+
+function TetrisScene:handleClickMulti()
+    if (self.currBtn == "multi") then
+        return
+    end
+
+    self.barChoose:setPosition(cc.p(485, 50))
+    self.barLight:runAction(cc.MoveTo:create(0.2, cc.p(485, 50) ))
+
+    self.bar1:setPosition(cc.p(82.5, 50))
+    self.btnShop:setPosition(cc.p(82.5, 55))
+    self.btnShop:setScale(0.8)
+
+    self.bar2:setPosition(cc.p(247.5, 50))
+    self.btnSingle:setPosition(cc.p(247.5, 55))
+    self.btnSingle:setScale(0.8)
+
+    self.bar3:setPosition(cc.p(485, 50))
+    self.btnMulti:setPosition(cc.p(485, 85))
+    self.btnMulti:setScale(1)
+    self.lbIntro:setString("对 战")
+    self.lbIntro:setPosition(cc.p(485, 20))
+
+    self.btnLeft:setPosition(cc.p(388, 50))
+    self.btnLeft:setVisible(true)
+    self.btnRight:setVisible(false)
+
+    self.currBtn = "multi"
+end
+
+function TetrisScene:handleClickShop()
+    if (self.currBtn == "shop") then
+        return
+    end
+
+     self.barChoose:setPosition(cc.p(155, 50))
+     self.barLight:runAction(cc.MoveTo:create(0.2, cc.p(155, 50) ))
+
+     self.bar1:setPosition(cc.p(82.5, 50))
+     self.btnShop:setPosition(cc.p(155, 85))
+     self.btnShop:setScale(1)
+     self.lbIntro:setString("商 店")
+     self.lbIntro:setPosition(cc.p(155, 20))
+
+     self.bar2:setPosition(cc.p(392.5, 50))
+     self.btnSingle:setPosition(cc.p(392.5, 55))
+     self.btnSingle:setScale(0.8)
+
+     self.bar3:setPosition(cc.p(557.50, 50))
+     self.btnMulti:setPosition(cc.p(557.50, 55))
+     self.btnMulti:setScale(0.8)
+
+    
+     self.btnLeft:setVisible(false)
+     self.btnRight:setPosition(cc.p(252, 50))
+     self.btnRight:setVisible(true)
+
+     self.currBtn = "shop"
 end
 
 --------------------------------
