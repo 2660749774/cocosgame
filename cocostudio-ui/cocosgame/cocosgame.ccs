@@ -67,9 +67,14 @@
               <Image Name="bg1.png" />
               <Image Name="bg2.png" />
               <Image Name="btn_arrow.png" />
+              <Image Name="btn_cancel.png" />
+              <Image Name="btn_matchbg.png" />
               <Image Name="btn_multi.png" />
+              <Image Name="btn_pvp.png" />
+              <Image Name="btn_search.png" />
               <Image Name="btn_shop.png" />
               <Image Name="btn_single.png" />
+              <Image Name="building_bg.png" />
               <Image Name="close.png" />
               <Image Name="energy_bg.png" />
               <Image Name="fangkuai8.png" />
@@ -104,6 +109,7 @@
               <Image Name="powername_bg.png" />
               <Image Name="progress.png" />
               <Image Name="progress_bg.png" />
+              <Image Name="pvp_bg.png" />
               <Image Name="square1.png" />
               <Image Name="square2.png" />
               <Image Name="square3.png" />
@@ -168,6 +174,7 @@
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="TetrisPvp.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -12,12 +12,31 @@ local TetrisPowerConf = import("..data.TetrisPowerConf")
 -- 创建方法
 -- @function [parent=#TetrisScene] onCreate
 function TetrisScene:onCreate()
-    local layout = require("layout.TetrisMainScene").create()
-    self:fixLayout(layout)
-    self:addObject(layout["root"], "scene")
+    -- local layout = require("layout.TetrisMainScene").create()
+    -- self:fixLayout(layout)
+    -- self:addObject(layout["root"], "scene")
+
+    -- Layers 获取Layer
+    self.powerLayer = cc.Layer:create()
+    self.pvpLayer = cc.Layer:create()
+    
+    self.pvpLayer:setPosition(cc.p(852, 0))
+    self:addObject(self.powerLayer, "scene")
+    self:addObject(self.pvpLayer, "scene")
+
 
     -- 创建副本界面
     self:createPowerView()
+
+    -- 创建对战界面
+    local pvpLayout = require("layout.TetrisPvp").create()
+    self:fixLayout(pvpLayout)
+    self.pvpLayer:addChild(pvpLayout["root"])
+    self.btnPvp = pvpLayout['btn_pvp']
+    self.btnCancel = pvpLayout['btn_cancel']
+    self.searchPanel = pvpLayout['search_panel']
+    self.btnPvp:addClickEventListener(handler(self, self.pvpSearch))
+    self.btnCancel:addClickEventListener(handler(self, self.pvpCancel))
 
     -- 创建bar
     local barLayout = require("layout.TetrisMainBar").create()
@@ -29,16 +48,16 @@ function TetrisScene:onCreate()
     
 
     -- 添加事件监听
-    self.btnMultiplayer = layout['btn_multiplayer']
-    self.inputHost = cc.EditBox:create(cc.size(350, 70), cc.Scale9Sprite:create(), cc.Scale9Sprite:create())
-    self.inputHost:setAnchorPoint(0.5, 0.5)
-    self.inputHost:setPosition(175, 35)
-    self.inputHost:setFontColor(cc.c3b(0, 128, 0))
-    self.inputHost:setText("192.168.1.4")
-    self.inputHost:setInputMode(6)
-    layout['bg_input']:addChild(self.inputHost)
+    -- self.btnMultiplayer = layout['btn_multiplayer']
+    -- self.inputHost = cc.EditBox:create(cc.size(350, 70), cc.Scale9Sprite:create(), cc.Scale9Sprite:create())
+    -- self.inputHost:setAnchorPoint(0.5, 0.5)
+    -- self.inputHost:setPosition(175, 35)
+    -- self.inputHost:setFontColor(cc.c3b(0, 128, 0))
+    -- self.inputHost:setText("192.168.1.4")
+    -- self.inputHost:setInputMode(6)
+    -- layout['bg_input']:addChild(self.inputHost)
     
-    self.btnMultiplayer:addClickEventListener(handler(self, self.playMulti))
+    -- self.btnMultiplayer:addClickEventListener(handler(self, self.playMulti))
 
     -- 注册事件监听
     self.eventListener = handler(self, self.updatePowerProgress)
@@ -78,7 +97,7 @@ function TetrisScene:createPowerView()
     self.tableView:setContentOffset(cc.vertex2F(0, 0), false) -- 滑动到底部
     self.tableView:setBounceable(false) -- 禁止回弹
 
-    self:addChild(self.tableView)
+    self.powerLayer:addChild(self.tableView)
 end
 
 --------------------------------
@@ -296,6 +315,9 @@ function TetrisScene:handleClickSingle()
 
 
     self.currBtn = "single"
+
+    self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+    self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(852, 0) ))
 end
 
 function TetrisScene:handleClickMulti()
@@ -325,6 +347,10 @@ function TetrisScene:handleClickMulti()
     self.btnRight:setVisible(false)
 
     self.currBtn = "multi"
+
+    
+    self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-852, 0) ))
+    self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
 end
 
 function TetrisScene:handleClickShop()
@@ -355,6 +381,18 @@ function TetrisScene:handleClickShop()
      self.btnRight:setVisible(true)
 
      self.currBtn = "shop"
+end
+
+function TetrisScene:pvpSearch()
+    self.btnPvp:setVisible(false)
+    self.btnCancel:setVisible(true)
+    self.searchPanel:setVisible(true)
+end
+
+function TetrisScene:pvpCancel()
+    self.btnCancel:setVisible(false)
+    self.btnPvp:setVisible(true)
+    self.searchPanel:setVisible(false)
 end
 
 --------------------------------
