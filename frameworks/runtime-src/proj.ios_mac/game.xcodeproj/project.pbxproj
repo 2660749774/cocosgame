@@ -330,6 +330,10 @@
 		84BA0F3D1E6C09CE0065FDBB /* lutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F341E6C08980065FDBB /* lutil.c */; };
 		84BA0F3E1E6C09CE0065FDBB /* lkcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F361E6C08980065FDBB /* lkcp.c */; };
 		84BA0F3F1E6C09CE0065FDBB /* ikcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F381E6C08980065FDBB /* ikcp.c */; };
+		84D14B2A1EC7429C001DCA1C /* LuaBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84D14B291EC7429C001DCA1C /* LuaBridge.mm */; };
+		84D14B2B1EC7429C001DCA1C /* LuaBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84D14B291EC7429C001DCA1C /* LuaBridge.mm */; };
+		84D14B331EC74E32001DCA1C /* IOSUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84D14B321EC74E32001DCA1C /* IOSUtil.mm */; };
+		84D14B361EC7500A001DCA1C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D14B351EC7500A001DCA1C /* AdSupport.framework */; };
 		84DD69AD1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84DD69AB1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp */; };
 		84E6CEC61E168EF800B7607D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E6CEC51E168EF800B7607D /* CoreText.framework */; };
 		84E6CEC91E16921600B7607D /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E6CEC81E16921600B7607D /* Util.cpp */; };
@@ -811,6 +815,11 @@
 		84BA0F361E6C08980065FDBB /* lkcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lkcp.c; path = ../Classes/kcp/lkcp.c; sourceTree = "<group>"; };
 		84BA0F371E6C08980065FDBB /* ikcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ikcp.h; path = ../Classes/kcp/ikcp.h; sourceTree = "<group>"; };
 		84BA0F381E6C08980065FDBB /* ikcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ikcp.c; path = ../Classes/kcp/ikcp.c; sourceTree = "<group>"; };
+		84D14B261EC741BD001DCA1C /* LuaBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaBridge.h; path = ../Classes/LuaBridge.h; sourceTree = "<group>"; };
+		84D14B291EC7429C001DCA1C /* LuaBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LuaBridge.mm; path = ../Classes/LuaBridge.mm; sourceTree = "<group>"; };
+		84D14B2F1EC74D81001DCA1C /* IOSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSUtil.h; path = ../Classes/IOSUtil.h; sourceTree = "<group>"; };
+		84D14B321EC74E32001DCA1C /* IOSUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSUtil.mm; path = ../Classes/IOSUtil.mm; sourceTree = "<group>"; };
+		84D14B351EC7500A001DCA1C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
 		84DD69A81D4B30D400196C33 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = "../../cocos2d-x/external/curl/prebuilt/ios/libcurl.a"; sourceTree = "<group>"; };
 		84DD69AB1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_httprequest_auto.cpp; path = ../Classes/auto/lua_cocos2dx_httprequest_auto.cpp; sourceTree = "<group>"; };
 		84DD69AC1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_httprequest_auto.hpp; path = ../Classes/auto/lua_cocos2dx_httprequest_auto.hpp; sourceTree = "<group>"; };
@@ -889,6 +898,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D14B361EC7500A001DCA1C /* AdSupport.framework in Frameworks */,
 				8478610D1E629E7700A6266A /* GameKit.framework in Frameworks */,
 				84E6CEC61E168EF800B7607D /* CoreText.framework in Frameworks */,
 				842CEEB01D51D18E00F2D4B8 /* libcrypto.a in Frameworks */,
@@ -1428,6 +1438,7 @@
 		F293B3CB15EB7BE500256477 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84D14B351EC7500A001DCA1C /* AdSupport.framework */,
 				8478610C1E629E7700A6266A /* GameKit.framework */,
 				8478610A1E629E6000A6266A /* GameKit.framework */,
 				847B18591E61A38D00EDE087 /* libcryptopp.a */,
@@ -1480,6 +1491,10 @@
 				15427CE2198F237300DC375D /* lua_module_register.h */,
 				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
+				84D14B291EC7429C001DCA1C /* LuaBridge.mm */,
+				84D14B261EC741BD001DCA1C /* LuaBridge.h */,
+				84D14B2F1EC74D81001DCA1C /* IOSUtil.h */,
+				84D14B321EC74E32001DCA1C /* IOSUtil.mm */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1757,6 +1772,7 @@
 				847B1A571E61BCF800EDE087 /* authenc.cpp in Sources */,
 				847B1A421E61BCF800EDE087 /* dh2.cpp in Sources */,
 				847B1A231E61BCF800EDE087 /* marss.cpp in Sources */,
+				84D14B2B1EC7429C001DCA1C /* LuaBridge.mm in Sources */,
 				847B1A071E61BCF800EDE087 /* rng.cpp in Sources */,
 				847B1A4C1E61BCF800EDE087 /* channels.cpp in Sources */,
 				847B19FF1E61BCF800EDE087 /* sha.cpp in Sources */,
@@ -1903,6 +1919,7 @@
 				847B197A1E61A86B00EDE087 /* sharkbox.cpp in Sources */,
 				847B19891E61A86B00EDE087 /* rdtables.cpp in Sources */,
 				847B19B51E61A86B00EDE087 /* fipsalgt.cpp in Sources */,
+				84D14B331EC74E32001DCA1C /* IOSUtil.mm in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
 				847B19DE1E61A86B00EDE087 /* adler32.cpp in Sources */,
 				847B19D51E61A86B00EDE087 /* bfinit.cpp in Sources */,
@@ -1972,6 +1989,7 @@
 				847B19B31E61A86B00EDE087 /* gf2_32.cpp in Sources */,
 				847B18511E615B4700EDE087 /* lua_cocos2dx_crypto_auto.cpp in Sources */,
 				847B19AC1E61A86B00EDE087 /* hmac.cpp in Sources */,
+				84D14B2A1EC7429C001DCA1C /* LuaBridge.mm in Sources */,
 				847B197D1E61A86B00EDE087 /* sha3.cpp in Sources */,
 				847B19AF1E61A86B00EDE087 /* gost.cpp in Sources */,
 				847B19691E61A86B00EDE087 /* wake.cpp in Sources */,

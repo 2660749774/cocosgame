@@ -21,6 +21,7 @@ cc.exports.ResourceGroup = {
 -- layers 定义
 cc.exports.layers = require "core.Layers"
 cc.exports.log = (require "core.log").new()
+cc.exports.nativeBridge = require "core.native.NativeBridge"
 
 -- 重新定义traceback
 __G__TRACKBACK__ = function(msg)

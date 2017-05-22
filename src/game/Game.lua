@@ -36,6 +36,8 @@ function Game:startup()
     -- ucmgr:open(1, "127.0.0.1", "8010")
     -- ucmgr:send(actions.doUpdate, protos.KEY_PRESS, 1, 1, 3)
 
+    -- 初始化native桥
+    nativeBridge.init()
 
     -- 切换到入口函数
     self:changeScene("Tetris")
