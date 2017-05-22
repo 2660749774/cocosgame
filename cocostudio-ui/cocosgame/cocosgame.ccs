@@ -169,12 +169,13 @@
         <Project Name="TetrisMeteorAnimation.csd" Type="Scene" />
         <Project Name="TetrisPowerLoop.csd" Type="Scene" />
         <Project Name="TetrisPowerStart.csd" Type="Scene" />
+        <Project Name="TetrisPvp.csd" Type="Scene" />
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TetrisPvp.csd" Type="Scene" />
+        <Project Name="TetrisSearchAnimation.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

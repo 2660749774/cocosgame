@@ -61,7 +61,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="search_panel" ActionTag="1768075051" VisibleForFrame="False" Tag="144" IconVisible="False" LeftMargin="220.0000" RightMargin="220.0000" TopMargin="221.4702" BottomMargin="814.5298" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="search_panel" ActionTag="1768075051" VisibleForFrame="False" Tag="144" IconVisible="False" LeftMargin="220.0000" RightMargin="220.0000" TopMargin="221.4702" BottomMargin="814.5298" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="100.0000" />
                 <Children>
                   <AbstractNodeData Name="btn_matchbg" ActionTag="-418346676" Tag="142" IconVisible="False" LeftMargin="-88.1734" RightMargin="-86.8266" TopMargin="61.6266" BottomMargin="-11.6266" ctype="SpriteObjectData">
@@ -75,13 +75,13 @@
                     <FileData Type="Normal" Path="ui/tetris/power/btn_matchbg.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="btn_search" ActionTag="-1719712251" Tag="141" IconVisible="False" LeftMargin="-75.7681" RightMargin="205.7681" TopMargin="61.9295" BottomMargin="-31.9295" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="btn_search" Visible="False" ActionTag="-1719712251" VisibleForFrame="False" Tag="141" IconVisible="False" LeftMargin="-75.7700" RightMargin="205.7700" TopMargin="61.9300" BottomMargin="-31.9300" ctype="SpriteObjectData">
                     <Size X="70.0000" Y="70.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="-40.7681" Y="3.0705" />
+                    <AnchorPoint ScaleX="0.3900" ScaleY="0.6500" />
+                    <Position X="-48.4700" Y="13.5700" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="-0.2038" Y="0.0307" />
+                    <PrePosition X="-0.2424" Y="0.1357" />
                     <PreSize X="0.3500" Y="0.7000" />
                     <FileData Type="Normal" Path="ui/tetris/power/btn_search.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
@@ -95,7 +95,7 @@
                     <PrePosition X="0.4966" Y="0.1307" />
                     <PreSize X="1.1400" Y="0.2400" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="106" G="171" B="235" />
+                    <ShadowColor A="255" R="26" G="26" B="26" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

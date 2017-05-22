@@ -35,6 +35,15 @@ function TetrisScene:onCreate()
     self.btnPvp = pvpLayout['btn_pvp']
     self.btnCancel = pvpLayout['btn_cancel']
     self.searchPanel = pvpLayout['search_panel']
+
+    -- 添加search动画
+    local searchAnimLayout = require("layout.TetrisSearchAnimation").create()
+    local animation = searchAnimLayout['animation']
+    searchAnimLayout['root']:setPosition(cc.p(-48.47, 13.57))
+    searchAnimLayout['root']:runAction(animation)
+    animation:gotoFrameAndPlay(0, true) 
+    self.searchPanel:addChild(searchAnimLayout['root'])
+
     self.btnPvp:addClickEventListener(handler(self, self.pvpSearch))
     self.btnCancel:addClickEventListener(handler(self, self.pvpCancel))
 
@@ -45,6 +54,8 @@ function TetrisScene:onCreate()
     barLayout['bar_bg']:setContentSize(cc.size(display.width, size.height))
     self:addObject(barLayout["root"], "scene")
     self:initBottomBar(barLayout)
+    self.topPanel = barLayout['top_panel']
+    self.bottomPanel = barLayout['bottom_panel']
     
 
     -- 添加事件监听
@@ -387,12 +398,29 @@ function TetrisScene:pvpSearch()
     self.btnPvp:setVisible(false)
     self.btnCancel:setVisible(true)
     self.searchPanel:setVisible(true)
+
+    local sequence = cc.Sequence:create(cc.MoveTo:create(0.2, cc.p(318.64, 1190)), 
+                                        cc.CallFunc:create(function() 
+                                            self.topPanel:setVisible(false)
+                                        end))
+    self.topPanel:runAction(sequence)
+
+    sequence = cc.Sequence:create(cc.MoveTo:create(0.2, cc.p(320.00, -50)), 
+                                        cc.CallFunc:create(function() 
+                                            self.bottomPanel:setVisible(false)
+                                        end))
+    self.bottomPanel:runAction(sequence)
 end
 
 function TetrisScene:pvpCancel()
     self.btnCancel:setVisible(false)
     self.btnPvp:setVisible(true)
     self.searchPanel:setVisible(false)
+
+    self.topPanel:setVisible(true)
+    self.topPanel:runAction(cc.MoveTo:create(0.2, cc.p(318.64, 1094) ))
+    self.bottomPanel:setVisible(true)
+    self.bottomPanel:runAction(cc.MoveTo:create(0.2, cc.p(320.00, 50) ))
 end
 
 --------------------------------
