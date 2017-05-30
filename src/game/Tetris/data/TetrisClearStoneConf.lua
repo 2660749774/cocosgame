@@ -243,7 +243,7 @@ TetrisClearStoneConf.new(9, "fangkuai5", 23, {
 })
 
 
-TetrisClearStoneConf.new(10, "fangkuai5", 24, {
+TetrisClearStoneConf.new(10, "fangkuai5", 40, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -268,7 +268,7 @@ TetrisClearStoneConf.new(10, "fangkuai5", 24, {
 
 
 
-TetrisClearStoneConf.new(11, "fangkuai5", 26, {
+TetrisClearStoneConf.new(11, "fangkuai5", 60, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -292,7 +292,7 @@ TetrisClearStoneConf.new(11, "fangkuai5", 26, {
 })
 
 
-TetrisClearStoneConf.new(12, "fangkuai5", 29, {
+TetrisClearStoneConf.new(12, "fangkuai5", 60, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -317,7 +317,7 @@ TetrisClearStoneConf.new(12, "fangkuai5", 29, {
 
 
 
-TetrisClearStoneConf.new(13, "fangkuai5", 26, {
+TetrisClearStoneConf.new(13, "fangkuai5", 60, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -341,7 +341,7 @@ TetrisClearStoneConf.new(13, "fangkuai5", 26, {
 })
 
 
-TetrisClearStoneConf.new(14, "fangkuai5", 29, {
+TetrisClearStoneConf.new(14, "fangkuai5", 60, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -365,7 +365,7 @@ TetrisClearStoneConf.new(14, "fangkuai5", 29, {
 })
 
 
-TetrisClearStoneConf.new(15, "fangkuai5", 30, {
+TetrisClearStoneConf.new(15, "fangkuai5", 60, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -389,7 +389,7 @@ TetrisClearStoneConf.new(15, "fangkuai5", 30, {
 })
 
 
-TetrisClearStoneConf.new(16, "fangkuai5", 32, {
+TetrisClearStoneConf.new(16, "fangkuai5", 80, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -413,7 +413,7 @@ TetrisClearStoneConf.new(16, "fangkuai5", 32, {
 })
 
 
-TetrisClearStoneConf.new(17, "fangkuai5", 35, {
+TetrisClearStoneConf.new(17, "fangkuai5", 80, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -437,7 +437,7 @@ TetrisClearStoneConf.new(17, "fangkuai5", 35, {
 })
 
 
-TetrisClearStoneConf.new(18, "fangkuai5", 32, {
+TetrisClearStoneConf.new(18, "fangkuai5", 80, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -461,7 +461,7 @@ TetrisClearStoneConf.new(18, "fangkuai5", 32, {
 })
 
 
-TetrisClearStoneConf.new(19, "fangkuai5", 35, {
+TetrisClearStoneConf.new(19, "fangkuai5", 80, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -485,7 +485,7 @@ TetrisClearStoneConf.new(19, "fangkuai5", 35, {
 })
 
 
-TetrisClearStoneConf.new(20, "fangkuai5", 36, {
+TetrisClearStoneConf.new(20, "fangkuai5", 80, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -509,7 +509,7 @@ TetrisClearStoneConf.new(20, "fangkuai5", 36, {
 })
 
 
-TetrisClearStoneConf.new(21, "fangkuai5", 38, {
+TetrisClearStoneConf.new(21, "fangkuai5", 100, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -533,7 +533,7 @@ TetrisClearStoneConf.new(21, "fangkuai5", 38, {
 })
 
 
-TetrisClearStoneConf.new(22, "fangkuai5", 41, {
+TetrisClearStoneConf.new(22, "fangkuai5", 100, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -557,7 +557,7 @@ TetrisClearStoneConf.new(22, "fangkuai5", 41, {
 })
 
 
-TetrisClearStoneConf.new(23, "fangkuai5", 38, {
+TetrisClearStoneConf.new(23, "fangkuai5", 100, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -581,7 +581,7 @@ TetrisClearStoneConf.new(23, "fangkuai5", 38, {
 })
 
 
-TetrisClearStoneConf.new(24, "fangkuai5", 41, {
+TetrisClearStoneConf.new(24, "fangkuai5", 100, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -604,7 +604,7 @@ TetrisClearStoneConf.new(24, "fangkuai5", 41, {
     { 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0 },
 })
 
-TetrisClearStoneConf.new(25, "fangkuai5", 42, {
+TetrisClearStoneConf.new(25, "fangkuai5", 100, {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
