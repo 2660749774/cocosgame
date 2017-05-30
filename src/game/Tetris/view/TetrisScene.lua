@@ -92,8 +92,8 @@ function TetrisScene:createPowerView()
 
     local progress = utils.gameArchive:queryData("power.progress")
     if progress then
-        self.currPowerId = 2 -- progress.powerId
-        self.currArmyId = 24 -- progress.armyId
+        self.currPowerId = progress.powerId
+        self.currArmyId = progress.armyId
     else
         self.currPowerId = 1
         self.currArmyId = 1
