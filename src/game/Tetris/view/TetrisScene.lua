@@ -17,13 +17,15 @@ function TetrisScene:onCreate()
     -- self:addObject(layout["root"], "scene")
 
     -- Layers 获取Layer
+    self.maxWidth = 852 - (852 - display.width) / 2
     self.powerLayer = cc.Layer:create()
     self.pvpLayer = cc.Layer:create()
+    self.touchLayer = cc.Layer:create()
     
-    self.pvpLayer:setPosition(cc.p(852, 0))
+    self.pvpLayer:setPosition(cc.p(self.maxWidth, 0))
     self:addObject(self.powerLayer, "scene")
     self:addObject(self.pvpLayer, "scene")
-
+    self:addObject(self.touchLayer, "scene")
 
     -- 创建副本界面
     self:createPowerView()
@@ -73,6 +75,9 @@ function TetrisScene:onCreate()
     -- 注册事件监听
     self.eventListener = handler(self, self.updatePowerProgress)
     emgr:addEventListener(EventDefine.EventDefine, self.eventListener)
+
+    -- 添加触摸监听
+    self:addLayerTouchListener()
 end
 
 --------------------------------
@@ -328,7 +333,7 @@ function TetrisScene:handleClickSingle()
     self.currBtn = "single"
 
     self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
-    self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(852, 0) ))
+    self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
 end
 
 function TetrisScene:handleClickMulti()
@@ -360,7 +365,7 @@ function TetrisScene:handleClickMulti()
     self.currBtn = "multi"
 
     
-    self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-852, 0) ))
+    self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
     self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
 end
 
@@ -421,6 +426,152 @@ function TetrisScene:pvpCancel()
     self.topPanel:runAction(cc.MoveTo:create(0.2, cc.p(318.64, 1094) ))
     self.bottomPanel:setVisible(true)
     self.bottomPanel:runAction(cc.MoveTo:create(0.2, cc.p(320.00, 50) ))
+end
+
+
+function TetrisScene:addLayerTouchListener()
+    local listener = cc.EventListenerTouchOneByOne:create()
+
+    -- 开始触摸
+    listener:registerScriptHandler(function(touch, event) 
+        self.touchPos = touch:getLocation()
+        self.lastMovePos = touch:getLocation()
+        self.layerTouchEnable = nil
+        return true
+    end, cc.Handler.EVENT_TOUCH_BEGAN)
+
+    -- 触摸移动
+    listener:registerScriptHandler(function(touch, event) 
+        self.movePos = touch:getLocation()
+        if (self.lastMovePos ~= null) then
+            -- 移动
+            if self.layerTouchEnable == nil then
+                local moveX = self.movePos.x - self.lastMovePos.x
+                local moveY = self.movePos.y - self.lastMovePos.y
+                if math.abs(moveX) < 1 and math.abs(moveY) < 1 then
+                    return
+                end
+                if math.abs(moveX) < math.abs(moveY) and self.currBtn == "single" then
+                    self.layerTouchEnable = false
+                else
+                    self.tableView:setTouchEnabled(false)
+                    self.layerTouchEnable = true
+                end
+            end
+            
+            if self.layerTouchEnable then
+                self:onMove(self.movePos.x - self.lastMovePos.x)
+                self.lastMovePos = self.movePos
+            end
+        end
+
+    end, cc.Handler.EVENT_TOUCH_MOVED)
+
+    -- 结束触摸
+    listener:registerScriptHandler(function(touch, event) 
+        if self.layerTouchEnable then
+            self.touchEndPos = touch:getLocation()
+            if (self.touchPos ~= null) then
+                -- 计算移动
+                local moveX = self.touchEndPos.x - self.touchPos.x
+                self:onMoveEnd(moveX)
+            end
+            self.layerTouchEnable = nil
+            self.tableView:setTouchEnabled(true)
+        end
+    end, cc.Handler.EVENT_TOUCH_ENDED)
+
+    local eventDispatcher = self:getEventDispatcher()
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self.touchLayer)
+
+end
+
+function TetrisScene:onMoveEnd(moveX)
+    log:info("onMoveEnd:%s", moveX)
+    if moveX > 0 then
+        -- 向右移动
+        if self.currBtn == "single" then
+            -- 停留在此
+            self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+            self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+        elseif self.currBtn == "multi" then
+            local x, y = self.pvpLayer:getPosition()
+            if x >= 426 then
+                -- 移动到power
+                self:handleClickSingle()
+            else
+                -- 停留在此
+                self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
+                self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+            end
+        end
+    else
+        -- 向左移动
+        if self.currBtn == "single" then
+            local x, y = self.powerLayer:getPosition()
+            if x <= -426 then
+                -- 移动到power
+                self:handleClickMulti()
+            else
+                -- 停留在此
+                self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+                self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+            end
+        elseif self.currBtn == "multi" then
+            -- 停留在此
+            self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
+            self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+        end
+    end
+end
+
+function TetrisScene:onMove(moveX)
+    log:info("onMove:%s", moveX)
+    if moveX > 0 then
+        -- 向右移动
+        if self.currBtn == "single" then
+            local x, y = self.powerLayer:getPosition()
+            if (x + moveX) > 0 then
+                return
+            end
+            self.powerLayer:setPosition(x + moveX, y)
+
+            x, y = self.pvpLayer:getPosition()
+            self.pvpLayer:setPosition(x + moveX, y)
+        elseif self.currBtn == "multi" then
+            x, y = self.pvpLayer:getPosition()
+            if (x + moveX) > self.maxWidth then
+                return
+            end
+            self.pvpLayer:setPosition(x + moveX, y)
+
+            local x, y = self.powerLayer:getPosition()
+            self.powerLayer:setPosition(x + moveX, y)
+
+            
+        end
+    else
+        -- 向左移动
+        if self.currBtn == "single" then
+            local x, y = self.powerLayer:getPosition()
+            if (x + moveX) < -self.maxWidth then
+                return
+            end
+            self.powerLayer:setPosition(x + moveX, y)
+
+            x, y = self.pvpLayer:getPosition()
+            self.pvpLayer:setPosition(x + moveX, y)
+        elseif self.currBtn == "multi" then
+            x, y = self.pvpLayer:getPosition()
+            if (x + moveX) < 0 then
+                return
+            end
+            self.pvpLayer:setPosition(x + moveX, y)
+
+            local x, y = self.powerLayer:getPosition()
+            self.powerLayer:setPosition(x + moveX, y)
+        end
+    end
 end
 
 --------------------------------
