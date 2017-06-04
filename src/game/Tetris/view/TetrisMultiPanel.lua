@@ -74,15 +74,15 @@ function TetrisMultiPanel:onCreate(host)
     self.pingScheduler = scheduler.scheduleGlobal(handler(self, self.handlePing), 2)
 
     self.pushHandler = handler(self, self.handlePush)
-    self.connHandler = handler(self, self.handleConnectEvent)
+    -- self.connHandler = handler(self, self.handleConnectEvent)
 
     -- 进行连接
-    cmgr:addConnCallback(self.connHandler)
+    -- cmgr:addConnCallback(self.connHandler)
     -- 添加PushHandler
     cmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
 
-    cmgr:open(host, 8010)
-    Tips.showSceneTips("正在连接服务器...", -1)
+    -- cmgr:open(host, 8010)
+    -- Tips.showSceneTips("正在连接服务器...", -1)
 end
 
 --------------------------------
@@ -124,7 +124,7 @@ end
 function TetrisMultiPanel:onGetPlayerInfo(response)
     if response.state == 1 then
         self.playerId = response.data.playerId
-        self:updatePlayerInfo(self.playerInfo, response.data)
+        -- self:updatePlayerInfo(self.playerInfo, response.data)
 
         cmgr:send(actions.quitFight)
         cmgr:send(actions.joinFight)
@@ -135,6 +135,8 @@ end
 -- 处理推送
 -- @function [parent=#TetrisMultiPanel] handlePush
 function TetrisMultiPanel:handlePush(response)
+    log:info("handlePush")
+    log:showTable(response)
     if tolua.isnull(self) then
         return
     end
