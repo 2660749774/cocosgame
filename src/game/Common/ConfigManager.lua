@@ -24,7 +24,7 @@ function ConfigManager:loadConfig()
         self.config = require("config.WinConfig")
     else
         -- mobile
-        self.config = require("config.WinConfig")
+        self.config = require("config.MobConfig")
     end
 end
 
