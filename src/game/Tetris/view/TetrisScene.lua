@@ -54,7 +54,12 @@ function TetrisScene:onCreate()
     self:fixLayout(barLayout)
     local size = barLayout['bar_bg']:getContentSize()
     barLayout['bar_bg']:setContentSize(cc.size(display.width, size.height))
+    local lbLife = barLayout['lb_energy']
+    lbLife:setString(mmgr.player.lifes)
+
     self:addObject(barLayout["root"], "scene")
+
+
     self:initBottomBar(barLayout)
     self.topPanel = barLayout['top_panel']
     self.bottomPanel = barLayout['bottom_panel']
@@ -400,6 +405,13 @@ function TetrisScene:handleClickShop()
 end
 
 function TetrisScene:pvpSearch()
+    if cmgr:isConnected() then
+        -- 报名
+        self:pushPanel("Tetris.view.TetrisMulti", {""})
+    else
+        Tips.showSceneTips("未连接服务器", 2)
+        return
+    end
     self.btnPvp:setVisible(false)
     self.btnCancel:setVisible(true)
     self.searchPanel:setVisible(true)

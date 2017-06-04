@@ -6,8 +6,10 @@
 -- Time: 21:10
 -- To change this template use File | Settings | File Templates.
 -- NativeBridge 调用Native的连接桥
+local NativeBridge = {}
 
-NativeBridge = {}
+local UserDefaultUtil = require("core.util.UserDefaultUtil")
+local RandomUtil = require("core.util.RandomUtil")
 
 --------------------------------
 -- NativeBridge 初始化
@@ -20,6 +22,26 @@ function NativeBridge.init()
 	args.listener = NativeBridge.callLua
 
 	NativeBridge.callNativeMethod(args)
+end
+
+--------------------------------
+-- 获取设备Id
+-- @function [parent=#NativeBridge] getDeviceId
+function NativeBridge.getDeviceId()
+	local deviceId = UserDefaultUtil.getStringForKey("game.deviceId", "")
+	if deviceId == "" then
+		-- FIXME 去获取真实Id
+		deviceId = NativeBridge.getFakeDeviceId()
+		UserDefaultUtil.setStringForKey("game.deviceId", deviceId)
+	end
+	return deviceId
+end
+
+--------------------------------
+-- 获取伪造的deviceId
+-- @function [parent=#NativeBridge] getDeviceId
+function NativeBridge.getFakeDeviceId()
+	return device.platform .. "-" .. RandomUtil:genRandomStr(10)
 end
 
 --------------------------------

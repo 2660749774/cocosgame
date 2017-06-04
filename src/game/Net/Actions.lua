@@ -18,8 +18,16 @@ end
 -- 暴露actions
 cc.exports.actions = {}
 
+-- 登录用户
+actions.login = Action.new("user@login", "deviceInfo=%s&deviceType=%s&yx=%s&yxSource=%s&uuid=%s")
+
+-- 创建用户
+actions.createPlayer = Action.new("player@createPlayer", "")
+
 -- 获取用户信息
 actions.getPlayerInfo = Action.new("player@getPlayerInfo", "")
+
+-- 多人对战相关
 actions.joinFight = Action.new("fight@join", "")
 actions.cancelFight = Action.new("fight@cancel", "")
 actions.quitFight = Action.new("fight@quit", "")

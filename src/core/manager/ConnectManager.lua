@@ -65,7 +65,7 @@ function ConnectManger:open(host, port)
     socket:setTickTime(0)
     socket:setConnectTimeoutTickTime(0.5)
     socket:setReconnTime(6)
-    socket:setConnFailTime(4)
+    socket:setConnFailTime(1)
 
     socket:addEventListener(net.SocketTCP.EVENT_DATA, handler(self, self.reciveDate))
     socket:addEventListener(net.SocketTCP.EVENT_CLOSE, handler(self, self.tcpClose))
@@ -294,8 +294,8 @@ function ConnectManger:decode()
 
     -- 打印日志
     command = trim(command)
-    -- log:info("recv command:%s, requestId:%d", command, requestId)
-    -- log:info("recv content:%s", content)
+    log:info("recv command:%s, requestId:%d", command, requestId)
+    log:info("recv content:%s", content)
     -- 转换为json
     local response = json.decode(content)
     

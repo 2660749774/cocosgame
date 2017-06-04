@@ -12,6 +12,7 @@ local TetrisMeteor2Conf = import(".TetrisMeteor2Conf")
 local TetrisMazeConf = import(".TetrisMazeConf")
 local TetrisClearStoneConf = import(".TetrisClearStoneConf")
 local TetrisTimeModeConf = import(".TetrisTimeModeConf")
+local TetrisSparConf = import(".TetrisSparConf")
 
 TetrisPowerConf.configMap = {}
 TetrisPowerConf.powerInfoMap = {}
@@ -26,6 +27,8 @@ TetrisPowerConf.TYPE_METEOR = 3
 TetrisPowerConf.TYPE_MAZE = 4
 -- 关卡模式5 -- 星际迷阵2
 TetrisPowerConf.TYPE_METEOR2 = 5
+-- 关卡模式6 -- 收集晶石
+TetrisPowerConf.TYPE_SPAR = 6
 
 --------------------------------
 -- 构造函数
@@ -47,6 +50,9 @@ function TetrisPowerConf:ctor(powerId, armyId, confId, armyType)
     elseif self.armyType == TetrisPowerConf.TYPE_MAZE then
         self.pic = "square1"
         self.module = "TetrisMaze"
+    elseif self.armyType == TetrisPowerConf.TYPE_SPAR then
+        self.pic = "square1"
+        self.module = "TetrisSpar"
     else
         return
     end
@@ -85,7 +91,7 @@ end
 
 TetrisPowerConf.new(1, 1, 1, TetrisPowerConf.TYPE_CLEAR_STONE)
 TetrisPowerConf.new(1, 2, 1, TetrisPowerConf.TYPE_TIMEMODE)
-TetrisPowerConf.new(1, 3, 1, TetrisPowerConf.TYPE_MAZE)
+TetrisPowerConf.new(1, 3, 1, TetrisPowerConf.TYPE_SPAR)
 TetrisPowerConf.new(1, 4, 1, TetrisPowerConf.TYPE_METEOR2)
 
 TetrisPowerConf.new(1, 5, 2, TetrisPowerConf.TYPE_CLEAR_STONE)
@@ -233,7 +239,9 @@ function TetrisPowerConf.loadDetailConfig(powerId, armyId)
     elseif conf.armyType == TetrisPowerConf.TYPE_METEOR2 then
         return TetrisMeteor2Conf.loadConfig(conf.confId)
     elseif conf.armyType == TetrisPowerConf.TYPE_MAZE then
-        return TetrisMazeConf.loadConfig(conf.confId)
+        return TetrisMazeConf.loadConfig(conf.confId)   
+    elseif conf.armyType == TetrisPowerConf.TYPE_SPAR then
+        return TetrisSparConf.loadConfig(conf.confId)  
     end
 
     return nil

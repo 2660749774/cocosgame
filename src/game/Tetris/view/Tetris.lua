@@ -39,6 +39,7 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     self.nextBlock = nil
     self.isAI = false
     self.pause = false
+    self.checkBlockRemoveTimes = 0
     if self.isSelf then
         self.blockPic = 'tetris/fangkuai.png'
     else
@@ -602,75 +603,93 @@ function Tetris:_handleDown(block, simulate)
         self.block = nil
 
         -- 消除判断
-        local maxLine = -1
-        local removeLines = {}
-        for i = 1, #self.grids do
-            -- log:info("remove check, width:%s", #self.grids[i])
-            local canRemove = true
-            for j = 1, #self.grids[i] do
-                -- log:info("remove check, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
-                if self.grids[i][j] == 0 then
-                    canRemove = false
-                    break
-                end
-            end
-            if canRemove then
-                table.insert(removeLines, i)
-                maxLine = i
-            end
-        end
-
-        -- 消除处理
-        local removeBlocks = {}
-        for _, line in pairs(removeLines) do
-            for i = 1, #self.grids[line] do
-                -- log:info("remove block, y:%s , x:%s, block:%s", line, i, self.grids[line][i])
-                table.insert(removeBlocks, self.grids[line][i])
-                self.grids[line][i] = 0
-            end
-        end
-
-        -- 处理上面的方块
-        self.removeLineNums = #removeLines
-        self.callbackNums = #removeBlocks
-        self.callbackCount = 0
-        if maxLine ~= -1 then
-            self.upperBlockList = {}
-            local removeLineNums = self.removeLineNums
-            for i = maxLine + 1, #self.grids do
-                for j = 1, #self.grids[i] do
-                    -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
-                    if self.grids[i][j] ~= 0 then
-                        local block = self.grids[i][j]
-                        self.grids[i][j] = 0
-                        self.grids[i - removeLineNums][j] = block
-
-                        table.insert(self.upperBlockList, block)
-                    end
-                end           
-            end
-        end
-
-        -- 闪烁效果
-        if #removeBlocks > 0 then
-            -- 检查移除行
-            self.parent:checkRemoveLines(removeBlocks)
-
-            self.fixScheduler:setTimeScale(1)
-            local action = cc.Blink:create(0.5, 3)
-            for _, block in pairs(removeBlocks) do
-                local sequence = cc.Sequence:create(action:clone(), 
-                                                    cc.CallFunc:create(handler(self, self.removeCallBack), {sender = block}))
-                block:runAction(sequence)
-            end
-        end
-
-        if #removeBlocks == 0 then
-            self:removeCallBack()
-        end
+        self:checkBlockRemove()
     end
 
     
+end
+
+--------------------------------
+-- 消除判断
+-- @function [parent=#Tetris] checkBlockRemove
+function Tetris:checkBlockRemove()
+    
+    -- 检查引用计数器 + 1
+    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes + 1
+    log:info("checkBlockRemove start, count:%s", self.checkBlockRemoveTimes)
+
+    -- 消除判断
+    local maxLine = -1
+    local removeLines = {}
+    for i = 1, #self.grids do
+        -- log:info("remove check, width:%s", #self.grids[i])
+        local canRemove = true
+        for j = 1, #self.grids[i] do
+            -- log:info("remove check, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
+            if self.grids[i][j] == 0 then
+                canRemove = false
+                break
+            end
+        end
+        if canRemove then
+            table.insert(removeLines, i)
+            maxLine = i
+        end
+    end
+
+    -- 消除处理
+    local removeBlocks = {}
+    for _, line in pairs(removeLines) do
+        for i = 1, #self.grids[line] do
+            -- log:info("remove block, y:%s , x:%s, block:%s", line, i, self.grids[line][i])
+            local removeBlock = self.grids[line][i]
+            removeBlock.gridX = i
+            removeBlock.gridY = line
+            table.insert(removeBlocks, removeBlock)
+            self.grids[line][i] = 0
+        end
+    end
+
+    -- 处理上面的方块
+    self.removeLineNums = #removeLines
+    self.callbackNums = #removeBlocks
+    self.callbackCount = 0
+    if maxLine ~= -1 then
+        self.upperBlockList = {}
+        local removeLineNums = self.removeLineNums
+        for i = maxLine + 1, #self.grids do
+            for j = 1, #self.grids[i] do
+                -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
+                if self.grids[i][j] ~= 0 then
+                    local block = self.grids[i][j]
+                    self.grids[i][j] = 0
+                    self.grids[i - removeLineNums][j] = block
+
+                    table.insert(self.upperBlockList, block)
+                end
+            end           
+        end
+    end
+
+    -- 闪烁效果
+    if #removeBlocks > 0 then
+        -- 检查移除行
+        if self.parent.checkRemoveLines then
+            self.parent:checkRemoveLines(removeBlocks)
+        end
+
+        self.fixScheduler:setTimeScale(1)
+        local action = cc.Blink:create(0.5, 3)
+        for _, block in pairs(removeBlocks) do
+            local sequence = cc.Sequence:create(action:clone(), 
+                                                cc.CallFunc:create(handler(self, self.removeCallBack), {sender = block}))
+            block:runAction(sequence)
+        end
+    end
+
+    if #removeBlocks == 0 then
+        self:removeCallBack()
+    end
 end
 
 --------------------------------
@@ -680,10 +699,16 @@ function Tetris:removeCallBack(sender)
     if sender then
         if sender.hasStar then
             self:flyStar(sender)
+            sender:removeFromParent()
+        elseif sender.downBlock then
+            self:handleDownBlock(sender)
         elseif sender.extraAttributes then
             self:handleExtraAttributes(sender)
+            sender:removeFromParent()
+        else
+            sender:removeFromParent()
         end
-        sender:removeFromParent()
+        
     end
 
     self.callbackCount = self.callbackCount + 1
@@ -729,9 +754,123 @@ function Tetris:removeCallBack(sender)
     --     self.disableDown = true
     --     self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 100)
     -- else
-    self:roundStart()
+    -- 检查引用计数器 - 1
+    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
+
+    if self.checkBlockRemoveTimes == 0 then
+        self:roundStart()
+    end
     -- end
     -- self:roundStart()
+end
+
+--------------------------------
+-- 处理下沉方块
+-- @function [parent=#Tetris] handleDownBlock
+function Tetris:handleDownBlock(sender)
+    -- log:info("handleDownBlock:%s", sender)
+    local gridX = sender.gridX
+    local gridY = sender.gridY
+
+    local x, y = self:convertGridToPosition(gridX, gridY)
+    local block = sender
+    block:retain()
+    block:removeFromParent()
+    block:setPosition(x, y)
+    self.bg:addChild(block)
+
+    -- local x, y = self:convertGridToPosition(gridX, gridY)
+
+    -- local block = cc.Sprite:create(sender.pic)
+    -- block.downBlock = true
+    -- block.pic = sender.pic
+    -- block:setAnchorPoint(0, 0)
+    -- block:setPosition(x, y)
+    -- self.bg:addChild(block)
+
+    -- local label = ccui.Text:create()
+    -- label:setFontSize(20)
+    -- label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
+    -- label:setString("晶")
+    -- label:setPosition(13.5, 13.5)
+    -- block:addChild(label)
+
+    -- 检测下沉位置
+    local targetGridY = self:checkDownGridPos(gridX, gridY)
+    -- log:info("final gridY:%s", targetGridY)
+    local targetX, targetY = self:convertGridToPosition(gridX, targetGridY)
+    -- log:info("final pos:%s %s", targetX, targetY)
+
+    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes + 1
+    -- 原来的位置
+    if (targetGridY == gridY) then
+        self.grids[targetGridY][gridX] = block
+        self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
+        return
+    end
+
+    -- 等分
+    if targetGridY < 1 and self.handleExtraAttributes then
+        self.parent:handleExtraAttributes()
+    end
+
+    -- 创建动画
+    local action = cc.MoveTo:create(1, cc.p(targetX, targetY))
+    local sequence = cc.Sequence:create(action, 
+            cc.CallFunc:create(
+                function() 
+                    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
+                    -- 移除自身
+                    if targetGridY < 1 then
+                        -- 得分
+                        log:info("得分")
+                        -- 回调父类
+                        if self.parent.updateFlyStar then
+                            self.parent:updateFlyStar()
+                        end
+                        block:removeFromParent()
+                    else
+                        -- 替换原有block
+                        local oldBlock = self.grids[targetGridY][gridX]
+                        if oldBlock and oldBlock ~= 0 then
+                            oldBlock:removeFromParent()
+                        end
+                        self.grids[targetGridY][gridX] = block
+                    end
+
+                    if self.checkBlockRemoveTimes == 0 then
+                        -- 再次检查消除
+                        self:checkBlockRemove()
+                    end
+                end
+                )
+            )
+    
+    block:runAction(sequence)
+end
+
+--------------------------------
+-- 检查是可以下降得格数
+-- @function [parent=#BaseBlock] checkDownGridPos
+function Tetris:checkDownGridPos(gridX, gridY)
+    -- log:info("downblock, gridX:%s, gridY:%s", gridX, gridY)
+
+    -- 检查自己所处位置是否合法
+    local pos = gridY - 1
+    for i = gridY - 1, 1, -1 do
+        -- log:info("check grid gridX:%s, gridY:%s, value:%s", gridX, i, self.grids[i][gridX] or -1)
+        if self.grids[i][gridX] ~= nil and self.grids[i][gridX] == 0 then
+            pos = i
+        else
+            break
+        end
+    end
+
+    if pos > 0 and self.grids[pos][gridX] ~= 0 and self.grids[pos][gridX].downBlock then
+        pos = pos + 1
+    end
+
+    return pos
 end
 
 --------------------------------
@@ -858,7 +997,9 @@ function Tetris:createNextBlock()
     self.nextBlock = self:createRandomBlock()
 
     -- 更新下一个节点
-    self.nextBlock = self.parent:updateNextBlock(self.nextBlock)
+    if self.parent.updateNextBlock then
+        self.nextBlock = self.parent:updateNextBlock(self.nextBlock)
+    end
 
     return self.nextBlock
 end
@@ -867,9 +1008,11 @@ end
 -- 更新block
 -- @function [parent=#Tetris] updateBlock
 function Tetris:updateBlock(block, nextBlock)
+    log:info("updateblock start")
     for i=1, #nextBlock.blocks do 
         local sprite = nextBlock.blocks[i]
-        if sprite.hasStar or sprite.extraAttributes then
+        log:info("updateblock sprite:%s, downblock:%s", sprite, sprite.downBlock)
+        if sprite.hasStar or sprite.extraAttributes or sprite.downBlock then
             sprite:retain()
             sprite:removeFromParent()
             
@@ -906,6 +1049,13 @@ function Tetris:shake(node, interval)
             scheduler.unscheduleGlobal(schedulerHandle)
         end
     end)
+end
+
+--------------------------------
+-- 格子坐标转换成像素坐标
+-- @function [parent=#Tetris] convertGridToPosition
+function Tetris:convertGridToPosition(gridX, gridY)
+    return (gridX - 1) * self.blockWidth + self.fixPixel, (gridY - 1) * self.blockWidth + self.fixPixel
 end
 
 --------------------------------
