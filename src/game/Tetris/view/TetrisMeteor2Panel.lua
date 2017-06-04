@@ -33,6 +33,7 @@ function TetrisMeteor2Panel:onCreate(powerId, armyId)
     self.lbResult = self.layout['lb_result']
     self.needScore = 0 -- 需要的分数
     self.scoreNum = 0 -- 当前的分数
+    self.displayScore = 0 -- 显示分数
 
     self:loadConfig(TetrisPowerConf.TYPE_METEOR2, powerId, armyId)
 
@@ -89,7 +90,7 @@ end
 -- 更新分数
 -- @function [parent=#TetrisMeteor2Panel] updateScoreProgress
 function TetrisMeteor2Panel:updateScoreProgress()
-    self.lbResult:setString(self.scoreNum .. "/" .. self.needScore)
+    self.lbResult:setString(self.displayScore .. "/" .. self.needScore)
 end
 
 --------------------------------
@@ -174,6 +175,13 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
                 sprites = {}
             end
         end
+        -- 再次检查下
+        if #sprites >= concatNum then
+            for _, block in pairs(sprites) do
+                scoreSprites[block] = 1
+            end
+        end
+        sprites = {}
     end
 
     -- 最後檢查下
@@ -200,8 +208,16 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
                     sprites = {}
                 end
             end
+            -- 再次检查下
+            if #sprites >= concatNum then
+                for _, block in pairs(sprites) do
+                    scoreSprites[block] = 1
+                end
+            end
+            sprites = {}
         end
     end
+
     -- 最後檢查下
     if #sprites >= concatNum then
         for _, block in pairs(sprites) do
@@ -213,18 +229,27 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
     for _, block in pairs(removeBlocks) do
         if block.hasStar and scoreSprites[block] == nil then
             block.hasStar = false
+        elseif block.hasStar and scoreSprites[block] ~= nil then
+            -- 得分
+            self.scoreNum = self.scoreNum + 1
         end
     end
+
+    if self.scoreNum >= self.needScore then
+        self.pass = true
+    end
+    log:info("realScore:%s", self.scoreNum)
 end
 
 --------------------------------
 -- 更新收集星星个数
 -- @function [parent=#TetrisMeteor2Panel] updateFlyStar
 function TetrisMeteor2Panel:updateFlyStar()
-    self.scoreNum = self.scoreNum + 1
+    self.displayScore = self.displayScore + 1
     self:updateScoreProgress()
 
-    if self.scoreNum >= self.needScore then
+    log:info("displayScore:%s, realScore:%s", self.displayScore, self.scoreNum)
+    if self.displayScore >= self.needScore then
         -- 胜利了，该模式下胜利即3颗星星通关
         -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
         self.pass = true

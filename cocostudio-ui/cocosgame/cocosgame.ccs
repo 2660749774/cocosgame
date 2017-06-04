@@ -177,6 +177,7 @@
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="TetrisSpar.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -60,7 +60,7 @@ end
 function TetrisPowerFailPanel:setTargetBlock()
     local armyType = self.powerConf.armyType
 
-    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
+    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE or armyType == TetrisPowerConf.TYPE_SPAR then
         local pic = string.format("tetris/%s.png", self.powerDetailconf.blockType)
         self.spTarget:setTexture(pic)
     elseif armyType == TetrisPowerConf.TYPE_TIMEMODE then

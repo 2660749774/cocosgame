@@ -172,8 +172,8 @@ end
 
 --------------------------------
 -- 处理额外属性
--- @function [parent=#TetrisSinglePanel] handleExtraAttributes
-function TetrisSinglePanel:handleExtraAttributes(attributes)
+-- @function [parent=#TetrisTimeModePanel] handleExtraAttributes
+function TetrisTimeModePanel:handleExtraAttributes(attributes)
     if attributes.time then
         self.time = self.time - attributes.time
 

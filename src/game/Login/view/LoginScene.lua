@@ -61,7 +61,7 @@ function LoginScene:onConnectCallback(event)
         -- 登录
         self:login()
     elseif event.type == "conn" and event.status == "fail" then
-        if self.retryCount > 3 then
+        if self.retryCount > 0 then
             app:changeScene("Tetris")
         else
             -- 连接失败

@@ -65,7 +65,7 @@ function ConnectManger:open(host, port)
     socket:setTickTime(0)
     socket:setConnectTimeoutTickTime(0.5)
     socket:setReconnTime(6)
-    socket:setConnFailTime(4)
+    socket:setConnFailTime(1)
 
     socket:addEventListener(net.SocketTCP.EVENT_DATA, handler(self, self.reciveDate))
     socket:addEventListener(net.SocketTCP.EVENT_CLOSE, handler(self, self.tcpClose))
