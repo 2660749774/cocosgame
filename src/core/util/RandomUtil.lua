@@ -4,6 +4,14 @@
 
 local RandomUtil = {}
 
+-- 随机字符串
+RandomUtil.random_letters = {
+	'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+	'u', 'v', 'w', 'x', 'y', 'z',
+	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+	'U', 'V', 'W', 'X', 'Y', 'Z'
+}
+
 --------------------------------
 -- 初始化方法
 -- @function [parent=#RandomUtil] init
@@ -64,6 +72,18 @@ end
 -- @function [parent=#RandomUtil] nextBoolean
 function RandomUtil:nextBoolean()
     return RandomUtil:nextDouble() < 0.5
+end
+
+--------------------------------
+-- 随机指定长度字符串
+-- @function [parent=#RandomUtil] genRandomStr
+function RandomUtil:genRandomStr(len)
+    local rtn = ""
+    for i=1, len do
+        rtn = rtn .. RandomUtil.random_letters[RandomUtil:nextInt(#RandomUtil.random_letters)]
+    end
+    
+    return rtn
 end
 
 return RandomUtil
