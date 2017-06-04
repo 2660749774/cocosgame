@@ -674,7 +674,9 @@ function Tetris:checkBlockRemove()
     -- 闪烁效果
     if #removeBlocks > 0 then
         -- 检查移除行
-        self.parent:checkRemoveLines(removeBlocks)
+        if self.parent.checkRemoveLines then
+            self.parent:checkRemoveLines(removeBlocks)
+        end
 
         self.fixScheduler:setTimeScale(1)
         local action = cc.Blink:create(0.5, 3)
@@ -808,7 +810,7 @@ function Tetris:handleDownBlock(sender)
     end
 
     -- 等分
-    if targetGridY < 1 then
+    if targetGridY < 1 and self.handleExtraAttributes then
         self.parent:handleExtraAttributes()
     end
 
@@ -995,7 +997,9 @@ function Tetris:createNextBlock()
     self.nextBlock = self:createRandomBlock()
 
     -- 更新下一个节点
-    self.nextBlock = self.parent:updateNextBlock(self.nextBlock)
+    if self.parent.updateNextBlock then
+        self.nextBlock = self.parent:updateNextBlock(self.nextBlock)
+    end
 
     return self.nextBlock
 end
