@@ -96,16 +96,25 @@
               <Image Name="pay_bg.png" />
               <Image Name="popup_bg.png" />
               <Image Name="power_bg.png" />
+              <Image Name="power_clearstone_open.png" />
+              <Image Name="power_clearstone_unopen.png" />
               <Image Name="power_fail_bg.png" />
               <Image Name="power_fail_retry.png" />
+              <Image Name="power_meteor_open.png" />
+              <Image Name="power_meteor_unopen.png" />
               <Image Name="power_pass_bg.png" />
               <Image Name="power_pass_continue.png" />
               <Image Name="power_pass_star.png" />
               <Image Name="power_pass_star1.png" />
               <Image Name="power_pass_succ.png" />
+              <Image Name="power_spar_open.png" />
+              <Image Name="power_spar_unopen.png" />
+              <Image Name="power_star.png" />
               <Image Name="power_start.png" />
               <Image Name="power_start_bg.png" />
               <Image Name="power_target.png" />
+              <Image Name="power_time_open.png" />
+              <Image Name="power_time_unopen.png" />
               <Image Name="powername_bg.png" />
               <Image Name="progress.png" />
               <Image Name="progress_bg.png" />
@@ -174,10 +183,11 @@
         <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisSearchAnimation.csd" Type="Scene" />
+        <Project Name="TetrisSpar.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TetrisSpar.csd" Type="Scene" />
+        <Project Name="TetrisPowerArmy.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
