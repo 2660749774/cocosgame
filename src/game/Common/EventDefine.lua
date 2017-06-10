@@ -10,4 +10,7 @@ local EventDefine = {}
 -- 副本进度更新
 EventDefine.POWER_PROGRESS_UPDATE = "POWER_PROGRESS_UPDATE"
 
+-- 生命值变化
+EventDefine.PLAYER_LIFES_UPDATE = "PLAYER_LIFES_UPDATE"
+
 return EventDefine

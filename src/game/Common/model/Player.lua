@@ -11,9 +11,6 @@ local Player = class("Player")
 -- 构造函数
 -- @function [parent=#Player] ctor
 function Player:ctor()
-    -- 生命值
-    self.lifes = 0
-
     -- 用户Id
     self.userId = ""
 
@@ -35,10 +32,6 @@ function Player:update(data)
     log:showTable(data)
     if data == nil then
         return
-    end
-
-    if data.lifes then
-        self.lifes = data.lifes
     end
 
     if data.userId then

@@ -38,6 +38,9 @@ function TetrisPowerFailPanel:onCreate(powerId, armyId, score, needScore, parent
 
     self:addLayoutWithMask(layout, "layout.ModalMask")
 
+    -- 减少生命
+    utils.gameArchive:loseLife(1)
+
     self.btnRetry:addClickEventListener(handler(self, self.powerRetry))
     self.btnClose:addClickEventListener(function() 
         self:getScene():popPanel()
@@ -49,6 +52,11 @@ end
 -- 点击挑战副本
 -- @function [parent=#TetrisPowerFailPanel] powerContinue
 function TetrisPowerFailPanel:powerRetry()
+    if utils.gameArchive:queryData("lifes") < 1 then
+        Tips.showSceneTips("您的生命值已耗费完毕，请等待恢复", 2)
+        return
+    end
+    
     local parent = self.parent
     self:getScene():popPanel()
     parent:restartGame()

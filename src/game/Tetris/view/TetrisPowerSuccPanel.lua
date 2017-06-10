@@ -70,7 +70,7 @@ function TetrisPowerSuccPanel:onCreate(powerId, armyId, star, score)
         emgr:dispatchEvent(EventDefine.POWER_PROGRESS_UPDATE, progress)
     end
     utils.gameArchive:printData()
-    utils.gameArchive:saveData()
+    utils.gameArchive:saveData(true)
 
 
     -- local powerData = utils.gameArchive:getData()['power']

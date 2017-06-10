@@ -109,6 +109,9 @@ function LoginScene:onGetPlayerInfo(response)
 
     self:updateTips("获取角色信息成功")
 
+    -- 同步网络数据
+    utils.gameArchive:syncServerData()
+
     scheduler.performWithDelayGlobal(function() 
         -- 切换场景
         app:changeScene("Tetris")

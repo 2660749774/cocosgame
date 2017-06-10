@@ -54,10 +54,9 @@ function TetrisScene:onCreate()
     self:fixLayout(barLayout)
     local size = barLayout['bar_bg']:getContentSize()
     barLayout['bar_bg']:setContentSize(cc.size(display.width, size.height))
-    local lbLife = barLayout['lb_energy']
-    if mmgr.player then
-        lbLife:setString(mmgr.player.lifes)
-    end
+    self.lbLife = barLayout['lb_energy']
+    local lifes = utils.gameArchive:queryData("lifes") or 5
+    self.lbLife:setString(lifes)
 
     self:addObject(barLayout["root"], "scene")
 
@@ -80,8 +79,10 @@ function TetrisScene:onCreate()
     -- self.btnMultiplayer:addClickEventListener(handler(self, self.playMulti))
 
     -- 注册事件监听
-    self.eventListener = handler(self, self.updatePowerProgress)
+    self.powerProgressEventListener = handler(self, self.updatePowerProgress)
+    self.lifeEventListener = handler(self, self.updatePlayerLife)
     emgr:addEventListener(EventDefine.POWER_PROGRESS_UPDATE, self.eventListener)
+    emgr:addEventListener(EventDefine.PLAYER_LIFES_UPDATE, self.lifeEventListener)
 
     -- 添加触摸监听
     self:addLayerTouchListener()
@@ -137,6 +138,15 @@ function TetrisScene:updatePowerProgress(progress)
     if btn then
         btn.btn:setEnabled(true)
     end
+end
+
+--------------------------------
+-- 更新玩家生命值
+-- @function [parent=#TetrisScene] updatePlayerLife
+function TetrisScene:updatePlayerLife(lifes)
+    log:info("do updatePlayerLife event, lifes:%s", lifes)
+
+    self.lbLife:setString(lifes)
 end
 
 --------------------------------

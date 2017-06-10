@@ -39,12 +39,6 @@ function Game:startup()
     -- 初始化native桥
     nativeBridge.init()
 
-    -- 初始化config
-    cc.exports.confmgr = require("game.Common.ConfigManager").new("")
-
-    -- model manager
-    cc.exports.mmgr = require("game.Common.ModelManager")
-
     -- 切换到入口函数
     self:changeScene("Login")
 end

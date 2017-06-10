@@ -27,6 +27,12 @@ actions.createPlayer = Action.new("player@createPlayer", "")
 -- 获取用户信息
 actions.getPlayerInfo = Action.new("player@getPlayerInfo", "")
 
+-- 单人副本
+actions.getPowerData = Action.new("player@getPowerData", "")
+actions.syncPowerData = Action.new("player@syncPowerData", "data=%s")
+actions.syncLife = Action.new("player@syncLife", "lifes=%s&timestamp=%s")
+
+
 -- 多人对战相关
 actions.joinFight = Action.new("fight@join", "")
 actions.cancelFight = Action.new("fight@cancel", "")

@@ -64,6 +64,11 @@ end
 -- 点击挑战副本
 -- @function [parent=#TetrisPowerStartPanel] powerStart
 function TetrisPowerStartPanel:powerStart()
+    if utils.gameArchive:queryData("lifes") < 1 then
+        Tips.showSceneTips("您的生命值已耗费完毕，请等待恢复", 2)
+        return
+    end
+    
     local animationLayout = require("layout.TetrisStartAnimation").create()
     animationLayout['panel']:setAnchorPoint(0.5, 0.5)
     animationLayout['panel']:setPosition(display.cx, display.cy)
