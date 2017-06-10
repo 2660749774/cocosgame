@@ -27,6 +27,7 @@ function TetrisSparPanel:onCreate(powerId, armyId)
     self.lbLeftBlockNum = self.layout['lb_left_line']
     self.totalBlockNum = 0
     self.blockNum = 0
+    self.animTime = 0
 
     self.lbResult = self.layout['lb_result']
     self.totalFangkuaiNum = 0 -- 需要收集方块数量
@@ -92,8 +93,7 @@ function TetrisSparPanel:updateNextBlock(nextBlock)
 
         nextBlock.blocks[index].downBlock = true
         nextBlock.blocks[index].pic = nextBlock.pic
-        log:info("add downblock sprite:%s, downblock:%s", nextBlock.blocks[index], nextBlock.blocks[index].downBlock)
-        -- nextBlock.blocks[index].extraAttributes = true
+
         label:setString("晶")
         label:setPosition(13.5, 13.5)
         nextBlock.blocks[index]:addChild(label)
@@ -105,7 +105,7 @@ end
 --------------------------------
 -- 更新剩余方块数
 -- @function [parent=#TetrisSparPanel] roundStart
-function TetrisSparPanel:updateBlockNum()
+function TetrisSparPanel:updateBlockNum(anim)
     local blockNum = self.totalBlockNum - self.blockNum
     if blockNum <= 0 then
         self.tetris:gameOver()
@@ -113,6 +113,13 @@ function TetrisSparPanel:updateBlockNum()
     end
     self.lbLeftBlockNum:setString(blockNum)
     self.lbResult:setString(self.displayFangkuaiNum .. "/" .. self.totalFangkuaiNum)
+
+    if anim then
+        local action1 = cc.ScaleTo:create(0.5, 2)
+        local action2 = cc.ScaleTo:create(0.2, 1)
+        local sequence = cc.Sequence:create(action1, delayAction, action2)
+        self.lbResult:runAction(sequence)
+    end
 end
 
 --------------------------------
@@ -141,15 +148,13 @@ function TetrisSparPanel:handleExtraAttributes(attributes)
     if self.collectFangkuaiNum >= self.totalFangkuaiNum then
         self.pass = true
     end
-    log:info("realSocre:%s", self.collectFangkuaiNum)
+    -- log:info("realScore:%s", self.collectFangkuaiNum)
 end
 
 --------------------------------
 -- 更新收集星星个数
 -- @function [parent=#TetrisSparPanel] updateFlyStar
 function TetrisSparPanel:updateFlyStar()
-    self.displayFangkuaiNum = self.displayFangkuaiNum + 1
-
     -- 播放动画
     local label = ccui.Text:create()
     label:setFontSize(32)
@@ -163,15 +168,22 @@ function TetrisSparPanel:updateFlyStar()
     label:setPosition(x + 50, y)
     self:addChild(label)
 
+    local delayAction = cc.DelayTime:create(self.animTime)
     local action1 = cc.MoveTo:create(0.5, cc.p(x, y))
     local action2 = cc.FadeOut:create(0.5)
-    local sequence = cc.Sequence:create(action1, action2, cc.CallFunc:create(function() 
+    self.animTime = self.animTime + 1 -- 延迟时间 + 1
+    local sequence = cc.Sequence:create(delayAction, action1, action2, cc.CallFunc:create(function() 
+        -- 移除自身
         label:removeFromParent()
-        self:updateBlockNum()
+
+        -- 增加分数，更新分数显示
+        self.displayFangkuaiNum = self.displayFangkuaiNum + 1
+        self:updateBlockNum(true)
+        self.animTime = self.animTime - 1
     end))
     label:runAction(sequence)
 
-    log:info("displayScore:%s, realScore:%s", self.displayFangkuaiNum, self.collectFangkuaiNum)
+    -- log:info("displayScore:%s, realScore:%s", self.displayFangkuaiNum, self.collectFangkuaiNum)
     if self.displayFangkuaiNum >= self.totalFangkuaiNum then
         -- 胜利了，该模式下胜利即3颗星星通关
         -- Tips.showSceneTips("恭喜您获胜了！！！", 3)

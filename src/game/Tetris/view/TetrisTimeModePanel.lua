@@ -34,6 +34,7 @@ function TetrisTimeModePanel:onCreate(powerId, armyId)
     self.time = 0
     self.needScore = 0
     self.score = 0
+    self.animTime = 0
     self:loadConfig(TetrisPowerConf.TYPE_TIMEMODE, powerId, armyId)
     self:updateTime()
     self:updateScoreProgress()
@@ -183,29 +184,36 @@ function TetrisTimeModePanel:handleExtraAttributes(attributes)
 
         local label = ccui.Text:create()
         label:setFontSize(32)
-        label:setColor(cc.c3b(39, 82, 86))
+        label:setColor(cc.c3b(255, 255, 255))
         label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
-        label:setString("+"..attributes.time)
+        label:setString("+" .. attributes.time)
 
         local x, y = self.lbTimeSec:getPosition()
         label:setPosition(x + 50, y)
         self:addChild(label)
 
+        local delayAction = cc.DelayTime:create(self.animTime)
         local action1 = cc.MoveTo:create(0.5, cc.p(x, y))
         local action2 = cc.FadeOut:create(0.5)
-        local sequence = cc.Sequence:create(action1, action2, cc.CallFunc:create(function() 
+        self.animTime = self.animTime + 1
+        local sequence = cc.Sequence:create(delayAction, action1, action2, cc.CallFunc:create(function() 
             label:removeFromParent()
+
+            self.animTime = self.animTime - 1
             self:updateTime()
         end))
         label:runAction(sequence)
     else
         self.score = self.score + attributes.score
+        if self.score >= self.needScore then
+            self.pass = true
+        end
 
         local label = ccui.Text:create()
         label:setFontSize(32)
-        label:setColor(cc.c3b(39, 82, 86))
+        label:setColor(cc.c3b(255, 255, 255))
         label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
-        label:setString("+"..attributes.score)
+        label:setString("+" .. attributes.score)
 
         local x, y = self.lbResult:getPosition()
         local pos = self.lbResult:convertToWorldSpace(cc.vertex2F(0, 0))
@@ -213,10 +221,14 @@ function TetrisTimeModePanel:handleExtraAttributes(attributes)
         label:setPosition(x + 50, y)
         self:addChild(label)
 
+        local delayAction = cc.DelayTime:create(self.animTime)
         local action1 = cc.MoveTo:create(0.5, cc.p(x, y))
         local action2 = cc.FadeOut:create(0.5)
-        local sequence = cc.Sequence:create(action1, action2, cc.CallFunc:create(function() 
+        self.animTime = self.animTime + 1
+        local sequence = cc.Sequence:create(delayAction, action1, action2, cc.CallFunc:create(function() 
             label:removeFromParent()
+
+            self.animTime = self.animTime - 1
             self:updateScore(0)
         end))
         label:runAction(sequence)

@@ -89,8 +89,15 @@ end
 --------------------------------
 -- 更新分数
 -- @function [parent=#TetrisMeteor2Panel] updateScoreProgress
-function TetrisMeteor2Panel:updateScoreProgress()
+function TetrisMeteor2Panel:updateScoreProgress(anim)
     self.lbResult:setString(self.displayScore .. "/" .. self.needScore)
+
+    if anim then
+        local action1 = cc.ScaleTo:create(0.5, 2)
+        local action2 = cc.ScaleTo:create(0.2, 1)
+        local sequence = cc.Sequence:create(action1, delayAction, action2)
+        self.lbResult:runAction(sequence)
+    end
 end
 
 --------------------------------
@@ -98,7 +105,6 @@ end
 -- @function [parent=#TetrisMeteor2Panel] updateNextBlock
 function TetrisMeteor2Panel:updateNextBlock(nextBlock)
     if RandomUtil:nextDouble() < self.starProb then
-        log:info("updateNextBlock add star")
         local addNum = RandomUtil:nextInt(2)
         for i = 1, addNum do
             if addNum > #nextBlock.blocks then
@@ -238,7 +244,7 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
     if self.scoreNum >= self.needScore then
         self.pass = true
     end
-    log:info("realScore:%s", self.scoreNum)
+    -- log:info("realScore:%s", self.scoreNum)
 end
 
 --------------------------------
@@ -246,9 +252,9 @@ end
 -- @function [parent=#TetrisMeteor2Panel] updateFlyStar
 function TetrisMeteor2Panel:updateFlyStar()
     self.displayScore = self.displayScore + 1
-    self:updateScoreProgress()
+    self:updateScoreProgress(true)
 
-    log:info("displayScore:%s, realScore:%s", self.displayScore, self.scoreNum)
+    -- log:info("displayScore:%s, realScore:%s", self.displayScore, self.scoreNum)
     if self.displayScore >= self.needScore then
         -- 胜利了，该模式下胜利即3颗星星通关
         -- Tips.showSceneTips("恭喜您获胜了！！！", 3)

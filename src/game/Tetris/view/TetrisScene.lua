@@ -81,7 +81,7 @@ function TetrisScene:onCreate()
 
     -- 注册事件监听
     self.eventListener = handler(self, self.updatePowerProgress)
-    emgr:addEventListener(EventDefine.EventDefine, self.eventListener)
+    emgr:addEventListener(EventDefine.POWER_PROGRESS_UPDATE, self.eventListener)
 
     -- 添加触摸监听
     self:addLayerTouchListener()
@@ -134,12 +134,9 @@ function TetrisScene:updatePowerProgress(progress)
 
     local layout = self.layoutMap[self.currPowerId]
     local btn = layout['btn' .. self.currArmyId]
-    local conf = TetrisPowerConf.loadConfig(self.currPowerId, self.currArmyId)
-    local pic = string.format("ui/tetris/power/%s.png", conf.pic)
-    btn:loadTextureNormal(pic,0)
-    btn:loadTexturePressed(pic,0)
-    btn:loadTextureDisabled(pic,0)
-    btn:setVisible(true)
+    if btn then
+        btn.btn:setEnabled(true)
+    end
 end
 
 --------------------------------
@@ -293,6 +290,7 @@ function TetrisScene:initArmyBtn(layout, idx, i)
 
     local x, y = btn:getPosition()
     btn:removeFromParent()
+    layout['btn' .. i] = newBtn
     newBtn:setPosition(x - 100, y)
     layout['root']:addChild(newBtn)
     if not self.layoutMap[powerId] then
