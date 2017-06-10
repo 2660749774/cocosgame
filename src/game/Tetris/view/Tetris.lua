@@ -616,7 +616,7 @@ function Tetris:checkBlockRemove()
     
     -- 检查引用计数器 + 1
     self.checkBlockRemoveTimes = self.checkBlockRemoveTimes + 1
-    log:info("checkBlockRemove start, count:%s", self.checkBlockRemoveTimes)
+    -- log:info("block remove times step1, count:%s", self.checkBlockRemoveTimes)
 
     -- 消除判断
     local maxLine = -1
@@ -664,7 +664,7 @@ function Tetris:checkBlockRemove()
                     local block = self.grids[i][j]
                     self.grids[i][j] = 0
                     self.grids[i - removeLineNums][j] = block
-
+                    block.moveLines = self.removeLineNums
                     table.insert(self.upperBlockList, block)
                 end
             end           
@@ -708,7 +708,6 @@ function Tetris:removeCallBack(sender)
         else
             sender:removeFromParent()
         end
-        
     end
 
     self.callbackCount = self.callbackCount + 1
@@ -718,10 +717,10 @@ function Tetris:removeCallBack(sender)
 
     -- 处理上面的方块
     if self.upperBlockList and #self.upperBlockList > 0 then
-        local removeLineNums = self.removeLineNums
         for _, block in pairs(self.upperBlockList) do 
             local x, y = block:getPosition()
-            block:setPosition(cc.p(x, y - self.blockWidth * removeLineNums))
+            block:setPosition(cc.p(x, y - self.blockWidth * block.moveLines))
+            block.moveLines = 0
         end
         self.upperBlockList = {}
     end
@@ -756,7 +755,7 @@ function Tetris:removeCallBack(sender)
     -- else
     -- 检查引用计数器 - 1
     self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
-
+    -- log:info("block remove times step5, count:%s", self.checkBlockRemoveTimes)
     if self.checkBlockRemoveTimes == 0 then
         self:roundStart()
     end
@@ -768,32 +767,16 @@ end
 -- 处理下沉方块
 -- @function [parent=#Tetris] handleDownBlock
 function Tetris:handleDownBlock(sender)
-    -- log:info("handleDownBlock:%s", sender)
     local gridX = sender.gridX
     local gridY = sender.gridY
 
+    -- 重新添加block
     local x, y = self:convertGridToPosition(gridX, gridY)
     local block = sender
     block:retain()
     block:removeFromParent()
     block:setPosition(x, y)
     self.bg:addChild(block)
-
-    -- local x, y = self:convertGridToPosition(gridX, gridY)
-
-    -- local block = cc.Sprite:create(sender.pic)
-    -- block.downBlock = true
-    -- block.pic = sender.pic
-    -- block:setAnchorPoint(0, 0)
-    -- block:setPosition(x, y)
-    -- self.bg:addChild(block)
-
-    -- local label = ccui.Text:create()
-    -- label:setFontSize(20)
-    -- label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
-    -- label:setString("晶")
-    -- label:setPosition(13.5, 13.5)
-    -- block:addChild(label)
 
     -- 检测下沉位置
     local targetGridY = self:checkDownGridPos(gridX, gridY)
@@ -802,16 +785,18 @@ function Tetris:handleDownBlock(sender)
     -- log:info("final pos:%s %s", targetX, targetY)
 
     self.checkBlockRemoveTimes = self.checkBlockRemoveTimes + 1
+    -- log:info("block remove times step2, count:%s", self.checkBlockRemoveTimes)
     -- 原来的位置
     if (targetGridY == gridY) then
-        self.grids[targetGridY][gridX] = block
+        self:insertBlock(gridX, targetGridY, block)
         self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
+        -- log:info("block remove times step3, count:%s", self.checkBlockRemoveTimes)
         return
     end
 
     -- 等分
-    if targetGridY < 1 and self.handleExtraAttributes then
-        self.parent:handleExtraAttributes()
+    if targetGridY < 1 then
+        self:handleExtraAttributes()
     end
 
     -- 创建动画
@@ -819,11 +804,8 @@ function Tetris:handleDownBlock(sender)
     local sequence = cc.Sequence:create(action, 
             cc.CallFunc:create(
                 function() 
-                    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
                     -- 移除自身
                     if targetGridY < 1 then
-                        -- 得分
-                        log:info("得分")
                         -- 回调父类
                         if self.parent.updateFlyStar then
                             self.parent:updateFlyStar()
@@ -838,15 +820,34 @@ function Tetris:handleDownBlock(sender)
                         self.grids[targetGridY][gridX] = block
                     end
 
+                    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
+                    -- log:info("block remove times step4, count:%s", self.checkBlockRemoveTimes)
                     if self.checkBlockRemoveTimes == 0 then
                         -- 再次检查消除
                         self:checkBlockRemove()
                     end
                 end
-                )
             )
+    )
     
     block:runAction(sequence)
+end
+
+--------------------------------
+-- 固定位置插入一个block
+-- @function [parent=#BaseBlock] insertBlock
+function Tetris:insertBlock(gridX, gridY, block)
+    for i = #self.grids, gridY, -1 do
+        local block = self.grids[i][gridX]
+        if block and block ~= 0 then
+            self.grids[i + 1][gridX] = block
+            self.grids[i][gridX] = 0
+            if block.moveLines then
+                block.moveLines = block.moveLines - 1
+            end
+        end          
+    end
+    self.grids[gridY][gridX] = block
 end
 
 --------------------------------
@@ -914,7 +915,9 @@ end
 -- 处理额外属性
 -- @function [parent=#Tetris] handleExtraAttributes
 function Tetris:handleExtraAttributes(sender)
-    self.parent:handleExtraAttributes(sender)
+    if self.parent.handleExtraAttributes then
+        self.parent:handleExtraAttributes(sender)
+    end
 end
 
 --------------------------------
@@ -1008,10 +1011,10 @@ end
 -- 更新block
 -- @function [parent=#Tetris] updateBlock
 function Tetris:updateBlock(block, nextBlock)
-    log:info("updateblock start")
+    -- log:info("updateblock start")
     for i=1, #nextBlock.blocks do 
         local sprite = nextBlock.blocks[i]
-        log:info("updateblock sprite:%s, downblock:%s", sprite, sprite.downBlock)
+        -- log:info("updateblock sprite:%s, downblock:%s", sprite, sprite.downBlock)
         if sprite.hasStar or sprite.extraAttributes or sprite.downBlock then
             sprite:retain()
             sprite:removeFromParent()
