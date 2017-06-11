@@ -38,17 +38,24 @@ function TetrisMeteor2Panel:onCreate(powerId, armyId)
     self:loadConfig(TetrisPowerConf.TYPE_METEOR2, powerId, armyId)
 
     -- 设置方块
-    local fangkuaiBg = self.layout['fangkuai_bg']
-    fangkuaiBg:setTexture("tetris/fangkuai9.png")
-    local animationLayout = require("layout.TetrisMeteorAnimation").create()
-    local meteor = animationLayout['root']
-    local animation = animationLayout['animation']
-    fangkuaiBg:addChild(meteor)
-    meteor:runAction(animation)
-    animation:gotoFrameAndPlay(0)
+    -- local fangkuaiBg = self.layout['fangkuai_bg']
+    -- fangkuaiBg:setTexture("tetris/fangkuai9.png")
+    -- local animationLayout = require("layout.TetrisMeteorAnimation").create()
+    -- local meteor = animationLayout['root']
+    -- local animation = animationLayout['animation']
+    -- fangkuaiBg:addChild(meteor)
+    -- meteor:runAction(animation)
+    -- animation:gotoFrameAndPlay(0)
 
     self:updateTime()
     self:updateScoreProgress()
+
+    -- 设置关卡数
+    if powerId == 1 then
+        self.lbArmyNum:setString(armyId)
+    else
+        self.lbArmyNum:setString(59 + armyId)
+    end
 end
 
 --------------------------------
@@ -132,6 +139,8 @@ function TetrisMeteor2Panel:updateNextBlock(nextBlock)
             sprite:addChild(meteor)
             meteor:runAction(animation)
             animation:gotoFrameAndPlay(0)  
+            sprite.animation = animation
+
             oldSprite:removeFromParent()
             nextBlock:addChild(sprite)
         end

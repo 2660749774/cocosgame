@@ -38,6 +38,13 @@ function TetrisTimeModePanel:onCreate(powerId, armyId)
     self:loadConfig(TetrisPowerConf.TYPE_TIMEMODE, powerId, armyId)
     self:updateTime()
     self:updateScoreProgress()
+
+    -- 设置关卡数
+    if powerId == 1 then
+        self.lbArmyNum:setString(armyId)
+    else
+        self.lbArmyNum:setString(59 + armyId)
+    end
 end
 
 --------------------------------
@@ -75,8 +82,9 @@ end
 -- 更新分数
 -- @function [parent=#TetrisTimeModePanel] updateScore
 function TetrisTimeModePanel:updateScoreProgress()
-    self.lbResult:setString(tostring(self.score))
+    self.lbResult:setString(math.floor(self.score * 100 / self.needScore) .. "%")
     self.pgResult:setPercent(math.floor(self.score * 100 / self.needScore))
+
 end
 
 
@@ -148,16 +156,16 @@ function TetrisTimeModePanel:updateNextBlock(nextBlock)
     if RandomUtil:nextDouble() < self.bonusProb then
         log:info("updateNextBlock add time or score")
 
-        local label = ccui.Text:create()
-        label:setFontSize(20)
-        label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
+        -- local label = ccui.Text:create()
+        -- label:setFontSize(20)
+        -- label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
         local index = RandomUtil:nextInt(#nextBlock.blocks)
 
         nextBlock.blocks[index].extraAttributes = true
         if RandomUtil:nextBoolean() then
             nextBlock.blocks[index].time = 10
-            label:setString("时")
-            label:setPosition(13.5, 13.5)
+            -- label:setString("时")
+            -- label:setPosition(13.5, 13.5)
 
             local sprite = cc.Sprite:create("ui/tetris/power/time_flag.png")
             sprite:setPosition(13.5, 13.5)
@@ -165,9 +173,12 @@ function TetrisTimeModePanel:updateNextBlock(nextBlock)
             nextBlock.blocks[index]:addChild(sprite)
         else
             nextBlock.blocks[index].score = 100
-            label:setString("分")
-            label:setPosition(13.5, 13.5)
-            nextBlock.blocks[index]:addChild(label)
+
+            local sprite = cc.Sprite:create("ui/tetris/power/score_flag.png")
+            sprite:setPosition(13.5, 13.5)
+            -- label:setString("分")
+            -- label:setPosition(13.5, 13.5)
+            nextBlock.blocks[index]:addChild(sprite)
 
         end
     end

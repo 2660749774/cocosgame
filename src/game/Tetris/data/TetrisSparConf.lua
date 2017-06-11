@@ -53,11 +53,11 @@ TetrisSparConf.configMap = {}
 --------------------------------
 -- 构造函数
 -- @function [parent=#TetrisSparConf] ctor
-function TetrisSparConf:ctor(confId, blockType, collectBlockNum, maxBlockNum, blockProb, blockArray)
+function TetrisSparConf:ctor(confId, blockType, collectBlockNum, maxTime, blockProb, blockArray)
     self.confId = confId
     self.blockArray = blockArray
     self.blockType = blockType
-    self.maxBlockNum = maxBlockNum
+    self.maxTime = maxTime
     self.collectBlockNum = collectBlockNum
     self.blockProb = blockProb
     self.targetName = "收集晶石"
@@ -66,7 +66,7 @@ function TetrisSparConf:ctor(confId, blockType, collectBlockNum, maxBlockNum, bl
 end
 
 -- 第1章节第1关
-TetrisSparConf.new(1, "fangkuai3", 20, 100, 1, {
+TetrisSparConf.new(1, "fangkuai4", 20, 100, 1, {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

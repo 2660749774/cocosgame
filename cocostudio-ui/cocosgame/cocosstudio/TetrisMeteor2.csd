@@ -32,6 +32,38 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
+              <AbstractNodeData Name="lb_armynum" ActionTag="837407367" Tag="90" IconVisible="False" LeftMargin="295.0000" RightMargin="295.0000" TopMargin="23.1700" BottomMargin="1082.8300" CharWidth="25" CharHeight="30" LabelText="12" StartChar="0" ctype="TextAtlasObjectData">
+                <Size X="50.0000" Y="30.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="320.0000" Y="1097.8300" />
+                <Scale ScaleX="0.7000" ScaleY="0.7000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.9664" />
+                <PreSize X="0.0781" Y="0.0264" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/army_num.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="army_right_bg" ActionTag="1818855360" Tag="91" IconVisible="False" LeftMargin="337.9887" RightMargin="252.0113" TopMargin="23.1700" BottomMargin="1082.8300" ctype="SpriteObjectData">
+                <Size X="50.0000" Y="30.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="362.9887" Y="1097.8300" />
+                <Scale ScaleX="0.7000" ScaleY="0.7000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5672" Y="0.9664" />
+                <PreSize X="0.0781" Y="0.0264" />
+                <FileData Type="Normal" Path="ui/tetris/power/army_right_bg.png" Plist="" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="army_left_bg" ActionTag="1461509524" Tag="92" IconVisible="False" LeftMargin="251.1734" RightMargin="338.8266" TopMargin="23.1700" BottomMargin="1082.8300" ctype="SpriteObjectData">
+                <Size X="50.0000" Y="30.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="276.1734" Y="1097.8300" />
+                <Scale ScaleX="0.7000" ScaleY="0.7000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4315" Y="0.9664" />
+                <PreSize X="0.0781" Y="0.0264" />
+                <FileData Type="Normal" Path="ui/tetris/power/army_left_bg.png" Plist="" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
               <AbstractNodeData Name="btn_down_low" ActionTag="618124103" Tag="15" IconVisible="False" LeftMargin="125.3403" RightMargin="418.6597" TopMargin="1019.4208" BottomMargin="20.5792" TouchEnable="True" FontSize="28" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="66" Scale9Height="74" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="96.0000" Y="96.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -190,6 +222,48 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
+              <AbstractNodeData Name="time_bg_1" ActionTag="1662164845" Tag="93" IconVisible="False" LeftMargin="250.4610" RightMargin="345.5390" TopMargin="62.9468" BottomMargin="1029.0532" ctype="SpriteObjectData">
+                <Size X="44.0000" Y="44.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="272.4610" Y="1051.0532" />
+                <Scale ScaleX="0.8000" ScaleY="0.8000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4257" Y="0.9252" />
+                <PreSize X="0.0688" Y="0.0387" />
+                <FileData Type="Normal" Path="ui/tetris/power/time_bg.png" Plist="" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="lb_time_minute" ActionTag="-1298337096" Tag="96" IconVisible="False" LeftMargin="282.0270" RightMargin="297.9730" TopMargin="63.0000" BottomMargin="1023.0000" CharWidth="30" CharHeight="50" LabelText="10" StartChar="0" ctype="TextAtlasObjectData">
+                <Size X="60.0000" Y="50.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="312.0270" Y="1048.0000" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4875" Y="0.9225" />
+                <PreSize X="0.0938" Y="0.0440" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/number_red.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="lb_time_sec" ActionTag="846302686" Tag="95" IconVisible="False" LeftMargin="337.8168" RightMargin="242.1832" TopMargin="62.9987" BottomMargin="1023.0013" CharWidth="30" CharHeight="50" LabelText="10" StartChar="0" ctype="TextAtlasObjectData">
+                <Size X="60.0000" Y="50.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="367.8168" Y="1048.0013" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5747" Y="0.9225" />
+                <PreSize X="0.0938" Y="0.0440" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/number_red.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="sp_mh" ActionTag="361783772" Tag="94" IconVisible="False" LeftMargin="324.6265" RightMargin="285.3735" TopMargin="58.9990" BottomMargin="1027.0010" ctype="SpriteObjectData">
+                <Size X="30.0000" Y="50.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="339.6265" Y="1052.0010" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5307" Y="0.9261" />
+                <PreSize X="0.0469" Y="0.0440" />
+                <FileData Type="Normal" Path="ui/tetris/power/mh.png" Plist="" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="320.0000" Y="568.0000" />
@@ -241,24 +315,35 @@
           <AbstractNodeData Name="lb_right_bg" ActionTag="-1049757638" Tag="43" IconVisible="False" LeftMargin="400.5939" RightMargin="-0.5939" TopMargin="-1.0000" BottomMargin="977.0000" ctype="SpriteObjectData">
             <Size X="240.0000" Y="160.0000" />
             <Children>
-              <AbstractNodeData Name="fangkuai_bg" ActionTag="-222354685" Tag="44" IconVisible="False" LeftMargin="121.4906" RightMargin="72.5094" TopMargin="30.7910" BottomMargin="83.2090" ctype="SpriteObjectData">
-                <Size X="46.0000" Y="46.0000" />
+              <AbstractNodeData Name="target_bottom_5" ActionTag="484448754" Tag="97" IconVisible="False" LeftMargin="60.3550" RightMargin="17.6450" TopMargin="7.7928" BottomMargin="33.2072" ctype="SpriteObjectData">
+                <Size X="162.0000" Y="119.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="144.4906" Y="106.2090" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Position X="141.3550" Y="92.7072" />
+                <Scale ScaleX="0.8000" ScaleY="0.8000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6020" Y="0.6638" />
-                <PreSize X="0.1917" Y="0.2875" />
-                <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
+                <PrePosition X="0.5890" Y="0.5794" />
+                <PreSize X="0.6750" Y="0.7437" />
+                <FileData Type="Normal" Path="ui/tetris/power/target_bottom.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="lb_result" ActionTag="1252464510" Tag="45" IconVisible="False" LeftMargin="91.9845" RightMargin="43.0155" TopMargin="73.8611" BottomMargin="61.1389" CharWidth="15" CharHeight="25" LabelText="100/100" StartChar="/" ctype="TextAtlasObjectData">
-                <Size X="105.0000" Y="25.0000" />
+              <AbstractNodeData Name="fangkuai_bg" ActionTag="-222354685" Tag="44" IconVisible="False" LeftMargin="115.4907" RightMargin="74.5093" TopMargin="28.7910" BottomMargin="81.2090" ctype="SpriteObjectData">
+                <Size X="50.0000" Y="50.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="144.4845" Y="73.6389" />
+                <Position X="140.4907" Y="106.2090" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6020" Y="0.4602" />
+                <PrePosition X="0.5854" Y="0.6638" />
+                <PreSize X="0.1917" Y="0.2875" />
+                <FileData Type="Normal" Path="ui/tetris/power/meteor_bg.png" Plist="" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="lb_result" ActionTag="1252464510" Tag="45" IconVisible="False" LeftMargin="90.9847" RightMargin="44.0153" TopMargin="81.8615" BottomMargin="53.1385" CharWidth="15" CharHeight="25" LabelText="100/100" StartChar="/" ctype="TextAtlasObjectData">
+                <Size X="105.0000" Y="25.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="143.4847" Y="65.6385" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5979" Y="0.4102" />
                 <PreSize X="0.4375" Y="0.1563" />
                 <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/number.png" Plist="" />
               </AbstractNodeData>
@@ -271,37 +356,6 @@
             <PreSize X="0.3750" Y="0.1408" />
             <FileData Type="Normal" Path="ui/tetris/power/lb_right_bg.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="sp_mh" ActionTag="-176944832" Tag="107" IconVisible="False" LeftMargin="303.6265" RightMargin="306.3735" TopMargin="41.0000" BottomMargin="1045.0000" ctype="SpriteObjectData">
-            <Size X="30.0000" Y="50.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="318.6265" Y="1070.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4979" Y="0.9419" />
-            <PreSize X="0.0469" Y="0.0440" />
-            <FileData Type="Normal" Path="ui/tetris/power/mh.png" Plist="" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="lb_time_sec" ActionTag="1302241796" Tag="108" IconVisible="False" LeftMargin="333.8164" RightMargin="246.1836" TopMargin="45.0000" BottomMargin="1041.0000" CharWidth="30" CharHeight="50" LabelText="10" StartChar="0" ctype="TextAtlasObjectData">
-            <Size X="60.0000" Y="50.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="363.8164" Y="1066.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5685" Y="0.9384" />
-            <PreSize X="0.0938" Y="0.0440" />
-            <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/number_red.png" Plist="" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="lb_time_minute" ActionTag="-1474650192" Tag="109" IconVisible="False" LeftMargin="245.0262" RightMargin="334.9738" TopMargin="45.0000" BottomMargin="1041.0000" CharWidth="30" CharHeight="50" LabelText="10" StartChar="0" ctype="TextAtlasObjectData">
-            <Size X="60.0000" Y="50.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="275.0262" Y="1066.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4297" Y="0.9384" />
-            <PreSize X="0.0938" Y="0.0440" />
-            <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/number_red.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -93,7 +93,7 @@ end
 function TetrisPowerStartPanel:setTargetBlock()
     local armyType = self.powerConf.armyType
 
-    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE or armyType == TetrisPowerConf.TYPE_SPAR then
+    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
         local pic = string.format("tetris/%s.png", self.powerDetailconf.blockType)
         self.spTarget:setTexture(pic)
         self.targetIntro:setVisible(false)
@@ -110,6 +110,9 @@ function TetrisPowerStartPanel:setTargetBlock()
         self.spTarget:addChild(meteor)
         meteor:runAction(animation)
         animation:gotoFrameAndPlay(0)
+    elseif armyType == TetrisPowerConf.TYPE_SPAR then
+        self.targetIntro:setVisible(false)
+        self.spTarget:setTexture("tetris/fangkuai11.png")
     end
 end
 

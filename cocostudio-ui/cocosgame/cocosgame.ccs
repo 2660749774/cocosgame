@@ -60,6 +60,9 @@
               <Image Name="anim_2.png" />
               <Image Name="anim_3.png" />
               <Image Name="anim_start.png" />
+              <Image Name="army_left_bg.png" />
+              <Image Name="army_num.png" />
+              <Image Name="army_right_bg.png" />
               <Image Name="bar_bg.png" />
               <Image Name="bar_choose.png" />
               <Image Name="bar_light.png" />
@@ -87,6 +90,7 @@
               <Image Name="lb_right_bg.png" />
               <Image Name="line.png" />
               <Image Name="main_bar_bg.png" />
+              <Image Name="meteor_bg.png" />
               <Image Name="meteor1.png" />
               <Image Name="meteor2.png" />
               <Image Name="meteor3.png" />
@@ -118,15 +122,21 @@
               <Image Name="powername_bg.png" />
               <Image Name="progress.png" />
               <Image Name="progress_bg.png" />
+              <Image Name="progress_blue.png" />
               <Image Name="pvp_bg.png" />
+              <Image Name="score_bg.png" />
+              <Image Name="spar_bg.png" />
               <Image Name="square1.png" />
               <Image Name="square2.png" />
               <Image Name="square3.png" />
               <Image Name="square4.png" />
               <Image Name="start_bg.png" />
+              <Image Name="target_bottom.png" />
+              <Image Name="time_bg.png" />
               <Image Name="unopen_bg.png" />
               <Image Name="vol_off.png" />
               <Image Name="vol_on.png" />
+              <Image Name="water_bg.png" />
             </Folder>
             <Image Name="bg.png" />
             <Image Name="bg_bk.png" />
@@ -177,6 +187,7 @@
         <Project Name="TetrisMeteor.csd" Type="Scene" />
         <Project Name="TetrisMeteor2.csd" Type="Scene" />
         <Project Name="TetrisMeteorAnimation.csd" Type="Scene" />
+        <Project Name="TetrisPowerArmy.csd" Type="Scene" />
         <Project Name="TetrisPowerLoop.csd" Type="Scene" />
         <Project Name="TetrisPowerStart.csd" Type="Scene" />
         <Project Name="TetrisPvp.csd" Type="Scene" />
@@ -187,7 +198,6 @@
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TetrisPowerArmy.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

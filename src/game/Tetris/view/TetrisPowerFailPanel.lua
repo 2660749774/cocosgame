@@ -68,7 +68,7 @@ end
 function TetrisPowerFailPanel:setTargetBlock()
     local armyType = self.powerConf.armyType
 
-    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE or armyType == TetrisPowerConf.TYPE_SPAR then
+    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
         local pic = string.format("tetris/%s.png", self.powerDetailconf.blockType)
         self.spTarget:setTexture(pic)
     elseif armyType == TetrisPowerConf.TYPE_TIMEMODE then
@@ -81,6 +81,8 @@ function TetrisPowerFailPanel:setTargetBlock()
         self.spTarget:addChild(meteor)
         meteor:runAction(animation)
         animation:gotoFrameAndPlay(0)
+    elseif armyType == TetrisPowerConf.TYPE_SPAR then
+        self.spTarget:setTexture("tetris/fangkuai11.png")
     end
 end
 

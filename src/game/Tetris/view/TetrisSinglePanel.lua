@@ -29,6 +29,7 @@ function TetrisSinglePanel:onCreate(layout)
     self.btnDownLow = self.layout['btn_down_low']
     self.leftBg = self.layout['lb_left_bg']
     self.rightBg = self.layout['lb_right_bg']
+    self.lbArmyNum = self.layout['lb_armynum']
     self.randomCache = {}
     self.removeLineNums = 0
     self.score = 0

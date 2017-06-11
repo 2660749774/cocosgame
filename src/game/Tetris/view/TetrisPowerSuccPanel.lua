@@ -119,6 +119,8 @@ function TetrisPowerSuccPanel:setTargetBlock()
         self.spTarget:addChild(meteor)
         meteor:runAction(animation)
         animation:gotoFrameAndPlay(0)
+    elseif armyType == TetrisPowerConf.TYPE_SPAR then
+        self.spTarget:setTexture("tetris/fangkuai11.png")
     end
 end
 

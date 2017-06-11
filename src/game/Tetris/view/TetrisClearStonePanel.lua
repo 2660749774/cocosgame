@@ -28,17 +28,23 @@ function TetrisClearStonePanel:onCreate(powerId, armyId)
     self.blockNum = 0
 
     self.lbResult = self.layout['lb_result']
+    self.pgResult = self.layout['pg_result']
+    self.pgResult:loadSlidBallTextureNormal('', 0)
+    self.pgResult:loadSlidBallTexturePressed('', 0)
+    self.pgResult:loadSlidBallTextureDisabled('', 0)
+    self.pgResult:setPercent(0)
     self.totalFangkuaiNum = 0 -- 总方块数量
     self.removeFangkuaiNum = 0 -- 已消除方块数量
 
     self:loadConfig(TetrisPowerConf.TYPE_CLEAR_STONE, powerId, armyId)
-
-     -- 设置方块
-    local pic = string.format("tetris/%s.png", self.conf.blockType)
-    local fangkuaiBg = self.layout['fangkuai_bg']
-    fangkuaiBg:setTexture(pic)
-
     self:updateBlockNum()
+
+    -- 设置关卡数
+    if powerId == 1 then
+        self.lbArmyNum:setString(armyId)
+    else
+        self.lbArmyNum:setString(59 + armyId)
+    end
 end
 
 --------------------------------
@@ -97,7 +103,8 @@ function TetrisClearStonePanel:updateBlockNum()
         blockNum = 0
     end
     self.lbLeftBlockNum:setString(blockNum)
-    self.lbResult:setString(self.removeFangkuaiNum .. "/" .. self.totalFangkuaiNum)
+    self.lbResult:setString(math.floor(self.removeFangkuaiNum * 100 / self.totalFangkuaiNum) .. "%")
+    self.pgResult:setPercent(math.floor(self.removeFangkuaiNum * 100 / self.totalFangkuaiNum))
 end
 
 --------------------------------

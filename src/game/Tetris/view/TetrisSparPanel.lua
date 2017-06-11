@@ -24,10 +24,12 @@ function TetrisSparPanel:onCreate(powerId, armyId)
 
     self.powerId = powerId
     self.armyId = armyId
-    self.lbLeftBlockNum = self.layout['lb_left_line']
-    self.totalBlockNum = 0
-    self.blockNum = 0
+    self.lbTimeMinute = self.layout['lb_time_minute']
+    self.lbTimeSec = self.layout['lb_time_sec']
+    self.totalTime = 60 -- 总时间
+    self.time = 0
     self.animTime = 0
+    
 
     self.lbResult = self.layout['lb_result']
     self.totalFangkuaiNum = 0 -- 需要收集方块数量
@@ -36,11 +38,17 @@ function TetrisSparPanel:onCreate(powerId, armyId)
     self:loadConfig(TetrisPowerConf.TYPE_SPAR, powerId, armyId)
 
     -- 设置方块
-    local pic = string.format("tetris/%s.png", self.conf.blockType)
-    local fangkuaiBg = self.layout['fangkuai_bg']
-    fangkuaiBg:setTexture(pic)
+    -- local fangkuaiBg = self.layout['fangkuai_bg']
+    -- fangkuaiBg:setTexture("tetris/fangkuai11.png")
+    self:updateTime()
+    self:updateScoreProgress()
 
-    self:updateBlockNum()
+    -- 设置关卡数
+    if powerId == 1 then
+        self.lbArmyNum:setString(armyId)
+    else
+        self.lbArmyNum:setString(59 + armyId)
+    end
 end
 
 --------------------------------
@@ -75,7 +83,7 @@ end
 -- @function [parent=#TetrisSparPanel] loadConfig
 function TetrisSparPanel:loadConfig(type, powerId, armyId)
     self.conf = TetrisPowerConf.loadDetailConfig(powerId, armyId)
-    self.totalBlockNum = self.conf.maxBlockNum
+    self.totalTime = self.conf.maxTime
     self.totalFangkuaiNum = self.conf.collectBlockNum
     self.blockProb = self.conf.blockProb
 end
@@ -86,17 +94,19 @@ end
 -- @function [parent=#TetrisSparPanel] updateNextBlock
 function TetrisSparPanel:updateNextBlock(nextBlock)
     if RandomUtil:nextDouble() < self.blockProb then
-        local label = ccui.Text:create()
-        label:setFontSize(20)
-        label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
+        -- 添加晶石
         local index = RandomUtil:nextInt(#nextBlock.blocks)
+        local oldSprite = nextBlock.blocks[index]
 
-        nextBlock.blocks[index].downBlock = true
-        nextBlock.blocks[index].pic = nextBlock.pic
+        local sprite = cc.Sprite:create("tetris/fangkuai11.png")
+        sprite:setAnchorPoint(0, 0)
+        sprite:setPosition(oldSprite:getPosition())
+        sprite.downBlock = true
+        sprite.pic = "tetris/fangkuai11.png"
+        nextBlock.blocks[index] = sprite
 
-        label:setString("晶")
-        label:setPosition(13.5, 13.5)
-        nextBlock.blocks[index]:addChild(label)
+        oldSprite:removeFromParent()
+        nextBlock:addChild(sprite)
     end
 
     return nextBlock
@@ -104,14 +114,8 @@ end
 
 --------------------------------
 -- 更新剩余方块数
--- @function [parent=#TetrisSparPanel] roundStart
-function TetrisSparPanel:updateBlockNum(anim)
-    local blockNum = self.totalBlockNum - self.blockNum
-    if blockNum <= 0 then
-        self.tetris:gameOver()
-        blockNum = 0
-    end
-    self.lbLeftBlockNum:setString(blockNum)
+-- @function [parent=#TetrisSparPanel] updateScoreProgress
+function TetrisSparPanel:updateScoreProgress(anim)
     self.lbResult:setString(self.displayFangkuaiNum .. "/" .. self.totalFangkuaiNum)
 
     if anim then
@@ -133,11 +137,27 @@ function TetrisSparPanel:notifyGameOver()
 end
 
 --------------------------------
--- 更新分数
--- @function [parent=#TetrisSparPanel] updateScore
-function TetrisSparPanel:updateScore(removeLineNums)
-    self.blockNum =  self.blockNum + 1
-    self:updateBlockNum()
+-- 更新倒计时
+-- @function [parent=#TetrisTimeModePanel] onCreate
+function TetrisSparPanel:updateTime()
+    local leftTime = math.round(self.totalTime - self.time)
+    if leftTime <= 0 then
+        self.tetris:gameOver()
+        leftTime = 0
+    end
+
+    local minute = math.floor(leftTime / 60)
+    local sec = math.floor(leftTime % 60)
+    self.lbTimeMinute:setString(string.format("%02d", minute))
+    self.lbTimeSec:setString(string.format("%02d", sec))
+end
+
+--------------------------------
+-- 每秒帧事件
+-- @function [parent=#TetrisTimeModePanel] doUpdate
+function TetrisSparPanel:doUpdate(dt)
+    self.time = self.time + dt
+    self:updateTime()
 end
 
 --------------------------------
@@ -178,7 +198,7 @@ function TetrisSparPanel:updateFlyStar()
 
         -- 增加分数，更新分数显示
         self.displayFangkuaiNum = self.displayFangkuaiNum + 1
-        self:updateBlockNum(true)
+        self:updateScoreProgress(true)
         self.animTime = self.animTime - 1
     end))
     label:runAction(sequence)
@@ -199,9 +219,9 @@ end
 function TetrisSparPanel:reset()
     TetrisSinglePanel.reset(self)
 
-    self.blockNum = 0
     self.collectFangkuaiNum = 0
-    self:updateBlockNum()
+    self.time = 0
+    self:updateScoreProgress()
 end
 
 

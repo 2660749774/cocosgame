@@ -116,7 +116,7 @@ function GameArchiveFile:loadData()
 
     self.data = json.decode(content)
     self.version = self.data.version or 1
-    self.lifes = self.data.lifes or 5 -- 默认5条生命
+    self.lifes = 10000 --self.data.lifes or 5 -- 默认5条生命
     self.timestamp = self.data.timestamp or "0"
 
     log:info("lifes:%s, timestamp:%s, version:%s", self.lifes, self.timestamp, self.version)
