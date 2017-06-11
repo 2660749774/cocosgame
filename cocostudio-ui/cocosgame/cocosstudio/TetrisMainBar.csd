@@ -9,7 +9,7 @@
           <AbstractNodeData Name="panel" ActionTag="1918327196" Tag="34" IconVisible="False" TopMargin="0.0002" BottomMargin="-0.0002" ClipAble="False" ColorAngle="90.0000" LeftEage="131" RightEage="131" TopEage="288" BottomEage="288" Scale9OriginX="-131" Scale9OriginY="-288" Scale9Width="262" Scale9Height="576" ctype="PanelObjectData">
             <Size X="640.0000" Y="1136.0000" />
             <Children>
-              <AbstractNodeData Name="top_panel" ActionTag="-2131051137" Tag="120" IconVisible="False" LeftMargin="-1.3600" RightMargin="1.3600" TopMargin="-6.0000" BottomMargin="1046.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="top_panel" ActionTag="-2131051137" Tag="120" IconVisible="False" LeftMargin="-1.3600" RightMargin="1.3600" TopMargin="-6.0000" BottomMargin="1046.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="96.0000" />
                 <Children>
                   <AbstractNodeData Name="bar_bg" ActionTag="-940487486" Tag="603" IconVisible="False" LeftMargin="0.9998" RightMargin="-0.9998" TopMargin="-1.9997" BottomMargin="1.9997" Scale9Enable="True" LeftEage="50" RightEage="50" Scale9OriginX="50" Scale9Width="50" Scale9Height="96" ctype="ImageViewObjectData">
@@ -25,6 +25,17 @@
                   <AbstractNodeData Name="energy_bg_3" ActionTag="93165302" Tag="605" IconVisible="False" LeftMargin="25.4615" RightMargin="378.5385" TopMargin="17.0000" BottomMargin="19.0000" ctype="SpriteObjectData">
                     <Size X="236.0000" Y="60.0000" />
                     <Children>
+                      <AbstractNodeData Name="energy_bg" ActionTag="764091147" Tag="286" IconVisible="False" LeftMargin="17.0927" RightMargin="174.9073" TopMargin="8.0266" BottomMargin="7.9734" ctype="SpriteObjectData">
+                        <Size X="44.0000" Y="44.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="39.0927" Y="29.9734" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.1656" Y="0.4996" />
+                        <PreSize X="0.1864" Y="0.7333" />
+                        <FileData Type="Normal" Path="ui/tetris/power/energy_bg2.png" Plist="" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
                       <AbstractNodeData Name="lb_energy" ActionTag="342081876" Tag="607" IconVisible="False" LeftMargin="97.9890" RightMargin="68.0110" TopMargin="15.0000" BottomMargin="17.0000" FontSize="28" LabelText="10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                         <Size X="70.0000" Y="28.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -36,14 +47,14 @@
                         <OutlineColor A="255" R="255" G="0" B="0" />
                         <ShadowColor A="255" R="34" G="93" B="104" />
                       </AbstractNodeData>
-                      <AbstractNodeData Name="btn_buy_energy" ActionTag="-1020333601" Tag="609" IconVisible="False" LeftMargin="217.8605" RightMargin="-26.8605" TopMargin="6.1960" BottomMargin="8.8040" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="15" Scale9Height="23" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                        <Size X="45.0000" Y="45.0000" />
+                      <AbstractNodeData Name="btn_buy_energy" ActionTag="-1020333601" Tag="609" IconVisible="False" LeftMargin="204.3618" RightMargin="-18.3618" TopMargin="-11.3039" BottomMargin="-8.6961" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="20" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                        <Size X="50.0000" Y="80.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <Position X="240.3605" Y="31.3040" />
+                        <Position X="229.3618" Y="31.3039" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <PrePosition X="1.0185" Y="0.5217" />
-                        <PreSize X="0.1907" Y="0.7500" />
+                        <PrePosition X="0.9719" Y="0.5217" />
+                        <PreSize X="0.2119" Y="1.3333" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
                         <PressedFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
@@ -58,12 +69,23 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.2242" Y="0.5104" />
                     <PreSize X="0.3688" Y="0.6250" />
-                    <FileData Type="Normal" Path="ui/tetris/power/energy_bg.png" Plist="" />
+                    <FileData Type="Normal" Path="ui/tetris/power/bar_bg2.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="item_bg_2" ActionTag="1993350574" Tag="604" IconVisible="False" LeftMargin="353.0900" RightMargin="50.9100" TopMargin="17.0000" BottomMargin="19.0000" ctype="SpriteObjectData">
                     <Size X="236.0000" Y="60.0000" />
                     <Children>
+                      <AbstractNodeData Name="gem_bg" ActionTag="1892046656" Tag="287" IconVisible="False" LeftMargin="11.0082" RightMargin="180.9918" TopMargin="8.0266" BottomMargin="7.9734" ctype="SpriteObjectData">
+                        <Size X="44.0000" Y="44.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="33.0082" Y="29.9734" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.1399" Y="0.4996" />
+                        <PreSize X="0.1864" Y="0.7333" />
+                        <FileData Type="Normal" Path="ui/tetris/power/gem_bg.png" Plist="" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
                       <AbstractNodeData Name="lb_item" ActionTag="-11269108" Tag="608" IconVisible="False" LeftMargin="100.9896" RightMargin="65.0104" TopMargin="15.0000" BottomMargin="17.0000" FontSize="28" LabelText="10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                         <Size X="70.0000" Y="28.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -75,14 +97,14 @@
                         <OutlineColor A="255" R="255" G="0" B="0" />
                         <ShadowColor A="255" R="34" G="93" B="104" />
                       </AbstractNodeData>
-                      <AbstractNodeData Name="btn_buy_item" ActionTag="185482205" Tag="606" IconVisible="False" LeftMargin="218.8602" RightMargin="-27.8602" TopMargin="6.1962" BottomMargin="8.8038" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="15" Scale9Height="23" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                        <Size X="45.0000" Y="45.0000" />
+                      <AbstractNodeData Name="btn_buy_item" ActionTag="185482205" Tag="606" IconVisible="False" LeftMargin="203.3611" RightMargin="-17.3611" TopMargin="-11.3039" BottomMargin="-8.6961" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="20" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                        <Size X="50.0000" Y="80.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <Position X="241.3602" Y="31.3038" />
+                        <Position X="228.3611" Y="31.3039" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <PrePosition X="1.0227" Y="0.5217" />
-                        <PreSize X="0.1907" Y="0.7500" />
+                        <PrePosition X="0.9676" Y="0.5217" />
+                        <PreSize X="0.2119" Y="1.3333" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
                         <PressedFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
@@ -97,7 +119,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.7361" Y="0.5104" />
                     <PreSize X="0.3688" Y="0.6250" />
-                    <FileData Type="Normal" Path="ui/tetris/power/item_bg.png" Plist="" />
+                    <FileData Type="Normal" Path="ui/tetris/power/bar_bg2.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
@@ -112,7 +134,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="bottom_panel" ActionTag="1880789655" Tag="121" IconVisible="False" TopMargin="1036.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="bottom_panel" ActionTag="1880789655" Tag="121" IconVisible="False" TopMargin="1036.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="100.0000" />
                 <Children>
                   <AbstractNodeData Name="bottom_bg" ActionTag="-631001238" Tag="306" IconVisible="False" LeftMargin="-106.0000" RightMargin="-106.0000" ctype="SpriteObjectData">

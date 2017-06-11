@@ -60,7 +60,7 @@ function TetrisSparConf:ctor(confId, blockType, collectBlockNum, maxTime, blockP
     self.maxTime = maxTime
     self.collectBlockNum = collectBlockNum
     self.blockProb = blockProb
-    self.targetName = "收集晶石"
+    self.targetName = "能量石"
 
     TetrisSparConf.configMap[confId] = self
 end

@@ -17,7 +17,7 @@ function TetrisTimeModeConf:ctor(confId, scoreNum, maxTime, bonusProb, probIndex
     self.confId = confId
     self.scoreNum = scoreNum
     self.maxTime = maxTime
-    self.targetName = "挑战最高分"
+    self.targetName = "极速挑战"
     self.bonusProb = bonusProb
     self.targetIntro = string.format("%s秒内获得%s积分", maxTime, scoreNum)
     self.starArray = {self.maxTime, math.floor(maxTime * 0.85), math.floor(maxTime * 0.7)}

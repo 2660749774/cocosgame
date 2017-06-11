@@ -20,29 +20,9 @@ function TetrisPowerSuccPanel:onCreate(powerId, armyId, star, score)
     self.powerId = powerId
     self.armyId = armyId
 
-    self.lbPowerName = layout['lb_powername']
     self.btnPowerContinue = layout['btn_powercontinue']
     self.btnClose = layout['btn_close']
-    self.star1 = layout['sp_star1']
-    self.star2 = layout['sp_star2']
-    self.star3 = layout['sp_star3']
-    self.score = layout['al_score']
-
-    -- 设置关卡名称
-    self.lbPowerName:setString(string.format("第 %s 关", armyId))
-
-    -- 设置分数
-    self.score:setString(tostring(score))
-    if star >= 3 then
-        self.star1:setVisible(true)
-        self.star2:setVisible(true)
-        self.star3:setVisible(true)
-    elseif star >= 2 then
-        self.star1:setVisible(true)
-        self.star2:setVisible(true)
-    else 
-        self.star1:setVisible(true)
-    end
+    self.lbReward = layout['lb_reward']
 
     -- 存储进度
     local queryKey = "power." .. powerId .. "." .. armyId
@@ -99,31 +79,6 @@ function TetrisPowerSuccPanel:powerContinue()
     self:getScene():popPanel()
     self:getScene():popAndPushPanel("Tetris.view.TetrisPowerStart", {self.powerId, self.armyId + 1})
 end
-
---------------------------------
--- 设置目标方块
--- @function [parent=#TetrisPowerSuccPanel] setTargetBlock
-function TetrisPowerSuccPanel:setTargetBlock()
-    local armyType = self.powerConf.armyType
-
-    if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
-        local pic = string.format("tetris/%s.png", self.powerDetailconf.blockType)
-        self.spTarget:setTexture(pic)
-    elseif armyType == TetrisPowerConf.TYPE_TIMEMODE then
-        self.spTarget:setVisible(false)
-    elseif armyType == TetrisPowerConf.TYPE_METEOR2 then
-        self.spTarget:setTexture("tetris/fangkuai9.png")
-        -- local animationLayout = require("layout.TetrisMeteorAnimation").create()
-        -- local meteor = animationLayout['root']
-        -- local animation = animationLayout['animation']
-        -- self.spTarget:addChild(meteor)
-        -- meteor:runAction(animation)
-        -- animation:gotoFrameAndPlay(0)
-    elseif armyType == TetrisPowerConf.TYPE_SPAR then
-        self.spTarget:setTexture("tetris/fangkuai11.png")
-    end
-end
-
 
 
 return TetrisPowerSuccPanel

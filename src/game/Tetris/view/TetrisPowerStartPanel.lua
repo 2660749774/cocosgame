@@ -18,39 +18,44 @@ function TetrisPowerStartPanel:onCreate(powerId, armyId)
     self.powerConf = TetrisPowerConf.loadConfig(powerId, armyId)
     self.powerDetailconf = TetrisPowerConf.loadDetailConfig(powerId, armyId)
 
+    self.lbArmynum = layout['lb_armynum']
     self.lbPowerName = layout['lb_powername']
     self.btnPowerStart = layout['btn_powerstart']
-    self.lbTarget = layout['lb_target']
-    self.spTarget = layout['sp_target']
+    self.lbTarget1 = layout['lb_target1']
+    self.spTarget1 = layout['sp_target1']
+    self.lbTarget2 = layout['lb_target2']
+    self.spTarget2 = layout['sp_target2']
     self.targetIntro = layout['lb_target_intro']
     self.btnClose = layout['btn_close']
-    self.star1 = layout['sp_star1']
-    self.star2 = layout['sp_star2']
-    self.star3 = layout['sp_star3']
+    self.lbTips = layout['lb_tips']
 
-    -- 设置关卡名称
-    self.lbPowerName:setString(string.format("第 %s 关", armyId))
+    -- 设置关卡数
+    if powerId == 1 then
+        self.lbArmynum:setString(armyId)
+    else
+        self.lbArmynum:setString(59 + armyId)
+    end
 
     -- 设置目标名称
-    self.lbTarget:setString(self.powerDetailconf.targetName)
+    self.lbPowerName:setString(self.powerDetailconf.targetName)
 
     -- 更新方块内容
     self:setTargetBlock()
 
     -- 更新star
-    local queryKey = "power." .. powerId .. "." .. armyId
-    local star = utils.gameArchive:queryData(queryKey)
-    if star == nil then
-    elseif star >= 3 then
-        self.star1:setVisible(true)
-        self.star2:setVisible(true)
-        self.star3:setVisible(true)
-    elseif star >= 2 then
-        self.star1:setVisible(true)
-        self.star2:setVisible(true)
-    elseif star >= 1 then
-        self.star1:setVisible(true)
-    end
+    -- local queryKey = "power." .. powerId .. "." .. armyId
+    -- local star = utils.gameArchive:queryData(queryKey)
+    -- if star == nil then
+    -- elseif star >= 3 then
+    --     self.star1:setVisible(true)
+    --     self.star2:setVisible(true)
+    --     self.star3:setVisible(true)
+    -- elseif star >= 2 then
+    --     self.star1:setVisible(true)
+    --     self.star2:setVisible(true)
+    -- elseif star >= 1 then
+    --     self.star1:setVisible(true)
+    -- end
 
     self:addLayoutWithMask(layout, "layout.ModalMask")
 
@@ -94,25 +99,34 @@ function TetrisPowerStartPanel:setTargetBlock()
     local armyType = self.powerConf.armyType
 
     if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
-        local pic = string.format("tetris/%s.png", self.powerDetailconf.blockType)
-        self.spTarget:setTexture(pic)
-        self.targetIntro:setVisible(false)
+        self.spTarget1:setTexture("ui/tetris/power/water_bg.png")
+        self.spTarget1:setPosition(323, 395)
+        self.spTarget2:setVisible(false)
+        self.lbTarget1:setString("使用有限的方块")
+        self.lbTarget1:setAnchorPoint(0.5, 0.5)
+        self.lbTarget1:setPosition(323, 346)
+        self.lbTarget2:setString("清理陨石")
+        self.lbTarget2:setAnchorPoint(0.5, 0.5)
+        self.lbTarget2:setPosition(323, 312)
+        self.lbTips:setString("消除所有的陨石就能发现水源")
     elseif armyType == TetrisPowerConf.TYPE_TIMEMODE then
-        self.spTarget:setVisible(false)
-        self.targetIntro:setString(self.powerDetailconf.targetIntro)
-        self.targetIntro:setColor(cc.c3b(218, 88, 100))
+        self.spTarget1:setTexture("ui/tetris/power/time_bg.png")
+        self.lbTarget1:setString(string.format("%s秒内", self.powerDetailconf.maxTime))
+        self.spTarget2:setTexture("ui/tetris/power/score_bg.png")
+        self.lbTarget2:setString(string.format("获得%s分", self.powerDetailconf.scoreNum))
+        self.lbTips:setString("注意方块中的小奖励哦")
     elseif armyType == TetrisPowerConf.TYPE_METEOR2 then
-        self.targetIntro:setVisible(false)
-        self.spTarget:setTexture("tetris/fangkuai9.png")
-        -- local animationLayout = require("layout.TetrisMeteorAnimation").create()
-        -- local meteor = animationLayout['root']
-        -- local animation = animationLayout['animation']
-        -- self.spTarget:addChild(meteor)
-        -- meteor:runAction(animation)
-        -- animation:gotoFrameAndPlay(0)
+        self.spTarget1:setTexture("ui/tetris/power/time_bg.png")
+        self.lbTarget1:setString(string.format("%s秒内", self.powerDetailconf.maxTime))
+        self.spTarget2:setTexture("ui/tetris/power/meteor_bg.png")
+        self.lbTarget2:setString(string.format("收集%s颗星辰", self.powerDetailconf.scoreNum))
+        self.lbTips:setString("只有3个连在一起的星辰才能被收集")
     elseif armyType == TetrisPowerConf.TYPE_SPAR then
-        self.targetIntro:setVisible(false)
-        self.spTarget:setTexture("tetris/fangkuai11.png")
+        self.spTarget1:setTexture("ui/tetris/power/time_bg.png")
+        self.lbTarget1:setString(string.format("%s秒内", self.powerDetailconf.maxTime))
+        self.spTarget2:setTexture("ui/tetris/power/spar_bg.png")
+        self.lbTarget2:setString(string.format("收集%s颗能量石", self.powerDetailconf.collectBlockNum))
+        self.lbTips:setString("能量石无法被消除，让它掉落到底部")
     end
 end
 

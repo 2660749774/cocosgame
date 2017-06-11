@@ -18,7 +18,7 @@ function TetrisMeteor2Conf:ctor(confId, blockType, comboNum, starProb, scoreNum,
     self.maxTime = maxTime
     self.scoreNum = scoreNum
     self.comboNum = comboNum
-    self.targetName = "收集星星"
+    self.targetName = "星象归位"
     self.blockType = blockType
     self.starProb = starProb
     

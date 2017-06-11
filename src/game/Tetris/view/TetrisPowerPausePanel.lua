@@ -46,10 +46,13 @@ function TetrisPowerPausePanel:handleContinue()
 end
 
 function TetrisPowerPausePanel:handleQuit()
-    local parent = self.parent
-    -- self.disableTransition = true
+    local scene = self:getScene()
+    self.disableTransition = true
     self:getScene():popPanel()
-    self:getScene():popPanel()
+    scene:pushPanel("Tetris.view.TetrisPowerEndIntro", {self.powerId, self.armyId})
+    
+
+    
 end
 
 function TetrisPowerPausePanel:handleVol()

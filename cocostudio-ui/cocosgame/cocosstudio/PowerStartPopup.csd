@@ -12,24 +12,13 @@
               <AbstractNodeData Name="popup_bg_4" ActionTag="-206761658" Tag="51" IconVisible="False" TopMargin="134.5000" BottomMargin="286.5000" ctype="SpriteObjectData">
                 <Size X="640.0000" Y="715.0000" />
                 <Children>
-                  <AbstractNodeData Name="power_start_3" ActionTag="-1713708458" Tag="50" IconVisible="False" LeftMargin="174.0000" RightMargin="174.0000" TopMargin="538.0000" BottomMargin="91.0000" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="btn_powerstart" ActionTag="-1684696655" Tag="20" IconVisible="False" LeftMargin="177.0001" RightMargin="170.9999" TopMargin="514.9987" BottomMargin="114.0013" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="262" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="292.0000" Y="86.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="134.0000" />
+                    <Position X="323.0001" Y="157.0013" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.1874" />
-                    <PreSize X="0.4563" Y="0.1203" />
-                    <FileData Type="Normal" Path="ui/tetris/power/power_start.png" Plist="" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="btn_powerstart" ActionTag="-1684696655" Tag="20" IconVisible="False" LeftMargin="174.0000" RightMargin="174.0000" TopMargin="538.0000" BottomMargin="91.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="262" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                    <Size X="292.0000" Y="86.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="134.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.1874" />
+                    <PrePosition X="0.5047" Y="0.2196" />
                     <PreSize X="0.4563" Y="0.1203" />
                     <TextColor A="255" R="65" G="65" B="70" />
                     <DisabledFileData Type="Normal" Path="ui/tetris/power/power_start.png" Plist="" />
@@ -38,73 +27,81 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="powername_bg_2" ActionTag="-1411249087" Tag="49" IconVisible="False" LeftMargin="182.0000" RightMargin="182.0000" TopMargin="17.5000" BottomMargin="622.5000" ctype="SpriteObjectData">
-                    <Size X="276.0000" Y="75.0000" />
-                    <Children>
-                      <AbstractNodeData Name="lb_powername" ActionTag="-2057125422" Tag="52" IconVisible="False" LeftMargin="80.1547" RightMargin="83.8453" TopMargin="20.5402" BottomMargin="21.4598" FontSize="32" LabelText="第 5 关" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                        <Size X="112.0000" Y="33.0000" />
-                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <Position X="136.1547" Y="37.9598" />
-                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                        <CColor A="255" R="255" G="255" B="255" />
-                        <PrePosition X="0.4933" Y="0.5061" />
-                        <PreSize X="0.4058" Y="0.4400" />
-                        <OutlineColor A="255" R="255" G="0" B="0" />
-                        <ShadowColor A="255" R="0" G="0" B="0" />
-                      </AbstractNodeData>
-                    </Children>
+                  <AbstractNodeData Name="lb_armynum" ActionTag="417716493" Tag="191" IconVisible="False" LeftMargin="278.3365" RightMargin="271.6635" TopMargin="138.5716" BottomMargin="526.4284" CharWidth="30" CharHeight="50" LabelText="222" StartChar="0" ctype="TextAtlasObjectData">
+                    <Size X="90.0000" Y="50.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="660.0000" />
+                    <Position X="323.3365" Y="551.4284" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.9231" />
-                    <PreSize X="0.4313" Y="0.1049" />
-                    <FileData Type="Normal" Path="ui/tetris/power/powername_bg.png" Plist="" />
-                    <BlendFunc Src="1" Dst="771" />
+                    <PrePosition X="0.5052" Y="0.7712" />
+                    <PreSize X="0.1406" Y="0.0699" />
+                    <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/number.png" Plist="" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="lb_target_intro" ActionTag="-1588042481" Tag="102" IconVisible="False" LeftMargin="272.0000" RightMargin="272.0000" TopMargin="297.0000" BottomMargin="394.0000" FontSize="24" LabelText="目标说明" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="96.0000" Y="24.0000" />
+                  <AbstractNodeData Name="lb_powername" ActionTag="2021364621" Tag="221" IconVisible="False" LeftMargin="258.0101" RightMargin="253.9899" TopMargin="225.8471" BottomMargin="456.1529" FontSize="32" LabelText="目标说明" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="128.0000" Y="33.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="406.0000" />
+                    <Position X="322.0101" Y="472.6529" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5678" />
-                    <PreSize X="0.1500" Y="0.0336" />
+                    <PrePosition X="0.5031" Y="0.6611" />
+                    <PreSize X="0.2000" Y="0.0462" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="55" G="168" B="245" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="sp_target" ActionTag="-1191088162" Tag="56" IconVisible="False" LeftMargin="297.0000" RightMargin="297.0000" TopMargin="285.2587" BottomMargin="383.7413" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="sp_target1" ActionTag="-1191088162" Tag="56" IconVisible="False" LeftMargin="204.9998" RightMargin="389.0002" TopMargin="300.1082" BottomMargin="368.8918" ctype="SpriteObjectData">
                     <Size X="46.0000" Y="46.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="406.7413" />
+                    <Position X="227.9998" Y="391.8918" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5689" />
+                    <PrePosition X="0.3562" Y="0.5481" />
                     <PreSize X="0.0719" Y="0.0643" />
                     <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="lb_target_title" ActionTag="1122132846" Tag="53" IconVisible="False" LeftMargin="280.0000" RightMargin="280.0000" TopMargin="225.9601" BottomMargin="456.0399" FontSize="32" LabelText="目 标" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="80.0000" Y="33.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="472.5399" />
+                  <AbstractNodeData Name="lb_target1" ActionTag="-750249909" Tag="219" IconVisible="False" LeftMargin="260.2581" RightMargin="267.7419" TopMargin="310.3827" BottomMargin="376.6173" FontSize="28" LabelText="目标说明" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="112.0000" Y="28.0000" />
+                    <AnchorPoint ScaleY="0.4910" />
+                    <Position X="260.2581" Y="390.3658" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.6609" />
-                    <PreSize X="0.1250" Y="0.0462" />
+                    <PrePosition X="0.4067" Y="0.5460" />
+                    <PreSize X="0.1750" Y="0.0392" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="55" G="168" B="245" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="lb_target" ActionTag="-1289675439" Tag="54" IconVisible="False" LeftMargin="224.0000" RightMargin="224.0000" TopMargin="360.1520" BottomMargin="321.8480" FontSize="32" LabelText="清理岩石方块" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="192.0000" Y="33.0000" />
+                  <AbstractNodeData Name="sp_target2" ActionTag="-609238754" Tag="216" IconVisible="False" LeftMargin="204.9998" RightMargin="389.0002" TopMargin="354.9940" BottomMargin="314.0060" ctype="SpriteObjectData">
+                    <Size X="46.0000" Y="46.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="338.3480" />
+                    <Position X="227.9998" Y="337.0060" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.4732" />
-                    <PreSize X="0.3000" Y="0.0462" />
+                    <PrePosition X="0.3562" Y="0.4713" />
+                    <PreSize X="0.0719" Y="0.0643" />
+                    <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="lb_target2" ActionTag="106480023" Tag="218" IconVisible="False" LeftMargin="260.2581" RightMargin="267.7419" TopMargin="364.4164" BottomMargin="322.5836" FontSize="28" LabelText="目标说明" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="112.0000" Y="28.0000" />
+                    <AnchorPoint ScaleY="0.4518" />
+                    <Position X="260.2581" Y="335.2352" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4067" Y="0.4689" />
+                    <PreSize X="0.1750" Y="0.0392" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="55" G="168" B="245" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="lb_tips" ActionTag="1783960814" Tag="220" IconVisible="False" LeftMargin="279.7374" RightMargin="272.2626" TopMargin="478.1762" BottomMargin="214.8238" FontSize="22" LabelText="关卡Tips" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="88.0000" Y="22.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="323.7374" Y="225.8238" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="25" G="80" B="121" />
+                    <PrePosition X="0.5058" Y="0.3158" />
+                    <PreSize X="0.1375" Y="0.0308" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="btn_close" ActionTag="-186577946" Tag="279" IconVisible="False" LeftMargin="525.7432" RightMargin="49.2568" TopMargin="15.0259" BottomMargin="634.9741" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="35" Scale9Height="43" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="65.0000" Y="65.0000" />
@@ -121,39 +118,6 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="sp_star1" ActionTag="-1336661010" VisibleForFrame="False" Tag="27" IconVisible="False" LeftMargin="161.4300" RightMargin="355.5700" TopMargin="106.6326" BottomMargin="489.3674" ctype="SpriteObjectData">
-                    <Size X="123.0000" Y="119.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="222.9300" Y="548.8674" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.3483" Y="0.7676" />
-                    <PreSize X="0.1922" Y="0.1664" />
-                    <FileData Type="Normal" Path="ui/tetris/power/power_pass_star.png" Plist="" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="sp_star2" ActionTag="1955765338" VisibleForFrame="False" Tag="26" IconVisible="False" LeftMargin="258.3310" RightMargin="258.6690" TopMargin="83.2698" BottomMargin="512.7302" ctype="SpriteObjectData">
-                    <Size X="123.0000" Y="119.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="319.8310" Y="572.2302" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4997" Y="0.8003" />
-                    <PreSize X="0.1922" Y="0.1664" />
-                    <FileData Type="Normal" Path="ui/tetris/power/power_pass_star.png" Plist="" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="sp_star3" ActionTag="79819835" VisibleForFrame="False" Tag="25" IconVisible="False" LeftMargin="354.6818" RightMargin="162.3182" TopMargin="105.6138" BottomMargin="490.3862" ctype="SpriteObjectData">
-                    <Size X="123.0000" Y="119.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="416.1818" Y="549.8862" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.6503" Y="0.7691" />
-                    <PreSize X="0.1922" Y="0.1664" />
-                    <FileData Type="Normal" Path="ui/tetris/power/power_pass_star.png" Plist="" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="320.0000" Y="644.0000" />
@@ -161,7 +125,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5669" />
                 <PreSize X="1.0000" Y="0.6294" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_start_bg.png" Plist="" />
+                <FileData Type="Normal" Path="ui/tetris/power/power_star_bg2.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>

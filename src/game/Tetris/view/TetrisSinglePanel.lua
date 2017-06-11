@@ -73,22 +73,25 @@ end
 -- @function [parent=#TetrisSinglePanel] playGame
 function TetrisSinglePanel:playStartAnimation()
     -- 播放动画
-    local animationLayout = require("layout.TetrisStartCountAnimation").create()
-    animationLayout['panel']:setAnchorPoint(0.5, 0.5)
-    animationLayout['panel']:setPosition(display.cx, display.cy)
-    self:getScene():addObject(animationLayout['root'], "modal")
-
-    local animation = animationLayout['animation']
-    animationLayout['root']:runAction(animation)
-    animation:setLastFrameCallFunc(function()
-        animationLayout['root']:removeFromParent()
-        if self.playType == 1 then
+    if self.playType == 1 then
+        self:getScene():pushPanel("Tetris.view.TetrisPowerStartIntro", {self.powerId, self.armyId, function()
             self:playGame()
-        else
+        end})
+    else
+        local animationLayout = require("layout.TetrisStartCountAnimation").create()
+        animationLayout['panel']:setAnchorPoint(0.5, 0.5)
+        animationLayout['panel']:setPosition(display.cx, display.cy)
+        self:getScene():addObject(animationLayout['root'], "modal")
+
+        local animation = animationLayout['animation']
+        animationLayout['root']:runAction(animation)
+        animation:setLastFrameCallFunc(function()
+            animationLayout['root']:removeFromParent()
             self.tetris:resumeGame()
-        end
-    end)
-    animation:gotoFrameAndPlay(0, false) 
+        end)
+        animation:gotoFrameAndPlay(0, false) 
+    end
+    
 end
 
 

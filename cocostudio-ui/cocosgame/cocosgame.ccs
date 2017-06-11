@@ -65,6 +65,7 @@
               <Image Name="army_num2.png" />
               <Image Name="army_right_bg.png" />
               <Image Name="bar_bg.png" />
+              <Image Name="bar_bg2.png" />
               <Image Name="bar_choose.png" />
               <Image Name="bar_light.png" />
               <Image Name="bar_unchoose.png" />
@@ -81,11 +82,15 @@
               <Image Name="building_bg.png" />
               <Image Name="close.png" />
               <Image Name="energy_bg.png" />
+              <Image Name="energy_bg2.png" />
               <Image Name="fangkuai8.png" />
               <Image Name="game_continue.png" />
               <Image Name="game_end.png" />
               <Image Name="game_pause.png" />
               <Image Name="game_pauseing.png" />
+              <Image Name="gem_bg.png" />
+              <Image Name="intro_bg.png" />
+              <Image Name="intro_bg2.png" />
               <Image Name="item_bg.png" />
               <Image Name="lb_left_bg.png" />
               <Image Name="lb_right_bg.png" />
@@ -104,10 +109,12 @@
               <Image Name="power_clearstone_open.png" />
               <Image Name="power_clearstone_unopen.png" />
               <Image Name="power_fail_bg.png" />
+              <Image Name="power_fail_bg2.png" />
               <Image Name="power_fail_retry.png" />
               <Image Name="power_meteor_open.png" />
               <Image Name="power_meteor_unopen.png" />
               <Image Name="power_pass_bg.png" />
+              <Image Name="power_pass_bg2.png" />
               <Image Name="power_pass_continue.png" />
               <Image Name="power_pass_star.png" />
               <Image Name="power_pass_star1.png" />
@@ -115,6 +122,7 @@
               <Image Name="power_spar_open.png" />
               <Image Name="power_spar_unopen.png" />
               <Image Name="power_star.png" />
+              <Image Name="power_star_bg2.png" />
               <Image Name="power_start.png" />
               <Image Name="power_start_bg.png" />
               <Image Name="power_target.png" />
@@ -199,6 +207,8 @@
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="TetrisStartIntro.csd" Type="Scene" />
+        <Project Name="TetrisEndIntro.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
