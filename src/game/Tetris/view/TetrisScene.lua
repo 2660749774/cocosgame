@@ -266,7 +266,7 @@ function TetrisScene:initArmyBtn(layout, idx, i)
     local powerId = idx + 1
     local conf = TetrisPowerConf.loadConfig(powerId, i)
 
-    local newBtn = self:createArmyBtn(conf)
+    local newBtn = self:createArmyBtn(conf, powerId, i)
     newBtn:setScale(0.8)
     if powerId > self.currPowerId or (powerId == self.currPowerId and i > self.currArmyId) then
         newBtn.btn:setEnabled(false)
@@ -283,19 +283,19 @@ function TetrisScene:initArmyBtn(layout, idx, i)
         newBtn.btn:setEnabled(true)
         newBtn.btn:setTag(powerId * 1000 + i)
         newBtn.btn:addClickEventListener(handler(self, self.handleArmyClick))
-        local queryKey = "power." .. powerId .. "." .. i
-        local star = utils.gameArchive:queryData(queryKey)
-        if star == nil then
-        elseif star >= 3 then
-            newBtn.star1:setVisible(true)
-            newBtn.star2:setVisible(true)
-            newBtn.star3:setVisible(true)
-        elseif star >= 2 then
-            newBtn.star1:setVisible(true)
-            newBtn.star2:setVisible(true)
-        elseif star >= 1 then
-            newBtn.star1:setVisible(true)
-        end
+        -- local queryKey = "power." .. powerId .. "." .. i
+        -- local star = utils.gameArchive:queryData(queryKey)
+        -- if star == nil then
+        -- elseif star >= 3 then
+        --     newBtn.star1:setVisible(true)
+        --     newBtn.star2:setVisible(true)
+        --     newBtn.star3:setVisible(true)
+        -- elseif star >= 2 then
+        --     newBtn.star1:setVisible(true)
+        --     newBtn.star2:setVisible(true)
+        -- elseif star >= 1 then
+        --     newBtn.star1:setVisible(true)
+        -- end
     end
 
     local x, y = btn:getPosition()
@@ -311,7 +311,7 @@ end
 --------------------------------
 -- 创建副本据点按钮
 -- @function [parent=#TetrisScene] numberOfCellsInTableView
-function TetrisScene:createArmyBtn(conf)
+function TetrisScene:createArmyBtn(conf, powerId, armyId)
     local layout = require("layout.TetrisPowerArmy").create()
     local root = layout['panel']
     local btn = layout['btn']
@@ -319,11 +319,18 @@ function TetrisScene:createArmyBtn(conf)
     root.star1 = layout['star1']
     root.star2 = layout['star2']
     root.star3 = layout['star3']
+    root.lbArmyNum = layout['lb_armynum']
 
-    root.star1:setVisible(false)
-    root.star2:setVisible(false)
-    root.star3:setVisible(false)
+    -- root.star1:setVisible(false)
+    -- root.star2:setVisible(false)
+    -- root.star3:setVisible(false)
     root.btn:setEnabled(false)
+    if powerId == 1 then
+        root.lbArmyNum:setString(armyId)
+    else
+        root.lbArmyNum:setString(59 + armyId)
+    end
+    root.lbArmyNum:setScale(1.25)
 
     if conf == nil then
         -- 默认据点

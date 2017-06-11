@@ -62,6 +62,7 @@
               <Image Name="anim_start.png" />
               <Image Name="army_left_bg.png" />
               <Image Name="army_num.png" />
+              <Image Name="army_num2.png" />
               <Image Name="army_right_bg.png" />
               <Image Name="bar_bg.png" />
               <Image Name="bar_choose.png" />
