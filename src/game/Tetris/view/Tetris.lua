@@ -250,7 +250,7 @@ end
 -- 游戏开始
 -- @function [parent=#Tetris] gameStart
 function Tetris:gameStart(conf) 
-    -- log:info("[Tetris]gameStart")
+    -- log:info("[Tetris]gameStart nextBlock:%s", self.nextBlock)
     self:initGridBlock(conf)
 
     -- 随机下一块方块
@@ -601,6 +601,11 @@ function Tetris:_handleDown(block, simulate)
     elseif not simulate then
         self.disableDown = true
         self.block = nil
+
+        -- 更新格子显示
+        if self.parent.updateGridView then
+            self.parent:updateGridView(self.grids)
+        end
 
         -- 消除判断
         self:checkBlockRemove()
@@ -1018,7 +1023,7 @@ function Tetris:updateBlock(block, nextBlock)
         if sprite.hasStar or sprite.extraAttributes or sprite.downBlock then
             sprite:retain()
             sprite:removeFromParent()
-            
+
             block.blocks[i]:removeFromParent()
             block.blocks[i] = sprite
             block:addChild(sprite)

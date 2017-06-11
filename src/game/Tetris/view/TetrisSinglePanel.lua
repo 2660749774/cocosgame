@@ -287,6 +287,13 @@ function TetrisSinglePanel:checkRemoveLines(removeBlocks)
 end
 
 --------------------------------
+-- 更新显示
+-- @function [parent=#TetrisSinglePanel] updateGridView
+function TetrisSinglePanel:updateGridView(grids)
+    return
+end
+
+--------------------------------
 -- 处理额外属性
 -- @function [parent=#TetrisSinglePanel] handleExtraAttributes
 function TetrisSinglePanel:handleExtraAttributes(attributes)

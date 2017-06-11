@@ -87,6 +87,22 @@ function NativeBridge.callNativeMethod(args)
 end
 
 --------------------------------
+-- lua调用native方法，带返回值
+-- @function [parent=#NativeBridge] callNativeMethodWithReturn
+function NativeBridge.callNativeMethodWithReturn(args)
+	log:info("call native method with return, action:%s", args.action)
+    log:showTable(args)
+
+	if NativeBridge.platform == cc.PLATFORM_OS_ANDROID then
+		return NativeBridge.callJavaMethodWithReturn(args)
+	elseif NativeBridge.platform == cc.PLATFORM_OS_IPHONE
+	    or NativeBridge.platform == cc.PLATFORM_OS_IPAD
+	    or NativeBridge.platform == cc.PLATFORM_OS_MAC then
+		return NativeBridge.callObjectCMethodWithReturn(args)
+	end
+end
+
+--------------------------------
 -- lua调用object c方法
 -- @function [parent=#NativeBridge] callObjectCMethod
 function NativeBridge.callObjectCMethod(args)
@@ -96,6 +112,20 @@ function NativeBridge.callObjectCMethod(args)
 	if not ok then
         log:info("call object c method failed, code:%s", ret)
 	end
+end
+
+--------------------------------
+-- lua调用object c方法，带返回值
+-- @function [parent=#NativeBridge] callObjectCMethod
+function NativeBridge.callObjectCMethodWithReturn(args)
+	local luaoc = require("cocos.cocos2d.luaoc")
+	local ok, ret = luaoc.callStaticMethod("LuaBridge", "callObjectCMethodWithReturn", args)
+
+	if not ok then
+        log:info("call object c method failed, code:%s", ret)
+		return ""
+	end
+	return ret
 end
 
 --------------------------------
@@ -113,6 +143,25 @@ function NativeBridge.callJavaMethod(args)
 	if not ok then
         log:info("call java method failed, code:%s", ret)
 	end
+end
+
+--------------------------------
+-- lua调用java方法，带返回值
+-- @function [parent=#NativeBridge] callJavaMethodWithReturn
+function NativeBridge.callJavaMethodWithReturn(args)
+	local listener = args.listener or 0
+	args.listener = nil
+
+    -- decode json
+	local str = json.encode(t)
+	local luaj = require("cocos.cocos2d.luaj")
+	local ok, ret = luaj.callStaticMethod("com/will/LuaBridge", "callJavaMethodWithReturn", {str}, "(Ljava/lang/String;)Ljava/lang/String;")
+
+	if not ok then
+        log:info("call java method failed, code:%s", ret)
+		return ""
+	end
+	return ret
 end
 
 return NativeBridge

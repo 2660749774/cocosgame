@@ -131,18 +131,19 @@ function TetrisMeteor2Panel:updateNextBlock(nextBlock)
             sprite:setPosition(oldSprite:getPosition())
             sprite.hasStar = true
             sprite.pic = "tetris/fangkuai9.png"
-            nextBlock.blocks[index] = sprite
-
-            local animationLayout = require("layout.TetrisMeteorAnimation").create()
-            local meteor = animationLayout['root']
-            local animation = animationLayout['animation']
-            sprite:addChild(meteor)
-            meteor:runAction(animation)
-            animation:gotoFrameAndPlay(0)  
-            sprite.animation = animation
+            
+            -- 添加动画
+            -- local animationLayout = require("layout.TetrisMeteorAnimation").create()
+            -- local meteor = animationLayout['root']
+            -- local animation = animationLayout['animation']
+            -- sprite.animationObj = meteor
+            -- sprite:addChild(meteor)
+            -- meteor:runAction(animation)
+            -- animation:gotoFrameAndPlay(0)
 
             oldSprite:removeFromParent()
             nextBlock:addChild(sprite)
+            nextBlock.blocks[index] = sprite
         end
     end
 
@@ -254,6 +255,101 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
         self.pass = true
     end
     -- log:info("realScore:%s", self.scoreNum)
+end
+
+--------------------------------
+-- 更新格子视图
+-- @function [parent=#TetrisMeteor2Panel] updateGridView
+function TetrisMeteor2Panel:updateGridView(grids)
+    -- 分数记录器
+    local sprites = {}
+    local scoreSprites = {}
+    local allSprites = {}
+    local concatNum = self.comboNum
+    local colsBlockNum = #grids[1]
+
+    -- 横向搜索
+    for i = 1, #grids do
+        for j = 1, #grids[i] do
+            local block = grids[i][j]
+            if block and block ~= 0 and block.hasStar then
+                table.insert(allSprites, block)
+                table.insert(sprites, block)
+            else
+                if #sprites >= concatNum then
+                    for _, block in pairs(sprites) do
+                        scoreSprites[block] = 1
+                    end
+                end
+                sprites = {}
+            end
+        end
+        -- 再次检查下
+        if #sprites >= concatNum then
+            for _, block in pairs(sprites) do
+                scoreSprites[block] = 1
+            end
+        end
+        sprites = {}
+    end
+
+    -- 最後檢查下
+    if #sprites >= concatNum then
+        for _, block in pairs(sprites) do
+            scoreSprites[block] = 1
+        end
+    end
+
+    -- 纵向搜索
+    sprites = {}
+    if #grids >= concatNum then
+        for i = 1, colsBlockNum do
+            for j = 1, #grids do
+                local block = grids[j][i]
+                if block and block ~= 0 and block.hasStar then
+                    table.insert(sprites, block)
+                else
+                    if #sprites >= concatNum then
+                        for _, block in pairs(sprites) do
+                            scoreSprites[block] = 1
+                        end
+                    end
+                    sprites = {}
+                end
+            end
+            -- 再次检查下
+            if #sprites >= concatNum then
+                for _, block in pairs(sprites) do
+                    scoreSprites[block] = 1
+                end
+            end
+            sprites = {}
+        end
+    end
+
+    -- 最後檢查下
+    if #sprites >= concatNum then
+        for _, block in pairs(sprites) do
+            scoreSprites[block] = 1
+        end
+    end
+
+    -- 没有得分的星星方块处理
+    for _, block in pairs(allSprites) do
+        if block.animationObj and scoreSprites[block] == nil then
+            block.animationObj:removeFromParent()
+            block.animationObj = nil
+        elseif block.hasStar and scoreSprites[block] ~= nil and block.animationObj == nil then
+            -- 添加动画
+            local animationLayout = require("layout.TetrisMeteorAnimation").create()
+            local meteor = animationLayout['root']
+            local animation = animationLayout['animation']
+            block.animationObj = meteor
+            block:addChild(meteor)
+            meteor:runAction(animation)
+            animation:gotoFrameAndPlay(0)
+        end
+    end
 end
 
 --------------------------------

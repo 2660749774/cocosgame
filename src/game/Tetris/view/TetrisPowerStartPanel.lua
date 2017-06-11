@@ -104,12 +104,12 @@ function TetrisPowerStartPanel:setTargetBlock()
     elseif armyType == TetrisPowerConf.TYPE_METEOR2 then
         self.targetIntro:setVisible(false)
         self.spTarget:setTexture("tetris/fangkuai9.png")
-        local animationLayout = require("layout.TetrisMeteorAnimation").create()
-        local meteor = animationLayout['root']
-        local animation = animationLayout['animation']
-        self.spTarget:addChild(meteor)
-        meteor:runAction(animation)
-        animation:gotoFrameAndPlay(0)
+        -- local animationLayout = require("layout.TetrisMeteorAnimation").create()
+        -- local meteor = animationLayout['root']
+        -- local animation = animationLayout['animation']
+        -- self.spTarget:addChild(meteor)
+        -- meteor:runAction(animation)
+        -- animation:gotoFrameAndPlay(0)
     elseif armyType == TetrisPowerConf.TYPE_SPAR then
         self.targetIntro:setVisible(false)
         self.spTarget:setTexture("tetris/fangkuai11.png")
