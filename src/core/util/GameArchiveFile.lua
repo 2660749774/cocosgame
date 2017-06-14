@@ -107,7 +107,7 @@ function GameArchiveFile:loadData()
     local path = self:getFilePath()
     local content = nil
     if io.exists(path) then
-        local content = io.readfile(path)
+        content = io.readfile(path)
         content = utils.crypto.decryptAES256(content, self.aesKey)
         log:info("file content:%s", content)
     else

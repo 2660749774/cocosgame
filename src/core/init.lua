@@ -10,6 +10,9 @@
 cc.exports.fileUtils = cc.FileUtils:getInstance()
 cc.exports.director = cc.Director:getInstance()
 
+-- json初始化
+cc.exports.json = require("core.util.json")
+
 -- 用户常量
 -- 资源组
 cc.exports.ResourceGroup = {
@@ -37,7 +40,6 @@ end
 -- util init
 cc.exports.utils = require("core.util.init")
 utils.gameArchive:loadData()
-cc.exports.json = require("core.util.json")
 require("core.component.init")
 
 
