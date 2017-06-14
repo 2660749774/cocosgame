@@ -105,18 +105,21 @@ end
 -- @function [parent=#GameArchiveFile] loadData
 function GameArchiveFile:loadData()
     local path = self:getFilePath()
-    if not io.exists(path) then
+    local content = nil
+    if io.exists(path) then
+        local content = io.readfile(path)
+        content = utils.crypto.decryptAES256(content, self.aesKey)
+        log:info("file content:%s", content)
+    else
+        content = "{}"
         log:info("archive file not found, path:%s", path)
-        return
     end
 
-    local content = io.readfile(path)
-    content = utils.crypto.decryptAES256(content, self.aesKey)
-    log:info("file content:%s", content)
+    
 
     self.data = json.decode(content)
     self.version = self.data.version or 1
-    self.lifes = 10000 --self.data.lifes or 5 -- 默认5条生命
+    self.lifes = 10000 -- self.data.lifes or 5 -- 默认5条生命
     self.timestamp = self.data.timestamp or "0"
 
     log:info("lifes:%s, timestamp:%s, version:%s", self.lifes, self.timestamp, self.version)
