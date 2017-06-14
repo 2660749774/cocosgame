@@ -17,7 +17,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" />
                 <PreSize X="1.0906" Y="1.0000" />
-                <FileData Type="Normal" Path="ui/tetris/power/intro_bg.png" Plist="" />
+                <FileData Type="Normal" Path="ui/bg/intro_bg.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="lb_intro" ActionTag="-568298164" Tag="171" IconVisible="False" LeftMargin="244.0000" RightMargin="244.0000" TopMargin="299.0000" BottomMargin="-57.0000" FontSize="38" LabelText="收集星星" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">

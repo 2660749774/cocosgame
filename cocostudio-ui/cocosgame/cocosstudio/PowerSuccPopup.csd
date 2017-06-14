@@ -9,7 +9,7 @@
           <AbstractNodeData Name="panel" ActionTag="1253254083" Tag="115" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="640.0000" Y="1136.0000" />
             <Children>
-              <AbstractNodeData Name="popup_bg_4" ActionTag="-206761658" Tag="51" IconVisible="False" LeftMargin="0.0002" RightMargin="-0.0001" TopMargin="135.4124" BottomMargin="285.5876" ctype="SpriteObjectData">
+              <AbstractNodeData Name="popup_bg_4" ActionTag="-206761658" Tag="51" IconVisible="False" LeftMargin="0.0002" RightMargin="-0.0002" TopMargin="135.4124" BottomMargin="285.5876" ctype="SpriteObjectData">
                 <Size X="640.0000" Y="715.0000" />
                 <Children>
                   <AbstractNodeData Name="btn_powercontinue" ActionTag="-1684696655" Tag="20" IconVisible="False" LeftMargin="174.0000" RightMargin="174.0000" TopMargin="538.0000" BottomMargin="91.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="262" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -21,9 +21,9 @@
                     <PrePosition X="0.5000" Y="0.1874" />
                     <PreSize X="0.4563" Y="0.1203" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/power_pass_continue.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/power_pass_continue.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/power_pass_continue.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="power_pass_continue.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="power_pass_continue.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="power_pass_continue.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -36,9 +36,9 @@
                     <PrePosition X="0.8723" Y="0.9335" />
                     <PreSize X="0.1016" Y="0.0909" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -50,7 +50,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4680" Y="0.3637" />
                     <PreSize X="0.0688" Y="0.0615" />
-                    <FileData Type="Normal" Path="ui/tetris/power/gem_bg.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="gem_bg.png" Plist="ui/plist/common.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="lb_reward" ActionTag="15570155" Tag="249" IconVisible="False" LeftMargin="323.2491" RightMargin="286.7509" TopMargin="439.9677" BottomMargin="245.0323" FontSize="30" LabelText="+1" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
@@ -71,7 +71,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5661" />
                 <PreSize X="1.0000" Y="0.6294" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_pass_bg2.png" Plist="" />
+                <FileData Type="Normal" Path="ui/power/popup/power_pass_bg2.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>

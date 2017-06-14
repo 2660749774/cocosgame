@@ -17,7 +17,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4986" Y="0.5008" />
                 <PreSize X="1.3312" Y="1.0000" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_bg.png" Plist="" />
+                <FileData Type="Normal" Path="ui/bg/singlematch_bg.png" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="tetris_panel" ActionTag="1060537929" Tag="32" IconVisible="False" LeftMargin="128.4999" RightMargin="130.5001" TopMargin="221.1080" BottomMargin="371.8920" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="381.0000" Y="543.0000" />
@@ -40,7 +40,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4315" Y="0.9664" />
                 <PreSize X="0.0781" Y="0.0264" />
-                <FileData Type="Normal" Path="ui/tetris/power/army_left_bg.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="army_left_bg.png" Plist="ui/plist/singlematch.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="army_right_bg" ActionTag="-1507576402" Tag="58" IconVisible="False" LeftMargin="337.9887" RightMargin="252.0113" TopMargin="23.1700" BottomMargin="1082.8300" ctype="SpriteObjectData">
@@ -51,7 +51,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5672" Y="0.9664" />
                 <PreSize X="0.0781" Y="0.0264" />
-                <FileData Type="Normal" Path="ui/tetris/power/army_right_bg.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="army_right_bg.png" Plist="ui/plist/singlematch.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="lb_armynum" ActionTag="-1412607421" Tag="57" IconVisible="False" LeftMargin="295.0000" RightMargin="295.0000" TopMargin="23.1700" BottomMargin="1082.8300" CharWidth="25" CharHeight="30" LabelText="12" StartChar="0" ctype="TextAtlasObjectData">
@@ -62,7 +62,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.9664" />
                 <PreSize X="0.0781" Y="0.0264" />
-                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/army_num.png" Plist="" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/army_num_in.png" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn_down_low" ActionTag="618124103" Tag="15" IconVisible="False" LeftMargin="125.3403" RightMargin="418.6597" TopMargin="1019.4208" BottomMargin="20.5792" TouchEnable="True" FontSize="28" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="66" Scale9Height="74" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="96.0000" Y="96.0000" />
@@ -73,9 +73,9 @@
                 <PrePosition X="0.2708" Y="0.0604" />
                 <PreSize X="0.1500" Y="0.0845" />
                 <TextColor A="255" R="255" G="255" B="255" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/down.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/down.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/down.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="down.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="down.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="down.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -88,9 +88,9 @@
                 <PrePosition X="0.2714" Y="0.1884" />
                 <PreSize X="0.1500" Y="0.0845" />
                 <TextColor A="255" R="255" G="255" B="255" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/down_fast.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/down_fast.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/down_fast.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="down_fast.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="down_fast.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="down_fast.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -115,21 +115,6 @@
                 <PreSize X="0.1875" Y="0.0440" />
                 <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/number.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_play" ActionTag="608945743" Tag="41" IconVisible="False" LeftMargin="207.0454" RightMargin="192.9546" TopMargin="410.8879" BottomMargin="605.1121" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="210" Scale9Height="98" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="240.0000" Y="120.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="327.0454" Y="665.1121" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5110" Y="0.5855" />
-                <PreSize X="0.3750" Y="0.1056" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="PlistSubImage" Path="PlayButton.png" Plist="res/pack.plist" />
-                <PressedFileData Type="PlistSubImage" Path="PlayButton.png" Plist="res/pack.plist" />
-                <NormalFileData Type="PlistSubImage" Path="PlayButton.png" Plist="res/pack.plist" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
               <AbstractNodeData Name="btn_shift" ActionTag="-1740025647" Tag="27" IconVisible="False" LeftMargin="450.7410" RightMargin="36.2590" TopMargin="943.0548" BottomMargin="39.9452" TouchEnable="True" FontSize="28" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="123" Scale9Height="131" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="153.0000" Y="153.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -139,9 +124,9 @@
                 <PrePosition X="0.8238" Y="0.1025" />
                 <PreSize X="0.2391" Y="0.1347" />
                 <TextColor A="255" R="255" G="255" B="255" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/shift.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/shift.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/shift.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="shift.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="shift.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="shift.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -154,9 +139,9 @@
                 <PrePosition X="0.4222" Y="0.1264" />
                 <PreSize X="0.1500" Y="0.0845" />
                 <TextColor A="255" R="255" G="255" B="255" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/right.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/right.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/right.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="right.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="right.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="right.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -169,9 +154,9 @@
                 <PrePosition X="0.1235" Y="0.1264" />
                 <PreSize X="0.1500" Y="0.0845" />
                 <TextColor A="255" R="255" G="255" B="255" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/left.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/left.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/left.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="left.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="left.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="left.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -207,16 +192,16 @@
                 <PreSize X="0.0469" Y="0.0132" />
                 <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/small number.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="fangkuai_3" ActionTag="2001307816" Tag="60" IconVisible="False" LeftMargin="267.3345" RightMargin="343.6655" TopMargin="73.5000" BottomMargin="1033.5000" ctype="SpriteObjectData">
-                <Size X="29.0000" Y="29.0000" />
+              <AbstractNodeData Name="fangkuai_3" ActionTag="2001307816" Tag="60" IconVisible="False" LeftMargin="268.8345" RightMargin="345.1655" TopMargin="75.0000" BottomMargin="1035.0000" ctype="SpriteObjectData">
+                <Size X="26.0000" Y="26.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="281.8345" Y="1048.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4404" Y="0.9225" />
-                <PreSize X="0.0453" Y="0.0255" />
-                <FileData Type="Normal" Path="tetris/fangkuai.png" Plist="" />
-                <BlendFunc Src="770" Dst="771" />
+                <PreSize X="0.0406" Y="0.0229" />
+                <FileData Type="PlistSubImage" Path="fangkuai.png" Plist="ui/plist/common.plist" />
+                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="lb_left_line" ActionTag="2089445126" Tag="25" IconVisible="False" LeftMargin="292.0001" RightMargin="287.9999" TopMargin="63.0000" BottomMargin="1023.0000" CharWidth="30" CharHeight="50" LabelText="10" StartChar="0" ctype="TextAtlasObjectData">
                 <Size X="60.0000" Y="50.0000" />
@@ -226,7 +211,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5031" Y="0.9225" />
                 <PreSize X="0.0938" Y="0.0440" />
-                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/number.png" Plist="" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/number.png" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn_pause" ActionTag="1734774958" Tag="104" IconVisible="False" LeftMargin="389.5000" RightMargin="175.5000" TopMargin="869.5000" BottomMargin="191.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="45" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="75.0000" Y="75.0000" />
@@ -237,9 +222,9 @@
                 <PrePosition X="0.6672" Y="0.2016" />
                 <PreSize X="0.1172" Y="0.0660" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/game_pause.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/game_pause.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/game_pause.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="game_pause.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="game_pause.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="game_pause.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -279,7 +264,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.2161" Y="0.7778" />
                 <PreSize X="0.3333" Y="0.1875" />
-                <FileData Type="Normal" Path="ui/tetris/NEXT.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="next.png" Plist="ui/plist/common.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -288,7 +273,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.1875" Y="0.9305" />
             <PreSize X="0.3750" Y="0.1408" />
-            <FileData Type="Normal" Path="ui/tetris/power/lb_left_bg.png" Plist="" />
+            <FileData Type="PlistSubImage" Path="lb_left_bg.png" Plist="ui/plist/singlematch.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="lb_right_bg" ActionTag="-1049757638" Tag="43" IconVisible="False" LeftMargin="400.5939" RightMargin="-0.5939" TopMargin="-1.0000" BottomMargin="977.0000" ctype="SpriteObjectData">
@@ -301,8 +286,8 @@
                 <Scale ScaleX="0.8000" ScaleY="0.8000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.2201" Y="0.5043" />
-                <PreSize X="0.1833" Y="0.2250" />
-                <FileData Type="Normal" Path="ui/tetris/power/water_bg.png" Plist="" />
+                <PreSize X="0.3125" Y="0.4688" />
+                <FileData Type="PlistSubImage" Path="water_bg.png" Plist="ui/plist/common.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="lb_result" ActionTag="-1721397187" Tag="62" IconVisible="False" LeftMargin="176.0810" RightMargin="15.9190" TopMargin="50.2238" BottomMargin="85.7762" FontSize="24" LabelText="90 %" HorizontalAlignmentType="HT_Right" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
@@ -324,8 +309,8 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5982" Y="0.4395" />
                 <PreSize X="0.7000" Y="0.1563" />
-                <BackGroundData Type="Normal" Path="ui/tetris/power/progress_bg.png" Plist="" />
-                <ProgressBarData Type="Normal" Path="ui/tetris/power/progress_blue.png" Plist="" />
+                <BackGroundData Type="PlistSubImage" Path="progress_bg.png" Plist="ui/plist/singlematch.plist" />
+                <ProgressBarData Type="PlistSubImage" Path="progress_blue.png" Plist="ui/plist/singlematch.plist" />
                 <BallNormalData Type="Default" Path="Default/SliderNode_Normal.png" Plist="" />
                 <BallPressedData Type="Default" Path="Default/SliderNode_Press.png" Plist="" />
                 <BallDisabledData Type="Default" Path="Default/SliderNode_Disable.png" Plist="" />

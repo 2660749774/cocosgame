@@ -21,9 +21,9 @@
                     <PrePosition X="0.5047" Y="0.2196" />
                     <PreSize X="0.4563" Y="0.1203" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/power_start.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/power_start.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/power_start.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="power_start.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="power_start.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="power_start.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -35,7 +35,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5052" Y="0.7712" />
                     <PreSize X="0.1406" Y="0.0699" />
-                    <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/number.png" Plist="" />
+                    <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/number.png" Plist="" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="lb_powername" ActionTag="2021364621" Tag="221" IconVisible="False" LeftMargin="258.0101" RightMargin="253.9899" TopMargin="225.8471" BottomMargin="456.1529" FontSize="32" LabelText="目标说明" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="128.0000" Y="33.0000" />
@@ -59,7 +59,7 @@
                     <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="lb_target1" ActionTag="-750249909" Tag="219" IconVisible="False" LeftMargin="260.2581" RightMargin="267.7419" TopMargin="310.3827" BottomMargin="376.6173" FontSize="28" LabelText="目标说明" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                  <AbstractNodeData Name="lb_target1" ActionTag="-750249909" Tag="219" IconVisible="False" LeftMargin="260.2581" RightMargin="267.7419" TopMargin="310.3822" BottomMargin="376.6178" FontSize="28" LabelText="目标说明" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="112.0000" Y="28.0000" />
                     <AnchorPoint ScaleY="0.4910" />
                     <Position X="260.2581" Y="390.3658" />
@@ -81,7 +81,7 @@
                     <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="lb_target2" ActionTag="106480023" Tag="218" IconVisible="False" LeftMargin="260.2581" RightMargin="267.7419" TopMargin="364.4164" BottomMargin="322.5836" FontSize="28" LabelText="目标说明" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                  <AbstractNodeData Name="lb_target2" ActionTag="106480023" Tag="218" IconVisible="False" LeftMargin="260.2581" RightMargin="267.7419" TopMargin="364.4152" BottomMargin="322.5848" FontSize="28" LabelText="目标说明" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="112.0000" Y="28.0000" />
                     <AnchorPoint ScaleY="0.4518" />
                     <Position X="260.2581" Y="335.2352" />
@@ -112,9 +112,9 @@
                     <PrePosition X="0.8723" Y="0.9335" />
                     <PreSize X="0.1016" Y="0.0909" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -125,7 +125,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5669" />
                 <PreSize X="1.0000" Y="0.6294" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_star_bg2.png" Plist="" />
+                <FileData Type="Normal" Path="ui/power/popup/power_star_bg2.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>

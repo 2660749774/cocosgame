@@ -20,7 +20,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.7892" />
                     <PreSize X="0.2813" Y="0.0699" />
-                    <FileData Type="Normal" Path="ui/tetris/power/game_pauseing.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="game_pauseing.png" Plist="ui/plist/common.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="btn_continue" ActionTag="-552002530" Tag="80" IconVisible="False" LeftMargin="174.0000" RightMargin="174.0000" TopMargin="217.5125" BottomMargin="411.4875" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="262" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -32,9 +32,9 @@
                     <PrePosition X="0.5000" Y="0.6356" />
                     <PreSize X="0.4563" Y="0.1203" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/game_continue.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/game_continue.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/game_continue.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="game_continue.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="game_continue.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="game_continue.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -47,9 +47,9 @@
                     <PrePosition X="0.5000" Y="0.4464" />
                     <PreSize X="0.4563" Y="0.1203" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/vol_on.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/vol_on.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/vol_on.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="vol_on.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="vol_on.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="vol_on.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -62,9 +62,9 @@
                     <PrePosition X="0.5000" Y="0.2559" />
                     <PreSize X="0.4563" Y="0.1203" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/game_end.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/game_end.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/game_end.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="game_end.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="game_end.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="game_end.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -77,9 +77,9 @@
                     <PrePosition X="0.8723" Y="0.9335" />
                     <PreSize X="0.1016" Y="0.0909" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -90,7 +90,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5669" />
                 <PreSize X="1.0000" Y="0.6294" />
-                <FileData Type="Normal" Path="ui/tetris/power/popup_bg.png" Plist="" />
+                <FileData Type="Normal" Path="ui/power/popup/popup_bg.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>

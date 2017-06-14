@@ -17,7 +17,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" />
                 <PreSize X="1.0891" Y="1.0000" />
-                <FileData Type="Normal" Path="ui/tetris/power/intro_bg2.png" Plist="" />
+                <FileData Type="Normal" Path="ui/bg/intro_bg2.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="lb_intro" ActionTag="-568298164" Tag="171" IconVisible="False" LeftMargin="168.0000" RightMargin="168.0000" TopMargin="184.0000" BottomMargin="-19.0000" FontSize="38" LabelText="您已按下结束按钮" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">

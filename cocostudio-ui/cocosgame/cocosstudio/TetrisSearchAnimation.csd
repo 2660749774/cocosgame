@@ -59,15 +59,15 @@
       <ObjectData Name="Scene" Tag="27" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="btn_search" ActionTag="-1767942845" Tag="88" IconVisible="False" LeftMargin="-14.7000" RightMargin="584.7000" TopMargin="1098.9000" BottomMargin="-32.9000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="btn_search" ActionTag="-1767942845" Tag="88" IconVisible="False" LeftMargin="-27.3000" RightMargin="597.3000" TopMargin="1111.5000" BottomMargin="-45.5000" ctype="SpriteObjectData">
             <Size X="70.0000" Y="70.0000" />
             <AnchorPoint ScaleX="0.3900" ScaleY="0.6500" />
-            <Position X="12.6000" Y="12.6000" />
+            <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0197" Y="0.0111" />
+            <PrePosition />
             <PreSize X="0.1094" Y="0.0616" />
-            <FileData Type="Normal" Path="ui/tetris/power/btn_search.png" Plist="" />
+            <FileData Type="Normal" Path="ui/pvp/btn_search.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>

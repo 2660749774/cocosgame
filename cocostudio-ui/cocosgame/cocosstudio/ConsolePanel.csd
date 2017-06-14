@@ -17,9 +17,9 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4087" Y="0.0318" />
                 <PreSize X="0.8182" Y="0.0600" />
-                <FileData Type="Normal" Path="res/input_bg.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="input_bg.png" Plist="ui/plist/common.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="listView" ActionTag="1258121175" Tag="94" IconVisible="False" LeftMargin="1.0002" RightMargin="-1.0002" TopMargin="4.9999" BottomMargin="64.0001" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" IsBounceEnabled="True" ScrollDirectionType="0" DirectionType="Vertical" ctype="ListViewObjectData">
+              <AbstractNodeData Name="listView" ActionTag="1258121175" Tag="94" IconVisible="False" LeftMargin="1.0002" RightMargin="-1.0002" TopMargin="4.9999" BottomMargin="64.0001" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="0" DirectionType="Vertical" ctype="ListViewObjectData">
                 <Size X="550.0000" Y="931.0000" />
                 <AnchorPoint />
                 <Position X="1.0002" Y="64.0001" />

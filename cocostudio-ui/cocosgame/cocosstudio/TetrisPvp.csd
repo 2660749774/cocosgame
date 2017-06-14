@@ -17,7 +17,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="1.3281" Y="1.0000" />
-                <FileData Type="Normal" Path="ui/tetris/power/pvp_bg.png" Plist="" />
+                <FileData Type="Normal" Path="ui/bg/pvp_bg.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="building_bg" ActionTag="1909827294" Tag="139" IconVisible="False" LeftMargin="110.0000" RightMargin="110.0000" TopMargin="383.0000" BottomMargin="383.0000" ctype="SpriteObjectData">
@@ -28,7 +28,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="0.6563" Y="0.3257" />
-                <FileData Type="Normal" Path="ui/tetris/power/building_bg.png" Plist="" />
+                <FileData Type="Normal" Path="ui/pvp/building_bg.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn_pvp" ActionTag="-44138235" Tag="140" IconVisible="False" LeftMargin="174.0000" RightMargin="174.0000" TopMargin="757.0000" BottomMargin="293.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="262" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -40,9 +40,9 @@
                 <PrePosition X="0.5000" Y="0.2958" />
                 <PreSize X="0.4563" Y="0.0757" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/btn_pvp.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/btn_pvp.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/btn_pvp.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="btn_pvp.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="btn_pvp.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="btn_pvp.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -55,9 +55,9 @@
                 <PrePosition X="0.5000" Y="0.2958" />
                 <PreSize X="0.4563" Y="0.0757" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/btn_cancel.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/btn_cancel.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/btn_cancel.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="btn_cancel.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="btn_cancel.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="btn_cancel.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -72,7 +72,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4966" Y="0.1337" />
                     <PreSize X="1.8750" Y="0.5000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/btn_matchbg.png" Plist="" />
+                    <FileData Type="Normal" Path="ui/pvp/btn_matchbg.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="btn_search" Visible="False" ActionTag="-1719712251" VisibleForFrame="False" Tag="141" IconVisible="False" LeftMargin="-75.7700" RightMargin="205.7700" TopMargin="61.9300" BottomMargin="-31.9300" ctype="SpriteObjectData">
@@ -83,7 +83,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="-0.2424" Y="0.1357" />
                     <PreSize X="0.3500" Y="0.7000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/btn_search.png" Plist="" />
+                    <FileData Type="Normal" Path="ui/pvp/btn_search.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="lb_searchtext" ActionTag="-1430557263" Tag="143" IconVisible="False" LeftMargin="-14.6706" RightMargin="-13.3294" TopMargin="74.9306" BottomMargin="1.0694" FontSize="24" LabelText="正在为您匹配对手..." ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">

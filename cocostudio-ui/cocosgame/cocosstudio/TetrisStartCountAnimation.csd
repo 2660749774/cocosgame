@@ -121,31 +121,31 @@
         </Timeline>
         <Timeline ActionTag="-1848402198" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_3.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_3.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="1" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_3.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_3.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="2" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_3.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_3.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="9" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_2.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_2.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="10" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_2.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_2.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="18" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_1.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_1.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="20" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_1.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_1.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="27" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_start.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_start.png" Plist="" />
           </TextureFrame>
           <TextureFrame FrameIndex="35" Tween="False">
-            <TextureFile Type="Normal" Path="ui/tetris/power/anim_start.png" Plist="" />
+            <TextureFile Type="Normal" Path="animation/start/anim_start.png" Plist="" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="-1848402198" Property="BlendFunc">
@@ -237,15 +237,15 @@
               <AbstractNodeData Name="panel_bg" ActionTag="1306295315" Tag="418" IconVisible="False" LeftMargin="106.0000" RightMargin="106.0000" TopMargin="860.0000" BottomMargin="76.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="200.0000" />
                 <Children>
-                  <AbstractNodeData Name="sp_count" ActionTag="-1848402198" Alpha="76" Tag="28" IconVisible="False" LeftMargin="215.0000" RightMargin="215.0000" TopMargin="-408.0000" BottomMargin="528.0000" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="sp_count" ActionTag="-1848402198" Alpha="76" Tag="28" IconVisible="False" LeftMargin="215.0000" RightMargin="215.0000" TopMargin="-407.9999" BottomMargin="527.9999" ctype="SpriteObjectData">
                     <Size X="210.0000" Y="80.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="320.0000" Y="568.0000" />
+                    <Position X="320.0000" Y="567.9999" />
                     <Scale ScaleX="4.0000" ScaleY="4.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="2.8400" />
                     <PreSize X="0.3281" Y="0.4000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/anim_3.png" Plist="" />
+                    <FileData Type="Normal" Path="animation/start/anim_2.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>

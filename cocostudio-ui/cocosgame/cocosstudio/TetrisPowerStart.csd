@@ -17,7 +17,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.0521" />
                 <PreSize X="1.0000" Y="0.1041" />
-                <FileData Type="Normal" Path="ui/tetris/power/start_bg.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="start_bg.png" Plist="ui/plist/main.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn1" ActionTag="727403684" Tag="111" IconVisible="False" LeftMargin="377.1382" RightMargin="414.8618" TopMargin="2694.3750" BottomMargin="241.6250" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -29,9 +29,9 @@
                 <PrePosition X="0.4779" Y="0.0907" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -44,13 +44,13 @@
                 <PrePosition X="0.6031" Y="0.1067" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn3" ActionTag="1477618416" Tag="113" IconVisible="False" LeftMargin="606.6439" RightMargin="185.3561" TopMargin="2646.6384" BottomMargin="289.3617" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn3" ActionTag="1477618416" Tag="113" IconVisible="False" LeftMargin="606.6439" RightMargin="185.3561" TopMargin="2646.6382" BottomMargin="289.3617" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="636.6439" Y="319.3617" />
@@ -59,9 +59,9 @@
                 <PrePosition X="0.7472" Y="0.1066" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -74,9 +74,9 @@
                 <PrePosition X="0.6745" Y="0.1506" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -89,9 +89,9 @@
                 <PrePosition X="0.7678" Y="0.1835" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -104,9 +104,9 @@
                 <PrePosition X="0.6126" Y="0.2051" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -119,9 +119,9 @@
                 <PrePosition X="0.4685" Y="0.1931" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -134,13 +134,13 @@
                 <PrePosition X="0.3019" Y="0.2074" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn9" ActionTag="1235942440" Tag="119" IconVisible="False" LeftMargin="111.2035" RightMargin="680.7964" TopMargin="2391.6040" BottomMargin="544.3961" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn9" ActionTag="1235942440" Tag="119" IconVisible="False" LeftMargin="111.2035" RightMargin="680.7965" TopMargin="2391.6040" BottomMargin="544.3961" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="141.2035" Y="574.3961" />
@@ -149,13 +149,13 @@
                 <PrePosition X="0.1657" Y="0.1917" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn10" ActionTag="463488450" Tag="120" IconVisible="False" LeftMargin="108.9032" RightMargin="683.0968" TopMargin="2234.4023" BottomMargin="701.5975" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn10" ActionTag="463488450" Tag="120" IconVisible="False" LeftMargin="108.9032" RightMargin="683.0968" TopMargin="2234.4026" BottomMargin="701.5975" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="138.9032" Y="731.5975" />
@@ -164,9 +164,9 @@
                 <PrePosition X="0.1630" Y="0.2442" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -179,9 +179,9 @@
                 <PrePosition X="0.2477" Y="0.2820" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -194,9 +194,9 @@
                 <PrePosition X="0.3834" Y="0.2715" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -209,9 +209,9 @@
                 <PrePosition X="0.5149" Y="0.2849" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -224,9 +224,9 @@
                 <PrePosition X="0.6499" Y="0.2692" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -239,9 +239,9 @@
                 <PrePosition X="0.7703" Y="0.2846" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -254,9 +254,9 @@
                 <PrePosition X="0.7551" Y="0.3229" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -269,9 +269,9 @@
                 <PrePosition X="0.7805" Y="0.3613" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -284,9 +284,9 @@
                 <PrePosition X="0.6226" Y="0.3532" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -299,9 +299,9 @@
                 <PrePosition X="0.4766" Y="0.3612" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -314,9 +314,9 @@
                 <PrePosition X="0.3202" Y="0.3482" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -329,9 +329,9 @@
                 <PrePosition X="0.1841" Y="0.3745" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -344,9 +344,9 @@
                 <PrePosition X="0.3084" Y="0.4046" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -359,9 +359,9 @@
                 <PrePosition X="0.4749" Y="0.4203" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -374,9 +374,9 @@
                 <PrePosition X="0.6002" Y="0.4363" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -389,9 +389,9 @@
                 <PrePosition X="0.7443" Y="0.4362" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -404,9 +404,9 @@
                 <PrePosition X="0.6739" Y="0.4795" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -419,9 +419,9 @@
                 <PrePosition X="0.7649" Y="0.5131" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -434,9 +434,9 @@
                 <PrePosition X="0.6120" Y="0.5344" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -449,9 +449,9 @@
                 <PrePosition X="0.4667" Y="0.5224" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -464,9 +464,9 @@
                 <PrePosition X="0.3013" Y="0.5367" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -479,9 +479,9 @@
                 <PrePosition X="0.1652" Y="0.5214" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -494,9 +494,9 @@
                 <PrePosition X="0.1636" Y="0.5641" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -509,9 +509,9 @@
                 <PrePosition X="0.3315" Y="0.5712" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -524,9 +524,9 @@
                 <PrePosition X="0.4768" Y="0.5900" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -539,9 +539,9 @@
                 <PrePosition X="0.6029" Y="0.6063" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -554,9 +554,9 @@
                 <PrePosition X="0.7489" Y="0.6059" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -569,9 +569,9 @@
                 <PrePosition X="0.6755" Y="0.6501" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -584,9 +584,9 @@
                 <PrePosition X="0.7673" Y="0.6835" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -599,9 +599,9 @@
                 <PrePosition X="0.6143" Y="0.7043" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -614,9 +614,9 @@
                 <PrePosition X="0.4691" Y="0.6924" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -629,9 +629,9 @@
                 <PrePosition X="0.3013" Y="0.7072" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -644,9 +644,9 @@
                 <PrePosition X="0.1666" Y="0.6913" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -659,9 +659,9 @@
                 <PrePosition X="0.1635" Y="0.7439" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -674,9 +674,9 @@
                 <PrePosition X="0.2480" Y="0.7817" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -689,9 +689,9 @@
                 <PrePosition X="0.3848" Y="0.7711" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -704,9 +704,9 @@
                 <PrePosition X="0.5163" Y="0.7845" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -719,9 +719,9 @@
                 <PrePosition X="0.6513" Y="0.7688" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -734,9 +734,9 @@
                 <PrePosition X="0.7716" Y="0.7842" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -749,9 +749,9 @@
                 <PrePosition X="0.7564" Y="0.8225" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -764,9 +764,9 @@
                 <PrePosition X="0.7819" Y="0.8609" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -779,9 +779,9 @@
                 <PrePosition X="0.6239" Y="0.8528" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -794,13 +794,13 @@
                 <PrePosition X="0.4780" Y="0.8608" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn53" ActionTag="-1870368497" Tag="164" IconVisible="False" LeftMargin="244.0047" RightMargin="547.9952" TopMargin="426.0659" BottomMargin="2509.9341" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn53" ActionTag="-1870368497" Tag="164" IconVisible="False" LeftMargin="244.0047" RightMargin="547.9953" TopMargin="426.0659" BottomMargin="2509.9341" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="274.0047" Y="2539.9341" />
@@ -809,13 +809,13 @@
                 <PrePosition X="0.3216" Y="0.8478" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn54" ActionTag="-119239930" Tag="165" IconVisible="False" LeftMargin="127.9854" RightMargin="664.0145" TopMargin="347.2759" BottomMargin="2588.7241" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn54" ActionTag="-119239930" Tag="165" IconVisible="False" LeftMargin="127.9854" RightMargin="664.0146" TopMargin="347.2759" BottomMargin="2588.7241" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="157.9854" Y="2618.7241" />
@@ -824,9 +824,9 @@
                 <PrePosition X="0.1854" Y="0.8741" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -839,9 +839,9 @@
                 <PrePosition X="0.3098" Y="0.9042" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -854,9 +854,9 @@
                 <PrePosition X="0.4763" Y="0.9199" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -869,9 +869,9 @@
                 <PrePosition X="0.6016" Y="0.9360" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -884,9 +884,9 @@
                 <PrePosition X="0.7456" Y="0.9358" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -899,9 +899,9 @@
                 <PrePosition X="0.6729" Y="0.9798" />
                 <PreSize X="0.0704" Y="0.0200" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/square1.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="square1.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -912,7 +912,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5074" Y="1.3197" />
             <PreSize X="1.3312" Y="2.6373" />
-            <FileData Type="Normal" Path="ui/tetris/power/bg1.png" Plist="" />
+            <FileData Type="Normal" Path="ui/bg/main_bg1.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

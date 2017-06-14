@@ -20,7 +20,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5016" Y="0.5208" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/main_bar_bg.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="main_bar_bg.png" Plist="ui/plist/main.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="energy_bg_3" ActionTag="93165302" Tag="605" IconVisible="False" LeftMargin="25.4615" RightMargin="378.5385" TopMargin="17.0000" BottomMargin="19.0000" ctype="SpriteObjectData">
                     <Size X="236.0000" Y="60.0000" />
@@ -33,7 +33,7 @@
                         <CColor A="255" R="255" G="255" B="255" />
                         <PrePosition X="0.1656" Y="0.4996" />
                         <PreSize X="0.1864" Y="0.7333" />
-                        <FileData Type="Normal" Path="ui/tetris/power/energy_bg2.png" Plist="" />
+                        <FileData Type="PlistSubImage" Path="energy_bg2.png" Plist="ui/plist/common.plist" />
                         <BlendFunc Src="1" Dst="771" />
                       </AbstractNodeData>
                       <AbstractNodeData Name="lb_energy" ActionTag="342081876" Tag="607" IconVisible="False" LeftMargin="97.9890" RightMargin="68.0110" TopMargin="15.0000" BottomMargin="17.0000" FontSize="28" LabelText="10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
@@ -56,9 +56,9 @@
                         <PrePosition X="0.9719" Y="0.5217" />
                         <PreSize X="0.2119" Y="1.3333" />
                         <TextColor A="255" R="65" G="65" B="70" />
-                        <DisabledFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
-                        <PressedFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
-                        <NormalFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
+                        <DisabledFileData Type="PlistSubImage" Path="pay_bg.png" Plist="ui/plist/common.plist" />
+                        <PressedFileData Type="PlistSubImage" Path="pay_bg.png" Plist="ui/plist/common.plist" />
+                        <NormalFileData Type="PlistSubImage" Path="pay_bg.png" Plist="ui/plist/common.plist" />
                         <OutlineColor A="255" R="255" G="0" B="0" />
                         <ShadowColor A="255" R="110" G="110" B="110" />
                       </AbstractNodeData>
@@ -69,7 +69,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.2242" Y="0.5104" />
                     <PreSize X="0.3688" Y="0.6250" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_bg2.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_bg2.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="item_bg_2" ActionTag="1993350574" Tag="604" IconVisible="False" LeftMargin="353.0900" RightMargin="50.9100" TopMargin="17.0000" BottomMargin="19.0000" ctype="SpriteObjectData">
@@ -83,7 +83,7 @@
                         <CColor A="255" R="255" G="255" B="255" />
                         <PrePosition X="0.1399" Y="0.4996" />
                         <PreSize X="0.1864" Y="0.7333" />
-                        <FileData Type="Normal" Path="ui/tetris/power/gem_bg.png" Plist="" />
+                        <FileData Type="PlistSubImage" Path="gem_bg.png" Plist="ui/plist/common.plist" />
                         <BlendFunc Src="1" Dst="771" />
                       </AbstractNodeData>
                       <AbstractNodeData Name="lb_item" ActionTag="-11269108" Tag="608" IconVisible="False" LeftMargin="100.9896" RightMargin="65.0104" TopMargin="15.0000" BottomMargin="17.0000" FontSize="28" LabelText="10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
@@ -106,9 +106,9 @@
                         <PrePosition X="0.9676" Y="0.5217" />
                         <PreSize X="0.2119" Y="1.3333" />
                         <TextColor A="255" R="65" G="65" B="70" />
-                        <DisabledFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
-                        <PressedFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
-                        <NormalFileData Type="Normal" Path="ui/tetris/power/pay_bg.png" Plist="" />
+                        <DisabledFileData Type="PlistSubImage" Path="pay_bg.png" Plist="ui/plist/common.plist" />
+                        <PressedFileData Type="PlistSubImage" Path="pay_bg.png" Plist="ui/plist/common.plist" />
+                        <NormalFileData Type="PlistSubImage" Path="pay_bg.png" Plist="ui/plist/common.plist" />
                         <OutlineColor A="255" R="255" G="0" B="0" />
                         <ShadowColor A="255" R="110" G="110" B="110" />
                       </AbstractNodeData>
@@ -145,7 +145,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="1.3312" Y="1.0000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_bg.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_bg.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="bar1" ActionTag="966073418" Tag="307" IconVisible="False" RightMargin="475.0000" ctype="SpriteObjectData">
@@ -156,7 +156,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.1289" Y="0.5000" />
                     <PreSize X="0.2578" Y="1.0000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_unchoose.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_unchoose.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="bar2" ActionTag="1559931258" Tag="312" IconVisible="False" LeftMargin="237.5000" RightMargin="237.5000" ctype="SpriteObjectData">
@@ -167,7 +167,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="0.2578" Y="1.0000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_unchoose.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_unchoose.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="bar3" ActionTag="1703063180" Tag="313" IconVisible="False" LeftMargin="475.0000" ctype="SpriteObjectData">
@@ -178,7 +178,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.8711" Y="0.5000" />
                     <PreSize X="0.2578" Y="1.0000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_unchoose.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_unchoose.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="bar_choose" ActionTag="-1289126820" Tag="315" IconVisible="False" LeftMargin="165.0000" RightMargin="165.0000" ctype="SpriteObjectData">
@@ -189,7 +189,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="0.4844" Y="1.0000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_choose.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_choose.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="bar_light" Visible="False" ActionTag="-1143306355" Tag="314" IconVisible="False" LeftMargin="165.0000" RightMargin="165.0000" ctype="SpriteObjectData">
@@ -200,7 +200,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="0.4844" Y="1.0000" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_light.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_light.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="btn_left" ActionTag="-1639436447" Tag="316" IconVisible="False" LeftMargin="164.0000" RightMargin="454.0000" TopMargin="32.0000" BottomMargin="32.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="7" RightEage="7" TopEage="11" BottomEage="11" Scale9OriginX="7" Scale9OriginY="11" Scale9Width="8" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -212,9 +212,9 @@
                     <PrePosition X="0.2734" Y="0.5000" />
                     <PreSize X="0.0344" Y="0.3600" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/btn_arrow.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/btn_arrow.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/btn_arrow.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="btn_arrow.png" Plist="ui/plist/main.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="btn_arrow.png" Plist="ui/plist/main.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="btn_arrow.png" Plist="ui/plist/main.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -227,9 +227,9 @@
                     <PrePosition X="0.7234" Y="0.5000" />
                     <PreSize X="0.0344" Y="0.3600" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/btn_arrow.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/btn_arrow.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/btn_arrow.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="btn_arrow.png" Plist="ui/plist/main.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="btn_arrow.png" Plist="ui/plist/main.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="btn_arrow.png" Plist="ui/plist/main.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -253,9 +253,9 @@
                     <PrePosition X="0.5000" Y="0.8500" />
                     <PreSize X="0.1625" Y="1.1000" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/btn_single.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/btn_single.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/btn_single.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="btn_single.png" Plist="ui/plist/main.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="btn_single.png" Plist="ui/plist/main.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="btn_single.png" Plist="ui/plist/main.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -268,9 +268,9 @@
                     <PrePosition X="0.1289" Y="0.5500" />
                     <PreSize X="0.1625" Y="1.1000" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/btn_shop.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/btn_shop.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/btn_shop.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="btn_shop.png" Plist="ui/plist/main.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="btn_shop.png" Plist="ui/plist/main.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="btn_shop.png" Plist="ui/plist/main.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -283,9 +283,9 @@
                     <PrePosition X="0.8711" Y="0.5500" />
                     <PreSize X="0.1625" Y="1.1000" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/btn_multi.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/btn_multi.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/btn_multi.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="btn_multi.png" Plist="ui/plist/main.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="btn_multi.png" Plist="ui/plist/main.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="btn_multi.png" Plist="ui/plist/main.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>

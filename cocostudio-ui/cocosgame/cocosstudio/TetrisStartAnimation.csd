@@ -110,7 +110,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5063" Y="0.5000" />
                 <PreSize X="1.3312" Y="1.0000" />
-                <FileData Type="Normal" Path="ui/tetris/yun_left.png" Plist="" />
+                <FileData Type="Normal" Path="animation/yun/yun_left.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="yun_right" ActionTag="2111664177" Tag="29" IconVisible="False" LeftMargin="-107.9985" RightMargin="-104.0015" TopMargin="0.0001" BottomMargin="-0.0001" ctype="SpriteObjectData">
@@ -121,7 +121,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4969" Y="0.5000" />
                 <PreSize X="1.3312" Y="1.0000" />
-                <FileData Type="Normal" Path="ui/tetris/yun_right.png" Plist="" />
+                <FileData Type="Normal" Path="animation/yun/yun_right.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>

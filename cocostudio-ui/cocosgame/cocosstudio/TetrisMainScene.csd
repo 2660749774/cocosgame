@@ -18,9 +18,9 @@
                 <PrePosition X="0.7710" Y="0.1715" />
                 <PreSize X="0.3094" Y="0.0616" />
                 <TextColor A="255" R="255" G="255" B="0" />
-                <DisabledFileData Type="Normal" Path="ui/button/green_btn.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/button/green_btn.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/button/green_btn.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="green_btn.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="green_btn.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="green_btn.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -32,7 +32,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.3622" Y="0.1715" />
                 <PreSize X="0.5469" Y="0.0616" />
-                <FileData Type="Normal" Path="res/input_bg.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="input_bg.png" Plist="ui/plist/common.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

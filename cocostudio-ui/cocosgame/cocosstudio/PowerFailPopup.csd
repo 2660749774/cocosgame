@@ -21,9 +21,9 @@
                     <PrePosition X="0.5000" Y="0.1874" />
                     <PreSize X="0.4563" Y="0.1203" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/power_fail_retry.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/power_fail_retry.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/power_fail_retry.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="power_fail_retry.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="power_fail_retry.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="power_fail_retry.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -36,9 +36,9 @@
                     <PrePosition X="0.8723" Y="0.9335" />
                     <PreSize X="0.1016" Y="0.0909" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="ui/tetris/power/close.png" Plist="" />
+                    <DisabledFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <PressedFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
+                    <NormalFileData Type="PlistSubImage" Path="close.png" Plist="ui/plist/common.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -50,7 +50,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4680" Y="0.3637" />
                     <PreSize X="0.0688" Y="0.0615" />
-                    <FileData Type="Normal" Path="ui/tetris/power/energy_bg2.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="energy_bg2.png" Plist="ui/plist/common.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="lb_reward" ActionTag="464390380" Tag="261" IconVisible="False" LeftMargin="323.2491" RightMargin="286.7509" TopMargin="439.9677" BottomMargin="245.0323" FontSize="30" LabelText="-1" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
@@ -71,7 +71,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5669" />
                 <PreSize X="1.0000" Y="0.6294" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_fail_bg2.png" Plist="" />
+                <FileData Type="Normal" Path="ui/power/popup/power_fail_bg2.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>

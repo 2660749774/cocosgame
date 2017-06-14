@@ -10,6 +10,9 @@
 cc.exports.fileUtils = cc.FileUtils:getInstance()
 cc.exports.director = cc.Director:getInstance()
 
+-- log
+cc.exports.log = (require "core.log").new()
+
 -- json初始化
 cc.exports.json = require("core.util.json")
 
@@ -23,7 +26,6 @@ cc.exports.ResourceGroup = {
 
 -- layers 定义
 cc.exports.layers = require "core.Layers"
-cc.exports.log = (require "core.log").new()
 cc.exports.nativeBridge = require "core.native.NativeBridge"
 
 -- 重新定义traceback

@@ -18,9 +18,9 @@
                 <PrePosition X="0.3223" Y="0.6302" />
                 <PreSize X="0.9000" Y="0.9000" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tetris/power/power_clearstone_unopen.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tetris/power/power_clearstone_open.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tetris/power/power_clearstone_open.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="power_clearstone_unopen.png" Plist="ui/plist/main.plist" />
+                <PressedFileData Type="PlistSubImage" Path="power_clearstone_open.png" Plist="ui/plist/main.plist" />
+                <NormalFileData Type="PlistSubImage" Path="power_clearstone_open.png" Plist="ui/plist/main.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -32,7 +32,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4146" Y="0.1530" />
                 <PreSize X="0.3500" Y="0.3500" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_star.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="power_star.png" Plist="ui/plist/common.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="star3" ActionTag="-2125964104" VisibleForFrame="False" Tag="83" IconVisible="False" LeftMargin="60.2408" RightMargin="4.7592" TopMargin="61.3655" BottomMargin="3.6345" ctype="SpriteObjectData">
@@ -43,7 +43,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.7074" Y="0.2113" />
                 <PreSize X="0.3500" Y="0.3500" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_star.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="power_star.png" Plist="ui/plist/common.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="star2" ActionTag="-1537677049" VisibleForFrame="False" Tag="84" IconVisible="False" LeftMargin="4.3655" RightMargin="60.6345" TopMargin="60.7503" BottomMargin="4.2497" ctype="SpriteObjectData">
@@ -54,7 +54,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.1487" Y="0.2175" />
                 <PreSize X="0.3500" Y="0.3500" />
-                <FileData Type="Normal" Path="ui/tetris/power/power_star.png" Plist="" />
+                <FileData Type="PlistSubImage" Path="power_star.png" Plist="ui/plist/common.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="lb_armynum" ActionTag="-125838138" Tag="157" IconVisible="False" LeftMargin="31.2547" RightMargin="36.7453" TopMargin="59.7762" BottomMargin="15.2238" CharWidth="16" CharHeight="25" LabelText="12" StartChar="0" ctype="TextAtlasObjectData">
@@ -65,7 +65,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4725" Y="0.2772" />
                 <PreSize X="0.3200" Y="0.2500" />
-                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/tetris/power/army_num2.png" Plist="" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/army_num_out.png" Plist="" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

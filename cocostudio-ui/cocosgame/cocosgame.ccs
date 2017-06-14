@@ -3,6 +3,50 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
+        <Folder Name="animation">
+          <Folder Name="star">
+            <Image Name="meteor1.png" />
+            <Image Name="meteor2.png" />
+          </Folder>
+          <Folder Name="start">
+            <Image Name="anim_1.png" />
+            <Image Name="anim_2.png" />
+            <Image Name="anim_3.png" />
+            <Image Name="anim_start.png" />
+          </Folder>
+          <Folder Name="yun">
+            <Image Name="yun_left.png" />
+            <Image Name="yun_right.png" />
+          </Folder>
+        </Folder>
+        <Folder Name="block">
+          <Image Name="fangkuai.png" />
+          <Image Name="fangkuai1.png" />
+          <Image Name="fangkuai10.png" />
+          <Image Name="fangkuai11.png" />
+          <Image Name="fangkuai2.png" />
+          <Image Name="fangkuai3.png" />
+          <Image Name="fangkuai4.png" />
+          <Image Name="fangkuai5.png" />
+          <Image Name="fangkuai6.png" />
+          <Image Name="fangkuai7.png" />
+          <Image Name="fangkuai8.png" />
+          <Image Name="fangkuai9.png" />
+          <Image Name="fangkuai9_bak.png" />
+          <Image Name="star.png" />
+        </Folder>
+        <Folder Name="icon">
+          <Image Name="energy_bg2.png" />
+          <Image Name="gem_bg.png" />
+          <Image Name="meteor_bg.png" />
+          <Image Name="power_star.png" />
+          <Image Name="score_bg.png" />
+          <Image Name="score_flag.png" />
+          <Image Name="spar_bg.png" />
+          <Image Name="time_bg.png" />
+          <Image Name="time_flag.png" />
+          <Image Name="water_bg.png" />
+        </Folder>
         <Folder Name="res">
           <PlistImageFolder Image="pack.png" PListFile="pack.plist" Name=".pack_PList.Dir">
             <PlistImageFile Name="BugAnt.png" Key="BugAnt.png" />
@@ -13,7 +57,9 @@
             <PlistImageFile Name="PlaySceneBg.jpg" Key="PlaySceneBg.jpg" />
             <PlistImageFile Name="Star.png" Key="Star.png" />
           </PlistImageFolder>
-          <Folder Name="tetris" />
+          <Folder Name="tetris">
+            <Image Name="fangkuai.png" />
+          </Folder>
           <Image Name="BugAnt.png" />
           <Audio Name="BugDead.wav" />
           <Audio Name="BugEnterHole.wav" />
@@ -36,23 +82,195 @@
           <Image Name="fangkuai.png" />
         </Folder>
         <Folder Name="ui">
+          <Folder Name="bg">
+            <Image Name="intro_bg.png" />
+            <Image Name="intro_bg2.png" />
+            <Image Name="main_bg1.png" />
+            <Image Name="main_bg2.png" />
+            <Image Name="multimatch_bg.png" />
+            <Image Name="net_bg.png" />
+            <Image Name="pvp_bg.png" />
+            <Image Name="singlematch_bg.png" />
+          </Folder>
           <Folder Name="button">
             <Image Name="choose.png" />
             <Image Name="choose_bg.png" />
+            <Image Name="close.png" />
+            <Image Name="game_pause.png" />
             <Image Name="green_btn.png" />
+            <Image Name="pay_bg.png" />
           </Folder>
-          <Folder Name="loading">
-            <Image Name="bg.png" />
-            <Image Name="load_bg.png" />
-            <Image Name="load_pregress2.png" />
-            <Image Name="load_progress1.png" />
-            <Image Name="load_txt.png" />
+          <Folder Name="common">
+            <Image Name="down.png" />
+            <Image Name="down_fast.png" />
+            <Image Name="left.png" />
+            <Image Name="right.png" />
+            <Image Name="shift.png" />
           </Folder>
-          <Folder Name="slider">
-            <Image Name="slider.png" />
-            <Image Name="slider_1.png" />
-            <Image Name="slider_2.png" />
-            <Image Name="slider_bg.png" />
+          <Folder Name="number_atlas">
+            <Image Name="army_num_in.png" />
+            <Image Name="army_num_out.png" />
+            <Image Name="number.png" />
+            <Image Name="number_blue.png" />
+            <Image Name="number_red.png" />
+            <Image Name="number_small.png" />
+            <Image Name="number_yellow.png" />
+          </Folder>
+          <Folder Name="plist">
+            <PlistImageFolder Image="common.png" PListFile="common.plist" Name=".common_PList.Dir">
+              <PlistImageFile Name="btn_cancel.png" Key="btn_cancel.png" />
+              <PlistImageFile Name="btn_pvp.png" Key="btn_pvp.png" />
+              <PlistImageFile Name="close.png" Key="close.png" />
+              <PlistImageFile Name="down.png" Key="down.png" />
+              <PlistImageFile Name="down_fast.png" Key="down_fast.png" />
+              <PlistImageFile Name="energy_bg2.png" Key="energy_bg2.png" />
+              <PlistImageFile Name="fangkuai.png" Key="fangkuai.png" />
+              <PlistImageFile Name="fangkuai1.png" Key="fangkuai1.png" />
+              <PlistImageFile Name="fangkuai10.png" Key="fangkuai10.png" />
+              <PlistImageFile Name="fangkuai11.png" Key="fangkuai11.png" />
+              <PlistImageFile Name="fangkuai2.png" Key="fangkuai2.png" />
+              <PlistImageFile Name="fangkuai3.png" Key="fangkuai3.png" />
+              <PlistImageFile Name="fangkuai4.png" Key="fangkuai4.png" />
+              <PlistImageFile Name="fangkuai5.png" Key="fangkuai5.png" />
+              <PlistImageFile Name="fangkuai6.png" Key="fangkuai6.png" />
+              <PlistImageFile Name="fangkuai7.png" Key="fangkuai7.png" />
+              <PlistImageFile Name="fangkuai8.png" Key="fangkuai8.png" />
+              <PlistImageFile Name="fangkuai9.png" Key="fangkuai9.png" />
+              <PlistImageFile Name="fangkuai9_bak.png" Key="fangkuai9_bak.png" />
+              <PlistImageFile Name="game_continue.png" Key="game_continue.png" />
+              <PlistImageFile Name="game_end.png" Key="game_end.png" />
+              <PlistImageFile Name="game_pause.png" Key="game_pause.png" />
+              <PlistImageFile Name="game_pauseing.png" Key="game_pauseing.png" />
+              <PlistImageFile Name="gem_bg.png" Key="gem_bg.png" />
+              <PlistImageFile Name="left.png" Key="left.png" />
+              <PlistImageFile Name="meteor_bg.png" Key="meteor_bg.png" />
+              <PlistImageFile Name="pay_bg.png" Key="pay_bg.png" />
+              <PlistImageFile Name="power_fail_retry.png" Key="power_fail_retry.png" />
+              <PlistImageFile Name="power_pass_continue.png" Key="power_pass_continue.png" />
+              <PlistImageFile Name="power_pass_succ.png" Key="power_pass_succ.png" />
+              <PlistImageFile Name="power_star.png" Key="power_star.png" />
+              <PlistImageFile Name="power_start.png" Key="power_start.png" />
+              <PlistImageFile Name="right.png" Key="right.png" />
+              <PlistImageFile Name="score_bg.png" Key="score_bg.png" />
+              <PlistImageFile Name="score_flag.png" Key="score_flag.png" />
+              <PlistImageFile Name="shift.png" Key="shift.png" />
+              <PlistImageFile Name="spar_bg.png" Key="spar_bg.png" />
+              <PlistImageFile Name="star.png" Key="star.png" />
+              <PlistImageFile Name="time_bg.png" Key="time_bg.png" />
+              <PlistImageFile Name="time_flag.png" Key="time_flag.png" />
+              <PlistImageFile Name="vol_off.png" Key="vol_off.png" />
+              <PlistImageFile Name="vol_on.png" Key="vol_on.png" />
+              <PlistImageFile Name="water_bg.png" Key="water_bg.png" />
+              <PlistImageFile Name="next.png" Key="next.png" />
+              <PlistImageFile Name="input_bg.png" Key="input_bg.png" />
+              <PlistImageFile Name="green_btn.png" Key="green_btn.png" />
+            </PlistImageFolder>
+            <PlistImageFolder Image="main.png" PListFile="main.plist" Name=".main_PList.Dir">
+              <PlistImageFile Name="bar_bg.png" Key="bar_bg.png" />
+              <PlistImageFile Name="bar_bg2.png" Key="bar_bg2.png" />
+              <PlistImageFile Name="bar_choose.png" Key="bar_choose.png" />
+              <PlistImageFile Name="bar_light.png" Key="bar_light.png" />
+              <PlistImageFile Name="bar_unchoose.png" Key="bar_unchoose.png" />
+              <PlistImageFile Name="btn_arrow.png" Key="btn_arrow.png" />
+              <PlistImageFile Name="btn_matchbg.png" Key="btn_matchbg.png" />
+              <PlistImageFile Name="btn_multi.png" Key="btn_multi.png" />
+              <PlistImageFile Name="btn_shop.png" Key="btn_shop.png" />
+              <PlistImageFile Name="btn_single.png" Key="btn_single.png" />
+              <PlistImageFile Name="energy_bg.png" Key="energy_bg.png" />
+              <PlistImageFile Name="item_bg.png" Key="item_bg.png" />
+              <PlistImageFile Name="main_bar_bg.png" Key="main_bar_bg.png" />
+              <PlistImageFile Name="power_clearstone_open.png" Key="power_clearstone_open.png" />
+              <PlistImageFile Name="power_clearstone_unopen.png" Key="power_clearstone_unopen.png" />
+              <PlistImageFile Name="power_meteor_open.png" Key="power_meteor_open.png" />
+              <PlistImageFile Name="power_meteor_unopen.png" Key="power_meteor_unopen.png" />
+              <PlistImageFile Name="power_spar_open.png" Key="power_spar_open.png" />
+              <PlistImageFile Name="power_spar_unopen.png" Key="power_spar_unopen.png" />
+              <PlistImageFile Name="power_time_open.png" Key="power_time_open.png" />
+              <PlistImageFile Name="power_time_unopen.png" Key="power_time_unopen.png" />
+              <PlistImageFile Name="square1.png" Key="square1.png" />
+              <PlistImageFile Name="square2.png" Key="square2.png" />
+              <PlistImageFile Name="square3.png" Key="square3.png" />
+              <PlistImageFile Name="square4.png" Key="square4.png" />
+              <PlistImageFile Name="start_bg.png" Key="start_bg.png" />
+              <PlistImageFile Name="unopen_bg.png" Key="unopen_bg.png" />
+            </PlistImageFolder>
+            <PlistImageFolder Image="singlematch.png" PListFile="singlematch.plist" Name=".singlematch_PList.Dir">
+              <PlistImageFile Name="army_left_bg.png" Key="army_left_bg.png" />
+              <PlistImageFile Name="army_right_bg.png" Key="army_right_bg.png" />
+              <PlistImageFile Name="lb_left_bg.png" Key="lb_left_bg.png" />
+              <PlistImageFile Name="lb_right_bg.png" Key="lb_right_bg.png" />
+              <PlistImageFile Name="mh.png" Key="mh.png" />
+              <PlistImageFile Name="progress.png" Key="progress.png" />
+              <PlistImageFile Name="progress_bg.png" Key="progress_bg.png" />
+              <PlistImageFile Name="progress_blue.png" Key="progress_blue.png" />
+              <PlistImageFile Name="target_bottom.png" Key="target_bottom.png" />
+            </PlistImageFolder>
+            <File Name="common.tps" />
+            <File Name="main.tps" />
+            <File Name="singlematch.tps" />
+          </Folder>
+          <Folder Name="power">
+            <Folder Name="main">
+              <Image Name="bar_bg.png" />
+              <Image Name="bar_bg2.png" />
+              <Image Name="bar_choose.png" />
+              <Image Name="bar_light.png" />
+              <Image Name="bar_unchoose.png" />
+              <Image Name="btn_arrow.png" />
+              <Image Name="btn_matchbg.png" />
+              <Image Name="btn_multi.png" />
+              <Image Name="btn_shop.png" />
+              <Image Name="btn_single.png" />
+              <Image Name="energy_bg.png" />
+              <Image Name="item_bg.png" />
+              <Image Name="main_bar_bg.png" />
+              <Image Name="power_clearstone_open.png" />
+              <Image Name="power_clearstone_unopen.png" />
+              <Image Name="power_meteor_open.png" />
+              <Image Name="power_meteor_unopen.png" />
+              <Image Name="power_spar_open.png" />
+              <Image Name="power_spar_unopen.png" />
+              <Image Name="power_time_open.png" />
+              <Image Name="power_time_unopen.png" />
+              <Image Name="square1.png" />
+              <Image Name="square2.png" />
+              <Image Name="square3.png" />
+              <Image Name="square4.png" />
+              <Image Name="start_bg.png" />
+              <Image Name="unopen_bg.png" />
+            </Folder>
+            <Folder Name="match">
+              <Image Name="army_left_bg.png" />
+              <Image Name="army_right_bg.png" />
+              <Image Name="lb_left_bg.png" />
+              <Image Name="lb_right_bg.png" />
+              <Image Name="line.png" />
+              <Image Name="mh.png" />
+              <Image Name="progress.png" />
+              <Image Name="progress_bg.png" />
+              <Image Name="progress_blue.png" />
+              <Image Name="target_bottom.png" />
+            </Folder>
+            <Folder Name="popup">
+              <Image Name="popup_bg.png" />
+              <Image Name="power_fail_bg.png" />
+              <Image Name="power_fail_bg2.png" />
+              <Image Name="power_pass_bg.png" />
+              <Image Name="power_pass_bg2.png" />
+              <Image Name="power_pass_star.png" />
+              <Image Name="power_star_bg2.png" />
+              <Image Name="power_start_bg.png" />
+              <Image Name="power_target.png" />
+              <Image Name="powername_bg.png" />
+            </Folder>
+          </Folder>
+          <Folder Name="pvp">
+            <Image Name="btn_matchbg.png" />
+            <Image Name="btn_search.png" />
+            <Image Name="building_bg.png" />
+            <Image Name="net_title_bg.png" />
+            <Image Name="pic_blue_bg.png" />
+            <Image Name="pic_red_bg.png" />
           </Folder>
           <Folder Name="tetris">
             <Folder Name="power">
@@ -159,6 +377,7 @@
             <Image Name="net_title_bg.png" />
             <Image Name="NEXT.png" />
             <Image Name="number.png" />
+            <Image Name="number11.png" />
             <Image Name="pic_blue_bg.png" />
             <Image Name="pic_red_bg.png" />
             <Image Name="right.png" />
@@ -168,27 +387,29 @@
             <Image Name="yun_left.png" />
             <Image Name="yun_right.png" />
           </Folder>
+          <Folder Name="text">
+            <Image Name="btn_cancel.png" />
+            <Image Name="btn_pvp.png" />
+            <Image Name="game_continue.png" />
+            <Image Name="game_end.png" />
+            <Image Name="game_pauseing.png" />
+            <Image Name="power_fail_retry.png" />
+            <Image Name="power_pass_continue.png" />
+            <Image Name="power_pass_succ.png" />
+            <Image Name="power_start.png" />
+            <Image Name="vol_off.png" />
+            <Image Name="vol_on.png" />
+          </Folder>
         </Folder>
-        <Project Name="ButtonTestScene.csd" Type="Scene" />
         <Project Name="CommTips.csd" Type="Node" />
         <Project Name="ConsolePanel.csd" Type="Scene" />
-        <Project Name="ListTestPanel.csd" Type="Scene" />
-        <Project Name="LoadingPanel.csd" Type="Layer" />
-        <Project Name="LoadingScene.csd" Type="Scene" />
-        <Project Name="MainScene.csd" Type="Scene" />
         <Project Name="ModalMask.csd" Type="Scene" />
-        <Project Name="PageTestScene.csd" Type="Scene" />
-        <Project Name="ParticleTestPanel.csd" Type="Scene" />
         <Project Name="PowerFailPopup.csd" Type="Scene" />
         <Project Name="PowerPausePopup.csd" Type="Scene" />
         <Project Name="PowerStartPopup.csd" Type="Scene" />
         <Project Name="PowerSuccPopup.csd" Type="Scene" />
-        <Project Name="Scene.csd" Type="Scene" />
-        <Project Name="scrollTestPanel.csd" Type="Scene" />
-        <Project Name="SliderTestScene.csd" Type="Scene" />
-        <Project Name="TestLuaScene.csd" Type="Scene" />
-        <Project Name="TestMVVMScene.csd" Type="Scene" />
         <Project Name="TetrisClearStone.csd" Type="Scene" />
+        <Project Name="TetrisEndIntro.csd" Type="Scene" />
         <Project Name="TetrisLogin.csd" Type="Scene" />
         <Project Name="TetrisMainBar.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
@@ -206,9 +427,8 @@
         <Project Name="TetrisSpar.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
-        <Project Name="TetrisTimeMode.csd" Type="Scene" />
         <Project Name="TetrisStartIntro.csd" Type="Scene" />
-        <Project Name="TetrisEndIntro.csd" Type="Scene" />
+        <Project Name="TetrisTimeMode.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

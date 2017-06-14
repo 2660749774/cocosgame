@@ -69,7 +69,7 @@
       <ObjectData Name="Scene" Tag="27" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="meteor2" ActionTag="-833199850" Alpha="28" Tag="106" IconVisible="False" RightMargin="614.0000" TopMargin="1110.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="meteor2" ActionTag="-833199850" Alpha="141" Tag="106" IconVisible="False" RightMargin="614.0000" TopMargin="1110.0000" ctype="SpriteObjectData">
             <Size X="26.0000" Y="26.0000" />
             <AnchorPoint />
             <Position />
@@ -77,7 +77,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0406" Y="0.0229" />
-            <FileData Type="Normal" Path="ui/tetris/power/meteor2.png" Plist="" />
+            <FileData Type="Normal" Path="animation/star/meteor2.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>
