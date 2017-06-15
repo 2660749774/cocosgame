@@ -81,7 +81,7 @@ function TetrisScene:onCreate()
     -- 注册事件监听
     self.powerProgressEventListener = handler(self, self.updatePowerProgress)
     self.lifeEventListener = handler(self, self.updatePlayerLife)
-    emgr:addEventListener(EventDefine.POWER_PROGRESS_UPDATE, self.eventListener)
+    emgr:addEventListener(EventDefine.POWER_PROGRESS_UPDATE, self.powerProgressEventListener)
     emgr:addEventListener(EventDefine.PLAYER_LIFES_UPDATE, self.lifeEventListener)
 
     -- 添加触摸监听
