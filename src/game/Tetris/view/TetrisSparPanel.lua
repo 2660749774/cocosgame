@@ -203,7 +203,7 @@ function TetrisSparPanel:updateFlyStar()
     label:runAction(sequence)
 
     -- log:info("displayScore:%s, realScore:%s", self.displayFangkuaiNum, self.collectFangkuaiNum)
-    if self.displayFangkuaiNum >= self.totalFangkuaiNum then
+    if self.collectFangkuaiNum >= self.totalFangkuaiNum then
         -- 胜利了，该模式下胜利即3颗星星通关
         -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
         self.pass = true
