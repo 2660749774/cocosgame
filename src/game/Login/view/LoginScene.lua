@@ -12,6 +12,11 @@ local LoginScene = class("LoginScene", BaseScene)
 -- 创建方法
 -- @function [parent=#LoginScene] onCreate
 function LoginScene:onCreate()
+    --载入资源
+    rmgr:loadSpriteFrames(Resource.plist.common, Resource.group.common)
+    rmgr:loadSpriteFrames(Resource.plist.main, Resource.group.common)
+    rmgr:loadSpriteFrames(Resource.plist.power, Resource.group.common)
+
     local layout = require("layout.TetrisLogin").create()
     self:fixLayout(layout)
     self.lbTips = layout['lb_tips']

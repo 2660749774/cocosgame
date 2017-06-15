@@ -57,7 +57,7 @@ layout:setSize({width = 640.0000, height = 1136.0000})
 Scene:addChild(panel)
 
 --Create yun_left
-local yun_left = cc.Sprite:create("ui/tetris/yun_left.png")
+local yun_left = cc.Sprite:create("animation/yun/yun_left.png")
 yun_left:setName("yun_left")
 yun_left:setTag(28)
 yun_left:setCascadeColorEnabled(true)
@@ -77,7 +77,7 @@ yun_left:setBlendFunc({src = 1, dst = 771})
 panel:addChild(yun_left)
 
 --Create yun_right
-local yun_right = cc.Sprite:create("ui/tetris/yun_right.png")
+local yun_right = cc.Sprite:create("animation/yun/yun_right.png")
 yun_right:setName("yun_right")
 yun_right:setTag(29)
 yun_right:setCascadeColorEnabled(true)

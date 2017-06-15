@@ -21,9 +21,6 @@ function TetrisSinglePanel:onCreate(layout)
     self.btnShift = self.layout['btn_shift']
     self.btnRight = self.layout['btn_right']
     self.nextBg = self.layout['next_bg']
-    self.scoreText = self.layout['lb_score']
-    -- self.scoreHang = self.layout['lb_hang']
-    self.btnPlay = self.layout['btn_play']
     self.btnPause = self.layout['btn_pause']
     self.btnDown = self.layout['btn_down']
     self.btnDownLow = self.layout['btn_down_low']
@@ -43,9 +40,6 @@ function TetrisSinglePanel:onCreate(layout)
     self.tetris = Tetris.new(bg, false, true, self)
 
     self:addChild(self.layout["root"])
-    self.scoreText:setString("0")
-    self.btnPlay:setVisible(false)
-    -- self.scoreHang:setString("0")
 
     -- 添加事件
     self.btnShift:addClickEventListener(handler(self, self.handleShift))
@@ -56,7 +50,6 @@ function TetrisSinglePanel:onCreate(layout)
     self.btnRight:addClickEventListener(handler(self, self.handleRight))
     self.btnRight:addLongPressEventListener(handler(self, self.handleRight), 0.2)
 
-    -- self.btnPlay:addClickEventListener(handler(self, self.playGame))
     self.btnPause:addClickEventListener(handler(self, self.handlePauseGame))
 
     self.btnDown:addClickEventListener(handler(self, self.handleDown))
@@ -134,7 +127,6 @@ function TetrisSinglePanel:gameStart(data)
     -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
-    self.btnPlay:setVisible(false)
     self:reset()
 
     -- 初始化随机数
@@ -190,8 +182,6 @@ function TetrisSinglePanel:updateScore(removeLineNums)
         self.score = self.score + 1200
     end
     self.removeLineNums = self.removeLineNums + removeLineNums
-    -- self.scoreHang:setString(self.removeLineNums)
-    self.scoreText:setString(self.score)
 end
 
 --------------------------------
@@ -202,7 +192,6 @@ function TetrisSinglePanel:reset()
 
     self.nextBg:removeAllChildren()
     self.randomCache = {}
-    self.scoreText:setString("0")
 
     if self.btnHome then
         if not tolua.isnull(self.btnHome) then
@@ -216,9 +205,6 @@ end
 -- 通知比赛结束
 -- @function [parent=#TetrisSinglePanel] reset
 function TetrisSinglePanel:notifyGameOver(isSelf)
-    -- self.btnPlay:setVisible(true)
-
-    -- self:showHomeBtn(0, 0)
 end
 
 --------------------------------
@@ -301,32 +287,6 @@ end
 -- @function [parent=#TetrisSinglePanel] handleExtraAttributes
 function TetrisSinglePanel:handleExtraAttributes(attributes)
 
-end
-
-
---------------------------------
--- 创建返回主页按钮
--- @function [parent=#TetrisSinglePanel] showHomeBtn
-function TetrisSinglePanel:showHomeBtn(anchorX, anchorY)
-    if self.btnHome ~= nil and not tolua.isnull(self.btnHome) then
-        self.btnHome:removeFromParent()
-    end
-
-    local scene = self:getScene()
-    self.btnHome = ccui.Button:create()
-    self.btnHome:addTouchEventListener(self.btnHome.onTouch)
-    self.btnHome:setAnchorPoint(anchorX, anchorY)
-    self.btnHome:setTitleText("返回主页")
-    self.btnHome:setTitleColor(cc.c3b(30, 255, 0))
-    self.btnHome:setTitleFontSize(48)
-    self.btnHome:addClickEventListener(
-        function()
-            scene:popPanel(true)
-        end
-    )
-    local x, y = self.btnPlay:getPosition()
-    self.btnHome:setPosition(x, y - 100)
-    self:addChild(self.btnHome)
 end
 
 --------------------------------

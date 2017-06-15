@@ -291,7 +291,7 @@ function BaseBlock:refreshDisplay()
         for i=1, #array do
             for j=1, #array[i] do
                 if array[i][j] == 1 then
-                    local sprite = cc.Sprite:create(self.pic)
+                    local sprite = cc.Sprite:createWithSpriteFrameName(self.pic)
                     sprite:setAnchorPoint(0, 0)
                     local x, y = (j - 1), (4 - i)
                     sprite:setPosition(x * self.blockWidth, y * self.blockWidth)

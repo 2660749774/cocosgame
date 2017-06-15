@@ -6,7 +6,7 @@
       <ObjectData Name="Scene" Tag="24" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="bg" ActionTag="-389944647" Tag="64" IconVisible="False" LeftMargin="-101.2381" RightMargin="-110.7619" TopMargin="-1861.1362" BottomMargin="1.1362" LeftEage="281" RightEage="281" TopEage="374" BottomEage="374" Scale9OriginX="281" Scale9OriginY="374" Scale9Width="290" Scale9Height="2248" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="bg" ActionTag="-389944647" Tag="64" IconVisible="False" RightMargin="-212.0000" TopMargin="-1860.0000" LeftEage="281" RightEage="281" TopEage="374" BottomEage="374" Scale9OriginX="281" Scale9OriginY="374" Scale9Width="290" Scale9Height="2248" ctype="ImageViewObjectData">
             <Size X="852.0000" Y="2996.0000" />
             <Children>
               <AbstractNodeData Name="start_bg" ActionTag="685335063" Tag="172" IconVisible="False" TopMargin="2684.0000" ctype="SpriteObjectData">
@@ -907,10 +907,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="324.7619" Y="1499.1362" />
+            <Position X="426.0000" Y="1498.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5074" Y="1.3197" />
+            <PrePosition X="0.6656" Y="1.3187" />
             <PreSize X="1.3312" Y="2.6373" />
             <FileData Type="Normal" Path="ui/bg/main_bg1.png" Plist="" />
           </AbstractNodeData>

@@ -55,7 +55,6 @@ function TetrisClearStonePanel:gameStart(data)
     -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
-    self.btnPlay:setVisible(false)
     self:reset()
 
     -- 初始化随机数

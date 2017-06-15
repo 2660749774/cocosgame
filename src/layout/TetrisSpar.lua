@@ -60,7 +60,7 @@ Scene:addChild(panel)
 --Create scene_bg
 local scene_bg = ccui.ImageView:create()
 scene_bg:ignoreContentAdaptWithSize(false)
-scene_bg:loadTexture("ui/tetris/power/power_bg.png",0)
+scene_bg:loadTexture("ui/bg/singlematch_bg.png",0)
 scene_bg:setLayoutComponentEnabled(true)
 scene_bg:setName("scene_bg")
 scene_bg:setTag(64)
@@ -108,7 +108,7 @@ panel:addChild(tetris_panel)
 
 --Create lb_armynum
 local lb_armynum = ccui.TextAtlas:create([[12]],
-													"ui/tetris/power/army_num.png",
+													"ui/number_atlas/army_num_in.png",
 													25,
 													30,
 													"0")
@@ -133,7 +133,8 @@ layout:setBottomMargin(1082.8300)
 panel:addChild(lb_armynum)
 
 --Create army_right_bg
-local army_right_bg = cc.Sprite:create("ui/tetris/power/army_right_bg.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/singlematch.plist")
+local army_right_bg = cc.Sprite:createWithSpriteFrameName("army_right_bg.png")
 army_right_bg:setName("army_right_bg")
 army_right_bg:setTag(129)
 army_right_bg:setCascadeColorEnabled(true)
@@ -155,7 +156,8 @@ army_right_bg:setBlendFunc({src = 1, dst = 771})
 panel:addChild(army_right_bg)
 
 --Create army_left_bg
-local army_left_bg = cc.Sprite:create("ui/tetris/power/army_left_bg.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/singlematch.plist")
+local army_left_bg = cc.Sprite:createWithSpriteFrameName("army_left_bg.png")
 army_left_bg:setName("army_left_bg")
 army_left_bg:setTag(128)
 army_left_bg:setCascadeColorEnabled(true)
@@ -179,9 +181,12 @@ panel:addChild(army_left_bg)
 --Create btn_down_low
 local btn_down_low = ccui.Button:create()
 btn_down_low:ignoreContentAdaptWithSize(false)
-btn_down_low:loadTextureNormal("ui/tetris/down.png",0)
-btn_down_low:loadTexturePressed("ui/tetris/down.png",0)
-btn_down_low:loadTextureDisabled("ui/tetris/down.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_down_low:loadTextureNormal("down.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_down_low:loadTexturePressed("down.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_down_low:loadTextureDisabled("down.png",1)
 btn_down_low:setTitleFontSize(28)
 btn_down_low:setScale9Enabled(true)
 btn_down_low:setCapInsets({x = 15, y = 11, width = 66, height = 74})
@@ -206,9 +211,12 @@ panel:addChild(btn_down_low)
 --Create btn_down
 local btn_down = ccui.Button:create()
 btn_down:ignoreContentAdaptWithSize(false)
-btn_down:loadTextureNormal("ui/tetris/down_fast.png",0)
-btn_down:loadTexturePressed("ui/tetris/down_fast.png",0)
-btn_down:loadTextureDisabled("ui/tetris/down_fast.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_down:loadTextureNormal("down_fast.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_down:loadTexturePressed("down_fast.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_down:loadTextureDisabled("down_fast.png",1)
 btn_down:setTitleFontSize(28)
 btn_down:setScale9Enabled(true)
 btn_down:setCapInsets({x = 15, y = 11, width = 66, height = 74})
@@ -230,93 +238,15 @@ layout:setTopMargin(873.9659)
 layout:setBottomMargin(166.0341)
 panel:addChild(btn_down)
 
---Create lb_score_title
-local lb_score_title = ccui.Text:create()
-lb_score_title:ignoreContentAdaptWithSize(true)
-lb_score_title:setTextAreaSize({width = 0, height = 0})
-lb_score_title:setFontSize(28)
-lb_score_title:setString([[分 数]])
-lb_score_title:setLayoutComponentEnabled(true)
-lb_score_title:setName("lb_score_title")
-lb_score_title:setTag(26)
-lb_score_title:setCascadeColorEnabled(true)
-lb_score_title:setCascadeOpacityEnabled(true)
-lb_score_title:setVisible(false)
-lb_score_title:setPosition(513.1556, 855.5805)
-layout = ccui.LayoutComponent:bindLayoutComponent(lb_score_title)
-layout:setPositionPercentX(0.8018)
-layout:setPositionPercentY(0.7532)
-layout:setPercentWidth(0.1094)
-layout:setPercentHeight(0.0246)
-layout:setSize({width = 70.0000, height = 28.0000})
-layout:setLeftMargin(478.1556)
-layout:setRightMargin(91.8444)
-layout:setTopMargin(266.4195)
-layout:setBottomMargin(841.5805)
-panel:addChild(lb_score_title)
-
---Create lb_score
-local lb_score = ccui.TextAtlas:create([[5211]],
-													"ui/tetris/number.png",
-													30,
-													50,
-													"0")
-lb_score:setLayoutComponentEnabled(true)
-lb_score:setName("lb_score")
-lb_score:setTag(65)
-lb_score:setCascadeColorEnabled(true)
-lb_score:setCascadeOpacityEnabled(true)
-lb_score:setVisible(false)
-lb_score:setPosition(514.0000, 796.7838)
-layout = ccui.LayoutComponent:bindLayoutComponent(lb_score)
-layout:setPositionPercentX(0.8031)
-layout:setPositionPercentY(0.7014)
-layout:setPercentWidth(0.1875)
-layout:setPercentHeight(0.0440)
-layout:setSize({width = 120.0000, height = 50.0000})
-layout:setLeftMargin(454.0000)
-layout:setRightMargin(66.0000)
-layout:setTopMargin(314.2162)
-layout:setBottomMargin(771.7838)
-panel:addChild(lb_score)
-
---Create btn_play
-local btn_play = ccui.Button:create()
-btn_play:ignoreContentAdaptWithSize(false)
-cc.SpriteFrameCache:getInstance():addSpriteFrames("res/pack.plist")
-btn_play:loadTextureNormal("PlayButton.png",1)
-cc.SpriteFrameCache:getInstance():addSpriteFrames("res/pack.plist")
-btn_play:loadTexturePressed("PlayButton.png",1)
-cc.SpriteFrameCache:getInstance():addSpriteFrames("res/pack.plist")
-btn_play:loadTextureDisabled("PlayButton.png",1)
-btn_play:setTitleFontSize(14)
-btn_play:setTitleColor({r = 65, g = 65, b = 70})
-btn_play:setScale9Enabled(true)
-btn_play:setCapInsets({x = 15, y = 11, width = 210, height = 98})
-btn_play:setLayoutComponentEnabled(true)
-btn_play:setName("btn_play")
-btn_play:setTag(41)
-btn_play:setCascadeColorEnabled(true)
-btn_play:setCascadeOpacityEnabled(true)
-btn_play:setPosition(327.0454, 665.1121)
-layout = ccui.LayoutComponent:bindLayoutComponent(btn_play)
-layout:setPositionPercentX(0.5110)
-layout:setPositionPercentY(0.5855)
-layout:setPercentWidth(0.3750)
-layout:setPercentHeight(0.1056)
-layout:setSize({width = 240.0000, height = 120.0000})
-layout:setLeftMargin(207.0454)
-layout:setRightMargin(192.9546)
-layout:setTopMargin(410.8879)
-layout:setBottomMargin(605.1121)
-panel:addChild(btn_play)
-
 --Create btn_shift
 local btn_shift = ccui.Button:create()
 btn_shift:ignoreContentAdaptWithSize(false)
-btn_shift:loadTextureNormal("ui/tetris/shift.png",0)
-btn_shift:loadTexturePressed("ui/tetris/shift.png",0)
-btn_shift:loadTextureDisabled("ui/tetris/shift.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_shift:loadTextureNormal("shift.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_shift:loadTexturePressed("shift.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_shift:loadTextureDisabled("shift.png",1)
 btn_shift:setTitleFontSize(28)
 btn_shift:setScale9Enabled(true)
 btn_shift:setCapInsets({x = 15, y = 11, width = 123, height = 131})
@@ -341,9 +271,12 @@ panel:addChild(btn_shift)
 --Create btn_right
 local btn_right = ccui.Button:create()
 btn_right:ignoreContentAdaptWithSize(false)
-btn_right:loadTextureNormal("ui/tetris/right.png",0)
-btn_right:loadTexturePressed("ui/tetris/right.png",0)
-btn_right:loadTextureDisabled("ui/tetris/right.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_right:loadTextureNormal("right.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_right:loadTexturePressed("right.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_right:loadTextureDisabled("right.png",1)
 btn_right:setTitleFontSize(28)
 btn_right:setScale9Enabled(true)
 btn_right:setCapInsets({x = 15, y = 11, width = 66, height = 74})
@@ -368,9 +301,12 @@ panel:addChild(btn_right)
 --Create btn_left
 local btn_left = ccui.Button:create()
 btn_left:ignoreContentAdaptWithSize(false)
-btn_left:loadTextureNormal("ui/tetris/left.png",0)
-btn_left:loadTexturePressed("ui/tetris/left.png",0)
-btn_left:loadTextureDisabled("ui/tetris/left.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_left:loadTextureNormal("left.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_left:loadTexturePressed("left.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_left:loadTextureDisabled("left.png",1)
 btn_left:setTitleFontSize(28)
 btn_left:setLayoutComponentEnabled(true)
 btn_left:setName("btn_left")
@@ -390,77 +326,9 @@ layout:setTopMargin(944.4210)
 layout:setBottomMargin(95.5790)
 panel:addChild(btn_left)
 
---Create del_line
-local del_line = cc.Sprite:create("ui/tetris/del_line.png")
-del_line:setName("del_line")
-del_line:setTag(68)
-del_line:setCascadeColorEnabled(true)
-del_line:setCascadeOpacityEnabled(true)
-del_line:setVisible(false)
-del_line:setPosition(501.8242, 405.9948)
-layout = ccui.LayoutComponent:bindLayoutComponent(del_line)
-layout:setPositionPercentX(0.7841)
-layout:setPositionPercentY(0.3574)
-layout:setPercentWidth(0.0875)
-layout:setPercentHeight(0.0167)
-layout:setSize({width = 56.0000, height = 19.0000})
-layout:setLeftMargin(473.8242)
-layout:setRightMargin(110.1758)
-layout:setTopMargin(720.5052)
-layout:setBottomMargin(396.4948)
-del_line:setBlendFunc({src = 1, dst = 771})
-panel:addChild(del_line)
-
---Create hang
-local hang = cc.Sprite:create("ui/tetris/hang.png")
-hang:setName("hang")
-hang:setTag(69)
-hang:setCascadeColorEnabled(true)
-hang:setCascadeOpacityEnabled(true)
-hang:setVisible(false)
-hang:setAnchorPoint(0.4497, 0.4381)
-hang:setPosition(537.6376, 404.7581)
-layout = ccui.LayoutComponent:bindLayoutComponent(hang)
-layout:setPositionPercentX(0.8401)
-layout:setPositionPercentY(0.3563)
-layout:setPercentWidth(0.0313)
-layout:setPercentHeight(0.0176)
-layout:setSize({width = 20.0000, height = 20.0000})
-layout:setLeftMargin(528.6436)
-layout:setRightMargin(91.3565)
-layout:setTopMargin(720.0039)
-layout:setBottomMargin(395.9961)
-hang:setBlendFunc({src = 1, dst = 771})
-panel:addChild(hang)
-
---Create lb_hang
-local lb_hang = ccui.TextAtlas:create([[100]],
-													"ui/tetris/small number.png",
-													10,
-													15,
-													"0")
-lb_hang:setLayoutComponentEnabled(true)
-lb_hang:setName("lb_hang")
-lb_hang:setTag(72)
-lb_hang:setCascadeColorEnabled(true)
-lb_hang:setCascadeOpacityEnabled(true)
-lb_hang:setVisible(false)
-lb_hang:setPosition(510.5633, 376.3556)
-layout = ccui.LayoutComponent:bindLayoutComponent(lb_hang)
-layout:setPositionPercentX(0.7978)
-layout:setPositionPercentY(0.3313)
-layout:setPercentWidth(0.0469)
-layout:setPercentHeight(0.0132)
-layout:setSize({width = 30.0000, height = 15.0000})
-layout:setLeftMargin(495.5633)
-layout:setRightMargin(114.4367)
-layout:setTopMargin(752.1444)
-layout:setBottomMargin(368.8556)
-panel:addChild(lb_hang)
-
 --Create lb_left_line
 local lb_left_line = ccui.TextAtlas:create([[10]],
-													"ui/tetris/number.png",
+													"ui/number_atlas/number.png",
 													30,
 													50,
 													"0")
@@ -486,9 +354,12 @@ panel:addChild(lb_left_line)
 --Create btn_pause
 local btn_pause = ccui.Button:create()
 btn_pause:ignoreContentAdaptWithSize(false)
-btn_pause:loadTextureNormal("ui/tetris/power/game_pause.png",0)
-btn_pause:loadTexturePressed("ui/tetris/power/game_pause.png",0)
-btn_pause:loadTextureDisabled("ui/tetris/power/game_pause.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_pause:loadTextureNormal("game_pause.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_pause:loadTexturePressed("game_pause.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_pause:loadTextureDisabled("game_pause.png",1)
 btn_pause:setTitleFontSize(14)
 btn_pause:setTitleColor({r = 65, g = 65, b = 70})
 btn_pause:setScale9Enabled(true)
@@ -512,7 +383,8 @@ layout:setBottomMargin(191.5000)
 panel:addChild(btn_pause)
 
 --Create sp_mh
-local sp_mh = cc.Sprite:create("ui/tetris/power/mh.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/singlematch.plist")
+local sp_mh = cc.Sprite:createWithSpriteFrameName("mh.png")
 sp_mh:setName("sp_mh")
 sp_mh:setTag(127)
 sp_mh:setCascadeColorEnabled(true)
@@ -535,7 +407,7 @@ panel:addChild(sp_mh)
 
 --Create lb_time_sec
 local lb_time_sec = ccui.TextAtlas:create([[10]],
-													"ui/tetris/power/number_red.png",
+													"ui/number_atlas/number_red.png",
 													30,
 													50,
 													"0")
@@ -561,7 +433,7 @@ panel:addChild(lb_time_sec)
 
 --Create lb_time_minute
 local lb_time_minute = ccui.TextAtlas:create([[10]],
-													"ui/tetris/power/number_red.png",
+													"ui/number_atlas/number_red.png",
 													30,
 													50,
 													"0")
@@ -586,7 +458,8 @@ layout:setBottomMargin(1023.0000)
 panel:addChild(lb_time_minute)
 
 --Create time_bg_1
-local time_bg_1 = cc.Sprite:create("ui/tetris/power/time_bg.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+local time_bg_1 = cc.Sprite:createWithSpriteFrameName("time_bg.png")
 time_bg_1:setName("time_bg_1")
 time_bg_1:setTag(124)
 time_bg_1:setCascadeColorEnabled(true)
@@ -608,7 +481,8 @@ time_bg_1:setBlendFunc({src = 1, dst = 771})
 panel:addChild(time_bg_1)
 
 --Create lb_left_bg
-local lb_left_bg = cc.Sprite:create("ui/tetris/power/lb_left_bg.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/singlematch.plist")
+local lb_left_bg = cc.Sprite:createWithSpriteFrameName("lb_left_bg.png")
 lb_left_bg:setName("lb_left_bg")
 lb_left_bg:setTag(42)
 lb_left_bg:setCascadeColorEnabled(true)
@@ -653,7 +527,8 @@ lb_left_bg:addChild(next_bg)
 --Create next_bg_title
 local next_bg_title = ccui.ImageView:create()
 next_bg_title:ignoreContentAdaptWithSize(false)
-next_bg_title:loadTexture("ui/tetris/NEXT.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+next_bg_title:loadTexture("next.png",1)
 next_bg_title:setLayoutComponentEnabled(true)
 next_bg_title:setName("next_bg_title")
 next_bg_title:setTag(66)
@@ -673,7 +548,8 @@ layout:setBottomMargin(109.4441)
 lb_left_bg:addChild(next_bg_title)
 
 --Create lb_right_bg
-local lb_right_bg = cc.Sprite:create("ui/tetris/power/lb_right_bg.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/singlematch.plist")
+local lb_right_bg = cc.Sprite:createWithSpriteFrameName("lb_right_bg.png")
 lb_right_bg:setName("lb_right_bg")
 lb_right_bg:setTag(43)
 lb_right_bg:setCascadeColorEnabled(true)
@@ -693,7 +569,8 @@ lb_right_bg:setBlendFunc({src = 1, dst = 771})
 Scene:addChild(lb_right_bg)
 
 --Create target_bottom_5
-local target_bottom_5 = cc.Sprite:create("ui/tetris/power/target_bottom.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/singlematch.plist")
+local target_bottom_5 = cc.Sprite:createWithSpriteFrameName("target_bottom.png")
 target_bottom_5:setName("target_bottom_5")
 target_bottom_5:setTag(123)
 target_bottom_5:setCascadeColorEnabled(true)
@@ -715,7 +592,8 @@ target_bottom_5:setBlendFunc({src = 1, dst = 771})
 lb_right_bg:addChild(target_bottom_5)
 
 --Create fangkuai_bg
-local fangkuai_bg = cc.Sprite:create("ui/tetris/power/spar_bg.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+local fangkuai_bg = cc.Sprite:createWithSpriteFrameName("spar_bg.png")
 fangkuai_bg:setName("fangkuai_bg")
 fangkuai_bg:setTag(122)
 fangkuai_bg:setCascadeColorEnabled(true)
@@ -738,7 +616,7 @@ lb_right_bg:addChild(fangkuai_bg)
 
 --Create lb_result
 local lb_result = ccui.TextAtlas:create([[100/100]],
-													"ui/tetris/power/number.png",
+													"ui/number_atlas/number_small.png",
 													15,
 													25,
 													"/")

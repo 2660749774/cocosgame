@@ -6,6 +6,9 @@
 -- To change this template use File | Settings | File Templates.
 -- init 用来初始化该模块
 
+-- 常量定义
+require "game.Data.Constants"
+
 -- 初始化Actions
 require "game.Net.Actions"
 

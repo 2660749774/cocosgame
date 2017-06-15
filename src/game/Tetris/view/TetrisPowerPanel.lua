@@ -100,7 +100,7 @@ function TetrisPowerPanel:fillEndCell(cell, idx)
     local bg = layout['bg']
     local bgSize = bg:getContentSize()
 
-    local endBg = cc.Sprite:create("ui/tetris/power/unopen_bg.png")
+    local endBg = cc.Sprite:createWithSpriteFrameName("unopen_bg.png")
     local endBgSize = endBg:getContentSize()
     endBg:setPosition(endBgSize.width / 2, bgSize.height - endBgSize.height / 2)
     bg:addChild(endBg)

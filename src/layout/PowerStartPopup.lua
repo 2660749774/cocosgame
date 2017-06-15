@@ -61,7 +61,7 @@ layout:setSize({width = 640.0000, height = 1136.0000})
 Scene:addChild(panel)
 
 --Create popup_bg_4
-local popup_bg_4 = cc.Sprite:create("ui/tetris/power/power_star_bg2.png")
+local popup_bg_4 = cc.Sprite:create("ui/power/popup/power_star_bg2.png")
 popup_bg_4:setName("popup_bg_4")
 popup_bg_4:setTag(51)
 popup_bg_4:setCascadeColorEnabled(true)
@@ -81,9 +81,12 @@ panel:addChild(popup_bg_4)
 --Create btn_powerstart
 local btn_powerstart = ccui.Button:create()
 btn_powerstart:ignoreContentAdaptWithSize(false)
-btn_powerstart:loadTextureNormal("ui/tetris/power/power_start.png",0)
-btn_powerstart:loadTexturePressed("ui/tetris/power/power_start.png",0)
-btn_powerstart:loadTextureDisabled("ui/tetris/power/power_start.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_powerstart:loadTextureNormal("power_start.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_powerstart:loadTexturePressed("power_start.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_powerstart:loadTextureDisabled("power_start.png",1)
 btn_powerstart:setTitleFontSize(14)
 btn_powerstart:setTitleColor({r = 65, g = 65, b = 70})
 btn_powerstart:setScale9Enabled(true)
@@ -108,7 +111,7 @@ popup_bg_4:addChild(btn_powerstart)
 
 --Create lb_armynum
 local lb_armynum = ccui.TextAtlas:create([[222]],
-													"ui/tetris/number.png",
+													"ui/number_atlas/number.png",
 													30,
 													50,
 													"0")
@@ -200,8 +203,8 @@ layout:setPercentHeight(0.0392)
 layout:setSize({width = 112.0000, height = 28.0000})
 layout:setLeftMargin(260.2581)
 layout:setRightMargin(267.7419)
-layout:setTopMargin(310.3827)
-layout:setBottomMargin(376.6173)
+layout:setTopMargin(310.3822)
+layout:setBottomMargin(376.6178)
 popup_bg_4:addChild(lb_target1)
 
 --Create sp_target2
@@ -247,8 +250,8 @@ layout:setPercentHeight(0.0392)
 layout:setSize({width = 112.0000, height = 28.0000})
 layout:setLeftMargin(260.2581)
 layout:setRightMargin(267.7419)
-layout:setTopMargin(364.4164)
-layout:setBottomMargin(322.5836)
+layout:setTopMargin(364.4152)
+layout:setBottomMargin(322.5848)
 popup_bg_4:addChild(lb_target2)
 
 --Create lb_tips
@@ -279,9 +282,12 @@ popup_bg_4:addChild(lb_tips)
 --Create btn_close
 local btn_close = ccui.Button:create()
 btn_close:ignoreContentAdaptWithSize(false)
-btn_close:loadTextureNormal("ui/tetris/power/close.png",0)
-btn_close:loadTexturePressed("ui/tetris/power/close.png",0)
-btn_close:loadTextureDisabled("ui/tetris/power/close.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_close:loadTextureNormal("close.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_close:loadTexturePressed("close.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+btn_close:loadTextureDisabled("close.png",1)
 btn_close:setTitleFontSize(14)
 btn_close:setTitleColor({r = 65, g = 65, b = 70})
 btn_close:setScale9Enabled(true)

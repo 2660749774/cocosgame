@@ -235,7 +235,8 @@ function TetrisScene:fillEndCell(cell, idx)
     local bg = layout['bg']
     local bgSize = bg:getContentSize()
 
-    local endBg = cc.Sprite:create("ui/tetris/power/unopen_bg.png")
+
+    local endBg = cc.Sprite:createWithSpriteFrameName("unopen_bg.png")
     local endBgSize = endBg:getContentSize()
     endBg:setPosition(endBgSize.width / 2, bgSize.height - endBgSize.height / 2)
     bg:addChild(endBg)
@@ -301,8 +302,8 @@ function TetrisScene:initArmyBtn(layout, idx, i)
     local x, y = btn:getPosition()
     btn:removeFromParent()
     layout['btn' .. i] = newBtn
-    newBtn:setPosition(x - 100, y)
-    layout['root']:addChild(newBtn)
+    newBtn:setPosition(x, y)
+    layout['bg']:addChild(newBtn)
     if not self.layoutMap[powerId] then
         self.layoutMap[powerId] = layout
     end
@@ -338,33 +339,33 @@ function TetrisScene:createArmyBtn(conf, powerId, armyId)
     else
         log:info("conf type:%s", conf.armyType)
         if conf.armyType == TetrisPowerConf.TYPE_CLEAR_STONE then
-            local openPic = string.format("ui/tetris/power/power_clearstone_%s.png", "open")
-            local unopenPic = string.format("ui/tetris/power/power_clearstone_%s.png", "unopen")
+            local openPic = string.format("power_clearstone_%s.png", "open")
+            local unopenPic = string.format("power_clearstone_%s.png", "unopen")
 
-            btn:loadTextureNormal(openPic,0)
-            btn:loadTexturePressed(openPic,0)
-            btn:loadTextureDisabled(unopenPic,0)
+            btn:loadTextureNormal(openPic, 1)
+            btn:loadTexturePressed(openPic, 1)
+            btn:loadTextureDisabled(unopenPic, 1)
         elseif conf.armyType == TetrisPowerConf.TYPE_TIMEMODE then
-            local openPic = string.format("ui/tetris/power/power_time_%s.png", "open")
-            local unopenPic = string.format("ui/tetris/power/power_time_%s.png", "unopen")
+            local openPic = string.format("power_time_%s.png", "open")
+            local unopenPic = string.format("power_time_%s.png", "unopen")
 
-            btn:loadTextureNormal(openPic,0)
-            btn:loadTexturePressed(openPic,0)
-            btn:loadTextureDisabled(unopenPic,0)
+            btn:loadTextureNormal(openPic, 1)
+            btn:loadTexturePressed(openPic, 1)
+            btn:loadTextureDisabled(unopenPic, 1)
         elseif conf.armyType == TetrisPowerConf.TYPE_METEOR2 then
-            local openPic = string.format("ui/tetris/power/power_meteor_%s.png", "open")
-            local unopenPic = string.format("ui/tetris/power/power_meteor_%s.png", "unopen")
+            local openPic = string.format("power_meteor_%s.png", "open")
+            local unopenPic = string.format("power_meteor_%s.png", "unopen")
 
-            btn:loadTextureNormal(openPic,0)
-            btn:loadTexturePressed(openPic,0)
-            btn:loadTextureDisabled(unopenPic,0)
+            btn:loadTextureNormal(openPic, 1)
+            btn:loadTexturePressed(openPic, 1)
+            btn:loadTextureDisabled(unopenPic, 1)
         elseif conf.armyType == TetrisPowerConf.TYPE_SPAR then
-            local openPic = string.format("ui/tetris/power/power_spar_%s.png", "open")
-            local unopenPic = string.format("ui/tetris/power/power_spar_%s.png", "unopen")
+            local openPic = string.format("power_spar_%s.png", "open")
+            local unopenPic = string.format("power_spar_%s.png", "unopen")
 
-            btn:loadTextureNormal(openPic,0)
-            btn:loadTexturePressed(openPic,0)
-            btn:loadTextureDisabled(unopenPic,0)
+            btn:loadTextureNormal(openPic, 1)
+            btn:loadTexturePressed(openPic, 1)
+            btn:loadTextureDisabled(unopenPic, 1)
         end
     end
     root:retain()

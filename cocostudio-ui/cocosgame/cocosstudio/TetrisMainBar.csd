@@ -119,7 +119,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.7361" Y="0.5104" />
                     <PreSize X="0.3688" Y="0.6250" />
-                    <FileData Type="Normal" Path="ui/tetris/power/bar_bg2.png" Plist="" />
+                    <FileData Type="PlistSubImage" Path="bar_bg2.png" Plist="ui/plist/main.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>

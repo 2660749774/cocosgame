@@ -60,7 +60,7 @@ layout:setBottomMargin(-140.0000)
 Scene:addChild(panel)
 
 --Create intro_bg
-local intro_bg = cc.Sprite:create("ui/tetris/power/intro_bg.png")
+local intro_bg = cc.Sprite:create("ui/bg/intro_bg.png")
 intro_bg:setName("intro_bg")
 intro_bg:setTag(170)
 intro_bg:setCascadeColorEnabled(true)

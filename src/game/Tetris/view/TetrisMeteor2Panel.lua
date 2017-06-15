@@ -126,11 +126,11 @@ function TetrisMeteor2Panel:updateNextBlock(nextBlock)
                 oldSprite = nextBlock.blocks[index]
             end
 
-            local sprite = cc.Sprite:create("tetris/fangkuai9.png")
+            local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai9.png")
             sprite:setAnchorPoint(0, 0)
             sprite:setPosition(oldSprite:getPosition())
             sprite.hasStar = true
-            sprite.pic = "tetris/fangkuai9.png"
+            sprite.pic = "fangkuai9.png"
             
             -- 添加动画
             -- local animationLayout = require("layout.TetrisMeteorAnimation").create()

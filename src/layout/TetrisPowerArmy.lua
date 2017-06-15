@@ -62,9 +62,12 @@ Scene:addChild(panel)
 --Create btn
 local btn = ccui.Button:create()
 btn:ignoreContentAdaptWithSize(false)
-btn:loadTextureNormal("ui/tetris/power/power_clearstone_open.png",0)
-btn:loadTexturePressed("ui/tetris/power/power_clearstone_open.png",0)
-btn:loadTextureDisabled("ui/tetris/power/power_clearstone_unopen.png",0)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/main.plist")
+btn:loadTextureNormal("power_clearstone_open.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/main.plist")
+btn:loadTexturePressed("power_clearstone_open.png",1)
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/main.plist")
+btn:loadTextureDisabled("power_clearstone_unopen.png",1)
 btn:setTitleFontSize(14)
 btn:setTitleColor({r = 65, g = 65, b = 70})
 btn:setScale9Enabled(true)
@@ -89,7 +92,8 @@ layout:setBottomMargin(18.0181)
 panel:addChild(btn)
 
 --Create star1
-local star1 = cc.Sprite:create("ui/tetris/power/power_star.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+local star1 = cc.Sprite:createWithSpriteFrameName("power_star.png")
 star1:setName("star1")
 star1:setTag(82)
 star1:setCascadeColorEnabled(true)
@@ -113,7 +117,8 @@ star1:setBlendFunc({src = 1, dst = 771})
 panel:addChild(star1)
 
 --Create star3
-local star3 = cc.Sprite:create("ui/tetris/power/power_star.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+local star3 = cc.Sprite:createWithSpriteFrameName("power_star.png")
 star3:setName("star3")
 star3:setTag(83)
 star3:setCascadeColorEnabled(true)
@@ -137,7 +142,8 @@ star3:setBlendFunc({src = 1, dst = 771})
 panel:addChild(star3)
 
 --Create star2
-local star2 = cc.Sprite:create("ui/tetris/power/power_star.png")
+cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/common.plist")
+local star2 = cc.Sprite:createWithSpriteFrameName("power_star.png")
 star2:setName("star2")
 star2:setTag(84)
 star2:setCascadeColorEnabled(true)
@@ -162,7 +168,7 @@ panel:addChild(star2)
 
 --Create lb_armynum
 local lb_armynum = ccui.TextAtlas:create([[12]],
-													"ui/tetris/power/army_num2.png",
+													"ui/number_atlas/army_num_out.png",
 													16,
 													25,
 													"0")
@@ -171,7 +177,7 @@ lb_armynum:setName("lb_armynum")
 lb_armynum:setTag(157)
 lb_armynum:setCascadeColorEnabled(true)
 lb_armynum:setCascadeOpacityEnabled(true)
-lb_armynum:setPosition(47.2547, 27.7239)
+lb_armynum:setPosition(47.2547, 27.7238)
 layout = ccui.LayoutComponent:bindLayoutComponent(lb_armynum)
 layout:setPositionPercentX(0.4725)
 layout:setPositionPercentY(0.2772)
@@ -181,7 +187,7 @@ layout:setSize({width = 32.0000, height = 25.0000})
 layout:setLeftMargin(31.2547)
 layout:setRightMargin(36.7453)
 layout:setTopMargin(59.7762)
-layout:setBottomMargin(15.2239)
+layout:setBottomMargin(15.2238)
 panel:addChild(lb_armynum)
 
 --Create Animation

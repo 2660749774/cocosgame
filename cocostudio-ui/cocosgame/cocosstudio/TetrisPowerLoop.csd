@@ -6,7 +6,7 @@
       <ObjectData Name="Scene" Tag="24" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="bg" ActionTag="-389944647" Tag="64" IconVisible="False" LeftMargin="-100.0185" RightMargin="-111.9815" TopMargin="-1861.1362" BottomMargin="1.1362" LeftEage="281" RightEage="281" TopEage="374" BottomEage="374" Scale9OriginX="281" Scale9OriginY="374" Scale9Width="290" Scale9Height="2248" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="bg" ActionTag="-389944647" Tag="64" IconVisible="False" RightMargin="-212.0000" TopMargin="-1860.0000" LeftEage="281" RightEage="281" TopEage="374" BottomEage="374" Scale9OriginX="281" Scale9OriginY="374" Scale9Width="290" Scale9Height="2248" ctype="ImageViewObjectData">
             <Size X="852.0000" Y="2996.0000" />
             <Children>
               <AbstractNodeData Name="btn1" ActionTag="625547719" Tag="235" IconVisible="False" LeftMargin="288.7496" RightMargin="503.2504" TopMargin="2747.3650" BottomMargin="188.6351" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="38" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -1001,10 +1001,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="325.9815" Y="1499.1362" />
+            <Position X="426.0000" Y="1498.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5093" Y="1.3197" />
+            <PrePosition X="0.6656" Y="1.3187" />
             <PreSize X="1.3312" Y="2.6373" />
             <FileData Type="Normal" Path="ui/bg/main_bg2.png" Plist="" />
           </AbstractNodeData>

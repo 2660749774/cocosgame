@@ -41,9 +41,9 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     self.pause = false
     self.checkBlockRemoveTimes = 0
     if self.isSelf then
-        self.blockPic = 'tetris/fangkuai.png'
+        self.blockPic = 'fangkuai.png'
     else
-        self.blockPic = 'tetris/fangkuai3.png'
+        self.blockPic = 'fangkuai3.png'
     end
 
 end
@@ -352,7 +352,7 @@ function Tetris:initGridBlock(conf)
     end
 
     local blockArray = conf.blockArray
-    local pic = string.format("tetris/%s.png", conf.blockType)
+    local pic = string.format("%s.png", conf.blockType)
     
     for i = 1, #blockArray do
         for j = 1, #blockArray[i] do
@@ -366,7 +366,7 @@ function Tetris:initGridBlock(conf)
             elseif blockArray[i][j] == 2 then
                 local gridX = j
                 local gridY = #blockArray - i + 1
-                local sprite = self:createSingleBlock("tetris/fangkuai9.png", gridX, gridY)
+                local sprite = self:createSingleBlock("fangkuai9.png", gridX, gridY)
                 sprite.confBlock = true
                 sprite.hasStar = true
                 self.grids[gridY][gridX] = sprite
@@ -387,7 +387,7 @@ end
 -- 创建单个方块
 -- @function [parent=#Tetris] createSingleBlock
 function Tetris:createSingleBlock(pic, gridX, gridY)
-    local sprite = cc.Sprite:create(pic)
+    local sprite = cc.Sprite:createWithSpriteFrameName(pic)
     sprite:setAnchorPoint(0, 0)
     sprite:setPosition((gridX - 1) * self.blockWidth + 3, (gridY - 1) * self.blockWidth + 3)
 
@@ -885,7 +885,7 @@ end
 function Tetris:flyStar(sender)
     local x, y = sender:getPosition()
     local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
-    local star = cc.Sprite:create("tetris/star.png")
+    local star = cc.Sprite:createWithSpriteFrameName("star.png")
     star:setAnchorPoint(0, 0)
     star:setPosition(pos.x, pos.y)
     self.parent:addChild(star)
@@ -955,7 +955,7 @@ function Tetris:addLines(lines)
         for i=1, #line do
             local value = line[i]
             if value == 1 then
-                local sprite = cc.Sprite:create(self.blockPic)
+                local sprite = cc.Sprite:createWithSpriteFrameName(self.blockPic)
                 local x = (i - 1) * self.blockWidth + self.fixPixel
                 local y = (index - 1) * self.blockWidth + self.fixPixel
                 sprite:setPosition(cc.p(x, y))

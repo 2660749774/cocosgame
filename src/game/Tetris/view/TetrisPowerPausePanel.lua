@@ -25,9 +25,9 @@ function TetrisPowerPausePanel:onCreate(parent)
     self.btnClose = layout['btn_close']
     self.parent = parent
 
-    self.btnVol:loadTextureNormal("ui/tetris/power/vol_off.png",0)
-    self.btnVol:loadTexturePressed("ui/tetris/power/vol_off.png",0)
-    self.btnVol:loadTextureDisabled("ui/tetris/power/vol_off.png",0)
+    self.btnVol:loadTextureNormal("vol_off.png",0)
+    self.btnVol:loadTexturePressed("vol_off.png",0)
+    self.btnVol:loadTextureDisabled("vol_off.png",0)
 
     self:addLayoutWithMask(layout, 'layout.ModalMask')
 
@@ -58,14 +58,14 @@ end
 function TetrisPowerPausePanel:handleVol()
     if self.volState == 1 then
         self.volState = 0
-        self.btnVol:loadTextureNormal("ui/tetris/power/vol_on.png",0)
-        self.btnVol:loadTexturePressed("ui/tetris/power/vol_on.png",0)
-        self.btnVol:loadTextureDisabled("ui/tetris/power/vol_on.png",0)
+        self.btnVol:loadTextureNormal("vol_on.png",0)
+        self.btnVol:loadTexturePressed("vol_on.png",0)
+        self.btnVol:loadTextureDisabled("vol_on.png",0)
     else
         self.volState = 1
-        self.btnVol:loadTextureNormal("ui/tetris/power/vol_off.png",0)
-        self.btnVol:loadTexturePressed("ui/tetris/power/vol_off.png",0)
-        self.btnVol:loadTextureDisabled("ui/tetris/power/vol_off.png",0)
+        self.btnVol:loadTextureNormal("vol_off.png",0)
+        self.btnVol:loadTexturePressed("vol_off.png",0)
+        self.btnVol:loadTextureDisabled("vol_off.png",0)
     end
 end
 

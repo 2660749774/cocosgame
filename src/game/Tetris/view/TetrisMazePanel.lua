@@ -34,9 +34,9 @@ function TetrisMazePanel:onCreate(powerId, armyId)
     self:loadConfig(TetrisPowerConf.TYPE_MAZE, powerId, armyId)
 
     -- 设置方块
-    local pic = string.format("tetris/%s.png", self.conf.blockType)
+    local pic = string.format("%s.png", self.conf.blockType)
     local fangkuaiBg = self.layout['fangkuai_bg']
-    fangkuaiBg:setTexture(pic)
+    fangkuaiBg:initWithSpriteFrameName(pic)
 
     self:updateBlockNum()
 end
@@ -49,7 +49,6 @@ function TetrisMazePanel:gameStart(data)
     -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
-    self.btnPlay:setVisible(false)
     self:reset()
 
     -- 初始化随机数

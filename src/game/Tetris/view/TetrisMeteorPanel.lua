@@ -36,7 +36,7 @@ function TetrisMeteorPanel:onCreate(powerId, armyId)
 
     -- 设置方块
     local fangkuaiBg = self.layout['fangkuai_bg']
-    fangkuaiBg:setTexture("tetris/fangkuai9.png")
+    fangkuaiBg:initWithSpriteFrameName("fangkuai9.png")
     local animationLayout = require("layout.TetrisMeteorAnimation").create()
     local meteor = animationLayout['root']
     local animation = animationLayout['animation']
@@ -55,7 +55,6 @@ function TetrisMeteorPanel:gameStart(data)
     -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
-    self.btnPlay:setVisible(false)
     self:reset()
 
     -- 初始化随机数

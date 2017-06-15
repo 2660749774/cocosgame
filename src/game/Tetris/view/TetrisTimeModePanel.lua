@@ -167,14 +167,14 @@ function TetrisTimeModePanel:updateNextBlock(nextBlock)
             -- label:setString("时")
             -- label:setPosition(13.5, 13.5)
 
-            local sprite = cc.Sprite:create("ui/tetris/power/time_flag.png")
+            local sprite = cc.Sprite:create("time_flag.png")
             sprite:setPosition(13.5, 13.5)
             sprite:setScale(0.8)
             nextBlock.blocks[index]:addChild(sprite)
         else
             nextBlock.blocks[index].score = 100
 
-            local sprite = cc.Sprite:create("ui/tetris/power/score_flag.png")
+            local sprite = cc.Sprite:create("score_flag.png")
             sprite:setPosition(13.5, 13.5)
             -- label:setString("分")
             -- label:setPosition(13.5, 13.5)

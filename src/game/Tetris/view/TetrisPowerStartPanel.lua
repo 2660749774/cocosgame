@@ -99,7 +99,7 @@ function TetrisPowerStartPanel:setTargetBlock()
     local armyType = self.powerConf.armyType
 
     if armyType == TetrisPowerConf.TYPE_CLEAR_STONE or armyType == TetrisPowerConf.TYPE_MAZE then
-        self.spTarget1:setTexture("ui/tetris/power/water_bg.png")
+        self.spTarget1:initWithSpriteFrameName("water_bg.png")
         self.spTarget1:setPosition(323, 395)
         self.spTarget2:setVisible(false)
         self.lbTarget1:setString("使用有限的方块")
@@ -110,21 +110,21 @@ function TetrisPowerStartPanel:setTargetBlock()
         self.lbTarget2:setPosition(323, 312)
         self.lbTips:setString("消除所有的陨石就能发现水源")
     elseif armyType == TetrisPowerConf.TYPE_TIMEMODE then
-        self.spTarget1:setTexture("ui/tetris/power/time_bg.png")
+        self.spTarget1:initWithSpriteFrameName("time_bg.png")
         self.lbTarget1:setString(string.format("%s秒内", self.powerDetailconf.maxTime))
-        self.spTarget2:setTexture("ui/tetris/power/score_bg.png")
+        self.spTarget2:initWithSpriteFrameName("score_bg.png")
         self.lbTarget2:setString(string.format("获得%s分", self.powerDetailconf.scoreNum))
         self.lbTips:setString("注意方块中的小奖励哦")
     elseif armyType == TetrisPowerConf.TYPE_METEOR2 then
-        self.spTarget1:setTexture("ui/tetris/power/time_bg.png")
+        self.spTarget1:initWithSpriteFrameName("time_bg.png")
         self.lbTarget1:setString(string.format("%s秒内", self.powerDetailconf.maxTime))
-        self.spTarget2:setTexture("ui/tetris/power/meteor_bg.png")
+        self.spTarget2:initWithSpriteFrameName("meteor_bg.png")
         self.lbTarget2:setString(string.format("收集%s颗星辰", self.powerDetailconf.scoreNum))
         self.lbTips:setString("只有3个连在一起的星辰才能被收集")
     elseif armyType == TetrisPowerConf.TYPE_SPAR then
-        self.spTarget1:setTexture("ui/tetris/power/time_bg.png")
+        self.spTarget1:initWithSpriteFrameName("time_bg.png")
         self.lbTarget1:setString(string.format("%s秒内", self.powerDetailconf.maxTime))
-        self.spTarget2:setTexture("ui/tetris/power/spar_bg.png")
+        self.spTarget2:initWithSpriteFrameName("spar_bg.png")
         self.lbTarget2:setString(string.format("收集%s颗能量石", self.powerDetailconf.collectBlockNum))
         self.lbTips:setString("能量石无法被消除，让它掉落到底部")
     end

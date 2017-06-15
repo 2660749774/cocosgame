@@ -59,7 +59,6 @@ function TetrisSparPanel:gameStart(data)
     -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
-    self.btnPlay:setVisible(false)
     self:reset()
 
     -- 初始化随机数
@@ -98,11 +97,11 @@ function TetrisSparPanel:updateNextBlock(nextBlock)
         local index = RandomUtil:nextInt(#nextBlock.blocks)
         local oldSprite = nextBlock.blocks[index]
 
-        local sprite = cc.Sprite:create("tetris/fangkuai11.png")
+        local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai11.png")
         sprite:setAnchorPoint(0, 0)
         sprite:setPosition(oldSprite:getPosition())
         sprite.downBlock = true
-        sprite.pic = "tetris/fangkuai11.png"
+        sprite.pic = "fangkuai11.png"
         nextBlock.blocks[index] = sprite
 
         oldSprite:removeFromParent()

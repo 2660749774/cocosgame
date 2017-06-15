@@ -142,8 +142,11 @@
               <PlistImageFile Name="game_pause.png" Key="game_pause.png" />
               <PlistImageFile Name="game_pauseing.png" Key="game_pauseing.png" />
               <PlistImageFile Name="gem_bg.png" Key="gem_bg.png" />
+              <PlistImageFile Name="green_btn.png" Key="green_btn.png" />
+              <PlistImageFile Name="input_bg.png" Key="input_bg.png" />
               <PlistImageFile Name="left.png" Key="left.png" />
               <PlistImageFile Name="meteor_bg.png" Key="meteor_bg.png" />
+              <PlistImageFile Name="next.png" Key="next.png" />
               <PlistImageFile Name="pay_bg.png" Key="pay_bg.png" />
               <PlistImageFile Name="power_fail_retry.png" Key="power_fail_retry.png" />
               <PlistImageFile Name="power_pass_continue.png" Key="power_pass_continue.png" />
@@ -161,9 +164,6 @@
               <PlistImageFile Name="vol_off.png" Key="vol_off.png" />
               <PlistImageFile Name="vol_on.png" Key="vol_on.png" />
               <PlistImageFile Name="water_bg.png" Key="water_bg.png" />
-              <PlistImageFile Name="next.png" Key="next.png" />
-              <PlistImageFile Name="input_bg.png" Key="input_bg.png" />
-              <PlistImageFile Name="green_btn.png" Key="green_btn.png" />
             </PlistImageFolder>
             <PlistImageFolder Image="main.png" PListFile="main.plist" Name=".main_PList.Dir">
               <PlistImageFile Name="bar_bg.png" Key="bar_bg.png" />
@@ -421,7 +421,6 @@
         <Project Name="TetrisPowerLoop.csd" Type="Scene" />
         <Project Name="TetrisPowerStart.csd" Type="Scene" />
         <Project Name="TetrisPvp.csd" Type="Scene" />
-        <Project Name="TetrisScene.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisSearchAnimation.csd" Type="Scene" />
         <Project Name="TetrisSpar.csd" Type="Scene" />
