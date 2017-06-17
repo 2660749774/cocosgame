@@ -29,6 +29,13 @@ function ConfigManager:loadConfig()
 end
 
 --------------------------------
+-- 获取渠道Id
+-- @function [parent=#ConfigManager] ctor
+function ConfigManager:channelId()
+    return self.channelId
+end
+
+--------------------------------
 -- 获取登录服务器配置
 -- @function [parent=#ConfigManager] getLoginServer
 function ConfigManager:getLoginServer()

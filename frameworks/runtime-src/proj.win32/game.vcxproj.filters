@@ -37,6 +37,9 @@
     <Filter Include="Classes\kcp">
       <UniqueIdentifier>{854c28c3-d406-45fb-852b-8270039d0c77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\network">
+      <UniqueIdentifier>{0caef8c4-8377-436c-a737-8064b3abc091}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -530,6 +533,12 @@
     <ClInclude Include="..\Classes\kcp\lkcp.h">
       <Filter>Classes\kcp</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\network\HTTPDownload.h">
+      <Filter>Classes\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\auto\lua_cocos2dx_httpdownload_auto.hpp">
+      <Filter>Classes\auto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -958,6 +967,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\kcp\lutil.c">
       <Filter>Classes\kcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\network\HTTPDownload.cpp">
+      <Filter>Classes\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\auto\lua_cocos2dx_httpdownload_auto.cpp">
+      <Filter>Classes\auto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

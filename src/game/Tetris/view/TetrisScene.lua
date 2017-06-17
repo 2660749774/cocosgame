@@ -86,6 +86,16 @@ function TetrisScene:onCreate()
 
     -- 添加触摸监听
     self:addLayerTouchListener()
+
+    -- Test下载文件
+    local request = cc.HTTPDownload:createWithUrlLua(function(event) 
+            local request = event.request
+            log:info("event name:%s, request:%s", event.name, request)
+            if event.name == "progress" then
+                log:info("progress total = %s dltotal = %s", event.total, event.dltotal)
+            end
+        end, "http://127.0.0.1:81/officesp2010-kb2687455-fullfile-x86-zh-cn.exe", "D:\\D\\bb.exe")
+    request:start()
 end
 
 --------------------------------
