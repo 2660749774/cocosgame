@@ -5,6 +5,7 @@
 #include "cjson/lua_cjson.h"
 #include "kcp/lkcp.h"
 #include "kcp/lutil.h"
+#include "lfs/lfs.h"
  
 #if __cplusplus
 extern "C" {
@@ -26,6 +27,7 @@ static luaL_Reg luax_will_exts[] = {
     { "cjson", luaopen_cjson_safe},
 	{"kcp", luaopen_lkcp},
 	{"kcputil", luaopen_lutil},
+    {"lfs", luaopen_lfs},
     {NULL, NULL}
 };
 

@@ -55,13 +55,6 @@ cc.exports.rmgr = require "core.manager.ResourceManager".new()
 cc.exports.cmgr = require "core.manager.ConnectManager".new(false)
 cc.exports.ucmgr = require "core.manager.UDPConnectManager".new(false)
 cc.exports.emgr = require "core.manager.EventManager".new()
--- model manager
-cc.exports.mmgr = require("game.Common.ModelManager")
--- config manager
-cc.exports.confmgr = require("game.Common.ConfigManager").new("")
-
--- 初始化Actions
-require "game.Net.Actions"
 
 
 

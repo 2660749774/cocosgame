@@ -30,8 +30,8 @@ end
 
 --------------------------------
 -- 获取渠道Id
--- @function [parent=#ConfigManager] ctor
-function ConfigManager:channelId()
+-- @function [parent=#ConfigManager] getChannelId
+function ConfigManager:getChannelId()
     return self.channelId
 end
 

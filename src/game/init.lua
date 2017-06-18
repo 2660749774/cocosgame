@@ -12,6 +12,11 @@ require "game.Data.Constants"
 -- 初始化Actions
 require "game.Net.Actions"
 
+-- model manager
+cc.exports.mmgr = require("game.Common.ModelManager")
+-- config manager
+cc.exports.confmgr = require("game.Common.ConfigManager").new("")
+
 -- 申明全局Tips
 cc.exports.Tips = require "game.Common.Tips"
 cc.exports.EventDefine = require "game.Common.EventDefine"

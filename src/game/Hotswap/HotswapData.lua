@@ -10,6 +10,8 @@ local HotswapData = {}
 HotswapData.version = {}
 HotswapData.version.clientKey = "clientVersion"
 HotswapData.version.resKey = "resVersion"
+HotswapData.version.resDirKey = "resDir"
 HotswapData.version.packType = "packType"
+HotswapData.version.resMoveKey = "resMoving"
 
 return HotswapData

@@ -125,6 +125,19 @@ function WebUtil.createRequest(url, callback, heads, params, method)
     return request
 end
 
+-------------------------
+-- 下载文件
+-- @function [parent=#WebUtil] downloadFile
+-- @param url string 请求URL
+-- @param savePath string 保存的路径
+-- @param callback function 回调函数
+function WebUtil.downloadFile(url, savePath, callback)
+    local _wrapperFunc = WebUtil.wrapperCallback(callback)
+    log:tag(WebUtil.TAG, "send down request url:%s savePath:%s", url, savePath)
+    local request = cc.HTTPDownload:createWithUrlLua(_wrapperFunc, url, savePath)
+    request:start()
+end
+
 
 -------------------------
 -- 构建URL
@@ -170,7 +183,6 @@ function WebUtil.wrapperCallback(callback)
                 data.responseCode = request:getResponseStatusCode()
             else
                 data.state = cc.HTTP.StateCompleted
-                data.data = event.request:getResponseString()
             end
         elseif event.name == "progress" then
             data.state = cc.HTTP.StateProgress

@@ -70,6 +70,8 @@
 		844F15301EF64EFE00C3F8AB /* ZipUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F152B1EF648DF00C3F8AB /* ZipUtil.cpp */; };
 		844F15331EF6596D00C3F8AB /* lua_cocos2dx_ziputil_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15311EF6596D00C3F8AB /* lua_cocos2dx_ziputil_auto.cpp */; };
 		844F15341EF6597000C3F8AB /* lua_cocos2dx_ziputil_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15311EF6596D00C3F8AB /* lua_cocos2dx_ziputil_auto.cpp */; };
+		844F153A1EF6773200C3F8AB /* lfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 844F15381EF6773200C3F8AB /* lfs.c */; };
+		844F153D1EF6773600C3F8AB /* lfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 844F15381EF6773200C3F8AB /* lfs.c */; };
 		8478610B1E629E6000A6266A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8478610A1E629E6000A6266A /* GameKit.framework */; };
 		8478610D1E629E7700A6266A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8478610C1E629E7700A6266A /* GameKit.framework */; };
 		8478610F1E629F6500A6266A /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8478610E1E629F6500A6266A /* GameCenter.mm */; };
@@ -538,6 +540,8 @@
 		844F152C1EF648DF00C3F8AB /* ZipUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipUtil.h; path = ../Classes/util/ZipUtil.h; sourceTree = "<group>"; };
 		844F15311EF6596D00C3F8AB /* lua_cocos2dx_ziputil_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_ziputil_auto.cpp; path = ../Classes/auto/lua_cocos2dx_ziputil_auto.cpp; sourceTree = "<group>"; };
 		844F15321EF6596D00C3F8AB /* lua_cocos2dx_ziputil_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_ziputil_auto.hpp; path = ../Classes/auto/lua_cocos2dx_ziputil_auto.hpp; sourceTree = "<group>"; };
+		844F15381EF6773200C3F8AB /* lfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lfs.c; path = ../Classes/lfs/lfs.c; sourceTree = "<group>"; };
+		844F15391EF6773200C3F8AB /* lfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lfs.h; path = ../Classes/lfs/lfs.h; sourceTree = "<group>"; };
 		847861091E629DD100A6266A /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		8478610A1E629E6000A6266A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		8478610C1E629E7700A6266A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1505,6 +1509,8 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				844F15381EF6773200C3F8AB /* lfs.c */,
+				844F15391EF6773200C3F8AB /* lfs.h */,
 				84BA0F2F1E6C08870065FDBB /* kcp */,
 				847B16141E61433D00EDE087 /* crypto */,
 				844AE5231E14E63500FAB16E /* util */,
@@ -1884,6 +1890,7 @@
 				844F152F1EF64EF600C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp in Sources */,
 				847B19F11E61BCF800EDE087 /* tigertab.cpp in Sources */,
 				847B1A281E61BCF800EDE087 /* idea.cpp in Sources */,
+				844F153D1EF6773600C3F8AB /* lfs.c in Sources */,
 				847B1A481E61BCF800EDE087 /* cryptlib_bds.cpp in Sources */,
 				84A186F21D152B4A0004995F /* lua_zlib.c in Sources */,
 				847B1A2E1E61BCF800EDE087 /* gost.cpp in Sources */,
@@ -2024,6 +2031,7 @@
 				84D14B2A1EC7429C001DCA1C /* LuaBridge.mm in Sources */,
 				847B197D1E61A86B00EDE087 /* sha3.cpp in Sources */,
 				847B19AF1E61A86B00EDE087 /* gost.cpp in Sources */,
+				844F153A1EF6773200C3F8AB /* lfs.c in Sources */,
 				847B19691E61A86B00EDE087 /* wake.cpp in Sources */,
 				847B19641E61A86B00EDE087 /* zdeflate.cpp in Sources */,
 				847B19801E61A86B00EDE087 /* seed.cpp in Sources */,

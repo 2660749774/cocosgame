@@ -32,15 +32,17 @@ function Game:startup()
     -- app暴露给全局
     cc.exports.app = self
 
-
-    -- ucmgr:open(1, "127.0.0.1", "8010")
-    -- ucmgr:send(actions.doUpdate, protos.KEY_PRESS, 1, 1, 3)
-
     -- 初始化native桥
     nativeBridge.init()
 
-    -- 切换到入口函数
-    self:changeScene("Login")
+    if confmgr.config.checkUpdate then
+        -- 进行动更
+        local hotswap = require("game.hotswap.HotSwapController").new(nil, confmgr)
+        hotswap:start()
+    else
+        -- 切换到入口函数
+        self:changeScene("Login")
+    end
 end
 
 return Game

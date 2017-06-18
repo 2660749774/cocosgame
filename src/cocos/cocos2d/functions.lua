@@ -631,37 +631,3 @@ function string.formatnumberthousands(num)
     end
     return formatted
 end
-
-function string.endwith(input, text)
-    if input == nil or text == nil then
-        return false
-    end
-    
-    local inputLen = string.len(input)
-    local textLen = string.len(text)
-    if inputLen < textLen then
-        return false
-    elseif inputLen == textLen then
-        return input == text
-    else
-        local subInput = string.sub(input, -textLen, -1)
-        return subInput == text
-    end
-end
-
-function string.startwith(input, text)
-    if input == nil or text == nil then
-        return false
-    end
-    
-    local inputLen = string.len(input)
-    local textLen = string.len(text)
-    if inputLen < textLen then
-        return false
-    elseif inputLen == textLen then
-        return input == text
-    else
-        local subInput = string.sub(input, 1, textLen)
-        return subInput == text
-    end
-end
