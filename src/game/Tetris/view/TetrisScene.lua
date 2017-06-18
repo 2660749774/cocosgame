@@ -94,7 +94,7 @@ function TetrisScene:onCreate()
             if event.name == "progress" then
                 log:info("progress total = %s dltotal = %s", event.total, event.dltotal)
             end
-        end, "http://127.0.0.1:81/officesp2010-kb2687455-fullfile-x86-zh-cn.exe", "D:\\D\\bb.exe")
+        end, "http://192.168.1.4:81/officesp2010-kb2687455-fullfile-x86-zh-cn.exe", "/Workspace/bb.exe")
     request:start()
 end
 

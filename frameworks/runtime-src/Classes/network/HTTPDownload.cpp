@@ -1,5 +1,6 @@
 #include "HTTPDownload.h"
-#include "io.h"
+#include <stdio.h>
+#include <iostream>
 
 HTTPDownload::~HTTPDownload(void)
 {
@@ -56,38 +57,41 @@ bool HTTPDownload::start()
 
 	_state = kCCHTTPRequestStateInProgress;
 	retain();
-
-	if (_access(_filePath.c_str(), 0) == 0) { 
-		// ÒÔ¶þ½øÖÆÐÎÊ½×·¼Ó
-		_fp = fopen(_filePath.c_str(), "ab+");
-	} else {
-		// ¶þ½øÖÆÐ´
-		_fp = fopen(_filePath.c_str(), "wb");
-	}
+    
+    FILE *fp = fopen(_filePath.c_str(), "r");
+    if (fp != NULL) {
+        fclose(fp);
+        
+        // ä»¥äºŒè¿›åˆ¶å½¢å¼è¿½åŠ 
+        _fp = fopen(_filePath.c_str(), "ab+");
+    } else {
+        // äºŒè¿›åˆ¶å†™
+        _fp = fopen(_filePath.c_str(), "wb");
+    }
 
 	if (_fp == NULL) {
-		// Èç¹ûÎÄ¼þ³õÊ¼»¯Ê§°Ü½øÐÐ·µ»Ø
+		// å¦‚æžœæ–‡ä»¶åˆå§‹åŒ–å¤±è´¥è¿›è¡Œè¿”å›ž
 		return false;
 	}
 
-	// ¶ÁÈ¡±¾µØÎÄ¼þÏÂÔØ´óÐ¡
+	// è¯»å–æœ¬åœ°æ–‡ä»¶ä¸‹è½½å¤§å°
 	int use_resume = 0;
-	long localFileLenth = getLocalFileLength(); //ÒÑ¾­ÏÂÔØµÄ´óÐ¡
+	long localFileLenth = getLocalFileLength(); //å·²ç»ä¸‹è½½çš„å¤§å°
 	if (localFileLenth > 0)
 	{
 		use_resume = 1;
 	}
 
-	//	curl_easy_setopt(_curl, CURLOPT_TIMEOUT, 0);  // ÉèÖÃ×ÜÏÂÔØÊ±¼ä£¬0±íÊ¾ÎÞÏÞ
-	curl_easy_setopt(_curl, CURLOPT_CONNECTTIMEOUT, 10); // ÉèÖÃÁ¬½Ó³¬Ê±£¬Ä¬ÈÏ10s
+	//	curl_easy_setopt(_curl, CURLOPT_TIMEOUT, 0);  // è®¾ç½®æ€»ä¸‹è½½æ—¶é—´ï¼Œ0è¡¨ç¤ºæ— é™
+	curl_easy_setopt(_curl, CURLOPT_CONNECTTIMEOUT, 10); // è®¾ç½®è¿žæŽ¥è¶…æ—¶ï¼Œé»˜è®¤10s
 	curl_easy_setopt(_curl, CURLOPT_HEADERFUNCTION, getContentLengthCURL);
-	curl_easy_setopt(_curl, CURLOPT_WRITEFUNCTION, writeDataCURL);   // Ð´ÎÄ¼þ»Øµ÷·½·¨
-	curl_easy_setopt(_curl, CURLOPT_WRITEDATA, _fp); // Ð´ÈëÎÄ¼þ¶ÔÏó
-	curl_easy_setopt(_curl, CURLOPT_RESUME_FROM, use_resume ? localFileLenth : 0);   // ´Ó±¾µØ´óÐ¡Î»ÖÃ½øÐÐÇëÇóÊý¾Ý
-	//	curl_easy_setopt(_curl, CURLOPT_RESUME_FROM_LARGE, (long long)(use_resume ? localFileLenth : 0)); // CURLOPT_RESUME_FROM_LARGEÕë¶ÔÓÚ´óÎÄ¼þ
+	curl_easy_setopt(_curl, CURLOPT_WRITEFUNCTION, writeDataCURL);   // å†™æ–‡ä»¶å›žè°ƒæ–¹æ³•
+	curl_easy_setopt(_curl, CURLOPT_WRITEDATA, _fp); // å†™å…¥æ–‡ä»¶å¯¹è±¡
+	curl_easy_setopt(_curl, CURLOPT_RESUME_FROM, use_resume ? localFileLenth : 0);   // ä»Žæœ¬åœ°å¤§å°ä½ç½®è¿›è¡Œè¯·æ±‚æ•°æ®
+	//	curl_easy_setopt(_curl, CURLOPT_RESUME_FROM_LARGE, (long long)(use_resume ? localFileLenth : 0)); // CURLOPT_RESUME_FROM_LARGEé’ˆå¯¹äºŽå¤§æ–‡ä»¶
 	curl_easy_setopt(_curl, CURLOPT_NOPROGRESS, 0L);
-	curl_easy_setopt(_curl, CURLOPT_PROGRESSFUNCTION, progressCURL); // ÏÂÔØ½ø¶È»Øµ÷·½·¨
-	curl_easy_setopt(_curl, CURLOPT_PROGRESSDATA, this); // ´«Èë±¾Àà¶ÔÏó
+	curl_easy_setopt(_curl, CURLOPT_PROGRESSFUNCTION, progressCURL); // ä¸‹è½½è¿›åº¦å›žè°ƒæ–¹æ³•
+	curl_easy_setopt(_curl, CURLOPT_PROGRESSDATA, this); // ä¼ å…¥æœ¬ç±»å¯¹è±¡
 
 #ifdef _WINDOWS_
 
@@ -211,6 +215,7 @@ void HTTPDownload::update(float dt)
 		stack->pushLuaValueDict(dict);
 		stack->executeFunctionByHandler(_listener, 1);
 	}
+    release();
 #endif
 }
 

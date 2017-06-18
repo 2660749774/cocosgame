@@ -20,7 +20,7 @@ public:
 			const char *filePath);
 	#endif
 
-	// ¿ªÊ¼ÏÂÔØ
+	// å¼€å§‹ä¸‹è½½
 	bool start();
 
 	/** @brief Set accept encoding. */
@@ -41,14 +41,14 @@ public:
 	/** @brief Get error message. */
 	const string getErrorMessage(void);
 
-	// ¸üĞÂº¯Êı
+	// æ›´æ–°å‡½æ•°
 	virtual void update(float dt);
 
-	// Îö¹¹º¯Êı
+	// ææ„å‡½æ•°
 	~HTTPDownload(void);
 
 private:
-	// ¹¹Ôìº¯Êı
+	// æ„é€ å‡½æ•°
 	HTTPDownload(void) 
 	:_listener(0)
 	, _state(kCCHTTPRequestStateIdle)
@@ -62,10 +62,10 @@ private:
 	{
 	}
 
-	// Lua»Øµ÷º¯Êı
+	// Luaå›è°ƒå‡½æ•°
 	int _listener;
 
-	// ×´Ì¬ºÍ´íÎóÂë
+	// çŠ¶æ€å’Œé”™è¯¯ç 
 	int     _state;
 	int     _errorCode;
 	string  _errorMessage;
@@ -73,38 +73,38 @@ private:
 	
 	// url
 	string _url;
-	// ´æ·ÅÏÂÔØÎÄ¼şÂ·¾¶
+	// å­˜æ”¾ä¸‹è½½æ–‡ä»¶è·¯å¾„
 	string _filePath;
 
-	// ÏÂÔØ½ø¶ÈÏà¹Ø
+	// ä¸‹è½½è¿›åº¦ç›¸å…³
 	long _localFileLength;
 	double _dltotal;
 	double _dlnow;
 	double _ultotal;
 	double _ulnow;
 
-	// curlºÍÎÄ¼ş¾ä±ú
+	// curlå’Œæ–‡ä»¶å¥æŸ„
 	CURL *_curl;
 	FILE *_fp;
 
-	// ³õÊ¼»¯·½·¨
+	// åˆå§‹åŒ–æ–¹æ³•
 #if CC_LUA_ENGINE_ENABLED > 0
 	bool initWithListener(LUA_FUNCTION listener, const char *url);
 #endif
 
-	// ³õÊ¼»¯·½·¨
+	// åˆå§‹åŒ–æ–¹æ³•
 	bool initWithUrl(const char *url);
 
-	// ÇåÀí·½·¨
+	// æ¸…ç†æ–¹æ³•
 	void cleanup();
 
-	// ¸üĞÂ½ø¶È
+	// æ›´æ–°è¿›åº¦
 	int onProgress(double dltotal, double dlnow, double ultotal, double ulnow);
 
-	// »ñÈ¡±¾µØÎÄ¼ş³¤¶È
+	// è·å–æœ¬åœ°æ–‡ä»¶é•¿åº¦
 	long getLocalFileLength();
 
-	// Ïß³ÌÖ´ĞĞ·½·¨
+	// çº¿ç¨‹æ‰§è¡Œæ–¹æ³•
 	void onRequest(void);
 
 	// curl callback

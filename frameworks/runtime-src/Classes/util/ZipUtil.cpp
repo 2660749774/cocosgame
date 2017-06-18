@@ -27,18 +27,63 @@ ZipUtil::~ZipUtil(void)
 }
 
 #if CC_LUA_ENGINE_ENABLED > 0
-static ZipUtil* createWithUrlLua(LUA_FUNCTION listener,
+ZipUtil* ZipUtil::createWithUrlLua(LUA_FUNCTION listener,
 	const std::string &zipFilePath,
 	const std::string &outputDir) 
 {
 	ZipUtil *_zipUtil = new ZipUtil(zipFilePath, outputDir);
-	_zipUtil->listener = listener;
+    _zipUtil->_listener = listener;
+    _zipUtil->autorelease();
 	return _zipUtil;
 }
 #endif
 
+#ifdef _WINDOWS_
+DWORD WINAPI ZipUtil::onDecompress(LPVOID userdata)
+{
+    static_cast<ZipUtil*>(userdata)->decompress();
+    return 0;
+}
+#else // _WINDOWS_
+void *ZipUtil::onDecompress(void *userdata)
+{
+    static_cast<ZipUtil*>(userdata)->decompress();
+    return NULL;
+}
+#endif // _WINDOWS_
+
+bool ZipUtil::decompressAsync()
+{
+    retain();
+#ifdef _WINDOWS_
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+    std::thread worker(onDecompress, this);
+    worker.detach();
+    
+#else
+    CreateThread(NULL,          // default security attributes
+                 0,             // use default stack size
+                 onDecompress,   // thread function name
+                 this,          // argument to thread function
+                 0,             // use default creation flags
+                 NULL);
+#endif // CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+    
+#else
+    pthread_create(&_thread, NULL, onDecompress, this);
+    pthread_detach(_thread);
+#endif
+    
+    Director::getInstance()->getScheduler()->scheduleUpdate(this, 0, false);
+    return true;
+}
+
 bool ZipUtil::decompress()
 {
+    // 状态变成进度中
+    _state = kZipStateProgress;
+    
 	// 判断文件是否存在
 	if (!_fileUtils->isFileExist(_zipFilePath)) {
 		CCLOG("zip file not exists, file %s\n", _zipFilePath.c_str());
@@ -62,7 +107,7 @@ bool ZipUtil::decompress()
 
 	// 规范输出目录
 	std::string outDir;
-	if (_outputDir[_outputDir.length - 1] != "/") {
+	if (_outputDir[_outputDir.length() - 1] != '/') {
 		outDir = _outputDir + "/";
 	}
 	else {
@@ -91,12 +136,16 @@ bool ZipUtil::decompress()
 		_error = "can not read zip file global info";
 		return false;
 	}
+    // 文件个数
+    _totalEntryNum = global_info.number_entry;
 	// Buffer to hold data read from the zip file
 	char readBuffer[BUFFER_SIZE];
 	// Loop to extract all files.
 	uLong i;
 	for (i = 0; i < global_info.number_entry; ++i)
 	{
+        _uncompressEntryNum = i;
+        
 		// Get info about current file.
 		unz_file_info fileInfo;
 		char fileName[MAX_FILENAME];
@@ -176,7 +225,7 @@ bool ZipUtil::decompress()
 					unzClose(zipfile);
 					_state = kZipStateFailed;
 					_errorCode = kZip_ZIP_CANNOT_READ;
-					_error = "can not read zip file error code is " + error;
+					_error = "can not read zip file error";
 					return false;
 				}
 
@@ -208,6 +257,59 @@ bool ZipUtil::decompress()
 
 	unzClose(zipfile);
 	return true;
+}
+
+void ZipUtil::update(float dt)
+{
+    if (_state == kZipStateProgress)
+    {
+#if CC_LUA_ENGINE_ENABLED > 0
+        if (_listener)
+        {
+            LuaValueDict dict;
+            
+            dict["name"] = LuaValue::stringValue("progress");
+            dict["total"] = LuaValue::intValue((int)_totalEntryNum);
+            dict["uctotal"] = LuaValue::intValue((int)_uncompressEntryNum);
+            dict["zipUtil"] = LuaValue::ccobjectValue(this, "ZipUtil");
+            
+            LuaStack *stack = LuaEngine::getInstance()->getLuaStack();
+            stack->clean();
+            stack->pushLuaValueDict(dict);
+            stack->executeFunctionByHandler(_listener, 1);
+        }
+#endif
+        return;
+    }
+    
+    Director::getInstance()->getScheduler()->unscheduleAllForTarget(this);
+    
+#if CC_LUA_ENGINE_ENABLED > 0
+    if (_listener)
+    {
+        LuaValueDict dict;
+        
+        switch (_state)
+        {
+            case kZipStateCompleted:
+                dict["name"] = LuaValue::stringValue("completed");
+                break;
+                
+            case kZipStateFailed:
+                dict["name"] = LuaValue::stringValue("failed");
+                break;
+                
+            default:
+                dict["name"] = LuaValue::stringValue("unknown");
+        }
+        dict["zipUtil"] = LuaValue::ccobjectValue(this, "ZipUtil");
+        LuaStack *stack = LuaEngine::getInstance()->getLuaStack();
+        stack->clean();
+        stack->pushLuaValueDict(dict);
+        stack->executeFunctionByHandler(_listener, 1);
+    }
+    release();
+#endif
 }
 
 std::string ZipUtil::basename(const std::string& path)

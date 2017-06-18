@@ -62,6 +62,12 @@
 		842CEEB21D51D18E00F2D4B8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DD69AF1D4B31C900196C33 /* libssl.a */; };
 		844AE5291E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
 		844AE52A1E14E95F00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
+		844F15251EF648B200C3F8AB /* HTTPDownload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15231EF648B200C3F8AB /* HTTPDownload.cpp */; };
+		844F152A1EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15281EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp */; };
+		844F152D1EF648DF00C3F8AB /* ZipUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F152B1EF648DF00C3F8AB /* ZipUtil.cpp */; };
+		844F152E1EF64EED00C3F8AB /* HTTPDownload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15231EF648B200C3F8AB /* HTTPDownload.cpp */; };
+		844F152F1EF64EF600C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15281EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp */; };
+		844F15301EF64EFE00C3F8AB /* ZipUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F152B1EF648DF00C3F8AB /* ZipUtil.cpp */; };
 		8478610B1E629E6000A6266A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8478610A1E629E6000A6266A /* GameKit.framework */; };
 		8478610D1E629E7700A6266A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8478610C1E629E7700A6266A /* GameKit.framework */; };
 		8478610F1E629F6500A6266A /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8478610E1E629F6500A6266A /* GameCenter.mm */; };
@@ -522,6 +528,12 @@
 		842CEEAD1D51C98200F2D4B8 /* CCHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHTTPRequestDelegate.h; path = "../../cocos2d-x/tools/simulator/libsimulator/lib/network/CCHTTPRequestDelegate.h"; sourceTree = "<group>"; };
 		844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_util_auto.cpp; path = ../Classes/auto/lua_cocos2dx_util_auto.cpp; sourceTree = "<group>"; };
 		844AE5281E14E86B00FAB16E /* lua_cocos2dx_util_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_util_auto.hpp; path = ../Classes/auto/lua_cocos2dx_util_auto.hpp; sourceTree = "<group>"; };
+		844F15231EF648B200C3F8AB /* HTTPDownload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPDownload.cpp; path = ../Classes/network/HTTPDownload.cpp; sourceTree = "<group>"; };
+		844F15241EF648B200C3F8AB /* HTTPDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPDownload.h; path = ../Classes/network/HTTPDownload.h; sourceTree = "<group>"; };
+		844F15281EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_httpdownload_auto.cpp; path = ../Classes/auto/lua_cocos2dx_httpdownload_auto.cpp; sourceTree = "<group>"; };
+		844F15291EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_httpdownload_auto.hpp; path = ../Classes/auto/lua_cocos2dx_httpdownload_auto.hpp; sourceTree = "<group>"; };
+		844F152B1EF648DF00C3F8AB /* ZipUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ZipUtil.cpp; path = ../Classes/util/ZipUtil.cpp; sourceTree = "<group>"; };
+		844F152C1EF648DF00C3F8AB /* ZipUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipUtil.h; path = ../Classes/util/ZipUtil.h; sourceTree = "<group>"; };
 		847861091E629DD100A6266A /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		8478610A1E629E6000A6266A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		8478610C1E629E7700A6266A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -998,6 +1010,8 @@
 		842CEEAA1D51C7F000F2D4B8 /* network */ = {
 			isa = PBXGroup;
 			children = (
+				844F15231EF648B200C3F8AB /* HTTPDownload.cpp */,
+				844F15241EF648B200C3F8AB /* HTTPDownload.h */,
 				842CEEAB1D51C98200F2D4B8 /* CCHTTPRequest.cpp */,
 				842CEEAC1D51C98200F2D4B8 /* CCHTTPRequest.h */,
 				842CEEAD1D51C98200F2D4B8 /* CCHTTPRequestDelegate.h */,
@@ -1008,6 +1022,8 @@
 		844AE5231E14E63500FAB16E /* util */ = {
 			isa = PBXGroup;
 			children = (
+				844F152B1EF648DF00C3F8AB /* ZipUtil.cpp */,
+				844F152C1EF648DF00C3F8AB /* ZipUtil.h */,
 				84E6CEC71E16921600B7607D /* Util.h */,
 				84E6CEC81E16921600B7607D /* Util.cpp */,
 			);
@@ -1366,6 +1382,8 @@
 		84DD69AA1D4B30F200196C33 /* auto */ = {
 			isa = PBXGroup;
 			children = (
+				844F15281EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp */,
+				844F15291EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.hpp */,
 				847B184F1E615B4700EDE087 /* lua_cocos2dx_crypto_auto.hpp */,
 				847B18501E615B4700EDE087 /* lua_cocos2dx_crypto_auto.cpp */,
 				844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */,
@@ -1782,6 +1800,7 @@
 				847B19FA1E61BCF800EDE087 /* simple.cpp in Sources */,
 				847B19F71E61BCF800EDE087 /* sosemanuk.cpp in Sources */,
 				847B1A581E61BCF800EDE087 /* asn.cpp in Sources */,
+				844F152E1EF64EED00C3F8AB /* HTTPDownload.cpp in Sources */,
 				847B1A4A1E61BCF800EDE087 /* cpu.cpp in Sources */,
 				847B19E81E61BCF800EDE087 /* xtr.cpp in Sources */,
 				847B1A171E61BCF800EDE087 /* panama.cpp in Sources */,
@@ -1821,6 +1840,7 @@
 				847B1A321E61BCF800EDE087 /* gf2_32.cpp in Sources */,
 				9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */,
 				847B19F21E61BCF800EDE087 /* tftables.cpp in Sources */,
+				844F15301EF64EFE00C3F8AB /* ZipUtil.cpp in Sources */,
 				847B1A5A1E61BCF800EDE087 /* algparam.cpp in Sources */,
 				847B1A0F1E61BCF800EDE087 /* randpool.cpp in Sources */,
 				847B19E61E61BCF800EDE087 /* zdeflate.cpp in Sources */,
@@ -1854,6 +1874,7 @@
 				847B1A561E61BCF800EDE087 /* base32.cpp in Sources */,
 				847B1A331E61BCF800EDE087 /* gcm.cpp in Sources */,
 				847B1A051E61BCF800EDE087 /* rw.cpp in Sources */,
+				844F152F1EF64EF600C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp in Sources */,
 				847B19F11E61BCF800EDE087 /* tigertab.cpp in Sources */,
 				847B1A281E61BCF800EDE087 /* idea.cpp in Sources */,
 				847B1A481E61BCF800EDE087 /* cryptlib_bds.cpp in Sources */,
@@ -1912,6 +1933,7 @@
 				847B19881E61A86B00EDE087 /* rijndael.cpp in Sources */,
 				847B19C51E61A86B00EDE087 /* dessp.cpp in Sources */,
 				84107B231D156A2E00F65181 /* lpack.c in Sources */,
+				844F152D1EF648DF00C3F8AB /* ZipUtil.cpp in Sources */,
 				847B19AD1E61A86B00EDE087 /* hex.cpp in Sources */,
 				847B19D11E61A86B00EDE087 /* cast.cpp in Sources */,
 				847B19A91E61A86B00EDE087 /* idea.cpp in Sources */,
@@ -1964,6 +1986,7 @@
 				847B199F1E61A86B00EDE087 /* md5.cpp in Sources */,
 				847B19C81E61A86B00EDE087 /* cryptlib.cpp in Sources */,
 				847B19DA1E61A86B00EDE087 /* asn.cpp in Sources */,
+				844F152A1EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp in Sources */,
 				847B19931E61A86B00EDE087 /* polynomi.cpp in Sources */,
 				847B19B21E61A86B00EDE087 /* gf2n.cpp in Sources */,
 				847B19DD1E61A86B00EDE087 /* algebra.cpp in Sources */,
@@ -1986,6 +2009,7 @@
 				847B19681E61A86B00EDE087 /* whrlpool.cpp in Sources */,
 				847B19C61E61A86B00EDE087 /* des.cpp in Sources */,
 				847B19D71E61A86B00EDE087 /* base64.cpp in Sources */,
+				844F15251EF648B200C3F8AB /* HTTPDownload.cpp in Sources */,
 				847B19B31E61A86B00EDE087 /* gf2_32.cpp in Sources */,
 				847B18511E615B4700EDE087 /* lua_cocos2dx_crypto_auto.cpp in Sources */,
 				847B19AC1E61A86B00EDE087 /* hmac.cpp in Sources */,
