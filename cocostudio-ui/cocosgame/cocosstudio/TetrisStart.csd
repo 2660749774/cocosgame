@@ -2,12 +2,12 @@
   <PropertyGroup Name="TetrisStart" Type="Scene" ID="ef74ddda-9c92-46af-a572-b39a14ac9736" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
-      <Animation Duration="10" Speed="0.1333">
+      <Animation Duration="60" Speed="0.5000">
         <Timeline ActionTag="1707810620" Property="Position">
           <PointFrame FrameIndex="0" X="254.0000" Y="480.0000">
             <EasingData Type="0" />
           </PointFrame>
-          <PointFrame FrameIndex="10" X="254.0000" Y="480.0000">
+          <PointFrame FrameIndex="60" X="254.0000" Y="480.0000">
             <EasingData Type="0" />
           </PointFrame>
         </Timeline>
@@ -15,7 +15,7 @@
           <ScaleFrame FrameIndex="0" X="1.0000" Y="1.0000">
             <EasingData Type="0" />
           </ScaleFrame>
-          <ScaleFrame FrameIndex="10" X="1.0000" Y="1.0000">
+          <ScaleFrame FrameIndex="60" X="1.0000" Y="1.0000">
             <EasingData Type="0" />
           </ScaleFrame>
         </Timeline>
@@ -23,7 +23,7 @@
           <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
             <EasingData Type="0" />
           </ScaleFrame>
-          <ScaleFrame FrameIndex="10" X="-360.0000" Y="-360.0000">
+          <ScaleFrame FrameIndex="60" X="-360.0000" Y="-360.0000">
             <EasingData Type="0" />
           </ScaleFrame>
         </Timeline>
@@ -31,12 +31,12 @@
           <PointFrame FrameIndex="0" X="394.0000" Y="402.0038">
             <EasingData Type="0" />
           </PointFrame>
-          <PointFrame FrameIndex="10" X="394.0000" Y="402.0038">
+          <PointFrame FrameIndex="60" X="394.0000" Y="402.0038">
             <EasingData Type="0" />
           </PointFrame>
         </Timeline>
         <Timeline ActionTag="1384666103" Property="Scale">
-          <ScaleFrame FrameIndex="10" X="1.0000" Y="1.0000">
+          <ScaleFrame FrameIndex="60" X="1.0000" Y="1.0000">
             <EasingData Type="0" />
           </ScaleFrame>
         </Timeline>
@@ -44,7 +44,7 @@
           <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
             <EasingData Type="0" />
           </ScaleFrame>
-          <ScaleFrame FrameIndex="10" X="360.0000" Y="360.0000">
+          <ScaleFrame FrameIndex="60" X="360.0000" Y="360.0000">
             <EasingData Type="0" />
           </ScaleFrame>
         </Timeline>
@@ -71,7 +71,7 @@
                 <FileData Type="Normal" Path="ui/bg/pvp_bg.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="gear" ActionTag="1707810620" Tag="102" RotationSkewX="-36.0000" RotationSkewY="-36.0000" IconVisible="False" LeftMargin="168.0000" RightMargin="300.0000" TopMargin="570.0000" BottomMargin="394.0000" ctype="SpriteObjectData">
+              <AbstractNodeData Name="gear" ActionTag="1707810620" Tag="102" RotationSkewX="-312.0000" RotationSkewY="-312.0000" IconVisible="False" LeftMargin="168.0000" RightMargin="300.0000" TopMargin="570.0000" BottomMargin="394.0000" ctype="SpriteObjectData">
                 <Size X="172.0000" Y="172.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="254.0000" Y="480.0000" />
@@ -200,7 +200,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="big_gear" ActionTag="1384666103" Tag="99" RotationSkewX="36.0000" RotationSkewY="36.0000" IconVisible="False" LeftMargin="297.0000" RightMargin="149.0000" TopMargin="636.9962" BottomMargin="305.0038" ctype="SpriteObjectData">
+              <AbstractNodeData Name="big_gear" ActionTag="1384666103" Tag="99" RotationSkewX="312.0000" RotationSkewY="312.0000" IconVisible="False" LeftMargin="297.0000" RightMargin="149.0000" TopMargin="636.9962" BottomMargin="305.0038" ctype="SpriteObjectData">
                 <Size X="194.0000" Y="194.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="394.0000" Y="402.0038" />
