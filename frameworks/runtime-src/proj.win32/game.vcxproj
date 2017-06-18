@@ -195,6 +195,7 @@
     <ClInclude Include="..\Classes\auto\lua_cocos2dx_httpdownload_auto.hpp" />
     <ClInclude Include="..\Classes\auto\lua_cocos2dx_httprequest_auto.hpp" />
     <ClInclude Include="..\Classes\auto\lua_cocos2dx_util_auto.hpp" />
+    <ClInclude Include="..\Classes\auto\lua_cocos2dx_ziputil_auto.hpp" />
     <ClInclude Include="..\Classes\crypto\cryptopp\3way.h" />
     <ClInclude Include="..\Classes\crypto\cryptopp\adler32.h" />
     <ClInclude Include="..\Classes\crypto\cryptopp\aes.h" />
@@ -344,6 +345,7 @@
     <ClInclude Include="..\Classes\kcp\ikcp.h" />
     <ClInclude Include="..\Classes\kcp\lkcp.h" />
     <ClInclude Include="..\Classes\kcp\lutil.h" />
+    <ClInclude Include="..\Classes\lfs\lfs.h" />
     <ClInclude Include="..\Classes\lua_extensions\cjson\fpconv.h" />
     <ClInclude Include="..\Classes\lua_extensions\cjson\lua_cjson.h" />
     <ClInclude Include="..\Classes\lua_extensions\cjson\strbuf.h" />
@@ -352,6 +354,7 @@
     <ClInclude Include="..\Classes\lua_extensions\lua_zlib\lua_zlib.h" />
     <ClInclude Include="..\Classes\network\HTTPDownload.h" />
     <ClInclude Include="..\Classes\util\Util.h" />
+    <ClInclude Include="..\Classes\util\ZipUtil.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimulatorWin.h" />
@@ -364,6 +367,7 @@
     <ClCompile Include="..\Classes\auto\lua_cocos2dx_httpdownload_auto.cpp" />
     <ClCompile Include="..\Classes\auto\lua_cocos2dx_httprequest_auto.cpp" />
     <ClCompile Include="..\Classes\auto\lua_cocos2dx_util_auto.cpp" />
+    <ClCompile Include="..\Classes\auto\lua_cocos2dx_ziputil_auto.cpp" />
     <ClCompile Include="..\Classes\crypto\cryptopp\3way.cpp" />
     <ClCompile Include="..\Classes\crypto\cryptopp\adler32.cpp" />
     <ClCompile Include="..\Classes\crypto\cryptopp\algebra.cpp" />
@@ -493,6 +497,7 @@
     <ClCompile Include="..\Classes\kcp\ikcp.c" />
     <ClCompile Include="..\Classes\kcp\lkcp.c" />
     <ClCompile Include="..\Classes\kcp\lutil.c" />
+    <ClCompile Include="..\Classes\lfs\lfs.c" />
     <ClCompile Include="..\Classes\lua_extensions\cjson\fpconv.c" />
     <ClCompile Include="..\Classes\lua_extensions\cjson\lua_cjson.c" />
     <ClCompile Include="..\Classes\lua_extensions\cjson\strbuf.c" />
@@ -501,6 +506,7 @@
     <ClCompile Include="..\Classes\lua_extensions\lua_zlib\lua_zlib.c" />
     <ClCompile Include="..\Classes\network\HTTPDownload.cpp" />
     <ClCompile Include="..\Classes\util\Util.cpp" />
+    <ClCompile Include="..\Classes\util\ZipUtil.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimulatorWin.cpp" />
     <ClCompile Include="stdafx.cpp" />

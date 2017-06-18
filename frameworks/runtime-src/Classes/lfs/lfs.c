@@ -60,9 +60,15 @@
 #include <utime.h>
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <lua.h>
 #include <lauxlib.h>
 #include <lualib.h>
+#ifdef __cplusplus
+}
+#endif
 
 #include "lfs.h"
 
@@ -274,7 +280,7 @@ static int lfs_lock_dir(lua_State *L) {
     lua_pushnil(L); lua_pushstring(L, strerror(errno)); return 2;
   }
   strcpy(ln, path); strcat(ln, lockfile);
-  if((fd = CreateFile(ln, GENERIC_WRITE, 0, NULL, CREATE_NEW,
+  if((fd = CreateFile((LPCWSTR)ln, GENERIC_WRITE, 0, NULL, CREATE_NEW,
                 FILE_ATTRIBUTE_NORMAL | FILE_FLAG_DELETE_ON_CLOSE, NULL)) == INVALID_HANDLE_VALUE) {
         int en = GetLastError();
         free(ln); lua_pushnil(L);
@@ -292,7 +298,7 @@ static int lfs_lock_dir(lua_State *L) {
   return 1;
 }
 static int lfs_unlock_dir(lua_State *L) {
-  lfs_Lock *lock = luaL_checkudata(L, 1, LOCK_METATABLE);
+  lfs_Lock *lock = (lfs_Lock *)luaL_checkudata(L, 1, LOCK_METATABLE);
   if(lock->fd != INVALID_HANDLE_VALUE) {    
     CloseHandle(lock->fd);
     lock->fd=INVALID_HANDLE_VALUE;
@@ -865,7 +871,7 @@ static void set_info (lua_State *L) {
         lua_pushliteral (L, "LuaFileSystem is a Lua library developed to complement the set of functions related to file systems offered by the standard Lua distribution");
         lua_settable (L, -3);
         lua_pushliteral (L, "_VERSION");
-        lua_pushliteral (L, "LuaFileSystem "LFS_VERSION);
+        lua_pushliteral (L, "LuaFileSystem 1.6.3");
         lua_settable (L, -3);
 }
 

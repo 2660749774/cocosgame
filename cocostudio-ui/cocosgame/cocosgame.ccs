@@ -107,6 +107,16 @@
             <Image Name="right.png" />
             <Image Name="shift.png" />
           </Folder>
+          <Folder Name="loading">
+            <Image Name="loading_bg.png" />
+            <Image Name="loading_progress.png" />
+            <Image Name="loading_progress_bg.png" />
+          </Folder>
+          <Folder Name="login">
+            <Image Name="big_gear.png" />
+            <Image Name="gamename_bg.png" />
+            <Image Name="gear.png" />
+          </Folder>
           <Folder Name="number_atlas">
             <Image Name="army_num_in.png" />
             <Image Name="army_num_out.png" />
@@ -410,7 +420,7 @@
         <Project Name="PowerSuccPopup.csd" Type="Scene" />
         <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisEndIntro.csd" Type="Scene" />
-        <Project Name="TetrisLogin.csd" Type="Scene" />
+        <Project Name="TetrisStart.csd" Type="Scene" />
         <Project Name="TetrisMainBar.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
         <Project Name="TetrisMaze.csd" Type="Scene" />
@@ -428,6 +438,7 @@
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartIntro.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="TetrisLoading.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

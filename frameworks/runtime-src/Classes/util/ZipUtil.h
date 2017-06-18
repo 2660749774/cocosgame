@@ -14,14 +14,16 @@
 #include "cocos2d.h"
 #include "unzip/unzip.h"
 #include "platform/CCFileUtils.h"
+
+#ifndef CC_LUA_ENGINE_ENABLED
+#define CC_LUA_ENGINE_ENABLED 1
+#endif // !CC_LUA_ENGINE_ENABLED
 #if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
 #endif
 
 using namespace std;
 USING_NS_CC;
-
-
 
 #define kZipStateIdle                  0
 #define kZipStateProgress              1

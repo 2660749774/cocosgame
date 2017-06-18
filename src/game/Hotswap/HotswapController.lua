@@ -54,6 +54,11 @@ function HotswapController:ctor(view, confmgr)
     self.updateInfo = nil
     -- cdn游标
     self.cdnIndex = 1
+
+    -- test
+    -- local files = self:listFiles("D:/D/Cocos/tools/ant/")
+    -- log:tag(self.TAG, "list file %s", self.updateRootDir)
+    -- log:showTable(files)
 end
 
 --------------------------------
@@ -470,7 +475,7 @@ function HotswapController:listFiles(rootPath, files)
             local attr = lfs.attributes(path)  
             if attr ~= nil then
                 if attr.mode == 'directory' then  
-                    listFiles(path, files)  
+                    self:listFiles(path, files)  
                 else  
                     table.insert(files, {path=path, filename=entry})  
                 end  

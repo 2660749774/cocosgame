@@ -17,9 +17,15 @@ function LoginScene:onCreate()
     rmgr:loadSpriteFrames(Resource.plist.main, Resource.group.common)
     rmgr:loadSpriteFrames(Resource.plist.power, Resource.group.common)
 
-    local layout = require("layout.TetrisLogin").create()
+    local layout = require("layout.TetrisLoading").create()
     self:fixLayout(layout)
     self.lbTips = layout['lb_tips']
+    self.progress = layout['progress']
+    self.progress:loadSlidBallTextureNormal('', 0)
+    self.progress:loadSlidBallTexturePressed('', 0)
+    self.progress:loadSlidBallTextureDisabled('', 0)
+    self.progress:setPercent(0)
+    self.progress:setVisible(false)
 
     self.host, self.port = confmgr:getLoginServer()
 
@@ -40,7 +46,7 @@ end
 -- @function [parent=#LoginScene] connectServer
 function LoginScene:connectServer()
     log:info("login server host:%s, port:%s", self.host, self.port)
-    self:updateTips("正在连接登录服务器...")
+    self:updateTips("正在加载...")
 
     self.connectHandler = handler(self, self.onConnectCallback)
     cmgr:addConnCallback(self.connectHandler)
@@ -59,6 +65,7 @@ function LoginScene:onConnectCallback(event)
     self.retryCount = self.retryCount + 1
     if event.type == "conn" and event.status == "succ" then
         -- 连接成功
+        self.progress:setPercent(50)
         self:updateTips("连接登录服务器成功")
         cmgr:removeConnCallback(self.connectHandler)
         self.retryCount = 0
@@ -67,7 +74,11 @@ function LoginScene:onConnectCallback(event)
         self:login()
     elseif event.type == "conn" and event.status == "fail" then
         if self.retryCount > 0 then
-            app:changeScene("Tetris")
+            self.progress:setPercent(100)
+            scheduler.performWithDelayGlobal(function() 
+                -- 切换场景
+                app:changeScene("Start")
+            end, 0.5)
         else
             -- 连接失败
             self:updateTips("连接登录服务器失败，点击屏幕重试！")
@@ -95,6 +106,7 @@ end
 -- 登录结果处理
 -- @function [parent=#LoginScene] onLoginCallback
 function LoginScene:onLoginCallback(response)
+    self.progress:setPercent(80)
     cmgr:send(actions.createPlayer, function(response) 
         -- 登录成功
         cmgr:send(actions.getPlayerInfo, handler(self, self.onGetPlayerInfo))
@@ -112,14 +124,15 @@ function LoginScene:onGetPlayerInfo(response)
     mmgr.player = require("game.Common.model.Player").new()
     mmgr.player:update(response.data)
 
+    self.progress:setPercent(100)
     self:updateTips("获取角色信息成功")
-
+    
     -- 同步网络数据
     utils.gameArchive:syncServerData()
 
     scheduler.performWithDelayGlobal(function() 
         -- 切换场景
-        app:changeScene("Tetris")
+        app:changeScene("Start")
     end, 0.5)
 
     

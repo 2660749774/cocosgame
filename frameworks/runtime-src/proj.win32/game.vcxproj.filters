@@ -40,6 +40,9 @@
     <Filter Include="Classes\network">
       <UniqueIdentifier>{0caef8c4-8377-436c-a737-8064b3abc091}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\lfs">
+      <UniqueIdentifier>{7e85a557-5394-432c-a8a5-5ecba17d74c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -539,6 +542,15 @@
     <ClInclude Include="..\Classes\auto\lua_cocos2dx_httpdownload_auto.hpp">
       <Filter>Classes\auto</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\util\ZipUtil.h">
+      <Filter>Classes\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lfs\lfs.h">
+      <Filter>Classes\lfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\auto\lua_cocos2dx_ziputil_auto.hpp">
+      <Filter>Classes\auto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -972,6 +984,15 @@
       <Filter>Classes\network</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\auto\lua_cocos2dx_httpdownload_auto.cpp">
+      <Filter>Classes\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\util\ZipUtil.cpp">
+      <Filter>Classes\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lfs\lfs.c">
+      <Filter>Classes\lfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\auto\lua_cocos2dx_ziputil_auto.cpp">
       <Filter>Classes\auto</Filter>
     </ClCompile>
   </ItemGroup>
