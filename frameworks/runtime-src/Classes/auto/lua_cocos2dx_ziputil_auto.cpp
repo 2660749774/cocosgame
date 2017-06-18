@@ -147,6 +147,46 @@ int lua_cocos2dx_ziputil_ZipUtil_decompress(lua_State* tolua_S)
 
     return 0;
 }
+int lua_cocos2dx_ziputil_ZipUtil_createWithUrlLua(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"ZipUtil",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 3)
+    {
+        int arg0;
+        std::string arg1;
+        std::string arg2;
+        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0, "ZipUtil:createWithUrlLua");
+        ok &= luaval_to_std_string(tolua_S, 3,&arg1, "ZipUtil:createWithUrlLua");
+        ok &= luaval_to_std_string(tolua_S, 4,&arg2, "ZipUtil:createWithUrlLua");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_ziputil_ZipUtil_createWithUrlLua'", nullptr);
+            return 0;
+        }
+        ZipUtil* ret = ZipUtil::createWithUrlLua(arg0, arg1, arg2);
+        object_to_luaval<ZipUtil>(tolua_S, "ZipUtil",(ZipUtil*)ret);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ZipUtil:createWithUrlLua",argc, 3);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_ziputil_ZipUtil_createWithUrlLua'.",&tolua_err);
+#endif
+    return 0;
+}
 static int lua_cocos2dx_ziputil_ZipUtil_finalize(lua_State* tolua_S)
 {
     printf("luabindings: finalizing LUA object (ZipUtil)");
@@ -162,6 +202,7 @@ int lua_register_cocos2dx_ziputil_ZipUtil(lua_State* tolua_S)
         tolua_function(tolua_S,"decompressAsync",lua_cocos2dx_ziputil_ZipUtil_decompressAsync);
         tolua_function(tolua_S,"update",lua_cocos2dx_ziputil_ZipUtil_update);
         tolua_function(tolua_S,"decompress",lua_cocos2dx_ziputil_ZipUtil_decompress);
+        tolua_function(tolua_S,"createWithUrlLua", lua_cocos2dx_ziputil_ZipUtil_createWithUrlLua);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(ZipUtil).name();
     g_luaType[typeName] = "ZipUtil";
