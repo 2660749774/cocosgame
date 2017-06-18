@@ -41,7 +41,7 @@ class ZipUtil : Ref
 public:
 	// 创建解压文件
 #if CC_LUA_ENGINE_ENABLED > 0
-	static ZipUtil* createWithUrlLua(LUA_FUNCTION listener,
+	static ZipUtil* createWithLua(LUA_FUNCTION listener,
 		const std::string &zipFilePath, 
 		const std::string &outputDir);
 #endif
@@ -51,6 +51,15 @@ public:
     
     // 异步解压缩
     bool decompressAsync();
+    
+    /** @brief Get the request state. */
+    int getState(void);
+    
+    /** @brief Get error code. */
+    int getErrorCode(void);
+    
+    /** @brief Get error message. */
+    const string getErrorMessage(void);
     
     // 更新函数
     virtual void update(float dt);

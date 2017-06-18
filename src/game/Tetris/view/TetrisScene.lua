@@ -86,16 +86,6 @@ function TetrisScene:onCreate()
 
     -- 添加触摸监听
     self:addLayerTouchListener()
-
-    -- Test下载文件
-    local request = cc.HTTPDownload:createWithUrlLua(function(event) 
-            local request = event.request
-            log:info("event name:%s, request:%s", event.name, request)
-            if event.name == "progress" then
-                log:info("progress total = %s dltotal = %s", event.total, event.dltotal)
-            end
-        end, "http://192.168.1.4:81/officesp2010-kb2687455-fullfile-x86-zh-cn.exe", "/Workspace/bb.exe")
-    request:start()
 end
 
 --------------------------------
@@ -347,7 +337,7 @@ function TetrisScene:createArmyBtn(conf, powerId, armyId)
         -- 默认据点
         return root
     else
-        log:info("conf type:%s", conf.armyType)
+        -- log:info("conf type:%s", conf.armyType)
         if conf.armyType == TetrisPowerConf.TYPE_CLEAR_STONE then
             local openPic = string.format("power_clearstone_%s.png", "open")
             local unopenPic = string.format("power_clearstone_%s.png", "unopen")

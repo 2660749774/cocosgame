@@ -136,15 +136,13 @@ end
 -- 计算内容的 MD5 码
 -- @function [parent=#crypto] md5
 -- @param string input 内容字符串
--- @param boolean isRawOutput 是否返回二进制 MD5 码
 -- @return string#string ret (return value: string)  MD5 字符串
 
 -- end --
 
-function crypto.md5(input, isRawOutput)
+function crypto.md5(input)
     input = tostring(input)
-    if type(isRawOutput) ~= "boolean" then isRawOutput = false end
-    return cc.CryptoUtil:MD5(input, isRawOutput)
+    return cc.CryptoUtil:md5(input)
 end
 
 -- start --
@@ -166,7 +164,7 @@ function crypto.md5file(path)
     if DEBUG > 1 then
         printInfo("crypto.md5file() - filename: %s", path)
     end
-    return cc.CryptoUtil:MD5File(path)
+    return cc.CryptoUtil:md5File(path)
 end
 
 return crypto

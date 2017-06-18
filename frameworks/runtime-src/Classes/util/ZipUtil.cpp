@@ -27,7 +27,7 @@ ZipUtil::~ZipUtil(void)
 }
 
 #if CC_LUA_ENGINE_ENABLED > 0
-ZipUtil* ZipUtil::createWithUrlLua(LUA_FUNCTION listener,
+ZipUtil* ZipUtil::createWithLua(LUA_FUNCTION listener,
 	const std::string &zipFilePath,
 	const std::string &outputDir) 
 {
@@ -254,10 +254,29 @@ bool ZipUtil::decompress()
 			}
 		}
 	}
-
+    _uncompressEntryNum = _totalEntryNum;
 	unzClose(zipfile);
+    
+    // 标记完成
+    _state = kZipStateCompleted;
 	return true;
 }
+
+int ZipUtil::getState(void)
+{
+    return _state;
+}
+
+int ZipUtil::getErrorCode(void)
+{
+    return _errorCode;
+}
+
+const string ZipUtil::getErrorMessage(void)
+{
+    return _error;
+}
+
 
 void ZipUtil::update(float dt)
 {
