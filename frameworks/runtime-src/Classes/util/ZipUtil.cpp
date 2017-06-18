@@ -91,7 +91,6 @@ bool ZipUtil::decompress()
 		_error = "can not read zip file global info";
 		return false;
 	}
-
 	// Buffer to hold data read from the zip file
 	char readBuffer[BUFFER_SIZE];
 	// Loop to extract all files.
