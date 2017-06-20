@@ -176,6 +176,7 @@ function WebUtil.wrapperCallback(callback)
         local data = {}
         local request = event.request
         data.request = request
+        log:info("callback event %s", event.request)
         if event.name == "completed" then
             local code = request:getResponseStatusCode()
             if code ~= 200 then 

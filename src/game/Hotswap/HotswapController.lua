@@ -56,7 +56,7 @@ function HotswapController:ctor(view, confmgr)
     self.cdnIndex = 1
 
     -- test
-    -- local files = self:listFiles("D:/D/Cocos/tools/ant/")
+    -- local files = self:listFiles("/Users/wangys/Downloads/")
     -- log:tag(self.TAG, "list file %s", self.updateRootDir)
     -- log:showTable(files)
 end
@@ -225,13 +225,13 @@ function HotswapController:downloadResUpdate()
         self.cdnIndex = 1
     end
 
-    local url = self.updateInfo.cdnList[self.cdnList]
+    local url = self.updateInfo.cdnList[self.cdnIndex]
     url = self:getURL(url, self.updateInfo.file) 
 
     log:tag(self.TAG, "download resUpdate url:%s", url)
     log:tag(self.TAG, "download resUpdate cdnIndex:%s", self.cdnIndex)
 
-    WebUtil.downloadFile(handler(self, self.downloadResUpdateCallback), url, self:joinPath(self.downloadDir, self.updateInfo.file))
+    WebUtil.downloadFile(url, self:joinPath(self:getDownloadDir(), self.updateInfo.version), handler(self, self.downloadResUpdateCallback))
 end
 
 --------------------------------
@@ -240,9 +240,10 @@ end
 function HotswapController:downloadResUpdateCallback(event)
     if event.name == "progress" then
         -- 更新进度
+        log:tag(self.TAG, "dowload resUpdate progress total:%s dltotal:%s", event.total, event.dltotal)
     elseif event.name ~= "completed" then
         -- 下载出错
-        log:tag(self.TAG, "download resUpdate failed, errorCode:%s, errorMessage:%s", data.errorCode, data.errorMessage)
+        log:tag(self.TAG, "download resUpdate failed, errorCode:%s, errorMessage:%s", event.errorCode, event.errorMessage)
 
         -- 重试
         self.retryCount = self.retryCount + 1
@@ -271,7 +272,7 @@ end
 -- @function [parent=#HotswapController] unzipResUpdate
 function HotswapController:unzipResUpdate()
     log:tag(self.TAG, "unzipResUpdate start")
-    local file = self:joinPath(self.downloadDir, self.updateInfo.file)
+    local file = self:joinPath(self.downloadDir, self.updateInfo.version)
 
     log:tag(self.TAG, "unzip filepath:%s", file)
 
@@ -297,7 +298,7 @@ function HotswapController:unzipResUpdate()
     end
 
     -- 解压文件
-    self.fileUtils:removeDirectory(self.tempDir)
+    self:cleanDir(self.tempDir)
     self.zipUtil:create(handler(self, self.unZipCallback), file, self.tempDir)
 end
 
@@ -307,6 +308,7 @@ end
 function HotswapController:unZipCallback(event)
     if event.name == "progress" then
         -- 更新进度
+        log:tag(self.TAG, "unzip file progress total:%s dltotal:%s", event.total, event.dltotal)
     elseif event.name ~= "completed" then
         -- 解压失败
         log:tag(self.TAG, "unzip file failed, errorCode:%s, errorMessage:%s", data.errorCode, data.errorMessage)
@@ -358,8 +360,10 @@ function HotswapController:doUnZipOver()
     -- 添加搜索路径
     self.fileUtils:addSearchPath(self.updateDir, true)
     
-    -- 再次检查更新
+    -- 进行清理
     self:cleanup()
+
+    -- 初始化动更，再次检查
     self:checkUpdate()
 end
 
@@ -377,6 +381,23 @@ function HotswapController:cleanup()
     -- 重置临时变量
     self.retryCount = 0
     log:tag(self.TAG, "cleanup end")
+end
+
+--------------------------------
+-- 清理指定目录
+-- @function [parent=#HotswapController] cleanDir
+function HotswapController:cleanDir(dir)
+    self.fileUtils:removeDirectory(dir)
+    self.fileUtils:createDirectory(dir)
+end
+
+--------------------------------
+-- 获取下载路径
+-- @function [parent=#HotswapController] getDownloadDir
+function HotswapController:getDownloadDir()
+    self.fileUtils:createDirectory(self.downloadDir)
+
+    return self.downloadDir
 end
 
 --------------------------------
