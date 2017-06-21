@@ -119,7 +119,7 @@ function HotswapController:checkUpdateCallback(data)
 
         -- 下载失败
         self.retryCount = self.retryCount + 1
-        if self.retryCount >= 3 then
+        if self.retryCount >= 1 then
             -- 检测版本信息失败
             self:over()
             return
