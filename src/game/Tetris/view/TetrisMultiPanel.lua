@@ -7,7 +7,6 @@
 -- TetrisMultiPanel 俄罗斯方块
 local TetrisMultiPanel = class("TetrisMultiPanel", BasePanel)
 local Tetris = import (".Tetris")
-local RandomUtil = require "core.util.RandomUtil"
 
 --------------------------------
 -- 创建方法
@@ -23,6 +22,7 @@ function TetrisMultiPanel:onCreate(host)
     self.btnPlay = layout['btn_play']
     self.btnDown = layout['btn_down']
     self.btnDownLow = layout['btn_down_low']
+    self.random = require("core.util.Random").new()
 
     -- 信息部分
     self.playerInfo = {}
@@ -221,7 +221,8 @@ function TetrisMultiPanel:gameStart(data)
     self:reset(false)
 
     -- 初始化随机数
-    RandomUtil:setRandomseed(data.randomseed)
+    self.random:randomseed(data.randomseed)
+    -- RandomUtil:setRandomseed(data.randomseed)
 
     -- 游戏开始
     self.tetris:gameStart()
@@ -397,7 +398,7 @@ function TetrisMultiPanel:nextInt(range, times)
     if self.randomCache[times] then
         return self.randomCache[times]
     end
-    self.randomCache[times] = RandomUtil:nextInt(range)
+    self.randomCache[times] = self.random:nextInt(range)
     return self.randomCache[times]
 end
 

@@ -420,7 +420,7 @@
         <Project Name="PowerSuccPopup.csd" Type="Scene" />
         <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisEndIntro.csd" Type="Scene" />
-        <Project Name="TetrisStart.csd" Type="Scene" />
+        <Project Name="TetrisLoading.csd" Type="Scene" />
         <Project Name="TetrisMainBar.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
         <Project Name="TetrisMaze.csd" Type="Scene" />
@@ -434,11 +434,11 @@
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisSearchAnimation.csd" Type="Scene" />
         <Project Name="TetrisSpar.csd" Type="Scene" />
+        <Project Name="TetrisStart.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartIntro.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TetrisLoading.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -11,6 +11,7 @@ cc.exports.BaseScene = require "core.mvc.BaseScene"
 cc.exports.BaseApp = require "core.mvc.BaseApp"
 cc.exports.BasePanel = require "core.mvc.BasePanel"
 
+
 local Game = class("MyApp", BaseApp)
 
 --------------------------------
@@ -43,6 +44,24 @@ function Game:startup()
         -- 切换到入口函数
         self:changeScene("Login")
     end
+
+    local random1 = require("core.util.Random").new(11111)
+    local random2 = require("core.util.Random").new(11111)
+    
+    local sum = {}
+    for i=1, 10000000 do
+        local n = random1:random(2)
+        if sum[n] then
+            sum[n] = sum[n] + 1
+        else
+            sum[n] = 1
+        end
+    end
+
+    for key, value in pairs(sum) do
+        log:info("%s prob %s", key, value / 10000000)
+    end
+
 end
 
 return Game

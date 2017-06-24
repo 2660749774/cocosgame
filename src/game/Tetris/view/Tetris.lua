@@ -370,13 +370,15 @@ function Tetris:initGridBlock(conf)
                 sprite.confBlock = true
                 sprite.hasStar = true
                 self.grids[gridY][gridX] = sprite
-
-                local animationLayout = require("layout.TetrisMeteorAnimation").create()
-                local meteor = animationLayout['root']
-                local animation = animationLayout['animation']
-                sprite:addChild(meteor)
-                meteor:runAction(animation)
-                animation:gotoFrameAndPlay(0)
+                self.bg:addChild(sprite)
+            elseif blockArray[i][j] == 3 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock("fangkuai11.png", gridX, gridY)
+                sprite.confBlock = true
+                sprite.downBlock = true
+                sprite.pic = "fangkuai11.png"
+                self.grids[gridY][gridX] = sprite
                 self.bg:addChild(sprite)
             end
         end
