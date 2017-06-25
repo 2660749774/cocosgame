@@ -361,6 +361,7 @@ function Tetris:initGridBlock(conf)
                 local gridY = #blockArray - i + 1
                 local sprite = self:createSingleBlock(pic, gridX, gridY)
                 sprite.confBlock = true
+                sprite.stoneBlock = iskindof(conf, "TetrisClearStoneConf")
                 self.grids[gridY][gridX] = sprite
                 self.bg:addChild(sprite)
             elseif blockArray[i][j] == 2 then
@@ -385,6 +386,7 @@ function Tetris:initGridBlock(conf)
                 local gridY = #blockArray - i + 1
                 local sprite = self:createSingleBlock(pic, gridX, gridY)
                 sprite.confBlock = true
+                sprite.stoneBlock = true
                 sprite.shuidiBlock = true
                 self.bg:addChild(sprite)
                 
@@ -698,9 +700,36 @@ function Tetris:checkBlockRemove()
         self.fixScheduler:setTimeScale(1)
         local action = cc.Blink:create(0.5, 3)
         for _, block in pairs(removeBlocks) do
-            local sequence = cc.Sequence:create(action:clone(), 
+            if block.stoneBlock then
+                -- 碎掉动画
+                block:setVisible(false)
+                local x, y = block:getPosition()
+
+                if block.shuidiBlock then
+                    local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai12.png")
+                    sprite:setAnchorPoint(0, 0)
+                    sprite:setPosition(x, y)
+                    block.shuidiSprite = sprite
+                    self.bg:addChild(sprite)
+                end
+
+               
+                local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
+                local animation = stoneAnimLayout['animation']
+                stoneAnimLayout['root']:runAction(animation)
+                stoneAnimLayout['root']:setPosition(x + 13, y + 13)
+                animation:gotoFrameAndPlay(0, false)
+                animation:setLastFrameCallFunc(function()
+                    stoneAnimLayout['root']:removeFromParent()
+                    self:removeCallBack(block)
+                end) 
+                self.bg:addChild(stoneAnimLayout['root']) 
+            else
+                -- 闪烁动画
+                local sequence = cc.Sequence:create(action:clone(), 
                                                 cc.CallFunc:create(handler(self, self.removeCallBack), {sender = block}))
-            block:runAction(sequence)
+                block:runAction(sequence)
+            end
         end
     end
 
@@ -719,8 +748,8 @@ function Tetris:removeCallBack(sender)
             sender:removeFromParent()
         elseif sender.downBlock then
             self:handleDownBlock(sender)
-        elseif sender.shuidiBlock then
-            self:handleShuidiBlock(sender)
+        elseif sender.stoneBlock then
+            self:handleStoneBlock(sender)
         elseif sender.extraAttributes then
             self:handleExtraAttributes(sender)
             sender:removeFromParent()
@@ -852,18 +881,28 @@ function Tetris:handleDownBlock(sender)
     block:runAction(sequence)
 end
 
-function Tetris:handleShuidiBlock(sender)
-    -- 添加水滴
+--------------------------------
+-- 处理水滴block
+-- @function [parent=#Tetris] handleStoneBlock
+function Tetris:handleStoneBlock(sender)
+    -- 移除自身
+    local stoneBlock = sender.shuidiBlock
     local gridX = sender.gridX
     local gridY = sender.gridY
     local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
+    local shuidiSprite = sender.shuidiSprite
+    sender:removeFromParent()
+
+    if not stoneBlock then
+        return
+    end
+    shuidiSprite:removeFromParent()
+
+    -- 添加水滴
     local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai12.png")
     sprite:setAnchorPoint(0, 0)
     sprite:setPosition(pos.x, pos.y)
     self.parent:addChild(sprite)
-
-    -- 移除自身
-    sender:removeFromParent()
 
     local offset = display.width - 640
     -- 放大

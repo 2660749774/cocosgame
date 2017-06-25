@@ -17,6 +17,12 @@
             <Image Name="anim_3.png" />
             <Image Name="anim_start.png" />
           </Folder>
+          <Folder Name="stone">
+            <Image Name="1.png" />
+            <Image Name="2.png" />
+            <Image Name="3.png" />
+            <Image Name="4.png" />
+          </Folder>
           <Folder Name="yun">
             <Image Name="yun_left.png" />
             <Image Name="yun_right.png" />
@@ -449,6 +455,7 @@
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
         <Project Name="TetrisPointAnimation.csd" Type="Scene" />
         <Project Name="TetrisAttackAnimation.csd" Type="Scene" />
+        <Project Name="TetrisStoneAnimation.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
