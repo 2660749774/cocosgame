@@ -35,3 +35,4 @@ cocostudio-ui/cocosgame/src
 cocostudio-ui/**/*.udf
 cocostudio-ui/res
 archivedata
+*.log

@@ -380,6 +380,16 @@ function Tetris:initGridBlock(conf)
                 sprite.pic = "fangkuai11.png"
                 self.grids[gridY][gridX] = sprite
                 self.bg:addChild(sprite)
+            elseif blockArray[i][j] == 4 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock(pic, gridX, gridY)
+                sprite.confBlock = true
+                sprite.shuidiBlock = true
+                self.bg:addChild(sprite)
+                
+                self.grids[gridY][gridX] = sprite
+                
             end
         end
     end
@@ -709,6 +719,8 @@ function Tetris:removeCallBack(sender)
             sender:removeFromParent()
         elseif sender.downBlock then
             self:handleDownBlock(sender)
+        elseif sender.shuidiBlock then
+            self:handleShuidiBlock(sender)
         elseif sender.extraAttributes then
             self:handleExtraAttributes(sender)
             sender:removeFromParent()
@@ -838,6 +850,40 @@ function Tetris:handleDownBlock(sender)
     )
     
     block:runAction(sequence)
+end
+
+function Tetris:handleShuidiBlock(sender)
+    -- 添加水滴
+    local gridX = sender.gridX
+    local gridY = sender.gridY
+    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
+    local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai12.png")
+    sprite:setAnchorPoint(0, 0)
+    sprite:setPosition(pos.x, pos.y)
+    self.parent:addChild(sprite)
+
+    -- 移除自身
+    sender:removeFromParent()
+
+    local offset = display.width - 640
+    -- 放大
+    local action1 = cc.ScaleTo:create (1, 2.0)
+
+    -- 贝塞尔运动
+    local bezierConfig = {
+        cc.p(pos.x, pos.y - 250),   
+        cc.p(350 + offset, 900),  
+        cc.p(510 + offset, 1030),  
+    }  
+    local action2 = cc.BezierTo:create(1, bezierConfig)
+    -- local action2 = cc.MoveTo:create(1, cc.vertex2F(500, 782))
+
+    local sequence = cc.Sequence:create(action1, action2, 
+                                        cc.CallFunc:create(function() 
+                                            -- 移除自身
+                                            sprite:removeFromParent()
+                                        end))
+    sprite:runAction(sequence)
 end
 
 --------------------------------

@@ -130,14 +130,25 @@ end
 function TetrisScene:updatePowerProgress(progress)
     log:info("do updatePowerProgress event")
     log:showTable(progress)
-    self.currPowerId = progress.powerId
-    self.currArmyId = progress.armyId
+    if progress.powerId > self.currPowerId or progress.armyId > self.currArmyId then
+        -- 进度更新了
+        local layout = self.layoutMap[self.currPowerId]
+        local btn = layout['btn' .. self.currArmyId]
+        if btn then
+            btn.panel:removeChildByTag(5000)
+        end
 
-    local layout = self.layoutMap[self.currPowerId]
-    local btn = layout['btn' .. self.currArmyId]
-    if btn then
-        btn.btn:setEnabled(true)
+        -- 更新进度
+        self.currPowerId = progress.powerId
+        self.currArmyId = progress.armyId
+        layout = self.layoutMap[self.currPowerId]
+        btn = layout['btn' .. self.currArmyId]
+        if btn then
+            btn.btn:setEnabled(true)
+            self:addBtnAttackAnim(btn)
+        end
     end
+    
 end
 
 --------------------------------
@@ -265,6 +276,7 @@ end
 function TetrisScene:initArmyBtn(layout, idx, i)
     local btn = layout['btn' .. i]
     local powerId = idx + 1
+    local armyId = i
     local conf = TetrisPowerConf.loadConfig(powerId, i)
 
     local newBtn = self:createArmyBtn(conf, powerId, i)
@@ -284,6 +296,11 @@ function TetrisScene:initArmyBtn(layout, idx, i)
         newBtn.btn:setEnabled(true)
         newBtn.btn:setTag(powerId * 1000 + i)
         newBtn.btn:addClickEventListener(handler(self, self.handleArmyClick))
+
+        if powerId == self.currPowerId and armyId == self.currArmyId then
+            -- 添加动画
+            self:addBtnAttackAnim(newBtn)
+        end
         -- local queryKey = "power." .. powerId .. "." .. i
         -- local star = utils.gameArchive:queryData(queryKey)
         -- if star == nil then
@@ -321,6 +338,7 @@ function TetrisScene:createArmyBtn(conf, powerId, armyId)
     root.star2 = layout['star2']
     root.star3 = layout['star3']
     root.lbArmyNum = layout['lb_armynum']
+    root.panel = layout['panel']
 
     -- root.star1:setVisible(false)
     -- root.star2:setVisible(false)
@@ -371,6 +389,21 @@ function TetrisScene:createArmyBtn(conf, powerId, armyId)
     root:retain()
     root:removeFromParent()
     return root
+end
+
+--------------------------------
+-- 添加动画
+-- @function [parent=#TetrisScene] addBtnAttackAnim
+function TetrisScene:addBtnAttackAnim(btn)
+    -- 添加动画
+    local attackAnimLayout = require("layout.TetrisAttackAnimation").create()
+    local animation = attackAnimLayout['animation']
+    attackAnimLayout['root']:runAction(animation)
+    attackAnimLayout['root']:setPosition(cc.p(100, 100))
+    attackAnimLayout['root']:setLocalZOrder(-100)     
+    attackAnimLayout['root']:setTag(5000)
+    animation:gotoFrameAndPlay(0, true) 
+    btn.panel:addChild(attackAnimLayout['root'])
 end
 
 --------------------------------

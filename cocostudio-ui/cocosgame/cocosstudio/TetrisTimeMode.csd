@@ -254,55 +254,54 @@
             <FileData Type="PlistSubImage" Path="lb_left_bg.png" Plist="ui/plist/singlematch.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lb_right_bg" ActionTag="-1049757638" Tag="43" IconVisible="False" LeftMargin="400.5939" RightMargin="-0.5939" TopMargin="-1.0000" BottomMargin="977.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="lb_right_bg" ActionTag="388824815" Tag="243" IconVisible="False" LeftMargin="400.5939" RightMargin="-0.5939" TopMargin="-1.0000" BottomMargin="977.0000" ctype="SpriteObjectData">
             <Size X="240.0000" Y="160.0000" />
             <Children>
-              <AbstractNodeData Name="lb_result_title" ActionTag="63394862" VisibleForFrame="False" Tag="110" IconVisible="False" LeftMargin="66.0597" RightMargin="113.9403" TopMargin="80.5702" BottomMargin="59.4298" FontSize="20" LabelText="分数：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="60.0000" Y="20.0000" />
+              <AbstractNodeData Name="target_bottom" ActionTag="-747211591" Tag="244" IconVisible="False" LeftMargin="33.3552" RightMargin="6.6448" TopMargin="3.2927" BottomMargin="36.7073" ctype="SpriteObjectData">
+                <Size X="200.0000" Y="120.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="96.0597" Y="69.4298" />
+                <Position X="133.3552" Y="96.7073" />
+                <Scale ScaleX="0.8000" ScaleY="0.8000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5556" Y="0.6044" />
+                <PreSize X="0.8333" Y="0.7500" />
+                <FileData Type="PlistSubImage" Path="target_bottom2.png" Plist="ui/plist/singlematch.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="lb_target" ActionTag="1250355412" Tag="246" IconVisible="False" LeftMargin="93.7320" RightMargin="66.2680" TopMargin="57.7538" BottomMargin="77.2462" CharWidth="20" CharHeight="25" LabelText="1000" StartChar="0" ctype="TextAtlasObjectData">
+                <Size X="80.0000" Y="25.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="133.7320" Y="89.7462" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4002" Y="0.4339" />
-                <PreSize X="0.2500" Y="0.1250" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
+                <PrePosition X="0.5572" Y="0.5609" />
+                <PreSize X="0.3333" Y="0.1563" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/number2.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pg_result" ActionTag="-1509214741" Tag="109" IconVisible="False" LeftMargin="59.5607" RightMargin="12.4393" TopMargin="77.1821" BottomMargin="57.8179" TouchEnable="True" PercentInfo="100" ctype="SliderObjectData">
+              <AbstractNodeData Name="pg_result" ActionTag="-1509214741" Tag="109" IconVisible="False" LeftMargin="49.2489" RightMargin="22.7511" TopMargin="98.9997" BottomMargin="36.0003" TouchEnable="True" PercentInfo="100" ctype="SliderObjectData">
                 <Size X="168.0000" Y="25.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="143.5607" Y="70.3179" />
+                <Position X="133.2489" Y="48.5003" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5982" Y="0.4395" />
+                <PrePosition X="0.5552" Y="0.3031" />
                 <PreSize X="0.7000" Y="0.1563" />
-                <BackGroundData Type="Normal" Path="ui/power/match/progress_bg.png" Plist="" />
-                <ProgressBarData Type="Normal" Path="ui/power/match/progress.png" Plist="" />
+                <BackGroundData Type="PlistSubImage" Path="progress_bg.png" Plist="ui/plist/singlematch.plist" />
+                <ProgressBarData Type="Normal" Path="ui/power/match/progress_blue.png" Plist="" />
                 <BallNormalData Type="Default" Path="Default/SliderNode_Normal.png" Plist="" />
                 <BallPressedData Type="Default" Path="Default/SliderNode_Press.png" Plist="" />
                 <BallDisabledData Type="Default" Path="Default/SliderNode_Disable.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="lb_result" ActionTag="831248797" Tag="32" IconVisible="False" LeftMargin="176.0810" RightMargin="15.9190" TopMargin="50.2238" BottomMargin="85.7762" FontSize="24" LabelText="90 %" HorizontalAlignmentType="HT_Right" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                <Size X="48.0000" Y="24.0000" />
+              <AbstractNodeData Name="lb_result" ActionTag="831248797" Tag="28" IconVisible="False" LeftMargin="118.5374" RightMargin="91.4626" TopMargin="100.5334" BottomMargin="39.4666" FontSize="20" LabelText="90%" HorizontalAlignmentType="HT_Right" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                <Size X="30.0000" Y="20.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="200.0810" Y="97.7762" />
+                <Position X="133.5374" Y="49.4666" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="224" G="165" B="51" />
-                <PrePosition X="0.8337" Y="0.6111" />
-                <PreSize X="0.2000" Y="0.1500" />
+                <PrePosition X="0.5564" Y="0.3092" />
+                <PreSize X="0.1250" Y="0.1250" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="score_bg" ActionTag="599986181" Tag="33" IconVisible="False" LeftMargin="25.8212" RightMargin="170.1788" TopMargin="67.3065" BottomMargin="56.6935" ctype="SpriteObjectData">
-                <Size X="44.0000" Y="36.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="47.8212" Y="74.6935" />
-                <Scale ScaleX="0.8000" ScaleY="0.8000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1993" Y="0.4668" />
-                <PreSize X="0.1833" Y="0.2250" />
-                <FileData Type="PlistSubImage" Path="score_bg.png" Plist="ui/plist/common.plist" />
-                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

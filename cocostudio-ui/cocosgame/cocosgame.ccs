@@ -4,6 +4,9 @@
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
         <Folder Name="animation">
+          <Folder Name="attacking">
+            <Image Name="attack.png" />
+          </Folder>
           <Folder Name="star">
             <Image Name="meteor1.png" />
             <Image Name="meteor2.png" />
@@ -125,6 +128,9 @@
             <Image Name="number_red.png" />
             <Image Name="number_small.png" />
             <Image Name="number_yellow.png" />
+            <Image Name="number2.png" />
+            <Image Name="point.png" />
+            <Image Name="split.png" />
           </Folder>
           <Folder Name="plist">
             <PlistImageFolder Image="common.png" PListFile="common.plist" Name=".common_PList.Dir">
@@ -174,6 +180,7 @@
               <PlistImageFile Name="vol_off.png" Key="vol_off.png" />
               <PlistImageFile Name="vol_on.png" Key="vol_on.png" />
               <PlistImageFile Name="water_bg.png" Key="water_bg.png" />
+              <PlistImageFile Name="fangkuai12.png" Key="fangkuai12.png" />
             </PlistImageFolder>
             <PlistImageFolder Image="main.png" PListFile="main.plist" Name=".main_PList.Dir">
               <PlistImageFile Name="bar_bg.png" Key="bar_bg.png" />
@@ -214,6 +221,7 @@
               <PlistImageFile Name="progress_bg.png" Key="progress_bg.png" />
               <PlistImageFile Name="progress_blue.png" Key="progress_blue.png" />
               <PlistImageFile Name="target_bottom.png" Key="target_bottom.png" />
+              <PlistImageFile Name="target_bottom2.png" Key="target_bottom2.png" />
             </PlistImageFolder>
             <File Name="common.tps" />
             <File Name="main.tps" />
@@ -439,6 +447,8 @@
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartIntro.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="TetrisPointAnimation.csd" Type="Scene" />
+        <Project Name="TetrisAttackAnimation.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

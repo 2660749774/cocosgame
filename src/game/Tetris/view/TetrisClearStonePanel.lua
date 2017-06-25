@@ -28,11 +28,6 @@ function TetrisClearStonePanel:onCreate(powerId, armyId)
     self.blockNum = 0
 
     self.lbResult = self.layout['lb_result']
-    self.pgResult = self.layout['pg_result']
-    self.pgResult:loadSlidBallTextureNormal('', 0)
-    self.pgResult:loadSlidBallTexturePressed('', 0)
-    self.pgResult:loadSlidBallTextureDisabled('', 0)
-    self.pgResult:setPercent(0)
     self.totalFangkuaiNum = 0 -- 总方块数量
     self.removeFangkuaiNum = 0 -- 已消除方块数量
 
@@ -85,7 +80,7 @@ function TetrisClearStonePanel:loadConfig(type, powerId, armyId)
     local blockArray = self.conf.blockArray
     for i = 1, #blockArray do
         for j = 1, #blockArray[i] do
-            if blockArray[i][j] == 1 then
+            if blockArray[i][j] == 4 then
                 self.totalFangkuaiNum = self.totalFangkuaiNum + 1
             end
         end
@@ -102,8 +97,7 @@ function TetrisClearStonePanel:updateBlockNum()
         blockNum = 0
     end
     self.lbLeftBlockNum:setString(blockNum)
-    self.lbResult:setString(math.floor(self.removeFangkuaiNum * 100 / self.totalFangkuaiNum) .. "%")
-    self.pgResult:setPercent(math.floor(self.removeFangkuaiNum * 100 / self.totalFangkuaiNum))
+    self.lbResult:setString(self.removeFangkuaiNum .. "/" .. self.totalFangkuaiNum)
 end
 
 --------------------------------
@@ -130,7 +124,7 @@ function TetrisClearStonePanel:updateScore(removeLineNums)
         for j = 1, #grids[i] do
             if grids[i][j] ~= nil and grids[i][j] ~= 0 then
                 local block = grids[i][j]
-                if block.confBlock ~= nil and block.confBlock then
+                if block.shuidiBlock ~= nil and block.shuidiBlock then
                     totalFangkuaiNum = totalFangkuaiNum + 1
                 end
             end

@@ -185,6 +185,24 @@ function TetrisSinglePanel:updateScore(removeLineNums)
 end
 
 --------------------------------
+-- 计算消除分数
+-- @function [parent=#TetrisSinglePanel] calcPoints
+function TetrisSinglePanel:calcPoints(removeLineNums)
+    local score = 0
+    if removeLineNums == 1 then
+        score = score + 40
+    elseif removeLineNums == 2 then
+        score = score + 100
+    elseif removeLineNums == 3 then
+        score = score + 300
+    elseif removeLineNums == 4 then
+        score = score + 1200
+    end
+
+    return score
+end
+
+--------------------------------
 -- 清理
 -- @function [parent=#TetrisSinglePanel] reset
 function TetrisSinglePanel:reset() 

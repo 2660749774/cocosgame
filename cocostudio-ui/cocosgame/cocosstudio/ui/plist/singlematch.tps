@@ -155,6 +155,7 @@
             <filename>../power/match/target_bottom.png</filename>
             <filename>../power/match/army_left_bg.png</filename>
             <filename>../power/match/army_right_bg.png</filename>
+            <filename>../power/match/target_bottom2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

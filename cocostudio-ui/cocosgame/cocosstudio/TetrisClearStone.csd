@@ -223,55 +223,40 @@
             <FileData Type="PlistSubImage" Path="lb_left_bg.png" Plist="ui/plist/singlematch.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lb_right_bg" ActionTag="-1049757638" Tag="43" IconVisible="False" LeftMargin="400.5939" RightMargin="-0.5939" TopMargin="-1.0000" BottomMargin="977.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="lb_right_bg" ActionTag="1067362998" Tag="58" IconVisible="False" LeftMargin="400.5939" RightMargin="-0.5939" TopMargin="-1.0000" BottomMargin="977.0000" ctype="SpriteObjectData">
             <Size X="240.0000" Y="160.0000" />
             <Children>
-              <AbstractNodeData Name="score_bg" ActionTag="349426027" Tag="61" IconVisible="False" LeftMargin="15.3214" RightMargin="149.6786" TopMargin="41.8066" BottomMargin="43.1934" ctype="SpriteObjectData">
-                <Size X="75.0000" Y="75.0000" />
+              <AbstractNodeData Name="target_bottom" ActionTag="935267850" Tag="59" IconVisible="False" LeftMargin="60.3550" RightMargin="17.6450" TopMargin="7.7928" BottomMargin="33.2072" ctype="SpriteObjectData">
+                <Size X="162.0000" Y="119.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="52.8214" Y="80.6934" />
+                <Position X="141.3550" Y="92.7072" />
                 <Scale ScaleX="0.8000" ScaleY="0.8000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2201" Y="0.5043" />
+                <PrePosition X="0.5890" Y="0.5794" />
+                <PreSize X="0.6750" Y="0.7437" />
+                <FileData Type="PlistSubImage" Path="target_bottom.png" Plist="ui/plist/singlematch.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="fangkuai_bg" ActionTag="-577313846" Tag="60" IconVisible="False" LeftMargin="102.9901" RightMargin="62.0099" TopMargin="24.2910" BottomMargin="60.7090" ctype="SpriteObjectData">
+                <Size X="75.0000" Y="75.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="140.4901" Y="98.2090" />
+                <Scale ScaleX="0.8000" ScaleY="0.8000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5854" Y="0.6138" />
                 <PreSize X="0.3125" Y="0.4688" />
                 <FileData Type="PlistSubImage" Path="water_bg.png" Plist="ui/plist/common.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="lb_result" ActionTag="-1721397187" Tag="62" IconVisible="False" LeftMargin="176.0810" RightMargin="15.9190" TopMargin="50.2238" BottomMargin="85.7762" FontSize="24" LabelText="90 %" HorizontalAlignmentType="HT_Right" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                <Size X="48.0000" Y="24.0000" />
+              <AbstractNodeData Name="lb_result" ActionTag="-1537425997" Tag="61" IconVisible="False" LeftMargin="90.9847" RightMargin="44.0153" TopMargin="81.8615" BottomMargin="53.1385" CharWidth="15" CharHeight="25" LabelText="100/100" StartChar="/" ctype="TextAtlasObjectData">
+                <Size X="105.0000" Y="25.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="200.0810" Y="97.7762" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="128" G="210" B="203" />
-                <PrePosition X="0.8337" Y="0.6111" />
-                <PreSize X="0.2000" Y="0.1500" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="0" G="0" B="0" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="pg_result" ActionTag="533577626" Tag="63" IconVisible="False" LeftMargin="59.5607" RightMargin="12.4393" TopMargin="77.1821" BottomMargin="57.8179" TouchEnable="True" PercentInfo="100" ctype="SliderObjectData">
-                <Size X="168.0000" Y="25.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="143.5607" Y="70.3179" />
+                <Position X="143.4847" Y="65.6385" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5982" Y="0.4395" />
-                <PreSize X="0.7000" Y="0.1563" />
-                <BackGroundData Type="Normal" Path="ui/power/match/progress_bg.png" Plist="" />
-                <ProgressBarData Type="Normal" Path="ui/power/match/progress_blue.png" Plist="" />
-                <BallNormalData Type="Default" Path="Default/SliderNode_Normal.png" Plist="" />
-                <BallPressedData Type="Default" Path="Default/SliderNode_Press.png" Plist="" />
-                <BallDisabledData Type="Default" Path="Default/SliderNode_Disable.png" Plist="" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="lb_result_title" ActionTag="-99491173" VisibleForFrame="False" Tag="64" IconVisible="False" LeftMargin="66.0597" RightMargin="113.9403" TopMargin="80.5702" BottomMargin="59.4298" FontSize="20" LabelText="分数：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="60.0000" Y="20.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="96.0597" Y="69.4298" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4002" Y="0.4339" />
-                <PreSize X="0.2500" Y="0.1250" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
+                <PrePosition X="0.5979" Y="0.4102" />
+                <PreSize X="0.4375" Y="0.1563" />
+                <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/number_small.png" Plist="" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

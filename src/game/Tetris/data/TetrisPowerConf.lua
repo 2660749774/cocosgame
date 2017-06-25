@@ -210,10 +210,10 @@ TetrisPowerConf.new(2, 35, 24, TetrisPowerConf.TYPE_TIMEMODE)
 TetrisPowerConf.new(2, 36, 24, TetrisPowerConf.TYPE_SPAR)
 TetrisPowerConf.new(2, 37, 24, TetrisPowerConf.TYPE_METEOR2)
 
-TetrisPowerConf.new(2, 38, 22, TetrisPowerConf.TYPE_CLEAR_STONE)
-TetrisPowerConf.new(2, 39, 22, TetrisPowerConf.TYPE_TIMEMODE)
-TetrisPowerConf.new(2, 40, 22, TetrisPowerConf.TYPE_SPAR)
-TetrisPowerConf.new(2, 41, 22, TetrisPowerConf.TYPE_METEOR2)
+TetrisPowerConf.new(2, 38, 25, TetrisPowerConf.TYPE_CLEAR_STONE)
+TetrisPowerConf.new(2, 39, 25, TetrisPowerConf.TYPE_TIMEMODE)
+TetrisPowerConf.new(2, 40, 25, TetrisPowerConf.TYPE_SPAR)
+TetrisPowerConf.new(2, 41, 25, TetrisPowerConf.TYPE_METEOR2)
 
 
 

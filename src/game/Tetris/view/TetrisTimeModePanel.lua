@@ -22,6 +22,7 @@ function TetrisTimeModePanel:onCreate(powerId, armyId)
     self.armyId = armyId
     self.lbTimeMinute = self.layout['lb_time_minute']
     self.lbTimeSec = self.layout['lb_time_sec']
+    self.lbTarget = self.layout['lb_target']
     self.lbResult = self.layout['lb_result']
     self.pgResult = self.layout['pg_result']
     self.pgResult:loadSlidBallTextureNormal('', 0)
@@ -60,6 +61,7 @@ function TetrisTimeModePanel:loadConfig(type, powerId, armyId)
     if self.conf.probIndex ~= 0 then
         self.probArray = self.conf.probArray[self.conf.probIndex]
     end
+    self.lbTarget:setString(self.needScore)
 end
 
 --------------------------------
@@ -110,7 +112,25 @@ end
 -- 更新分数
 -- @function [parent=#TetrisTimeModePanel] updateScore
 function TetrisTimeModePanel:updateScore(removeLineNums)
-    TetrisSinglePanel.updateScore(self, removeLineNums)
+    -- 计算分数
+    local score = self:calcPoints(removeLineNums)
+    self.score = self.score + score
+
+    if score > 0 then
+        -- 分数动画
+        local pointAnimLayout = require("layout.TetrisPointAnimation").create()
+        local animation = pointAnimLayout['animation']
+        pointAnimLayout['lb_point']:setString(score)
+        pointAnimLayout['root']:runAction(animation)
+        pointAnimLayout['root']:setPosition(cc.p(display.cx, display.cy))
+        pointAnimLayout['root']:setTag(5000)
+        animation:gotoFrameAndPlay(0, false)
+        animation:setLastFrameCallFunc(function()
+            pointAnimLayout['root']:removeFromParent()
+        end) 
+        self:addChild(pointAnimLayout['root']) 
+    end
+
     -- self.blockNum =  self.blockNum + 1
     self:updateScoreProgress()
 
