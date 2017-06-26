@@ -78,6 +78,23 @@ function TetrisScene:onCreate()
     
     -- self.btnMultiplayer:addClickEventListener(handler(self, self.playMulti))
 
+    -- local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
+    -- local animation = stoneAnimLayout['animation']
+    -- stoneAnimLayout['root']:runAction(animation)
+    -- stoneAnimLayout['root']:setPosition(display.cx, display.cy)
+    -- animation:setTimeSpeed(0.12)
+    -- animation:gotoFrameAndPlay(0, true)
+    -- self.powerLayer:addChild(stoneAnimLayout['root']) 
+
+
+    -- local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
+    -- local animation = stoneAnimLayout['animation']
+    -- stoneAnimLayout['root']:runAction(animation)
+    -- stoneAnimLayout['root']:setPosition(display.cx + 28, display.cy)
+    -- animation:setTimeSpeed(0.12)
+    -- animation:gotoFrameAndPlay(0, true)
+    -- self.powerLayer:addChild(stoneAnimLayout['root']) 
+
     -- 注册事件监听
     self.powerProgressEventListener = handler(self, self.updatePowerProgress)
     self.lifeEventListener = handler(self, self.updatePlayerLife)

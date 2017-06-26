@@ -718,6 +718,7 @@ function Tetris:checkBlockRemove()
                 local animation = stoneAnimLayout['animation']
                 stoneAnimLayout['root']:runAction(animation)
                 stoneAnimLayout['root']:setPosition(x + 13, y + 13)
+                animation:setTimeSpeed(0.12)
                 animation:gotoFrameAndPlay(0, false)
                 animation:setLastFrameCallFunc(function()
                     stoneAnimLayout['root']:removeFromParent()
