@@ -2,7 +2,41 @@
   <PropertyGroup Name="TetrisSpar" Type="Scene" ID="44bfc898-ff3a-46c2-9ef9-bf4c82dc8a07" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
-      <Animation Duration="0" Speed="1.0000" />
+      <Animation Duration="10" Speed="0.0833">
+        <Timeline ActionTag="-1535453397" Property="Position">
+          <PointFrame FrameIndex="0" X="189.0000" Y="13.5000">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="5" X="189.0000" Y="8.5000">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="10" X="189.0000" Y="13.5000">
+            <EasingData Type="0" />
+          </PointFrame>
+        </Timeline>
+        <Timeline ActionTag="-1535453397" Property="Scale">
+          <ScaleFrame FrameIndex="0" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="5" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="10" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+        <Timeline ActionTag="-1535453397" Property="RotationSkew">
+          <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="5" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="10" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+      </Animation>
       <ObjectData Name="Scene" Tag="24" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
@@ -205,6 +239,32 @@
                 <PreSize X="0.0688" Y="0.0387" />
                 <FileData Type="PlistSubImage" Path="time_bg.png" Plist="ui/plist/common.plist" />
                 <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="bubble_panel" ActionTag="2026473286" Tag="30" IconVisible="False" LeftMargin="131.1111" RightMargin="130.8889" TopMargin="760.2235" BottomMargin="348.7765" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="378.0000" Y="27.0000" />
+                <Children>
+                  <AbstractNodeData Name="bubble" ActionTag="-1535453397" Tag="29" IconVisible="False" TopMargin="1.0000" BottomMargin="-1.0000" ctype="SpriteObjectData">
+                    <Size X="378.0000" Y="27.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="189.0000" Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.4630" />
+                    <PreSize X="1.0000" Y="1.0000" />
+                    <FileData Type="Normal" Path="animation/bubble/bubble.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="320.1111" Y="362.2765" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5002" Y="0.3189" />
+                <PreSize X="0.5906" Y="0.0238" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

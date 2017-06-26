@@ -480,6 +480,49 @@ layout:setBottomMargin(1029.0530)
 time_bg_1:setBlendFunc({src = 1, dst = 771})
 panel:addChild(time_bg_1)
 
+--Create bubble_panel
+local bubble_panel = ccui.Layout:create()
+bubble_panel:ignoreContentAdaptWithSize(false)
+bubble_panel:setClippingEnabled(false)
+bubble_panel:setBackGroundColorOpacity(102)
+bubble_panel:setTouchEnabled(true);
+bubble_panel:setLayoutComponentEnabled(true)
+bubble_panel:setName("bubble_panel")
+bubble_panel:setTag(30)
+bubble_panel:setCascadeColorEnabled(true)
+bubble_panel:setCascadeOpacityEnabled(true)
+bubble_panel:setAnchorPoint(0.5000, 0.5000)
+bubble_panel:setPosition(320.1111, 362.2765)
+layout = ccui.LayoutComponent:bindLayoutComponent(bubble_panel)
+layout:setPositionPercentX(0.5002)
+layout:setPositionPercentY(0.3189)
+layout:setPercentWidth(0.5906)
+layout:setPercentHeight(0.0238)
+layout:setSize({width = 378.0000, height = 27.0000})
+layout:setLeftMargin(131.1111)
+layout:setRightMargin(130.8889)
+layout:setTopMargin(760.2235)
+layout:setBottomMargin(348.7765)
+panel:addChild(bubble_panel)
+
+--Create bubble
+local bubble = cc.Sprite:create("animation/bubble/bubble.png")
+bubble:setName("bubble")
+bubble:setTag(29)
+bubble:setCascadeColorEnabled(true)
+bubble:setCascadeOpacityEnabled(true)
+bubble:setPosition(189.0000, 12.5000)
+layout = ccui.LayoutComponent:bindLayoutComponent(bubble)
+layout:setPositionPercentX(0.5000)
+layout:setPositionPercentY(0.4630)
+layout:setPercentWidth(1.0000)
+layout:setPercentHeight(1.0000)
+layout:setSize({width = 378.0000, height = 27.0000})
+layout:setTopMargin(1.0000)
+layout:setBottomMargin(-1.0000)
+bubble:setBlendFunc({src = 1, dst = 771})
+bubble_panel:addChild(bubble)
+
 --Create lb_left_bg
 cc.SpriteFrameCache:getInstance():addSpriteFrames("ui/plist/singlematch.plist")
 local lb_left_bg = cc.Sprite:createWithSpriteFrameName("lb_left_bg.png")
@@ -641,8 +684,98 @@ lb_right_bg:addChild(lb_result)
 --Create Animation
 result['animation'] = ccs.ActionTimeline:create()
   
-result['animation']:setDuration(0)
-result['animation']:setTimeSpeed(1.0000)
+result['animation']:setDuration(10)
+result['animation']:setTimeSpeed(0.0833)
+
+--Create PositionTimeline
+local PositionTimeline = ccs.Timeline:create()
+
+localFrame = ccs.PositionFrame:create()
+localFrame:setFrameIndex(0)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setX(189.0000)
+localFrame:setY(13.5000)
+PositionTimeline:addFrame(localFrame)
+
+localFrame = ccs.PositionFrame:create()
+localFrame:setFrameIndex(5)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setX(189.0000)
+localFrame:setY(8.5000)
+PositionTimeline:addFrame(localFrame)
+
+localFrame = ccs.PositionFrame:create()
+localFrame:setFrameIndex(10)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setX(189.0000)
+localFrame:setY(13.5000)
+PositionTimeline:addFrame(localFrame)
+
+result['animation']:addTimeline(PositionTimeline)
+PositionTimeline:setNode(bubble)
+
+--Create ScaleTimeline
+local ScaleTimeline = ccs.Timeline:create()
+
+localFrame = ccs.ScaleFrame:create()
+localFrame:setFrameIndex(0)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setScaleX(1.0000)
+localFrame:setScaleY(1.0000)
+ScaleTimeline:addFrame(localFrame)
+
+localFrame = ccs.ScaleFrame:create()
+localFrame:setFrameIndex(5)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setScaleX(1.0000)
+localFrame:setScaleY(1.0000)
+ScaleTimeline:addFrame(localFrame)
+
+localFrame = ccs.ScaleFrame:create()
+localFrame:setFrameIndex(10)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setScaleX(1.0000)
+localFrame:setScaleY(1.0000)
+ScaleTimeline:addFrame(localFrame)
+
+result['animation']:addTimeline(ScaleTimeline)
+ScaleTimeline:setNode(bubble)
+
+--Create RotationSkewTimeline
+local RotationSkewTimeline = ccs.Timeline:create()
+
+localFrame = ccs.RotationSkewFrame:create()
+localFrame:setFrameIndex(0)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setSkewX(0.0000)
+localFrame:setSkewY(0.0000)
+RotationSkewTimeline:addFrame(localFrame)
+
+localFrame = ccs.RotationSkewFrame:create()
+localFrame:setFrameIndex(5)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setSkewX(0.0000)
+localFrame:setSkewY(0.0000)
+RotationSkewTimeline:addFrame(localFrame)
+
+localFrame = ccs.RotationSkewFrame:create()
+localFrame:setFrameIndex(10)
+localFrame:setTween(true)
+localFrame:setTweenType(0)
+localFrame:setSkewX(0.0000)
+localFrame:setSkewY(0.0000)
+RotationSkewTimeline:addFrame(localFrame)
+
+result['animation']:addTimeline(RotationSkewTimeline)
+RotationSkewTimeline:setNode(bubble)
 --Create Animation List
 
 result['root'] = Scene

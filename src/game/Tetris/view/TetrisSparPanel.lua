@@ -36,6 +36,8 @@ function TetrisSparPanel:onCreate(powerId, armyId)
     self.collectFangkuaiNum = 0 -- 已收集方块数量
     self.displayFangkuaiNum = 0 -- 显示已收集方块数量
     self:loadConfig(TetrisPowerConf.TYPE_SPAR, powerId, armyId)
+    self.layout['root']:runAction(self.layout['animation'])
+    self.layout['animation']:gotoFrameAndPlay(0, true)
 
     -- 设置方块
     -- local fangkuaiBg = self.layout['fangkuai_bg']

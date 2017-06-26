@@ -193,6 +193,7 @@
             <filename>../common/input_bg.png</filename>
             <filename>../button/green_btn.png</filename>
             <filename>../../block/fangkuai12.png</filename>
+            <filename>../../icon/shuidi.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

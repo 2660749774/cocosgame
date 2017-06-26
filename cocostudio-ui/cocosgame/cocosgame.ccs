@@ -7,6 +7,9 @@
           <Folder Name="attacking">
             <Image Name="attack.png" />
           </Folder>
+          <Folder Name="bubble">
+            <Image Name="bubble.png" />
+          </Folder>
           <Folder Name="star">
             <Image Name="meteor1.png" />
             <Image Name="meteor2.png" />
@@ -150,6 +153,7 @@
               <PlistImageFile Name="fangkuai1.png" Key="fangkuai1.png" />
               <PlistImageFile Name="fangkuai10.png" Key="fangkuai10.png" />
               <PlistImageFile Name="fangkuai11.png" Key="fangkuai11.png" />
+              <PlistImageFile Name="fangkuai12.png" Key="fangkuai12.png" />
               <PlistImageFile Name="fangkuai2.png" Key="fangkuai2.png" />
               <PlistImageFile Name="fangkuai3.png" Key="fangkuai3.png" />
               <PlistImageFile Name="fangkuai4.png" Key="fangkuai4.png" />
@@ -186,7 +190,7 @@
               <PlistImageFile Name="vol_off.png" Key="vol_off.png" />
               <PlistImageFile Name="vol_on.png" Key="vol_on.png" />
               <PlistImageFile Name="water_bg.png" Key="water_bg.png" />
-              <PlistImageFile Name="fangkuai12.png" Key="fangkuai12.png" />
+              <PlistImageFile Name="shuidi.png" Key="shuidi.png" />
             </PlistImageFolder>
             <PlistImageFolder Image="main.png" PListFile="main.plist" Name=".main_PList.Dir">
               <PlistImageFile Name="bar_bg.png" Key="bar_bg.png" />
@@ -432,6 +436,7 @@
         <Project Name="PowerPausePopup.csd" Type="Scene" />
         <Project Name="PowerStartPopup.csd" Type="Scene" />
         <Project Name="PowerSuccPopup.csd" Type="Scene" />
+        <Project Name="TetrisAttackAnimation.csd" Type="Scene" />
         <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisEndIntro.csd" Type="Scene" />
         <Project Name="TetrisLoading.csd" Type="Scene" />
@@ -441,6 +446,7 @@
         <Project Name="TetrisMeteor.csd" Type="Scene" />
         <Project Name="TetrisMeteor2.csd" Type="Scene" />
         <Project Name="TetrisMeteorAnimation.csd" Type="Scene" />
+        <Project Name="TetrisPointAnimation.csd" Type="Scene" />
         <Project Name="TetrisPowerArmy.csd" Type="Scene" />
         <Project Name="TetrisPowerLoop.csd" Type="Scene" />
         <Project Name="TetrisPowerStart.csd" Type="Scene" />
@@ -452,10 +458,8 @@
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartCountAnimation.csd" Type="Scene" />
         <Project Name="TetrisStartIntro.csd" Type="Scene" />
-        <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TetrisPointAnimation.csd" Type="Scene" />
-        <Project Name="TetrisAttackAnimation.csd" Type="Scene" />
         <Project Name="TetrisStoneAnimation.csd" Type="Scene" />
+        <Project Name="TetrisTimeMode.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

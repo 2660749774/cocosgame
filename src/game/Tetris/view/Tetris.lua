@@ -40,6 +40,7 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     self.isAI = false
     self.pause = false
     self.checkBlockRemoveTimes = 0
+    self.needCheckAgain = false
     if self.isSelf then
         self.blockPic = 'fangkuai.png'
     else
@@ -377,7 +378,7 @@ function Tetris:initGridBlock(conf)
                 local gridY = #blockArray - i + 1
                 local sprite = self:createSingleBlock("fangkuai11.png", gridX, gridY)
                 sprite.confBlock = true
-                sprite.downBlock = true
+                sprite.sparBlock = true
                 sprite.pic = "fangkuai11.png"
                 self.grids[gridY][gridX] = sprite
                 self.bg:addChild(sprite)
@@ -387,7 +388,7 @@ function Tetris:initGridBlock(conf)
                 local sprite = self:createSingleBlock(pic, gridX, gridY)
                 sprite.confBlock = true
                 sprite.stoneBlock = true
-                sprite.shuidiBlock = true
+                sprite.hasShuidi = true
                 self.bg:addChild(sprite)
                 
                 self.grids[gridY][gridX] = sprite
@@ -634,6 +635,7 @@ end
 function Tetris:checkBlockRemove()
     
     -- 检查引用计数器 + 1
+    self.needCheckAgain = false
     self.checkBlockRemoveTimes = self.checkBlockRemoveTimes + 1
     -- log:info("block remove times step1, count:%s", self.checkBlockRemoveTimes)
 
@@ -704,16 +706,26 @@ function Tetris:checkBlockRemove()
                 -- 碎掉动画
                 block:setVisible(false)
                 local x, y = block:getPosition()
+                local sprite = nil
 
-                if block.shuidiBlock then
-                    local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai12.png")
-                    sprite:setAnchorPoint(0, 0)
-                    sprite:setPosition(x, y)
-                    block.shuidiSprite = sprite
+                -- 创建水滴block
+                if block.hasShuidi then
+                    sprite = cc.Sprite:createWithSpriteFrameName("fangkuai12.png")
+                    sprite:setAnchorPoint(0.5, 0.5)
+                    sprite:setPosition(x + 13, y + 13)
+                    sprite.shuidiBlock = true
+                    sprite.hasShuidi = true
+                    self.needCheckAgain = true
+                    -- block.shuidiSprite = sprite
+
+                    sprite:setScale(0)
+                    
+
+                    self:insertBlock(block.gridX, block.gridY, sprite)
                     self.bg:addChild(sprite)
                 end
 
-               
+                -- 添加动画
                 local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
                 local animation = stoneAnimLayout['animation']
                 stoneAnimLayout['root']:runAction(animation)
@@ -722,7 +734,18 @@ function Tetris:checkBlockRemove()
                 animation:gotoFrameAndPlay(0, false)
                 animation:setLastFrameCallFunc(function()
                     stoneAnimLayout['root']:removeFromParent()
-                    self:removeCallBack(block)
+                    if nil ~= sprite then
+                        local action1 = cc.ScaleTo:create(0.2, 1)
+                        local action2 = cc.DelayTime:create(0.2)
+                        local sequence = cc.Sequence:create(action1, action2,
+                                                cc.CallFunc:create(function() 
+                                                    self:removeCallBack(block)
+                                                end))
+                        sprite:runAction(sequence)
+                    else
+                        self:removeCallBack(block)
+                    end
+                    
                 end) 
                 self.bg:addChild(stoneAnimLayout['root']) 
             else
@@ -747,10 +770,10 @@ function Tetris:removeCallBack(sender)
         if sender.hasStar then
             self:flyStar(sender)
             sender:removeFromParent()
-        elseif sender.downBlock then
-            self:handleDownBlock(sender)
-        elseif sender.stoneBlock then
-            self:handleStoneBlock(sender)
+        elseif sender.sparBlock then
+            self:handleSparBlock(sender)
+        elseif sender.shuidiBlock then
+            self:handleShuidiBlock(sender)
         elseif sender.extraAttributes then
             self:handleExtraAttributes(sender)
             sender:removeFromParent()
@@ -806,7 +829,11 @@ function Tetris:removeCallBack(sender)
     self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
     -- log:info("block remove times step5, count:%s", self.checkBlockRemoveTimes)
     if self.checkBlockRemoveTimes == 0 then
-        self:roundStart()
+        if self.needCheckAgain then
+            self:checkBlockRemove()
+        else
+            self:roundStart()
+        end
     end
     -- end
     -- self:roundStart()
@@ -814,8 +841,8 @@ end
 
 --------------------------------
 -- 处理下沉方块
--- @function [parent=#Tetris] handleDownBlock
-function Tetris:handleDownBlock(sender)
+-- @function [parent=#Tetris] handleSparBlock
+function Tetris:handleSparBlock(sender)
     local gridX = sender.gridX
     local gridY = sender.gridY
 
@@ -828,7 +855,7 @@ function Tetris:handleDownBlock(sender)
     self.bg:addChild(block)
 
     -- 检测下沉位置
-    local targetGridY = self:checkDownGridPos(gridX, gridY)
+    local targetGridY = self:checkSparBlockDownGridPos(gridX, gridY)
     -- log:info("final gridY:%s", targetGridY)
     local targetX, targetY = self:convertGridToPosition(gridX, targetGridY)
     -- log:info("final pos:%s %s", targetX, targetY)
@@ -884,23 +911,19 @@ end
 
 --------------------------------
 -- 处理水滴block
--- @function [parent=#Tetris] handleStoneBlock
-function Tetris:handleStoneBlock(sender)
+-- @function [parent=#Tetris] handleShuidiBlock
+function Tetris:handleShuidiBlock(sender)
     -- 移除自身
-    local stoneBlock = sender.shuidiBlock
     local gridX = sender.gridX
     local gridY = sender.gridY
     local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
-    local shuidiSprite = sender.shuidiSprite
+    -- local shuidiSprite = sender.shuidiSprite
+    -- sender:removeFromParent()
+
     sender:removeFromParent()
 
-    if not stoneBlock then
-        return
-    end
-    shuidiSprite:removeFromParent()
-
     -- 添加水滴
-    local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai12.png")
+    local sprite = cc.Sprite:createWithSpriteFrameName("shuidi.png")
     sprite:setAnchorPoint(0, 0)
     sprite:setPosition(pos.x, pos.y)
     self.parent:addChild(sprite)
@@ -945,9 +968,9 @@ end
 
 --------------------------------
 -- 检查是可以下降得格数
--- @function [parent=#BaseBlock] checkDownGridPos
-function Tetris:checkDownGridPos(gridX, gridY)
-    -- log:info("downblock, gridX:%s, gridY:%s", gridX, gridY)
+-- @function [parent=#BaseBlock] checkSparBlockDownGridPos
+function Tetris:checkSparBlockDownGridPos(gridX, gridY)
+    -- log:info("sparblock, gridX:%s, gridY:%s", gridX, gridY)
 
     -- 检查自己所处位置是否合法
     local pos = gridY - 1
@@ -960,7 +983,7 @@ function Tetris:checkDownGridPos(gridX, gridY)
         end
     end
 
-    if pos > 0 and self.grids[pos][gridX] ~= 0 and self.grids[pos][gridX].downBlock then
+    if pos > 0 and self.grids[pos][gridX] ~= 0 and self.grids[pos][gridX].sparBlock then
         pos = pos + 1
     end
 
@@ -1108,7 +1131,7 @@ function Tetris:updateBlock(block, nextBlock)
     for i=1, #nextBlock.blocks do 
         local sprite = nextBlock.blocks[i]
         -- log:info("updateblock sprite:%s, downblock:%s", sprite, sprite.downBlock)
-        if sprite.hasStar or sprite.extraAttributes or sprite.downBlock then
+        if sprite.hasStar or sprite.extraAttributes or sprite.sparBlock then
             sprite:retain()
             sprite:removeFromParent()
 
