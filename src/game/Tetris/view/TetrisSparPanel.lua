@@ -102,7 +102,7 @@ function TetrisSparPanel:updateNextBlock(nextBlock)
         local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai11.png")
         sprite:setAnchorPoint(0, 0)
         sprite:setPosition(oldSprite:getPosition())
-        sprite.downBlock = true
+        sprite.sparBlock = true
         sprite.pic = "fangkuai11.png"
         nextBlock.blocks[index] = sprite
 

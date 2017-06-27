@@ -866,6 +866,7 @@ function Tetris:handleSparBlock(sender)
     if (targetGridY == gridY) then
         self:insertBlock(gridX, targetGridY, block)
         self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
+        self.needCheckAgain = true
         -- log:info("block remove times step3, count:%s", self.checkBlockRemoveTimes)
         return
     end
