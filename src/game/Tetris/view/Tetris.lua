@@ -876,6 +876,11 @@ function Tetris:handleSparBlock(sender)
         self:handleExtraAttributes()
     end
 
+    local oldBlock = self.grids[targetGridY][gridX]
+    if (oldBlock and oldBlock ~= 0) then
+        oldBlock:runAction(cc.ScaleTo:create(1,1,0))
+    end
+
     -- 创建动画
     local action = cc.MoveTo:create(1, cc.p(targetX, targetY))
     local sequence = cc.Sequence:create(action, 
