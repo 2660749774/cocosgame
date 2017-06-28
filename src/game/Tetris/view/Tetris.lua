@@ -70,12 +70,17 @@ function Tetris:doUpdate(dt)
     end
 
     if nil ~= self.parent and self.parent.doUpdate then
-        self.parent:doUpdate(dt)
+        self.parent:doUpdate(dt / self.fixScheduler.timeScale)
     end
 
     if self.block ~= nil then
         local x, y = self.block:getPosition()
         if self.block:checkDown(self.grids) then
+            -- 强制减速
+            if self.fixScheduler and self.fixScheduler.timeScale > 1 then
+                self.fixScheduler:setTimeScale(1)
+                return
+            end
             self.checkDownCount = self.checkDownCount + 1
             if self.checkDownCount == 2 then
                 -- 处理向下
@@ -653,14 +658,14 @@ function Tetris:checkBlockRemove()
             end
         end
         if canRemove then
-            table.insert(removeLines, i)
+            removeLines[i] = 1
             maxLine = i
         end
     end
 
     -- 消除处理
     local removeBlocks = {}
-    for _, line in pairs(removeLines) do
+    for line, _ in pairs(removeLines) do
         for i = 1, #self.grids[line] do
             -- log:info("remove block, y:%s , x:%s, block:%s", line, i, self.grids[line][i])
             local removeBlock = self.grids[line][i]
@@ -675,22 +680,69 @@ function Tetris:checkBlockRemove()
     self.removeLineNums = #removeLines
     self.callbackNums = #removeBlocks
     self.callbackCount = 0
-    if maxLine ~= -1 then
+
+    if #removeBlocks > 0 then
         self.upperBlockList = {}
-        local removeLineNums = self.removeLineNums
-        for i = maxLine + 1, #self.grids do
-            for j = 1, #self.grids[i] do
-                -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
-                if self.grids[i][j] ~= 0 then
-                    local block = self.grids[i][j]
-                    self.grids[i][j] = 0
-                    self.grids[i - removeLineNums][j] = block
-                    block.moveLines = self.removeLineNums
-                    table.insert(self.upperBlockList, block)
+        local blankLines = {}
+        for i = 2, #self.grids do 
+            if not removeLines[i] then
+                -- log:info("check line:%s", i)
+                -- 非消除行，从上到下
+                local moveLines = 0
+                for j = i - 1, 1, -1 do
+                    if removeLines[j] == 1 or blankLines[j] == 1 then
+                        moveLines = moveLines + 1
+                    else
+                        break
+                    end
                 end
-            end           
+                local toline = i - moveLines
+                if moveLines > 0 then
+                    local moved = false
+                    for j = 1, #self.grids[i] do
+                        -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
+                        if self.grids[i][j] ~= 0 then
+                            local block = self.grids[i][j]
+                            self.grids[i][j] = 0
+                            self.grids[toline][j] = block
+                            block.moveLines = moveLines
+                            table.insert(self.upperBlockList, block)
+                            moved = true
+                        end   
+                    end  
+                    if (moved) then
+                        log:info("check line:%s, toline:%s", i, toline)
+                    end
+                    blankLines[i] = 1
+                    if removeLines[toline] then
+                        removeLines[toline] = nil
+                    end
+                    if blankLines[toline] then
+                        blankLines[toline] = nil
+                    end
+                end
+            end
         end
+
     end
+
+
+    -- if maxLine ~= -1 then
+    --     self.upperBlockList = {}
+    --     local removeLineNums = self.removeLineNums
+    --     for i = maxLine + 1, #self.grids do
+    --         for j = 1, #self.grids[i] do
+    --             -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
+    --             if self.grids[i][j] ~= 0 then
+    --                 local block = self.grids[i][j]
+    --                 self.grids[i][j] = 0
+    --                 self.grids[i - removeLineNums][j] = block
+    --                 block.moveLines = self.removeLineNums
+    --                 table.insert(self.upperBlockList, block)
+    --             end
+    --         end           
+    --     end
+    -- end
 
     -- 闪烁效果
     if #removeBlocks > 0 then
@@ -874,11 +926,11 @@ function Tetris:handleSparBlock(sender)
     -- 等分
     if targetGridY < 1 then
         self:handleExtraAttributes()
-    end
-
-    local oldBlock = self.grids[targetGridY][gridX]
-    if (oldBlock and oldBlock ~= 0) then
-        oldBlock:runAction(cc.ScaleTo:create(1,1,0))
+    else
+        local oldBlock = self.grids[targetGridY][gridX]
+        if (oldBlock and oldBlock ~= 0) then
+            oldBlock:runAction(cc.ScaleTo:create(1,1,0))
+        end
     end
 
     -- 创建动画
