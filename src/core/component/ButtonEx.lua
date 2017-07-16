@@ -7,6 +7,9 @@ local longPressCheckInterval = 0.1
 -- @function [parent=#Button] onTouch
 function Button.onTouch(target, event)
     if event == ccui.TouchEventType.began then
+        if target.playSoundEffect ~= false then
+            amgr:playEffect("click_btn2.wav")
+        end
         target:setScale(1.2)
 
         -- 处理长按事件
