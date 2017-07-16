@@ -36,3 +36,4 @@ cocostudio-ui/**/*.udf
 cocostudio-ui/res
 archivedata
 *.log
+update

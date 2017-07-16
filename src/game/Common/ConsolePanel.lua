@@ -6,6 +6,8 @@
 -- To change this template use File | Settings | File Templates.
 -- ConsolePanel 控制台面板
 local ConsolePanel = class("ConsolePanel", BasePanel)
+local UserDefaultUtil = require("core.util.UserDefaultUtil")
+local HotswapData = require("game.Hotswap.HotswapData")
 
 ConsolePanel.ERROR = cc.c3b(255, 54, 0)
 ConsolePanel.DEFAULT = cc.c3b(255, 255, 255)
@@ -39,7 +41,8 @@ function ConsolePanel:onCreate()
     self.useage = {
         "help 查看帮助",
         "log [n=100] 查看最近100条日志",
-        "error  查看错误日志"
+        "error  查看错误日志",
+        "gameversion 设置资源版本号"
 
     }
     
@@ -124,6 +127,15 @@ function ConsolePanel:doERROR(args)
         self:pushTextToList(logArray[len - i + 1])
         self:pushTextToList(string.format("-----------第%s条错误日志结束-----------", i))
     end
+end
+
+--------------------------------
+-- 设置资源版本号
+-- @function [parent=#ConsolePanel] doGAMEVERSION
+function ConsolePanel:doGAMEVERSION(args)
+    local version = args[2]
+    UserDefaultUtil.setStringForKey(HotswapData.version.resKey, version)
+    self:pushTextToList(string.format("设置资源版本号成功, version:%s", version))
 end
 
 --------------------------------
