@@ -50,6 +50,7 @@ cc.exports.protos = {}
 protos.FIGHT_START = 1
 protos.KEY_PRESS = 100
 protos.REMOVE_LINES = 101
+protos.DEAD = 102
 protos.UPDATE_SERVERFRAME = -100
 
 actions.seq_map = {}

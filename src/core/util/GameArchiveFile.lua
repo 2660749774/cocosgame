@@ -189,7 +189,7 @@ end
 -- @function [parent=#GameArchiveFile] updateLifeData
 function GameArchiveFile:updateLifeData()
     local currTime = os.time()
-    log:info("update life curr:%s, next:%s", currTime, self.nextLifeTime)
+    -- log:info("update life curr:%s, next:%s", currTime, self.nextLifeTime)
 
     -- 数据改变标志
     local dataChange = false

@@ -4,8 +4,8 @@
 -- Date: 2016/12/31
 -- Time: 15:16
 -- To change this template use File | Settings | File Templates.
--- Tetris 俄罗斯方块
-local Tetris = class("Tetris")
+-- TetrisCore 俄罗斯方块核心模块
+local TetrisCore = class("TetrisCore")
 local Block1 = import(".Block1")
 local Block2 = import(".Block2")
 local Block3 = import(".Block3")
@@ -17,50 +17,31 @@ local ai = import("..AI.TetrisAI")
 
 --------------------------------
 -- 创建方法
--- @function [parent=#Tetris] onCreate
-function Tetris:ctor(bg, isNet, isSelf, parent)
-    self.bg = bg
-    self.isNet = isNet
-    self.parent = parent
-    self.isSelf = isSelf
-   
-    self.grids = {}
+-- @function [parent=#TetrisCore] onCreate
+function TetrisCore:ctor()
     self.id = 0
+    self.grids = {}
     self.blockMap = {}
-    self.checkDownCount = 0 -- 计数器
-    self.blockWidth = 27
-    self.fixPixel = 3
-    self.gameOverFlag = false
-    self.hang = 0
-    self.removeLineNums = 0
-    self.disableDown = false
-    self.randomTimes = 1
-    self.block = nil
-    self.nextBlock = nil
-    self.isAI = false
-    self.pause = false
-    self.checkBlockRemoveTimes = 0
-    self.needCheckAgain = false
-    if self.isSelf then
-        self.blockPic = 'fangkuai.png'
-    else
-        self.blockPic = 'fangkuai3.png'
-    end
-
 end
 
-function Tetris:pauseGame()
+--------------------------------
+-- 暂停游戏
+-- @function [parent=#TetrisCore] resumeGame
+function TetrisCore:pauseGame()
     self.pause = true
 end
 
-function Tetris:resumeGame()
+--------------------------------
+-- 恢复游戏
+-- @function [parent=#TetrisCore] resumeGame
+function TetrisCore:resumeGame()
     self.pause = false
 end
 
 --------------------------------
 -- 每一帧运行
--- @function [parent=#Tetris] playGame
-function Tetris:doUpdate(dt)
+-- @function [parent=#TetrisCore] playGame
+function TetrisCore:doUpdate(dt)
     if self.isSelf then
         -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
     end
@@ -96,8 +77,8 @@ end
 
 --------------------------------
 -- 进行AI模拟
--- @function [parent=#Tetris] playGame
-function Tetris:aiSimulate(dt)
+-- @function [parent=#TetrisCore] playGame
+function TetrisCore:aiSimulate(dt)
     if self.gameOverFlag or self.disableDown then
         return
     end
@@ -126,7 +107,7 @@ function Tetris:aiSimulate(dt)
 
 end
 
-function Tetris:doAction(action) 
+function TetrisCore:doAction(action) 
     if self.block then
         local x, y = self.block:getPosition()
         local idx = self.block.curIndex;
@@ -146,8 +127,8 @@ end
 
 --------------------------------
 -- 处理推送
--- @function [parent=#Tetris] getPlayerInfo
-function Tetris:handleServerFrame(eventList)
+-- @function [parent=#TetrisCore] getPlayerInfo
+function TetrisCore:handleServerFrame(eventList)
     for _, data in pairs(eventList) do
         if data.protoId == protos.KEY_PRESS then
             data.keyCode = tonumber(data.args)
@@ -173,8 +154,8 @@ end
 
 --------------------------------
 -- 更新服务器帧数
--- @function [parent=#Tetris] updateServerFrameNum
-function Tetris:updateServerFrameNum(frameNum)
+-- @function [parent=#TetrisCore] updateServerFrameNum
+function TetrisCore:updateServerFrameNum(frameNum)
     if self.fixScheduler then
         self.fixScheduler:updateServerFrameNum(frameNum)
     end
@@ -182,8 +163,8 @@ end
 
 --------------------------------
 -- 添加服务器网络帧内容
--- @function [parent=#Tetris] addServerFrame
-function Tetris:addServerFrame(frameNum, event)
+-- @function [parent=#TetrisCore] addServerFrame
+function TetrisCore:addServerFrame(frameNum, event)
     if self.fixScheduler then
         self.fixScheduler:addServerFrame(frameNum, event)
         -- if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
@@ -196,8 +177,8 @@ end
 
 --------------------------------
 -- 获取本地帧号
--- @function [parent=#Tetris] getLocalFrameNum
-function Tetris:getLocalFrameNum()
+-- @function [parent=#TetrisCore] getLocalFrameNum
+function TetrisCore:getLocalFrameNum()
     if self.fixScheduler then
         return self.fixScheduler.frameNum
     end
@@ -207,8 +188,8 @@ end
 
 --------------------------------
 -- 下一个方块
--- @function [parent=#Tetris] roundStart
-function Tetris:roundStart()
+-- @function [parent=#TetrisCore] roundStart
+function TetrisCore:roundStart()
     if self.gameOverFlag then
         return
     end
@@ -254,9 +235,9 @@ end
 
 --------------------------------
 -- 游戏开始
--- @function [parent=#Tetris] gameStart
-function Tetris:gameStart(conf) 
-    -- log:info("[Tetris]gameStart nextBlock:%s", self.nextBlock)
+-- @function [parent=#TetrisCore] gameStart
+function TetrisCore:gameStart(conf) 
+    -- log:info("[TetrisCore]gameStart nextBlock:%s", self.nextBlock)
     self:initGridBlock(conf)
 
     -- 随机下一块方块
@@ -281,8 +262,8 @@ end
 
 --------------------------------
 -- 游戏结束
--- @function [parent=#Tetris] gameStart
-function Tetris:gameOver()
+-- @function [parent=#TetrisCore] gameStart
+function TetrisCore:gameOver()
     self.gameOverFlag = true
     self.parent:notifyGameOver(self.isSelf)
     -- 停止定时任务
@@ -296,8 +277,8 @@ end
 
 --------------------------------
 -- 清理重置
--- @function [parent=#Tetris] reset
-function Tetris:reset() 
+-- @function [parent=#TetrisCore] reset
+function TetrisCore:reset() 
     -- 停止定时任务
     if self.updateTask then
         self.fixScheduler:destroy()
@@ -334,8 +315,8 @@ end
 
 --------------------------------
 -- 初始化Grid
--- @function [parent=#Tetris] initGrid
-function Tetris:initGrid(width, height)
+-- @function [parent=#TetrisCore] initGrid
+function TetrisCore:initGrid(width, height)
     local x = width / self.blockWidth
     local y = height / self.blockWidth
 
@@ -351,8 +332,8 @@ end
 
 --------------------------------
 -- 根据配置初始化基础方块
--- @function [parent=#Tetris] createSingleBlock
-function Tetris:initGridBlock(conf)
+-- @function [parent=#TetrisCore] createSingleBlock
+function TetrisCore:initGridBlock(conf)
     if conf == nil then
         return
     end
@@ -405,8 +386,8 @@ end
 
 --------------------------------
 -- 创建单个方块
--- @function [parent=#Tetris] createSingleBlock
-function Tetris:createSingleBlock(pic, gridX, gridY)
+-- @function [parent=#TetrisCore] createSingleBlock
+function TetrisCore:createSingleBlock(pic, gridX, gridY)
     local sprite = cc.Sprite:createWithSpriteFrameName(pic)
     sprite:setAnchorPoint(0, 0)
     sprite:setPosition((gridX - 1) * self.blockWidth + 3, (gridY - 1) * self.blockWidth + 3)
@@ -417,8 +398,8 @@ end
 
 --------------------------------
 -- 处理翻转
--- @function [parent=#Tetris] 
-function Tetris:handleShift(event, keyCode)
+-- @function [parent=#TetrisCore] 
+function TetrisCore:handleShift(event, keyCode)
     if self.block == nil then
         return
     else
@@ -437,8 +418,8 @@ end
 
 --------------------------------
 -- 处理左移动
--- @function [parent=#Tetris] handleLeft
-function Tetris:handleLeft(event, keyCode)
+-- @function [parent=#TetrisCore] handleLeft
+function TetrisCore:handleLeft(event, keyCode)
     if self.block == nil then
         return
     end
@@ -483,8 +464,8 @@ end
 
 --------------------------------
 -- 处理右移动
--- @function [parent=#Tetris] handleRight
-function Tetris:handleRight(event, keyCode)
+-- @function [parent=#TetrisCore] handleRight
+function TetrisCore:handleRight(event, keyCode)
     if self.block == nil then
         return
     end
@@ -520,8 +501,8 @@ end
 
 --------------------------------
 -- 处理极速下降
--- @function [parent=#Tetris] handleDown
-function Tetris:handleDown(event, keyCode)
+-- @function [parent=#TetrisCore] handleDown
+function TetrisCore:handleDown(event, keyCode)
     if self.block == nil then
         return
     end
@@ -537,8 +518,8 @@ end
 
 --------------------------------
 -- 处理加速下降
--- @function [parent=#Tetris] handleDownLow
-function Tetris:handleDownLow(event, keyCode)
+-- @function [parent=#TetrisCore] handleDownLow
+function TetrisCore:handleDownLow(event, keyCode)
     -- 发送按钮事件
     if event ~= nil then
         keyCode = 5
@@ -603,18 +584,9 @@ function Tetris:handleDownLow(event, keyCode)
 end
 
 --------------------------------
--- 发送网络包
--- @function [parent=#Tetris] sendPack
-function Tetris:sendPack(action, protoId, ...)
-    if self.fixScheduler then
-        self.fixScheduler:send(action, protoId, ...)
-    end
-end
-
---------------------------------
 -- 处理向下
--- @function [parent=#Tetris] _handleDown
-function Tetris:_handleDown(block, simulate)
+-- @function [parent=#TetrisCore] _handleDown
+function TetrisCore:_handleDown(block, simulate)
     if block == nil then
         return
     end
@@ -645,8 +617,8 @@ end
 
 --------------------------------
 -- 消除判断
--- @function [parent=#Tetris] checkBlockRemove
-function Tetris:checkBlockRemove()
+-- @function [parent=#TetrisCore] checkBlockRemove
+function TetrisCore:checkBlockRemove()
     
     -- 检查引用计数器 + 1
     self.needCheckAgain = false
@@ -828,8 +800,8 @@ end
 
 --------------------------------
 -- 处理移除回调
--- @function [parent=#Tetris] removeCallBack
-function Tetris:removeCallBack(sender)
+-- @function [parent=#TetrisCore] removeCallBack
+function TetrisCore:removeCallBack(sender)
     if sender then
         if sender.hasStar then
             self:flyStar(sender)
@@ -905,8 +877,8 @@ end
 
 --------------------------------
 -- 处理下沉方块
--- @function [parent=#Tetris] handleSparBlock
-function Tetris:handleSparBlock(sender)
+-- @function [parent=#TetrisCore] handleSparBlock
+function TetrisCore:handleSparBlock(sender)
     local gridX = sender.gridX
     local gridY = sender.gridY
 
@@ -981,8 +953,8 @@ end
 
 --------------------------------
 -- 处理水滴block
--- @function [parent=#Tetris] handleShuidiBlock
-function Tetris:handleShuidiBlock(sender)
+-- @function [parent=#TetrisCore] handleShuidiBlock
+function TetrisCore:handleShuidiBlock(sender)
     -- 移除自身
     local gridX = sender.gridX
     local gridY = sender.gridY
@@ -1022,7 +994,7 @@ end
 --------------------------------
 -- 固定位置插入一个block
 -- @function [parent=#BaseBlock] insertBlock
-function Tetris:insertBlock(gridX, gridY, block)
+function TetrisCore:insertBlock(gridX, gridY, block)
     for i = #self.grids, gridY, -1 do
         local block = self.grids[i][gridX]
         if block and block ~= 0 then
@@ -1039,7 +1011,7 @@ end
 --------------------------------
 -- 检查是可以下降得格数
 -- @function [parent=#BaseBlock] checkSparBlockDownGridPos
-function Tetris:checkSparBlockDownGridPos(gridX, gridY)
+function TetrisCore:checkSparBlockDownGridPos(gridX, gridY)
     -- log:info("sparblock, gridX:%s, gridY:%s", gridX, gridY)
 
     -- 检查自己所处位置是否合法
@@ -1062,8 +1034,8 @@ end
 
 --------------------------------
 -- 播放收集星星动画
--- @function [parent=#Tetris] flyStar
-function Tetris:flyStar(sender)
+-- @function [parent=#TetrisCore] flyStar
+function TetrisCore:flyStar(sender)
     local x, y = sender:getPosition()
     local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
     local star = cc.Sprite:createWithSpriteFrameName("star.png")
@@ -1099,8 +1071,8 @@ end
 
 --------------------------------
 -- 处理额外属性
--- @function [parent=#Tetris] handleExtraAttributes
-function Tetris:handleExtraAttributes(sender)
+-- @function [parent=#TetrisCore] handleExtraAttributes
+function TetrisCore:handleExtraAttributes(sender)
     if self.parent.handleExtraAttributes then
         self.parent:handleExtraAttributes(sender)
     end
@@ -1108,8 +1080,8 @@ end
 
 --------------------------------
 -- 增加行数
--- @function [parent=#Tetris] addLines
-function Tetris:addLines(lines)
+-- @function [parent=#TetrisCore] addLines
+function TetrisCore:addLines(lines)
     local num = #lines
 
     -- 处理上面的方块
@@ -1157,8 +1129,8 @@ end
 
 --------------------------------
 -- 创建一个随机方块
--- @function [parent=#Tetris] createRandomBlock
-function Tetris:createBlock(type, angle, pic)
+-- @function [parent=#TetrisCore] createRandomBlock
+function TetrisCore:createBlock(type, angle, pic)
     local block = nil
     if type == 1 then
         block = Block1:create(angle, 3, 273, pic)
@@ -1181,8 +1153,8 @@ end
 
 --------------------------------
 -- 随机下一个方块
--- @function [parent=#Tetris] createNextBlock
-function Tetris:createNextBlock()
+-- @function [parent=#TetrisCore] createNextBlock
+function TetrisCore:createNextBlock()
     self.nextBlock = self:createRandomBlock()
 
     -- 更新下一个节点
@@ -1195,8 +1167,8 @@ end
 
 --------------------------------
 -- 更新block
--- @function [parent=#Tetris] updateBlock
-function Tetris:updateBlock(block, nextBlock)
+-- @function [parent=#TetrisCore] updateBlock
+function TetrisCore:updateBlock(block, nextBlock)
     -- log:info("updateblock start")
     for i=1, #nextBlock.blocks do 
         local sprite = nextBlock.blocks[i]
@@ -1214,8 +1186,8 @@ end
 
 --------------------------------
 -- 创建一个随机方块
--- @function [parent=#Tetris] Tetris
-function Tetris:createRandomBlock()
+-- @function [parent=#TetrisCore] TetrisCore
+function TetrisCore:createRandomBlock()
     local type = self.parent:nextInt(7, self.randomTimes)
     self.randomTimes = self.randomTimes + 1
 
@@ -1224,8 +1196,8 @@ end
 
 --------------------------------
 -- 震屏效果
--- @function [parent=#Tetris] shake
-function Tetris:shake(node, interval)
+-- @function [parent=#TetrisCore] shake
+function TetrisCore:shake(node, interval)
     local x, y = node:getPosition()
     local _interval = 0
     local schedulerHandle = nil
@@ -1242,19 +1214,19 @@ end
 
 --------------------------------
 -- 格子坐标转换成像素坐标
--- @function [parent=#Tetris] convertGridToPosition
-function Tetris:convertGridToPosition(gridX, gridY)
+-- @function [parent=#TetrisCore] convertGridToPosition
+function TetrisCore:convertGridToPosition(gridX, gridY)
     return (gridX - 1) * self.blockWidth + self.fixPixel, (gridY - 1) * self.blockWidth + self.fixPixel
 end
 
 --------------------------------
 -- 退出时清理操作
--- @function [parent=#Tetris] onExit
-function Tetris:onExit()
+-- @function [parent=#TetrisCore] onExit
+function TetrisCore:onExit()
     if self.fixScheduler then
         self.fixScheduler:destroy()
     end
 end
 
-return Tetris
+return TetrisCore
 
