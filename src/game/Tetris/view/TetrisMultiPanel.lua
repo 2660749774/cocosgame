@@ -135,8 +135,6 @@ end
 -- 处理推送
 -- @function [parent=#TetrisMultiPanel] handlePush
 function TetrisMultiPanel:handlePush(response)
-    log:info("handlePush")
-    log:showTable(response)
     if tolua.isnull(self) then
         return
     end
