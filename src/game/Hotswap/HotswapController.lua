@@ -41,7 +41,8 @@ function HotswapController:ctor(view, confmgr)
     -- 动更根目录
     self.updateRootDir = self.fileUtils:getWritablePath()
     -- 动更目录
-    self.updateDir = self:joinPath(self.updateRootDir, "update")
+    self.updateDirName = "update"
+    self.updateDir = self:joinPath(self.updateRootDir, self.updateDirName)
     -- 临时解压目录
     self.tempDir = self:joinPath(self.updateRootDir, "tmp")
     -- 下载目录
@@ -78,6 +79,10 @@ end
 function HotswapController:over()
     log:tag(self.TAG, "checkUpdate end")
 
+    local searchPaths = self.fileUtils:getSearchPaths()
+    for _, path in ipairs(searchPaths) do
+        log:tag(self.TAG, "searchPath:%s", path)
+    end
     app:changeScene("Login")
 end
 
@@ -93,7 +98,7 @@ function HotswapController:checkUpdate()
     local clientVersion = self.localVersion.clientVersion
     local buildNo = self.localVersion.buildNo
     local game = self.confmgr.config.game
-    local channelId = self.confmgr:getChannelId()
+    local channelId = "and_will" -- self.confmgr:getChannelId()
     local packType = self.localVersion.packType
 
     local url = self.confmgr.config.hotswapUrl
@@ -102,7 +107,7 @@ function HotswapController:checkUpdate()
 
     log:tag(self.TAG, "check update, url:%s, param:%s", url, param)
 
-    WebUtil.sendRequest(url, handler(self, self.checkUpdateCallback), "GET")
+    WebUtil.sendRequest(url .. "?" .. param, handler(self, self.checkUpdateCallback), "GET")
 end
 
 
@@ -238,12 +243,22 @@ end
 -- 下载文件回调
 -- @function [parent=#HotswapController] downloadResUpdateCallback
 function HotswapController:downloadResUpdateCallback(event)
-    if event.name == "progress" then
+    if event.state == cc.HTTP.StateProgress then
         -- 更新进度
         log:tag(self.TAG, "dowload resUpdate progress total:%s dltotal:%s", event.total, event.dltotal)
-    elseif event.name ~= "completed" then
+    elseif event.state ~= cc.HTTP.StateCompleted then
         -- 下载出错
-        log:tag(self.TAG, "download resUpdate failed, errorCode:%s, errorMessage:%s", event.errorCode, event.errorMessage)
+        log:tag(self.TAG, "download resUpdate failed, state:%s, errorCode:%s, errorMessage:%s, responseCode:%s", event.state, event.errorCode, event.errorMessage, event.responseCode)
+        if event.state == cc.HTTP.StateServerError and event.responseCode == 416 then
+            -- range错误，删除文件重新下载
+            local file = self:joinPath(self.downloadDir, self.updateInfo.version)
+            -- 删除错误文件
+            self.fileUtils:removeFile(file)
+
+            -- 重新下载
+            self:downloadResUpdate()
+            return
+        end
 
         -- 重试
         self.retryCount = self.retryCount + 1
@@ -285,8 +300,8 @@ function HotswapController:unzipResUpdate()
     end
 
     -- 校验md5
-    local md5 = self.cryptoUtil:md5File(file)
-    log:tag(self.TAG, "unzip filemd5:%s", md5)
+    local md5 = string.lower(self.cryptoUtil:md5File(file))
+    log:tag(self.TAG, "unzip file md5:%s", md5)
 
     if md5 ~= self.updateInfo.md5 then
         log:tag(self.TAG, "download file md5 error, excepted:%s, actual:%s", self.updateInfo.md5, md5)
@@ -299,7 +314,9 @@ function HotswapController:unzipResUpdate()
 
     -- 解压文件
     self:cleanDir(self.tempDir)
-    self.zipUtil:create(handler(self, self.unZipCallback), file, self.tempDir)
+    log:tag(self.TAG, "unzip file to dir:%s", self.tempDir)
+    local zipFile = self.zipUtil:createWithLua(handler(self, self.unZipCallback), file, self.tempDir)
+    zipFile:decompressAsync()
 end
 
 --------------------------------
@@ -312,7 +329,7 @@ function HotswapController:unZipCallback(event)
     elseif event.name ~= "completed" then
         -- 解压失败
         log:tag(self.TAG, "unzip file failed, errorCode:%s, errorMessage:%s", data.errorCode, data.errorMessage)
-        log:tag("unzipResUpdate end")
+        log:tag(self.TAG, "unzipResUpdate end")
 
         -- 清空临时目录
         self.fileUtils:removeDirectory(self.tempDir)
@@ -323,7 +340,7 @@ function HotswapController:unZipCallback(event)
         self:doResUpdate(self.updateInfo)
         return
     else
-        log:tag("unzipResUpdate end")
+        log:tag(self.TAG, "unzipResUpdate end")
         -- 解压成功
         self:doUnZipOver()
     end
@@ -338,9 +355,12 @@ function HotswapController:doUnZipOver()
     UserDefaultUtil.setStringForKey(HotswapData.version.resMoveKey, "true")
 
     -- 临时目录资源拷贝到正式目录
+    if not self.fileUtils:isDirectoryExist(self.updateDir) then
+        self.fileUtils:createDirectory(self.updateDir)
+    end
     local files = self:listFiles(self.tempDir)
     for _, file in pairs(files) do
-        local destFile = self:joinPath(self.updateDir, string.sub(file.path, string.len(self.tempDir)))
+        local destFile = self:joinPath(self.updateDir, string.sub(file.path, string.len(self.tempDir) + 2))
         log:info("move file src:%s, dest:%s", file.path, destFile)
         self.fileUtils:renameFile(file.path, destFile)
     end
@@ -353,12 +373,12 @@ function HotswapController:doUnZipOver()
 
     -- 更新资源版本号
     UserDefaultUtil.setStringForKey(HotswapData.version.resKey, self.updateInfo.version)
-    UserDefaultUtil.setStringForKey(HotswapData.version.resDir, self.updateDir)
+    UserDefaultUtil.setStringForKey(HotswapData.version.resDir, self.updateDirName)
 
     log:tag(self.TAG, "moving resUpdate end")
 
     -- 添加搜索路径
-    self.fileUtils:addSearchPath(self.updateDir, true)
+    self.fileUtils:addSearchPath(self.updateDirName, true)
     
     -- 进行清理
     self:cleanup()

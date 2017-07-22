@@ -55,6 +55,7 @@ cc.exports.rmgr = require "core.manager.ResourceManager".new()
 cc.exports.cmgr = require "core.manager.ConnectManager".new(false)
 cc.exports.ucmgr = require "core.manager.UDPConnectManager".new(false)
 cc.exports.emgr = require "core.manager.EventManager".new()
+cc.exports.amgr = require "core.manager.AudioManager".new()
 
 
 

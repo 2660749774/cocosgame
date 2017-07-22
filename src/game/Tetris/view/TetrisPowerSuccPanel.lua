@@ -16,6 +16,9 @@ function TetrisPowerSuccPanel:onCreate(powerId, armyId, star, score)
     local layout = require("layout.PowerSuccPopup").create()
 
     log:info("showSuccPanel powerI:%s, armyId:%s, star:%s, score:%s", powerId, armyId, star, score)
+    
+    -- 播放音效
+    amgr:playEffect("power_pass.wav")
 
     self.powerId = powerId
     self.armyId = armyId

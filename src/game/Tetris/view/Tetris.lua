@@ -417,7 +417,7 @@ end
 
 --------------------------------
 -- 处理翻转
--- @function [parent=#Tetris] handleShift
+-- @function [parent=#Tetris] 
 function Tetris:handleShift(event, keyCode)
     if self.block == nil then
         return
@@ -750,6 +750,9 @@ function Tetris:checkBlockRemove()
         if self.parent.checkRemoveLines then
             self.parent:checkRemoveLines(removeBlocks)
         end
+
+        -- 播放音效
+        amgr:playEffect("remove_block.wav")
 
         self.fixScheduler:setTimeScale(1)
         local action = cc.Blink:create(0.5, 3)

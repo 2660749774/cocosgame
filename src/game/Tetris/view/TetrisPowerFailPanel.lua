@@ -15,6 +15,9 @@ local TetrisPowerConf = import("..data.TetrisPowerConf")
 function TetrisPowerFailPanel:onCreate(powerId, armyId, score, needScore, parent)
     local layout = require("layout.PowerFailPopup").create()
 
+    -- 播放音效
+    amgr:playEffect("power_fail.mp3")
+
     self.parent = parent
     self.powerId = powerId
     self.armyId = armyId

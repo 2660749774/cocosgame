@@ -42,6 +42,7 @@ function TetrisSinglePanel:onCreate(layout)
     self:addChild(self.layout["root"])
 
     -- 添加事件
+    self.btnShift.playSoundEffect = false
     self.btnShift:addClickEventListener(handler(self, self.handleShift))
 
     self.btnLeft:addClickEventListener(handler(self, self.handleLeft))
@@ -59,6 +60,9 @@ function TetrisSinglePanel:onCreate(layout)
 
     -- 播放开始动画
     scheduler.performWithDelayGlobal(handler(self, self.playStartAnimation), 1.2)
+
+    -- 播放背景音乐
+    amgr:playBgMusic({"power_bg1.mp3", "power_bg2.mp3", "power_bg3.mp3"}, true)
 end
 
 --------------------------------
@@ -238,6 +242,9 @@ end
 -- @function [parent=#TetrisSinglePanel] handleShift
 function TetrisSinglePanel:handleShift(event, keyCode)
     self.tetris:handleShift(event, keyCode)
+
+    -- 播放音效
+    amgr:playEffect("rotation.wav")
 end
 
 --------------------------------
@@ -259,6 +266,9 @@ end
 -- @function [parent=#TetrisSinglePanel] handleDown
 function TetrisSinglePanel:handleDown(event, keyCode)
     self.tetris:handleDown(event, keyCode)
+
+    -- 播放下落音效
+    amgr:playEffect("block_down.wav")
 end
 
 --------------------------------

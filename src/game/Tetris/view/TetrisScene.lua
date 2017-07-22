@@ -103,6 +103,9 @@ function TetrisScene:onCreate()
 
     -- 添加触摸监听
     self:addLayerTouchListener()
+
+    -- 播放背景音乐
+    amgr:playBgMusic({"main_bg1.mp3", "main_bg2.wav", "main_bg3.mp3"}, true)
 end
 
 --------------------------------
