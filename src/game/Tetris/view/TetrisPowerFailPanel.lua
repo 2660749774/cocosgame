@@ -37,6 +37,9 @@ function TetrisPowerFailPanel:onCreate(powerId, armyId, score, needScore, parent
     self.btnClose:addClickEventListener(function() 
         self:getScene():popPanel()
         self:getScene():popPanel()
+
+        -- 重新进入主页
+        emgr:dispatchEvent(EventDefine.VIEW_CHANGE, "MainScene")
     end)
 end
 

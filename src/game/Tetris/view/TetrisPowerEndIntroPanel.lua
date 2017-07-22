@@ -42,6 +42,9 @@ function TetrisPowerEndIntroPanel:playAnimation()
         local scene = self:getScene()
         scene:popPanel()
         scene:popPanel()
+
+        -- 重新进入主页
+        emgr:dispatchEvent(EventDefine.VIEW_CHANGE, "MainScene")
     end))
 
     self.panel:runAction(sequence)

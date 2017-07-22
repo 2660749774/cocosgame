@@ -98,8 +98,10 @@ function TetrisScene:onCreate()
     -- 注册事件监听
     self.powerProgressEventListener = handler(self, self.updatePowerProgress)
     self.lifeEventListener = handler(self, self.updatePlayerLife)
+    self.viewChangeListener = handler(self, self.handleViewChange)
     emgr:addEventListener(EventDefine.POWER_PROGRESS_UPDATE, self.powerProgressEventListener)
     emgr:addEventListener(EventDefine.PLAYER_LIFES_UPDATE, self.lifeEventListener)
+    emgr:addEventListener(EventDefine.VIEW_CHANGE, self.viewChangeListener)
 
     -- 添加触摸监听
     self:addLayerTouchListener()
@@ -178,6 +180,15 @@ function TetrisScene:updatePlayerLife(lifes)
     log:info("do updatePlayerLife event, lifes:%s", lifes)
 
     self.lbLife:setString(lifes)
+end
+
+--------------------------------
+-- 处理界面变更
+-- @function [parent=#TetrisScene] handleViewChange
+function TetrisScene:handleViewChange(viewName)
+    if viewName == "MainScene" then
+        amgr:playBgMusic({"main_bg1.mp3", "main_bg2.wav", "main_bg3.mp3"}, true)
+    end
 end
 
 --------------------------------

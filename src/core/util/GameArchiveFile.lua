@@ -6,6 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 -- GameArchiveFile 存储游戏信息的文件
 local GameArchiveFile = class("GameArchiveFile")
+local scheduler = require("core.scheduler")
 
 --------------------------------
 -- 构造函数
@@ -16,7 +17,7 @@ function GameArchiveFile:ctor()
     self.aesKey = "1234567890abcDEF"
     self.version = 0
     self.lifes = 0
-    self.timestamp = "0"
+    self.nextLifeTime = 0
 end
 
 --------------------------------
@@ -119,14 +120,17 @@ function GameArchiveFile:loadData()
 
     self.data = json.decode(content)
     self.version = self.data.version or 1
-    self.lifes = 10000 -- self.data.lifes or 5 -- 默认5条生命
-    self.timestamp = self.data.timestamp or "0"
+    self.lifes = self.data.lifes or 5 -- 默认5条生命
+    self.nextLifeTime = self.data.nextLifeTime or 0
 
-    log:info("lifes:%s, timestamp:%s, version:%s", self.lifes, self.timestamp, self.version)
+    log:info("lifes:%s, nextLifeTime:%s, version:%s", self.lifes, self.nextLifeTime, self.version)
 
     self.data.version = self.version
     self.data.lifes = self.lifes
-    self.data.timestamp = self.timestamp
+    self.data.nextLifeTime = self.nextLifeTime
+
+    -- 定义schedler调用
+    self.updateScheduler = scheduler.scheduleGlobal(handler(self, self.update), 1)
 end
 
 --------------------------------
@@ -163,14 +167,69 @@ end
 function GameArchiveFile:syncLifeData()
     cmgr:send(actions.syncLife, function(response) 
         local lifes = response.data.lifes
-        local timestamp = response.data.timestamp
-        if lifes ~= self.lifes or timestamp ~= self.timestamp then
-            self.lifes = lifes
-            self.timestamp = timestamp
-            emgr:dispatchEvent(EventDefine.PLAYER_LIFES_UPDATE, self.lifes)
-            self:saveData()
+        local nextLifeTime = response.data.nextLifeTime
+        -- if lifes ~= self.lifes or timestamp ~= self.timestamp then
+        --     self.lifes = lifes
+        --     self.timestamp = timestamp
+        --     emgr:dispatchEvent(EventDefine.PLAYER_LIFES_UPDATE, self.lifes)
+        --     self:saveData()
+        -- end
+    end, self.lifes, self.nextLifeTime)
+end
+
+--------------------------------
+-- 定时调用
+-- @function [parent=#GameArchiveFile] update
+function GameArchiveFile:update()
+    self:updateLifeData()
+end
+
+--------------------------------
+-- 更新生命数据
+-- @function [parent=#GameArchiveFile] updateLifeData
+function GameArchiveFile:updateLifeData()
+    local currTime = os.time()
+    log:info("update life curr:%s, next:%s", currTime, self.nextLifeTime)
+
+    -- 数据改变标志
+    local dataChange = false
+
+    if self.nextLifeTime == 0 then
+        -- 刚刚创建的用户
+        self.nextLifeTime = currTime + Constants.RECOVERLIFE_INTERVAL
+        dataChange = true
+    else
+        -- 恢复体力
+        while (currTime > self.nextLifeTime) do
+            self:addLife(1)
+            if self.lifes >= Constants.MAX_LIFES then
+                -- 正常恢复了
+                self.nextLifeTime = self.nextLifeTime + Constants.RECOVERLIFE_INTERVAL
+            else
+                -- 没有恢复
+                self.nextLifeTime = currTime + Constants.RECOVERLIFE_INTERVAL
+            end
+            dataChange = true
         end
-    end, self.lifes, self.timestamp)
+    end
+
+    if dataChange then
+        self:saveData()
+        self:syncLifeData()
+    end
+
+end
+
+--------------------------------
+-- 恢复生命
+-- @function [parent=#GameArchiveFile] addLife
+function GameArchiveFile:addLife(num)
+    if (self.lifes + num) > Constants.MAX_LIFES then
+        self.lifes = Constants.MAX_LIFES
+    else
+        self.lifes = self.lifes + 1
+    end
+    emgr:dispatchEvent(EventDefine.PLAYER_LIFES_UPDATE, self.lifes)
 end
 
 --------------------------------
@@ -180,7 +239,7 @@ function GameArchiveFile:saveData()
     -- 设定数据
     self.data.version = self.version
     self.data.lifes = self.lifes
-    self.data.timestamp = self.timestamp
+    self.data.nextLifeTime = self.nextLifeTime
 
     local content = json.encode(self.data)
     local path = self:getFilePath()

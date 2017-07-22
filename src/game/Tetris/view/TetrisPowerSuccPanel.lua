@@ -72,6 +72,9 @@ function TetrisPowerSuccPanel:onCreate(powerId, armyId, star, score)
     self.btnClose:addClickEventListener(function() 
         self:getScene():popPanel()
         self:getScene():popPanel()
+
+        -- 重新进入主页
+        emgr:dispatchEvent(EventDefine.VIEW_CHANGE, "MainScene")
     end)
 end
 
@@ -81,6 +84,9 @@ end
 function TetrisPowerSuccPanel:powerContinue()
     self:getScene():popPanel()
     self:getScene():popAndPushPanel("Tetris.view.TetrisPowerStart", {self.powerId, self.armyId + 1})
+
+    -- 重新进入主页
+    emgr:dispatchEvent(EventDefine.VIEW_CHANGE, "MainScene")
 end
 
 
