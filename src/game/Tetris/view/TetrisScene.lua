@@ -57,6 +57,8 @@ function TetrisScene:onCreate()
     self.lbLife = barLayout['lb_energy']
     local lifes = utils.gameArchive:queryData("lifes") or 5
     self.lbLife:setString(lifes)
+    self.btnBuyEnergy = barLayout['btn_buy_energy']
+    self.btnBuyEnergy:addClickEventListener(handler(self, self.buyEnergy))
 
     self:addObject(barLayout["root"], "scene")
 
@@ -662,6 +664,10 @@ function TetrisScene:resetPvpView()
     self.topPanel:setPosition(cc.p(318.64, 1094))
     self.bottomPanel:setVisible(true)
     self.bottomPanel:setPosition(cc.p(320.00, 50))
+end
+
+function TetrisScene:buyEnergy()
+    self:pushPanel("Tetris.view.TetrisTipsBuyEnergy")
 end
 
 

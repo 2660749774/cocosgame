@@ -144,6 +144,7 @@
           <Folder Name="plist">
             <PlistImageFolder Image="common.png" PListFile="common.plist" Name=".common_PList.Dir">
               <PlistImageFile Name="btn_cancel.png" Key="btn_cancel.png" />
+              <PlistImageFile Name="btn_ok.png" Key="btn_ok.png" />
               <PlistImageFile Name="btn_pvp.png" Key="btn_pvp.png" />
               <PlistImageFile Name="close.png" Key="close.png" />
               <PlistImageFile Name="down.png" Key="down.png" />
@@ -191,7 +192,6 @@
               <PlistImageFile Name="vol_off.png" Key="vol_off.png" />
               <PlistImageFile Name="vol_on.png" Key="vol_on.png" />
               <PlistImageFile Name="water_bg.png" Key="water_bg.png" />
-              <PlistImageFile Name="btn_ok.png" Key="btn_ok.png" />
               <PlistImageFile Name="winner.png" Key="winner.png" />
             </PlistImageFolder>
             <PlistImageFolder Image="main.png" PListFile="main.plist" Name=".main_PList.Dir">
@@ -437,6 +437,17 @@
             <Image Name="vol_on.png" />
             <Image Name="winner.png" />
           </Folder>
+          <Folder Name="tips">
+            <Image Name="btn_buy_energy.png" />
+            <Image Name="btn_buy_time.png" />
+            <Image Name="btn_cancel.png" />
+            <Image Name="btn_ok.png" />
+            <Image Name="btn_watch_video.png" />
+            <Image Name="diam_icon.png" />
+            <Image Name="nonetwork_icon.png" />
+            <Image Name="tips_bg.png" />
+            <Image Name="tips_inner_bg.png" />
+          </Folder>
         </Folder>
         <Project Name="CommTips.csd" Type="Node" />
         <Project Name="ConsolePanel.csd" Type="Scene" />
@@ -460,6 +471,9 @@
         <Project Name="TetrisPowerLoop.csd" Type="Scene" />
         <Project Name="TetrisPowerStart.csd" Type="Scene" />
         <Project Name="TetrisPvp.csd" Type="Scene" />
+        <Project Name="TetrisPvpEndIntro.csd" Type="Scene" />
+        <Project Name="TetrisPvpResult.csd" Type="Scene" />
+        <Project Name="TetrisPvpStartIntro.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisSearchAnimation.csd" Type="Scene" />
         <Project Name="TetrisSpar.csd" Type="Scene" />
@@ -469,9 +483,10 @@
         <Project Name="TetrisStartIntro.csd" Type="Scene" />
         <Project Name="TetrisStoneAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
-        <Project Name="TetrisPvpStartIntro.csd" Type="Scene" />
-        <Project Name="TetrisPvpEndIntro.csd" Type="Scene" />
-        <Project Name="TetrisPvpResult.csd" Type="Scene" />
+        <Project Name="TetrisTipComm.csd" Type="Scene" />
+        <Project Name="TetrisTipBuyEnergy.csd" Type="Scene" />
+        <Project Name="TetrisTipUpdate.csd" Type="Scene" />
+        <Project Name="TetrisTipBuyTime.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

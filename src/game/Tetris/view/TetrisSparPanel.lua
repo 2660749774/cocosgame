@@ -143,8 +143,15 @@ end
 function TetrisSparPanel:updateTime()
     local leftTime = math.round(self.totalTime - self.time)
     if leftTime <= 0 then
-        self.tetris:gameOver()
-        leftTime = 0
+        self.tetris:pauseGame()
+        self:getScene():pushPanel("Tetris.view.TetrisTipsBuyTime", {15, 5, function() 
+            self.time = self.time - 15
+            self.tetris:resumeGame()
+        end, function() 
+            self.tetris:resumeGame()
+            self.tetris:gameOver()
+            leftTime = 0
+        end})
     end
 
     local minute = math.floor(leftTime / 60)
