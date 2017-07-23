@@ -63,10 +63,10 @@ function actions.recordDelay(seq, tag, time)
 
     if not actions.seq_map[seq] or tag == 'send' then
         actions.seq_map[seq] = time
-        log:info("[%s]seq:%s, time:%s", tag, seq, time)
+        -- log:info("[%s]seq:%s, time:%s", tag, seq, time)
     else
         local _time = actions.seq_map[seq]
-        log:info("[%s]seq:%s, delay:%s", tag, seq, time - _time)
+        -- log:info("[%s]seq:%s, delay:%s", tag, seq, time - _time)
     end
 end
 

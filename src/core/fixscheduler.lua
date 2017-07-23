@@ -187,6 +187,7 @@ function fixscheduler:update()
     -- end
 
     -- log:info("loop jitter cost:%s", (cc.Util:getCurrentTime() - currTime))
+    -- log:info("tetris update timeScale:%s, fixTimeScale:%s", self.timeScale, self.fixTimeScale)
 
     -- 逻辑帧率驱动显示帧率
     while (self.fixTime >= self.dt) do
@@ -324,6 +325,7 @@ function fixscheduler:setTimeScale(scale, fillFrameNum)
     self.timeScale = scale
     self.gameTime = 0
     self.fixTime = 0
+    -- log:traceback()
 
     if scale > 1 then
         self.fillFrameNum = fillFrameNum

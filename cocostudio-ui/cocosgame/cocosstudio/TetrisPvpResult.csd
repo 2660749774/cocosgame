@@ -2,7 +2,7 @@
   <PropertyGroup Name="TetrisPvpResult" Type="Scene" ID="83fc333d-2054-4f24-8da0-62d90b22a6fb" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
-      <Animation Duration="0" Speed="1.0000" />
+      <Animation Duration="0" Speed="0.1667" />
       <ObjectData Name="Scene" Tag="80" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
@@ -68,41 +68,56 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="self_panel" ActionTag="765316254" Tag="59" IconVisible="False" LeftMargin="42.0000" RightMargin="398.0000" TopMargin="564.9639" BottomMargin="471.0361" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="self_panel" ActionTag="765316254" Tag="59" IconVisible="False" LeftMargin="42.0000" RightMargin="398.0000" TopMargin="564.9639" BottomMargin="471.0361" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="100.0000" />
                 <Children>
-                  <AbstractNodeData Name="Sprite_4" ActionTag="1782042028" Tag="57" IconVisible="False" LeftMargin="53.4349" RightMargin="36.5651" TopMargin="29.1020" BottomMargin="30.8980" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="score_panel_self" ActionTag="452516772" Tag="27" IconVisible="False" LeftMargin="51.2287" RightMargin="38.7713" TopMargin="31.8663" BottomMargin="28.1337" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                     <Size X="110.0000" Y="40.0000" />
+                    <Children>
+                      <AbstractNodeData Name="Sprite_4" ActionTag="1782042028" Tag="57" IconVisible="False" LeftMargin="-0.0001" RightMargin="0.0001" TopMargin="0.2599" BottomMargin="-0.2599" ctype="SpriteObjectData">
+                        <Size X="110.0000" Y="40.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="54.9999" Y="19.7401" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.4935" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="Normal" Path="ui/pvp/pvp_score_bg.png" Plist="" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="Sprite_5" ActionTag="76693203" Tag="58" IconVisible="False" LeftMargin="-15.7094" RightMargin="81.7094" TopMargin="2.0000" BottomMargin="2.0000" ctype="SpriteObjectData">
+                        <Size X="44.0000" Y="36.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="6.2906" Y="20.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.0572" Y="0.5000" />
+                        <PreSize X="0.4000" Y="0.9000" />
+                        <FileData Type="PlistSubImage" Path="score_bg.png" Plist="ui/plist/common.plist" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="lb_score_self" ActionTag="-34916678" Tag="60" IconVisible="False" LeftMargin="39.5174" RightMargin="34.4826" TopMargin="8.0000" BottomMargin="8.0000" FontSize="24" LabelText="+23" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                        <Size X="36.0000" Y="24.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="57.5174" Y="20.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5229" Y="0.5000" />
+                        <PreSize X="0.3273" Y="0.6000" />
+                        <OutlineColor A="255" R="255" G="0" B="0" />
+                        <ShadowColor A="255" R="0" G="0" B="0" />
+                      </AbstractNodeData>
+                    </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="108.4349" Y="50.8980" />
+                    <Position X="106.2287" Y="48.1337" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5422" Y="0.5090" />
+                    <PrePosition X="0.5311" Y="0.4813" />
                     <PreSize X="0.5500" Y="0.4000" />
-                    <FileData Type="Normal" Path="ui/pvp/pvp_score_bg.png" Plist="" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="Sprite_5" ActionTag="76693203" Tag="58" IconVisible="False" LeftMargin="33.9653" RightMargin="122.0347" TopMargin="31.1027" BottomMargin="32.8973" ctype="SpriteObjectData">
-                    <Size X="44.0000" Y="36.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="55.9653" Y="50.8973" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2798" Y="0.5090" />
-                    <PreSize X="0.2200" Y="0.3600" />
-                    <FileData Type="PlistSubImage" Path="score_bg.png" Plist="ui/plist/common.plist" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="lb_score_self" ActionTag="-34916678" Tag="60" IconVisible="False" LeftMargin="90.3872" RightMargin="73.6128" TopMargin="35.7147" BottomMargin="40.2853" FontSize="24" LabelText="+23" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="36.0000" Y="24.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="108.3872" Y="52.2853" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5419" Y="0.5229" />
-                    <PreSize X="0.1800" Y="0.2400" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="0" G="0" B="0" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="lb_num_self" ActionTag="1234436759" Tag="70" IconVisible="False" LeftMargin="52.5723" RightMargin="51.4277" TopMargin="-18.8784" BottomMargin="84.8784" CharWidth="24" CharHeight="34" LabelText="1200" StartChar="0" ctype="TextAtlasObjectData">
                     <Size X="96.0000" Y="34.0000" />
@@ -151,38 +166,53 @@
               <AbstractNodeData Name="target_Panel" ActionTag="442924721" Tag="61" IconVisible="False" LeftMargin="391.8362" RightMargin="48.1638" TopMargin="564.9639" BottomMargin="471.0361" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="100.0000" />
                 <Children>
-                  <AbstractNodeData Name="Sprite_4" ActionTag="-1684429648" Tag="62" IconVisible="False" LeftMargin="53.4349" RightMargin="36.5651" TopMargin="29.1020" BottomMargin="30.8980" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="score_panel_target" ActionTag="-89716859" Tag="28" IconVisible="False" LeftMargin="48.7094" RightMargin="41.2906" TopMargin="31.8663" BottomMargin="28.1337" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                     <Size X="110.0000" Y="40.0000" />
+                    <Children>
+                      <AbstractNodeData Name="Sprite_4" ActionTag="-1684429648" Tag="62" IconVisible="False" LeftMargin="-0.0001" RightMargin="0.0001" TopMargin="-2.2599" BottomMargin="2.2599" ctype="SpriteObjectData">
+                        <Size X="110.0000" Y="40.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="54.9999" Y="22.2599" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.5565" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="Normal" Path="ui/pvp/pvp_score_bg.png" Plist="" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="Sprite_5" ActionTag="2117383680" Tag="63" IconVisible="False" LeftMargin="-15.7100" RightMargin="81.7100" TopMargin="2.0000" BottomMargin="2.0000" ctype="SpriteObjectData">
+                        <Size X="44.0000" Y="36.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="6.2900" Y="20.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.0572" Y="0.5000" />
+                        <PreSize X="0.4000" Y="0.9000" />
+                        <FileData Type="PlistSubImage" Path="score_bg.png" Plist="ui/plist/common.plist" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="lb_score_target" ActionTag="905156974" Tag="64" IconVisible="False" LeftMargin="39.5200" RightMargin="34.4800" TopMargin="8.0000" BottomMargin="8.0000" FontSize="24" LabelText="+23" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                        <Size X="36.0000" Y="24.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="57.5200" Y="20.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5229" Y="0.5000" />
+                        <PreSize X="0.3273" Y="0.6000" />
+                        <OutlineColor A="255" R="255" G="0" B="0" />
+                        <ShadowColor A="255" R="0" G="0" B="0" />
+                      </AbstractNodeData>
+                    </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="108.4349" Y="50.8980" />
+                    <Position X="103.7094" Y="48.1337" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5422" Y="0.5090" />
+                    <PrePosition X="0.5185" Y="0.4813" />
                     <PreSize X="0.5500" Y="0.4000" />
-                    <FileData Type="Normal" Path="ui/pvp/pvp_score_bg.png" Plist="" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="Sprite_5" ActionTag="2117383680" Tag="63" IconVisible="False" LeftMargin="33.9653" RightMargin="122.0347" TopMargin="31.1027" BottomMargin="32.8973" ctype="SpriteObjectData">
-                    <Size X="44.0000" Y="36.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="55.9653" Y="50.8973" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2798" Y="0.5090" />
-                    <PreSize X="0.2200" Y="0.3600" />
-                    <FileData Type="PlistSubImage" Path="score_bg.png" Plist="ui/plist/common.plist" />
-                    <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="lb_score_target" ActionTag="905156974" Tag="64" IconVisible="False" LeftMargin="90.3872" RightMargin="73.6128" TopMargin="35.7147" BottomMargin="40.2853" FontSize="24" LabelText="+23" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="36.0000" Y="24.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="108.3872" Y="52.2853" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5419" Y="0.5229" />
-                    <PreSize X="0.1800" Y="0.2400" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="0" G="0" B="0" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="lb_num_target" ActionTag="857705663" Tag="71" IconVisible="False" LeftMargin="49.5726" RightMargin="54.4274" TopMargin="-18.8782" BottomMargin="84.8782" CharWidth="24" CharHeight="34" LabelText="1200" StartChar="0" ctype="TextAtlasObjectData">
                     <Size X="96.0000" Y="34.0000" />

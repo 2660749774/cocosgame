@@ -191,6 +191,8 @@
               <PlistImageFile Name="vol_off.png" Key="vol_off.png" />
               <PlistImageFile Name="vol_on.png" Key="vol_on.png" />
               <PlistImageFile Name="water_bg.png" Key="water_bg.png" />
+              <PlistImageFile Name="btn_ok.png" Key="btn_ok.png" />
+              <PlistImageFile Name="winner.png" Key="winner.png" />
             </PlistImageFolder>
             <PlistImageFolder Image="main.png" PListFile="main.plist" Name=".main_PList.Dir">
               <PlistImageFile Name="bar_bg.png" Key="bar_bg.png" />

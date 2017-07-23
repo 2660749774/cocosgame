@@ -218,7 +218,7 @@ end
 -- @function [parent=#TetrisMultiPanel] gameStart
 function TetrisMultiPanel:gameStart(data)
     log:info("gameStart")
-    Tips.showSceneTips("游戏开始！！！")
+    -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
     self:reset(false)
@@ -241,6 +241,13 @@ function TetrisMultiPanel:gameOver(data)
     log:info("gameOver playerId:%s", data.playerId)
 
     self.targetTetris:gameOver()
+
+    cmgr:removePushCallback(self.pushHandler)
+    if ucmgr then
+        ucmgr:removePushCallback(self.pushHandler)
+        ucmgr:close()
+    end
+
     if (data.playerId == self.playerId) then
         self.scheduleData.winId = self.targetId
     else
@@ -300,6 +307,9 @@ end
 -- 更新分数
 -- @function [parent=#TetrisMultiPanel] updateScore
 function TetrisMultiPanel:updateScore(removeLineNums, isSelf)
+    if removeLineNums > 0 then
+        log:info("updateScore:%s %s", removeLineNums, isSelf)
+    end
     if isSelf then
         self:updatePlayerScore(self.playerInfo, removeLineNums)
     else
@@ -477,8 +487,6 @@ end
 function TetrisMultiPanel:onExit()
     -- 卸载资源
     log:info("TetrisMultiPanel onExit")
-    cmgr:removePushCallback(self.pushHandler)
-    cmgr:removeConnCallback(self.connHandler)
     local tipLayer = self:getScene():getLayer("tips")
     tipLayer:removeAllChildren()
     scheduler.unscheduleGlobal(self.pingScheduler)
