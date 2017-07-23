@@ -50,6 +50,7 @@ cc.exports.protos = {}
 protos.FIGHT_START = 1
 protos.KEY_PRESS = 100
 protos.REMOVE_LINES = 101
+protos.DEAD = 102
 protos.UPDATE_SERVERFRAME = -100
 
 actions.seq_map = {}
@@ -62,10 +63,10 @@ function actions.recordDelay(seq, tag, time)
 
     if not actions.seq_map[seq] or tag == 'send' then
         actions.seq_map[seq] = time
-        log:info("[%s]seq:%s, time:%s", tag, seq, time)
+        -- log:info("[%s]seq:%s, time:%s", tag, seq, time)
     else
         local _time = actions.seq_map[seq]
-        log:info("[%s]seq:%s, delay:%s", tag, seq, time - _time)
+        -- log:info("[%s]seq:%s, delay:%s", tag, seq, time - _time)
     end
 end
 

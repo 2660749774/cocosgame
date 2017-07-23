@@ -4,8 +4,12 @@
 -- Date: 2016/12/31
 -- Time: 15:16
 -- To change this template use File | Settings | File Templates.
+<<<<<<< HEAD
 -- TetrisCore 俄罗斯方块核心层
 
+=======
+-- TetrisCore 俄罗斯方块核心模块
+>>>>>>> 99d746c1ee331dfed93217f8c7c750cca239c43c
 local TetrisCore = class("TetrisCore")
 local Block1 = import(".Block1")
 local Block2 = import(".Block2")
@@ -19,6 +23,7 @@ local ai = import("..AI.TetrisAI")
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisCore] onCreate
+<<<<<<< HEAD
 function TetrisCore:ctor(isNet, width, height)
     self.id = 0
     self.grids = {}
@@ -40,10 +45,27 @@ function TetrisCore:init(conf)
     self:initGridBlock(conf)
 end
 
+=======
+function TetrisCore:ctor()
+    self.id = 0
+    self.grids = {}
+    self.blockMap = {}
+end
+
+--------------------------------
+-- 暂停游戏
+-- @function [parent=#TetrisCore] resumeGame
+>>>>>>> 99d746c1ee331dfed93217f8c7c750cca239c43c
 function TetrisCore:pauseGame()
     self.pause = true
 end
 
+<<<<<<< HEAD
+=======
+--------------------------------
+-- 恢复游戏
+-- @function [parent=#TetrisCore] resumeGame
+>>>>>>> 99d746c1ee331dfed93217f8c7c750cca239c43c
 function TetrisCore:resumeGame()
     self.pause = false
 end
@@ -342,13 +364,18 @@ end
 
 --------------------------------
 -- 根据配置初始化基础方块
+<<<<<<< HEAD
 -- @function [parent=#TetrisCore] initGridBlock
+=======
+-- @function [parent=#TetrisCore] createSingleBlock
+>>>>>>> 99d746c1ee331dfed93217f8c7c750cca239c43c
 function TetrisCore:initGridBlock(conf)
     if conf == nil then
         return
     end
 
     local blockArray = conf.blockArray
+<<<<<<< HEAD
 
     for i = 1, #blockArray do
         for j = 1, #blockArray[i] do
@@ -360,6 +387,48 @@ function TetrisCore:initGridBlock(conf)
                 self.grids[gridY][gridX] = 3
             elseif blockArray[i][j] == 4 then
                 self.grids[gridY][gridX] = 5
+=======
+    local pic = string.format("%s.png", conf.blockType)
+    
+    for i = 1, #blockArray do
+        for j = 1, #blockArray[i] do
+            if blockArray[i][j] == 1 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock(pic, gridX, gridY)
+                sprite.confBlock = true
+                sprite.stoneBlock = iskindof(conf, "TetrisClearStoneConf")
+                self.grids[gridY][gridX] = sprite
+                self.bg:addChild(sprite)
+            elseif blockArray[i][j] == 2 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock("fangkuai9.png", gridX, gridY)
+                sprite.confBlock = true
+                sprite.hasStar = true
+                self.grids[gridY][gridX] = sprite
+                self.bg:addChild(sprite)
+            elseif blockArray[i][j] == 3 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock("fangkuai11.png", gridX, gridY)
+                sprite.confBlock = true
+                sprite.sparBlock = true
+                sprite.pic = "fangkuai11.png"
+                self.grids[gridY][gridX] = sprite
+                self.bg:addChild(sprite)
+            elseif blockArray[i][j] == 4 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                local sprite = self:createSingleBlock(pic, gridX, gridY)
+                sprite.confBlock = true
+                sprite.stoneBlock = true
+                sprite.hasShuidi = true
+                self.bg:addChild(sprite)
+                
+                self.grids[gridY][gridX] = sprite
+                
+>>>>>>> 99d746c1ee331dfed93217f8c7c750cca239c43c
             end
         end
     end

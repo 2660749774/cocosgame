@@ -194,6 +194,8 @@
             <filename>../button/green_btn.png</filename>
             <filename>../../block/fangkuai12.png</filename>
             <filename>../../icon/shuidi.png</filename>
+            <filename>../text/btn_ok.png</filename>
+            <filename>../text/winner.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

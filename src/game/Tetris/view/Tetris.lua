@@ -62,7 +62,7 @@ end
 -- @function [parent=#Tetris] playGame
 function Tetris:doUpdate(dt)
     if self.isSelf then
-        -- log:info("doUpdate frameNum:%s, timeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self.fixScheduler.timeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
+        -- log:info("doUpdate frameNum:%s, serverFrameNum:%s, timeScale:%s, fixTimeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self.fixScheduler.frameNum, self.fixScheduler.serverFrameNum, self.fixScheduler.timeScale, self.fixScheduler.fixTimeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
     end
 
     if self.gameOverFlag or self.disableDown or self.pause then
@@ -603,6 +603,15 @@ function Tetris:handleDownLow(event, keyCode)
 end
 
 --------------------------------
+-- 发送网络包
+-- @function [parent=#Tetris] sendPack
+function Tetris:sendPack(action, protoId, ...)
+    if self.fixScheduler then
+        self.fixScheduler:send(action, protoId, ...)
+    end
+end
+
+--------------------------------
 -- 处理向下
 -- @function [parent=#Tetris] _handleDown
 function Tetris:_handleDown(block, simulate)
@@ -660,6 +669,7 @@ function Tetris:checkBlockRemove()
         if canRemove then
             removeLines[i] = 1
             maxLine = i
+            self.removeLineNums =  self.removeLineNums + 1
         end
     end
 
@@ -677,7 +687,7 @@ function Tetris:checkBlockRemove()
     end
 
     -- 处理上面的方块
-    self.removeLineNums = #removeLines
+    -- self.removeLineNums = #removeLines
     self.callbackNums = #removeBlocks
     self.callbackCount = 0
 
@@ -710,9 +720,9 @@ function Tetris:checkBlockRemove()
                             moved = true
                         end   
                     end  
-                    if (moved) then
-                        log:info("check line:%s, toline:%s", i, toline)
-                    end
+                    -- if (moved) then
+                    --     log:info("check line:%s, toline:%s", i, toline)
+                    -- end
                     blankLines[i] = 1
                     if removeLines[toline] then
                         removeLines[toline] = nil
@@ -750,6 +760,8 @@ function Tetris:checkBlockRemove()
         if self.parent.checkRemoveLines then
             self.parent:checkRemoveLines(removeBlocks)
         end
+
+        log:info("start play removeLineNums:%s, callbackNums:%s, isSelf:%s", self.removeLineNums, self.callbackNums, self.isSelf)
 
         -- 播放音效
         amgr:playEffect("remove_block.wav")
@@ -837,10 +849,13 @@ function Tetris:removeCallBack(sender)
         end
     end
 
+    
     self.callbackCount = self.callbackCount + 1
     if self.callbackCount < self.callbackNums then
         return
     end
+
+    -- log:info("removeCallback:%s, %s, %s", self.isSelf, self.removeLineNums, self.callbackNums)
 
     -- 处理上面的方块
     if self.upperBlockList and #self.upperBlockList > 0 then

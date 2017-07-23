@@ -11,7 +11,7 @@ local Tetris = import (".Tetris")
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisMultiPanel] onCreate
-function TetrisMultiPanel:onCreate(host)
+function TetrisMultiPanel:onCreate(scheduleData)
     local layout = require("layout.TetrisScene_Net").create()
     self:fixLayout(layout)
     
@@ -19,12 +19,12 @@ function TetrisMultiPanel:onCreate(host)
     self.btnLeft = layout['btn_left']
     self.btnShift = layout['btn_shift']
     self.btnRight = layout['btn_right']
-    self.btnPlay = layout['btn_play']
     self.btnDown = layout['btn_down']
     self.btnDownLow = layout['btn_down_low']
     self.random = require("core.util.Random").new()
 
     -- 信息部分
+    self.scheduleData = scheduleData
     self.playerInfo = {}
     self.targetPlayerInfo = {}
     
@@ -48,12 +48,10 @@ function TetrisMultiPanel:onCreate(host)
     local bg = layout['tetris_panel_self']
     self.tetris = Tetris.new(bg, true, true, self)
 
+    -- 重置一下
+    self:reset(true)
 
     self:addChild(layout["root"])
-
-    -- 重置一下'
-    self:reset(true)
-    
 
     -- 添加事件
     self.btnShift:addClickEventListener(handler(self, self.handleShift))
@@ -64,8 +62,6 @@ function TetrisMultiPanel:onCreate(host)
     self.btnRight:addClickEventListener(handler(self, self.handleRight))
     self.btnRight:addLongPressEventListener(handler(self, self.handleRight), 0.2)
 
-    self.btnPlay:addClickEventListener(handler(self, self.playGame))
-
     self.btnDown:addClickEventListener(handler(self, self.handleDown))
 
     self.btnDownLow:addClickEventListener(handler(self, self.handleDownLow))
@@ -74,15 +70,25 @@ function TetrisMultiPanel:onCreate(host)
     self.pingScheduler = scheduler.scheduleGlobal(handler(self, self.handlePing), 2)
 
     self.pushHandler = handler(self, self.handlePush)
-    -- self.connHandler = handler(self, self.handleConnectEvent)
 
-    -- 进行连接
-    -- cmgr:addConnCallback(self.connHandler)
     -- 添加PushHandler
     cmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
 
-    -- cmgr:open(host, 8010)
-    -- Tips.showSceneTips("正在连接服务器...", -1)
+    -- 播放开始动画
+    scheduler.performWithDelayGlobal(handler(self, self.playStartAnimation), 1.2)
+
+    -- 播放背景音乐
+    amgr:playBgMusic({"power_bg1.mp3", "power_bg2.mp3", "power_bg3.mp3"}, true)
+end
+
+--------------------------------
+-- 播放开始动画
+-- @function [parent=#TetrisMultiPanel] playStartAnimation
+function TetrisMultiPanel:playStartAnimation()
+    -- 播放开始动画
+    self:getScene():pushPanel("Tetris.view.TetrisPvpStartIntro", {self.scheduleData, function()
+        self:playGame()
+    end})
 end
 
 --------------------------------
@@ -139,28 +145,7 @@ function TetrisMultiPanel:handlePush(response)
         return
     end
 
-    local udpConv = nil
-    if response.data.schedule ~= nil then
-        if response.data.schedule.def == nil then
-            self.targetTetris.isAI = true
-            self:updatePlayerInfo(self.targetPlayerInfo, {playerId="机器人小I", score=100})
-            udpConv = response.data.schedule.att.udpConv
-        elseif response.data.schedule.att.playerId == self.playerId then
-            self:updatePlayerInfo(self.targetPlayerInfo, response.data.schedule.def)
-            udpConv = response.data.schedule.att.udpConv
-        else
-            self:updatePlayerInfo(self.targetPlayerInfo, response.data.schedule.att)
-            udpConv = response.data.schedule.def.udpConv
-        end
-        cmgr:send(actions.readyFight)
-
-        -- 建立udp连接
-        if (udpConv) then
-            ucmgr:open(udpConv, self.host, 8010)
-            -- 添加PushHandler
-            ucmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
-        end
-    elseif response.data.event then
+    if response.data.event then
         event = response.data.event
         self.frameNum = event.frameNum
         self.tetris:updateServerFrameNum(self.frameNum)
@@ -188,6 +173,9 @@ function TetrisMultiPanel:handlePush(response)
                 else
                     self.tetris:addServerFrame(self.frameNum, data)
                 end
+            elseif data.protoId == protos.DEAD then
+                -- 比赛结束
+                self:gameOver(data)
             end
         end
     end
@@ -197,14 +185,32 @@ end
 -- 点击开始游戏
 -- @function [parent=#TetrisMultiPanel] playGame
 function TetrisMultiPanel:playGame()
-    if not cmgr:isConnected() then
-        Tips.showSceneTips("与服务器连接失败", 1)
-        return
+    local udpConv = nil
+    if self.scheduleData.att.isHost then
+        self:updatePlayerInfo(self.playerInfo, self.scheduleData.att)
+        self:updatePlayerInfo(self.targetPlayerInfo, self.scheduleData.def)
+        udpConv = self.scheduleData.att.udpConv
+        self.playerId = self.scheduleData.att.playerId
+        self.targetId = self.scheduleData.def.playerId
+        self.targetTetris.isAI = self.scheduleData.def.isAI
+    else
+        self:updatePlayerInfo(self.playerInfo, self.scheduleData.def)
+        self:updatePlayerInfo(self.targetPlayerInfo, self.scheduleData.att)
+        udpConv = self.scheduleData.def.udpConv
+        self.playerId = self.scheduleData.def.playerId
+        self.targetId = self.scheduleData.att.playerId
+        self.targetTetris.isAI = self.scheduleData.att.isAI
     end
-    -- 登录用户
-    cmgr:send(actions.getPlayerInfo, handler(self, self.onGetPlayerInfo))
 
-    Tips.showSceneTips("等待其他玩家加入", -1)
+    -- 建立udp连接
+    if (udpConv) then
+        ucmgr:open(udpConv, cmgr.host, 8010)
+        -- 添加PushHandler
+        ucmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
+    end
+
+    -- 准备好了
+    cmgr:send(actions.readyFight)
 end
 
 --------------------------------
@@ -212,10 +218,9 @@ end
 -- @function [parent=#TetrisMultiPanel] gameStart
 function TetrisMultiPanel:gameStart(data)
     log:info("gameStart")
-    Tips.showSceneTips("游戏开始！！！")
+    -- Tips.showSceneTips("游戏开始！！！")
 
     -- 重置游戏
-    self.btnPlay:setVisible(false)
     self:reset(false)
 
     -- 初始化随机数
@@ -227,6 +232,31 @@ function TetrisMultiPanel:gameStart(data)
     if self.targetTetris then
         self.targetTetris:gameStart()
     end
+end
+
+--------------------------------
+-- 游戏结束
+-- @function [parent=#TetrisMultiPanel] gameOver
+function TetrisMultiPanel:gameOver(data)
+    log:info("gameOver playerId:%s", data.playerId)
+
+    self.targetTetris:gameOver()
+
+    cmgr:removePushCallback(self.pushHandler)
+    if ucmgr then
+        ucmgr:removePushCallback(self.pushHandler)
+        ucmgr:close()
+    end
+
+    if (data.playerId == self.playerId) then
+        self.scheduleData.winId = self.targetId
+    else
+        self.scheduleData.winId = self.playerId
+    end
+    local callback = function() 
+        self:getScene():pushPanel("Tetris.view.TetrisPvpResult", {self.scheduleData})
+    end
+    self:getScene():pushPanel("Tetris.view.TetrisPvpEndIntro", {data.playerId ~= self.playerId, callback})
 end
 
 --------------------------------
@@ -277,6 +307,9 @@ end
 -- 更新分数
 -- @function [parent=#TetrisMultiPanel] updateScore
 function TetrisMultiPanel:updateScore(removeLineNums, isSelf)
+    if removeLineNums > 0 then
+        log:info("updateScore:%s %s", removeLineNums, isSelf)
+    end
     if isSelf then
         self:updatePlayerScore(self.playerInfo, removeLineNums)
     else
@@ -304,7 +337,7 @@ end
 -- 更新玩家信息
 -- @function [parent=#TetrisMultiPanel] updatePlayerScore
 function TetrisMultiPanel:updatePlayerInfo(playerInfo, data)
-    playerInfo.lbPlayerName:setString(tostring(data.playerId))
+    playerInfo.lbPlayerName:setString(data.playerName)
     playerInfo.lbPlayerScore:setString("分数" .. data.score)
 end
 
@@ -348,9 +381,7 @@ end
 -- @function [parent=#TetrisMultiPanel] reset
 function TetrisMultiPanel:notifyGameOver(isSelf)
     if isSelf then
-        self.btnPlay:setVisible(true)
-
-        self:showHomeBtn(0, 0)
+        self.tetris:sendPack(actions.doUpdate, protos.DEAD, 0)
     end
 end
 
@@ -420,7 +451,7 @@ function TetrisMultiPanel:showHomeBtn(anchorX, anchorY)
             scene:popPanel(true)
         end
     )
-    local x, y = self.btnPlay:getPosition()
+    local x, y = display.cx, display.cy
     self.btnHome:setPosition(x, y - 100)
     self:addChild(self.btnHome)
 end
@@ -456,8 +487,6 @@ end
 function TetrisMultiPanel:onExit()
     -- 卸载资源
     log:info("TetrisMultiPanel onExit")
-    cmgr:removePushCallback(self.pushHandler)
-    cmgr:removeConnCallback(self.connHandler)
     local tipLayer = self:getScene():getLayer("tips")
     tipLayer:removeAllChildren()
     scheduler.unscheduleGlobal(self.pingScheduler)

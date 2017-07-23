@@ -571,7 +571,8 @@ end
 function TetrisScene:pvpSearch()
     if cmgr:isConnected() then
         -- 报名
-        self:pushPanel("Tetris.view.TetrisMulti", {""})
+        -- self:pushPanel("Tetris.view.TetrisMulti", {""})
+        self:signPvp()
     else
         Tips.showSceneTips("未连接服务器", 2)
         return
@@ -594,14 +595,73 @@ function TetrisScene:pvpSearch()
 end
 
 function TetrisScene:pvpCancel()
+    cmgr:send(actions.cancelFight, function() 
+        self.btnCancel:setVisible(false)
+        self.btnPvp:setVisible(true)
+        self.searchPanel:setVisible(false)
+
+        self.topPanel:setVisible(true)
+        self.topPanel:runAction(cc.MoveTo:create(0.2, cc.p(318.64, 1094) ))
+        self.bottomPanel:setVisible(true)
+        self.bottomPanel:runAction(cc.MoveTo:create(0.2, cc.p(320.00, 50) ))
+    end)
+end
+
+function TetrisScene:signPvp()
+    cmgr:send(actions.quitFight)
+    cmgr:send(actions.joinFight)
+
+    self.pvpPushHandler = handler(self, self.handlePvpPush)
+    cmgr:addPushCallback(actions.PUSH_FIGHT, self.pvpPushHandler)
+end
+
+function TetrisScene:handlePvpPush(response)
+    if tolua.isnull(self) then
+        return
+    end
+
+    local udpConv = nil
+    if response.data.schedule ~= nil then
+        local scheduleData = nil
+        if response.data.schedule.def == nil then
+            scheduleData = response.data.schedule
+            scheduleData.def = {playerId=-100, playerName="机器人小C", score=100, isAI=true, isHost=false}
+            scheduleData.att.isHost = true
+        elseif response.data.schedule.att.playerId == mmgr.player.playerId then
+            scheduleData.att.isHost = true
+            scheduleData.def.isHost = false
+        else
+            scheduleData.def.isHost = true
+            scheduleData.att.isHost = false
+        end
+
+        self:pushPanel("Tetris.view.TetrisMulti", { scheduleData })
+
+        -- 匹配到了，重置PVP界面
+        cmgr:removePushCallback(actions.PUSH_FIGHT, self.pvpPushHandler)
+        self:resetPvpView()
+
+        -- 切换到pvp对战界面
+        -- cmgr:send(actions.readyFight)
+    end
+
+        -- 建立udp连接
+        -- if (udpConv) then
+        --     ucmgr:open(udpConv, self.host, 8010)
+        --     -- 添加PushHandler
+        --     ucmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
+        -- end
+end
+
+function TetrisScene:resetPvpView()
     self.btnCancel:setVisible(false)
     self.btnPvp:setVisible(true)
     self.searchPanel:setVisible(false)
 
     self.topPanel:setVisible(true)
-    self.topPanel:runAction(cc.MoveTo:create(0.2, cc.p(318.64, 1094) ))
+    self.topPanel:setPosition(cc.p(318.64, 1094))
     self.bottomPanel:setVisible(true)
-    self.bottomPanel:runAction(cc.MoveTo:create(0.2, cc.p(320.00, 50) ))
+    self.bottomPanel:setPosition(cc.p(320.00, 50))
 end
 
 

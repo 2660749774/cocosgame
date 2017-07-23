@@ -183,6 +183,7 @@
               <PlistImageFile Name="score_bg.png" Key="score_bg.png" />
               <PlistImageFile Name="score_flag.png" Key="score_flag.png" />
               <PlistImageFile Name="shift.png" Key="shift.png" />
+              <PlistImageFile Name="shuidi.png" Key="shuidi.png" />
               <PlistImageFile Name="spar_bg.png" Key="spar_bg.png" />
               <PlistImageFile Name="star.png" Key="star.png" />
               <PlistImageFile Name="time_bg.png" Key="time_bg.png" />
@@ -190,7 +191,8 @@
               <PlistImageFile Name="vol_off.png" Key="vol_off.png" />
               <PlistImageFile Name="vol_on.png" Key="vol_on.png" />
               <PlistImageFile Name="water_bg.png" Key="water_bg.png" />
-              <PlistImageFile Name="shuidi.png" Key="shuidi.png" />
+              <PlistImageFile Name="btn_ok.png" Key="btn_ok.png" />
+              <PlistImageFile Name="winner.png" Key="winner.png" />
             </PlistImageFolder>
             <PlistImageFolder Image="main.png" PListFile="main.plist" Name=".main_PList.Dir">
               <PlistImageFile Name="bar_bg.png" Key="bar_bg.png" />
@@ -293,12 +295,18 @@
             </Folder>
           </Folder>
           <Folder Name="pvp">
+            <Image Name="blue_win_bg.png" />
             <Image Name="btn_matchbg.png" />
             <Image Name="btn_search.png" />
             <Image Name="building_bg.png" />
             <Image Name="net_title_bg.png" />
             <Image Name="pic_blue_bg.png" />
             <Image Name="pic_red_bg.png" />
+            <Image Name="pvp_end_bg.png" />
+            <Image Name="pvp_result.png" />
+            <Image Name="pvp_score_bg.png" />
+            <Image Name="pvp_start_bg.png" />
+            <Image Name="red_win_bg.png" />
           </Folder>
           <Folder Name="tetris">
             <Folder Name="power">
@@ -427,6 +435,7 @@
             <Image Name="power_start.png" />
             <Image Name="vol_off.png" />
             <Image Name="vol_on.png" />
+            <Image Name="winner.png" />
           </Folder>
         </Folder>
         <Project Name="CommTips.csd" Type="Node" />
@@ -460,6 +469,9 @@
         <Project Name="TetrisStartIntro.csd" Type="Scene" />
         <Project Name="TetrisStoneAnimation.csd" Type="Scene" />
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
+        <Project Name="TetrisPvpStartIntro.csd" Type="Scene" />
+        <Project Name="TetrisPvpEndIntro.csd" Type="Scene" />
+        <Project Name="TetrisPvpResult.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
