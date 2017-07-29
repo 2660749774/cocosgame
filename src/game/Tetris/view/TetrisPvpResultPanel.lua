@@ -12,9 +12,10 @@ local TetrisPowerConf = import("..data.TetrisPowerConf")
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisPvpResultPanel] onCreate
-function TetrisPvpResultPanel:onCreate(data)
-    log:info("TetrisPvpResultPanel data:%s", data)
-    log:showTable(data)
+function TetrisPvpResultPanel:onCreate(scheduleData, resultData)
+    log:info("TetrisPvpResultPanel data:%s, %s", scheduleData, resultData)
+    log:showTable(scheduleData)
+    log:showTable(resultData)
     local layout = require("layout.TetrisPvpResult").create()
     self.disableTransition = true
     self.bg = layout['bg']
@@ -29,12 +30,12 @@ function TetrisPvpResultPanel:onCreate(data)
     self:initPlayerInfo(layout, self.playerInfo, "_self")
     self:initPlayerInfo(layout, self.targetPlayerInfo, "_target")
 
-    self:initPanel(data)
+    self:initPanel(scheduleData, resultData)
 
     self.btnOk:addClickEventListener(handler(self, self.handleOk))
 
     self:addLayoutWithMask(layout, "layout.ModalMask")
-    self:playAnimation(data)
+    self:playAnimation(scheduleData, resultData)
 end
 
 --------------------------------
@@ -51,45 +52,43 @@ end
 --------------------------------
 -- 初始化
 -- @function [parent=#TetrisPvpResultPanel] initPanel
-function TetrisPvpResultPanel:initPanel(data)
-    if data.att.isHost then
-        data.att.isWin = (data.att.playerId == data.winId)
-        data.def.isWin = (data.def.playerId == data.winId)
-        self:updatePlayerInfo(self.playerInfo, data.att)
-        self:updatePlayerInfo(self.targetPlayerInfo, data.def)
-
-        if data.att.isWin then
-            -- 替换背景
-            self.bg:setTexture("ui/pvp/blue_win_bg.png")
-        end
-    else
-        data.att.isWin = (data.att.playerId == data.winId)
-        data.def.isWin = (data.def.playerId == data.winId)
-        self:updatePlayerInfo(self.playerInfo, data.def)
-        self:updatePlayerInfo(self.targetPlayerInfo, data.att)
-
-        if data.def.isWin then
-            -- 替换背景
-            self.bg:setTexture("ui/pvp/blue_win_bg.png")
-        end
+function TetrisPvpResultPanel:initPanel(scheduleData, resultData)
+    if resultData.myInfo.win then
+        -- 替换背景
+        self.bg:setTexture("ui/pvp/blue_win_bg.png")
     end
+
+    -- 基本信息
+    if scheduleData.att.isHost then
+        self:updatePlayerInfo(self.playerInfo, scheduleData.att)
+        self:updatePlayerInfo(self.targetPlayerInfo, scheduleData.def)
+    else
+        self:updatePlayerInfo(self.playerInfo, scheduleData.def)
+        self:updatePlayerInfo(self.targetPlayerInfo, scheduleData.att)
+    end
+
+    self:updatePlayerResultInfo(self.playerInfo, resultData.myInfo)
+    self:updatePlayerResultInfo(self.targetPlayerInfo, resultData.targetInfo)
 end
 
 --------------------------------
 -- 更新玩家信息
 -- @function [parent=#TetrisPvpResultPanel] updatePlayerInfo
 function TetrisPvpResultPanel:updatePlayerInfo(playerInfo, data)
-    log:info("updatePlayerInfo:%s", data)
-    log:showTable(data)
     playerInfo.lbPlayerName:setString(data.playerName)
-    playerInfo.lbScoreNum:setString(tostring(data.score))
-    if data.isWin then
+end
+
+--------------------------------
+-- 更新玩家结果信息
+-- @function [parent=#TetrisPvpResultPanel] updatePlayerResultInfo
+function TetrisPvpResultPanel:updatePlayerResultInfo(playerInfo, data)
+    playerInfo.lbScoreNum:setString(tostring(data.points))
+    if data.win then
         playerInfo.winFlag:setVisible(true)
-        playerInfo.lbScoreChange:setString("+23")
     else
         playerInfo.winFlag:setVisible(false)
-        playerInfo.lbScoreChange:setString("-23")
     end
+    playerInfo.lbScoreChange:setString(tostring(data.pointsChange))
 end
 
 --------------------------------
@@ -107,25 +106,13 @@ end
 --------------------------------
 -- 播放动画
 -- @function [parent=#TetrisPvpResultPanel] playAnimation
-function TetrisPvpResultPanel:playAnimation(data)
+function TetrisPvpResultPanel:playAnimation(scheduleData, resultData)
     local winPlayerInfo = nil
     -- 先播获胜者动画
-    if data.att.isHost then
-        data.att.isWin = (data.att.playerId == data.winId)
-        data.def.isWin = (data.def.playerId == data.winId)
-        if data.att.isWin then
-            winPlayerInfo = self.playerInfo
-        else
-            winPlayerInfo = self.targetPlayerInfo
-        end
+    if resultData.myInfo.win then
+        winPlayerInfo = self.playerInfo
     else
-        data.att.isWin = (data.att.playerId == data.winId)
-        data.def.isWin = (data.def.playerId == data.winId)
-        if data.att.isWin then
-            winPlayerInfo = self.targetPlayerInfo
-        else
-            winPlayerInfo = self.playerInfo
-        end
+        winPlayerInfo = self.targetPlayerInfo
     end
 
     -- winPlayerInfo.winFlag:setScale(2)

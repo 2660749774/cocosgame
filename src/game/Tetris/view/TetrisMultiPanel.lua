@@ -178,6 +178,9 @@ function TetrisMultiPanel:handlePush(response)
                 self:gameOver(data)
             end
         end
+    elseif response.data.result then
+        -- 结果更新
+        self:showFightResult(response.data.result)
     end
 end
 
@@ -239,14 +242,23 @@ end
 -- @function [parent=#TetrisMultiPanel] gameOver
 function TetrisMultiPanel:gameOver(data)
     log:info("gameOver playerId:%s", data.playerId)
-
     self.targetTetris:gameOver()
+    Tips.showSceneTips("等待结果更新", -1)
+end
 
+--------------------------------
+-- 展示赛果
+-- @function [parent=#TetrisMultiPanel] showFightResult
+function TetrisMultiPanel:showFightResult(data)
+    -- 移除网络监听
     cmgr:removePushCallback(self.pushHandler)
     if ucmgr then
         ucmgr:removePushCallback(self.pushHandler)
         ucmgr:close()
     end
+
+    -- 清理Tips
+    Tips.clearTips()
 
     if (data.playerId == self.playerId) then
         self.scheduleData.winId = self.targetId
@@ -254,9 +266,9 @@ function TetrisMultiPanel:gameOver(data)
         self.scheduleData.winId = self.playerId
     end
     local callback = function() 
-        self:getScene():pushPanel("Tetris.view.TetrisPvpResult", {self.scheduleData})
+        self:getScene():pushPanel("Tetris.view.TetrisPvpResult", {self.scheduleData, data})
     end
-    self:getScene():pushPanel("Tetris.view.TetrisPvpEndIntro", {data.playerId ~= self.playerId, callback})
+    self:getScene():pushPanel("Tetris.view.TetrisPvpEndIntro", {data.myInfo.win, callback})
 end
 
 --------------------------------

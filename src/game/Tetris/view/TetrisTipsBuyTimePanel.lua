@@ -10,8 +10,8 @@ local TetrisTipsBuyTimePanel = class("TetrisTipsBuyTimePanel", BasePanel)
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisTipsBuyTimePanel] onCreate
-function TetrisTipsBuyTimePanel:onCreate(time, cost, okCallback, cancelCallback)
-    log:info("TetrisTipsBuyTimePanel time:%s, cost:%s", time, cost)
+function TetrisTipsBuyTimePanel:onCreate(itemNum, cost, buyTimes, itemType, okCallback, cancelCallback)
+    log:info("TetrisTipsBuyTimePanel itemNum:%s, cost:%s, buyTimes:%s", itemNum, cost, buyTimes)
    
     local layout = require("layout.TetrisTipBuyTime").create()
     self.disableTransition = true
@@ -22,8 +22,10 @@ function TetrisTipsBuyTimePanel:onCreate(time, cost, okCallback, cancelCallback)
     self.layout = layout
     self.okCallback = okCallback
     self.cancelCallback = cancelCallback
+    self.cost = cost
+    self.buyTimes = buyTimes
 
-    self:initPanel(time, cost)
+    self:initPanel(itemType, itemNum)
 
     self.btnBuy:addClickEventListener(handler(self, self.handleBuy))
     self.btnClose:addClickEventListener(handler(self, self.handleClose))
@@ -34,16 +36,13 @@ end
 --------------------------------
 -- 初始化
 -- @function [parent=#TetrisTipsBuyTimePanel] initPanel
-function TetrisTipsBuyTimePanel:initPanel(time, cost)
-    self.lbInfo:setString(string.format("延长光卡时间：%s秒！", time))
-    self.lbPrice:setString(tostring(cost))
-end
-
---------------------------------
--- 更新时间
--- @function [parent=#TetrisTipsBuyTimePanel] formatTime
-function TetrisTipsBuyTimePanel:updateTime()
-    self.lbTime:setString(self:formatTime())
+function TetrisTipsBuyTimePanel:initPanel(itemType, itemNum)
+    if itemType == 1 then
+        self.lbInfo:setString(string.format("延长关卡时间：%s秒！", itemNum))
+    else
+        self.lbInfo:setString(string.format("延长关卡方块数：%s块！", itemNum))
+    end
+    self.lbPrice:setString(tostring(self.cost))
 end
 
 --------------------------------
@@ -64,12 +63,14 @@ end
 -- @function [parent=#TetrisTipsBuyTimePanel] handleBuy
 function TetrisTipsBuyTimePanel:handleBuy()
     local callback = self.okCallback
-    local scene = self:getScene()
-    scene:popPanel()
+    cmgr:send(actions.buyItem, function()
+        local scene = self:getScene()
+        scene:popPanel()
 
-    if callback then
-        callback()
-    end
+        if callback then
+            callback()
+        end
+    end, self.cost, self.buyTimes)
 end
 
 

@@ -10,8 +10,8 @@ local TetrisTipsBuyEnergyPanel = class("TetrisTipsBuyEnergyPanel", BasePanel)
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisTipsBuyEnergyPanel] onCreate
-function TetrisTipsBuyEnergyPanel:onCreate(data)
-    log:info("TetrisTipsBuyEnergyPanel data:%s", data)
+function TetrisTipsBuyEnergyPanel:onCreate(cost)
+    log:info("TetrisTipsBuyEnergyPanel cost:%s", cost)
    
     local layout = require("layout.TetrisTipBuyEnergy").create()
     self.disableTransition = true
@@ -25,10 +25,10 @@ function TetrisTipsBuyEnergyPanel:onCreate(data)
     self.btnClose = layout['btn_close']
     self.layout = layout
 
-    self:initPanel(data)
+    self:initPanel(cost)
 
     self.btnClose:addClickEventListener(handler(self, self.handleOk))
-    self.btnBuy:addClickEventListener(handler(self, self.handleOk))
+    self.btnBuy:addClickEventListener(handler(self, self.handleBuyLife))
 
     self:addLayoutWithMask(layout, "layout.ModalMask")
 end
@@ -36,13 +36,13 @@ end
 --------------------------------
 -- 初始化
 -- @function [parent=#TetrisTipsBuyEnergyPanel] initPanel
-function TetrisTipsBuyEnergyPanel:initPanel(data)
+function TetrisTipsBuyEnergyPanel:initPanel(cost)
     self.lifes = utils.gameArchive.lifes
     self.nextLifeTime = utils.gameArchive.nextLifeTime
 
     self.lbTitle:setString(tostring(self.lifes))
-    self.lbPrice:setString("5")
-    self.lbTime:setString(self:formatTime())
+    self.lbPrice:setString(tostring(cost))
+    self.lbTime:setString(self:formatTime(false))
 
     self.updateHandler = scheduler.scheduleGlobal(handler(self, self.updateTime), 1)
 end
@@ -51,19 +51,21 @@ end
 -- 更新时间
 -- @function [parent=#TetrisTipsBuyEnergyPanel] formatTime
 function TetrisTipsBuyEnergyPanel:updateTime()
-    self.lbTime:setString(self:formatTime())
+    self.lbTime:setString(self:formatTime(true))
 end
 
 --------------------------------
 -- 格式化时间
 -- @function [parent=#TetrisTipsBuyEnergyPanel] formatTime
-function TetrisTipsBuyEnergyPanel:formatTime()
+function TetrisTipsBuyEnergyPanel:formatTime(callByUpdate)
     local cd = self.nextLifeTime - os.time()
     local minutes = string.format("%02d", math.ceil(cd / 60))
     local secs = string.format("%02d", cd % 60)
 
     if cd <= 0 then
-        self:initPanel()
+        if callByUpdate then
+            self:initPanel()
+        end
         return "0 : 0"
     end
 
@@ -76,6 +78,25 @@ end
 function TetrisTipsBuyEnergyPanel:handleOk()
     local scene = self:getScene()
     scene:popPanel()
+end
+
+--------------------------------
+-- 处理购买体力
+-- @function [parent=#TetrisTipsBuyEnergyPanel] handleOk
+function TetrisTipsBuyEnergyPanel:handleBuyLife()
+    local lifes = utils.gameArchive.lifes
+    local nextLifeTime = utils.gameArchive.nextLifeTime
+    cmgr:send(actions.buyLife, function(response)
+        -- 增加体力
+        utils.gameArchive:addLife(1, true)
+        utils.gameArchive:saveData()
+        utils.gameArchive:syncLifeData()
+
+        -- 更新界面信息
+        self.lifes = utils.gameArchive.lifes
+        self.lbPrice:setString(tostring(response.data.cost))
+        self.lbTitle:setString(tostring(self.lifes))
+    end, lifes, nextLifeTime)
 end
 
 --------------------------------

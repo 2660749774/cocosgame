@@ -11,6 +11,7 @@ utils.filter = import(".filter")
 utils.crypto = import(".crypto")
 utils.gameArchive = import(".GameArchiveFile").new()
 cc.exports.RandomUtil = import(".RandomUtil")
+cc.exports.ColorUtil = import(".ColorUtil")
 RandomUtil:init()
 
 return utils

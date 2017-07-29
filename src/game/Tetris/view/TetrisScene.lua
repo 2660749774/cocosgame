@@ -52,14 +52,8 @@ function TetrisScene:onCreate()
     -- 创建bar
     local barLayout = require("layout.TetrisMainBar").create()
     self:fixLayout(barLayout)
-    local size = barLayout['bar_bg']:getContentSize()
-    barLayout['bar_bg']:setContentSize(cc.size(display.width, size.height))
-    self.lbLife = barLayout['lb_energy']
-    local lifes = utils.gameArchive:queryData("lifes") or 5
-    self.lbLife:setString(lifes)
-    self.btnBuyEnergy = barLayout['btn_buy_energy']
-    self.btnBuyEnergy:addClickEventListener(handler(self, self.buyEnergy))
-
+    -- 初始化玩家信息
+    self:initPlayerInfo(barLayout)
     self:addObject(barLayout["root"], "scene")
 
 
@@ -99,10 +93,10 @@ function TetrisScene:onCreate()
 
     -- 注册事件监听
     self.powerProgressEventListener = handler(self, self.updatePowerProgress)
-    self.lifeEventListener = handler(self, self.updatePlayerLife)
+    self.playerDataListener = handler(self, self.updatePlayerData)
     self.viewChangeListener = handler(self, self.handleViewChange)
     emgr:addEventListener(EventDefine.POWER_PROGRESS_UPDATE, self.powerProgressEventListener)
-    emgr:addEventListener(EventDefine.PLAYER_LIFES_UPDATE, self.lifeEventListener)
+    emgr:addEventListener(EventDefine.PLAYER_UPDATE, self.playerDataListener)
     emgr:addEventListener(EventDefine.VIEW_CHANGE, self.viewChangeListener)
 
     -- 添加触摸监听
@@ -149,6 +143,26 @@ function TetrisScene:createPowerView()
 end
 
 --------------------------------
+-- 初始化玩家数据
+-- @function [parent=#TetrisScene] initPlayerInfo
+function TetrisScene:initPlayerInfo(barLayout)
+    -- 动态设置contentSize
+    local size = barLayout['bar_bg']:getContentSize()
+    barLayout['bar_bg']:setContentSize(cc.size(display.width, size.height))
+    
+    -- 生命
+    self.lbLife = barLayout['lb_energy']
+    self.lbLife:setString(utils.gameArchive:queryData("lifes"))
+
+    -- 钻石
+    self.lbDiam = barLayout["lb_item"]
+    self.lbDiam:setString(utils.gameArchive:queryData("diam"))
+
+    self.btnBuyEnergy = barLayout['btn_buy_energy']
+    self.btnBuyEnergy:addClickEventListener(handler(self, self.buyEnergy))
+end
+
+--------------------------------
 -- 更新副本进度
 -- @function [parent=#TetrisScene] updatePowerProgress
 function TetrisScene:updatePowerProgress(progress)
@@ -176,12 +190,64 @@ function TetrisScene:updatePowerProgress(progress)
 end
 
 --------------------------------
--- 更新玩家生命值
--- @function [parent=#TetrisScene] updatePlayerLife
-function TetrisScene:updatePlayerLife(lifes)
-    log:info("do updatePlayerLife event, lifes:%s", lifes)
+-- 更新玩家数据
+-- @function [parent=#TetrisScene] updatePlayerData
+function TetrisScene:updatePlayerData(data)
+    log:info("do updatePlayerData event, data:%s", data)
+    log:showTable(data)
 
-    self.lbLife:setString(lifes)
+    if data.lifes then
+        local oldValue = tonumber(self.lbLife:getString())
+        self:playPlayerDataAnimation(data.lifes - oldValue, self.lbLife, function()
+            self.lbLife:setString(data.lifes)
+        end)
+    end
+
+    if data.diam then
+        local oldValue = tonumber(self.lbDiam:getString())
+        self:playPlayerDataAnimation(data.diam - oldValue, self.lbDiam, function()
+            self.lbDiam:setString(data.diam)
+        end)
+    end
+end
+
+--------------------------------
+-- 增加动画
+-- @function [parent=#TetrisScene] playPlayerDataAnimation
+function TetrisScene:playPlayerDataAnimation(value, item, callback)
+    -- 创建Label
+    local label = ccui.Text:create()
+    label:setFontSize(28)
+    label:enableShadow({r = 0, g = 0, b = 0, a = 255}, {width = 1, height = -1}, 0)
+    if (value > 0) then
+        label:setString("+" .. value)
+        label:setColor(ColorUtil.hexColor("#00FF75"))
+    else
+        label:setString(value)
+        label:setColor(ColorUtil.hexColor("#FF2E00"))
+    end
+
+    local pos = item:convertToWorldSpace(cc.vertex2F(0, 0))
+    label:setPosition(pos.x + 80, pos.y + 14)
+    self:addObject(label, "top")
+
+    local action1 = cc.MoveTo:create(0.5, cc.p(pos.x + 40, pos.y  + 14))
+    local action2 = cc.FadeOut:create(0.5)
+    local sequence1 = cc.Sequence:create(action1, action2, cc.CallFunc:create(function() 
+        label:removeFromParent()
+    end))
+
+    local delayAction = cc.DelayTime:create(0.3)
+    local action3 = cc.ScaleTo:create(0.2, 1.5)
+    local action4 = cc.ScaleTo:create(0.2, 1)
+    local sequence2 = cc.Sequence:create(delayAction, action3, action4, cc.CallFunc:create(function() 
+        if callback then
+            callback()
+        end
+    end))
+
+    label:runAction(sequence1)
+    item:runAction(sequence2)
 end
 
 --------------------------------
@@ -199,20 +265,6 @@ end
 function TetrisScene:playSingle(powerId, armyId)
     self:pushPanel("Tetris.view.TetrisPowerStart", {powerId, armyId})
 end
-
---------------------------------
--- 联网模式
--- @function [parent=#TetrisScene] playSingle
-function TetrisScene:playMulti()
-    local host = self.inputHost:getText()
-    log:info("host %s", host)
-    if host == nil or host == "" then
-        Tips.showSceneTips("请输入连接的主机名称", 2)
-        return
-    end
-    self:pushPanel("Tetris.view.TetrisMulti", {host})
-end
-
 
 --------------------------------
 -- 点击关卡
@@ -627,7 +679,7 @@ function TetrisScene:handlePvpPush(response)
         local scheduleData = nil
         if response.data.schedule.def == nil then
             scheduleData = response.data.schedule
-            scheduleData.def = {playerId=-100, playerName="机器人小C", score=100, isAI=true, isHost=false}
+            scheduleData.def = {playerId=0, playerName="机器人小C", score=0, isAI=true, isHost=false}
             scheduleData.att.isHost = true
         elseif response.data.schedule.att.playerId == mmgr.player.playerId then
             scheduleData.att.isHost = true
@@ -667,7 +719,14 @@ function TetrisScene:resetPvpView()
 end
 
 function TetrisScene:buyEnergy()
-    self:pushPanel("Tetris.view.TetrisTipsBuyEnergy")
+    if not cmgr:isConnected() then
+        Tips.showSceneTips("网络未连接，请检查网络！", 5, Tips.ERROR_COLOR)
+        return
+    end
+
+    cmgr:send(actions.queryBuyLifeCost, function(response) 
+        self:pushPanel("Tetris.view.TetrisTipsBuyEnergy", {response.data.cost})
+    end)
 end
 
 

@@ -71,8 +71,9 @@ function TetrisTimeModePanel:updateTime()
     local leftTime = math.round(self.totalTime - self.time)
     if leftTime <= 0 then
         self.tetris:pauseGame()
-        self:getScene():pushPanel("Tetris.view.TetrisTipsBuyTime", {15, 5, function() 
+        self:getScene():pushPanel("Tetris.view.TetrisTipsBuyTime", {15, self:calcBuyCost(), self.buyTimes, 1, function() 
             self.time = self.time - 15
+            self.buyTimes = self.buyTimes + 1
             self.tetris:resumeGame()
         end, function() 
             self.tetris:resumeGame()

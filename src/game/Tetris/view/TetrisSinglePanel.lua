@@ -31,6 +31,7 @@ function TetrisSinglePanel:onCreate(layout)
     self.removeLineNums = 0
     self.score = 0
     self.playType = 1
+    self.buyTimes = 0
 
     -- 对齐
     app:alignLeft(self.leftBg)
@@ -287,6 +288,13 @@ function TetrisSinglePanel:nextInt(range, times)
     end
     self.randomCache[times] = RandomUtil:nextInt(range)
     return self.randomCache[times]
+end
+
+--------------------------------
+-- 获取購買花費
+-- @function [parent=#TetrisSinglePanel] calcBuyCost
+function TetrisSinglePanel:calcBuyCost()
+    return 10 + self.buyTimes * 5
 end
 
 --------------------------------

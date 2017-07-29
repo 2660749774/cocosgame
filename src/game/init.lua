@@ -13,7 +13,7 @@ require "game.Data.Constants"
 require "game.Net.Actions"
 
 -- model manager
-cc.exports.mmgr = require("game.Common.ModelManager")
+cc.exports.mmgr = require("game.Common.ModelManager").new()
 -- config manager
 cc.exports.confmgr = require("game.Common.ConfigManager").new("")
 

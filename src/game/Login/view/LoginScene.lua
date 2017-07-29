@@ -126,6 +126,9 @@ function LoginScene:onGetPlayerInfo(response)
 
     self.progress:setPercent(100)
     self:updateTips("获取角色信息成功")
+
+    -- 提供监听
+    cmgr:addPushCallback(actions.PUSH_UPDATE, handler(mmgr, mmgr.handlePlayerUpdate))
     
     -- 同步网络数据
     utils.gameArchive:syncServerData()

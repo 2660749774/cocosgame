@@ -22,6 +22,9 @@ function Player:ctor()
 
     -- vip等级
     self.vipLv = 0
+
+    -- 钻石数量
+    self.diam = 0
 end
 
 --------------------------------
@@ -50,6 +53,12 @@ function Player:update(data)
         self.playerName = data.playerName
     end
 
+    if data.diam then
+        self.diam = data.diam
+    end
+
+    -- 更新玩家数据
+    utils.gameArchive:updatePlayerData(self)
 end
 
 return Player

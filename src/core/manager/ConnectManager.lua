@@ -321,7 +321,7 @@ function ConnectManger:decode()
         self.requestCallback[requestId] = nil
         local msg = response.data.msg
         if msg then
-            Tips.showSceneTips(msg, 1)
+            Tips.showSceneTips(msg, 1, Tips.ERROR_COLOR)
         end
     end
 end

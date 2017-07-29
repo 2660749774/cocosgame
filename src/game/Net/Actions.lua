@@ -31,7 +31,9 @@ actions.getPlayerInfo = Action.new("player@getPlayerInfo", "")
 actions.getPowerData = Action.new("player@getPowerData", "")
 actions.syncPowerData = Action.new("player@syncPowerData", "data=%s")
 actions.syncLife = Action.new("player@syncLife", "lifes=%s&timestamp=%s")
-
+actions.queryBuyLifeCost = Action.new("player@queryBuyLifeCost", "")
+actions.buyLife = Action.new("player@buyLife", "lifes=%s&timestamp=%s")
+actions.buyItem = Action.new("player@buyItem", "cost=%s&buyTimes=%s")
 
 -- 多人对战相关
 actions.joinFight = Action.new("fight@join", "")
@@ -43,6 +45,8 @@ actions.writeLog = Action.new("log", "msg=%s")
 actions.ping = Action.new("fight@ping", "seq=%s")
 
 actions.PUSH_FIGHT = "push@fight"
+actions.PUSH_UPDATE = "push@update"
+
 
 -- 战斗protos
 cc.exports.protos = {}

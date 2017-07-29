@@ -93,8 +93,17 @@ end
 function TetrisClearStonePanel:updateBlockNum()
     local blockNum = self.totalBlockNum - self.blockNum
     if blockNum <= 0 and self.removeFangkuaiNum ~= self.totalFangkuaiNum then
-        self.tetris:gameOver()
-        blockNum = 0
+        self.tetris:pauseGame()
+        self:getScene():pushPanel("Tetris.view.TetrisTipsBuyTime", {15, self:calcBuyCost(), self.buyTimes, 2, function() 
+            self.blockNum = self.blockNum - 15
+            self.buyTimes =  self.buyTimes + 1
+            self.lbLeftBlockNum:setString("15")
+            self.tetris:resumeGame()
+        end, function() 
+            self.tetris:resumeGame()
+            self.tetris:gameOver()
+            blockNum = 0
+        end})
     end
     self.lbLeftBlockNum:setString(blockNum)
     self.lbResult:setString(self.removeFangkuaiNum .. "/" .. self.totalFangkuaiNum)

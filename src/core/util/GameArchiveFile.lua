@@ -122,6 +122,7 @@ function GameArchiveFile:loadData()
     self.version = self.data.version or 1
     self.lifes = self.data.lifes or 5 -- 默认5条生命
     self.nextLifeTime = self.data.nextLifeTime or 0
+    self.diam = self.data.diam or 0
 
     log:info("lifes:%s, nextLifeTime:%s, version:%s", self.lifes, self.nextLifeTime, self.version)
 
@@ -223,13 +224,24 @@ end
 --------------------------------
 -- 恢复生命
 -- @function [parent=#GameArchiveFile] addLife
-function GameArchiveFile:addLife(num)
-    if (self.lifes + num) > Constants.MAX_LIFES then
-        self.lifes = Constants.MAX_LIFES
+function GameArchiveFile:addLife(num, ignoreMax)
+    ignoreMax = ignoreMax or false
+    if not ignoreMax and (self.lifes + num) > Constants.MAX_LIFES then
+        return
     else
         self.lifes = self.lifes + 1
     end
-    emgr:dispatchEvent(EventDefine.PLAYER_LIFES_UPDATE, self.lifes)
+    emgr:dispatchEvent(EventDefine.PLAYER_UPDATE, { lifes = self.lifes })
+end
+
+--------------------------------
+-- 更新玩家数据
+-- @function [parent=#GameArchiveFile] updatePlayerData
+function GameArchiveFile:updatePlayerData(player)
+    self.diam = player.diam
+    self:saveData()
+
+    emgr:dispatchEvent(EventDefine.PLAYER_UPDATE, { diam = player.diam })
 end
 
 --------------------------------
@@ -240,6 +252,7 @@ function GameArchiveFile:saveData()
     self.data.version = self.version
     self.data.lifes = self.lifes
     self.data.nextLifeTime = self.nextLifeTime
+    self.data.diam = self.diam
 
     local content = json.encode(self.data)
     local path = self:getFilePath()
