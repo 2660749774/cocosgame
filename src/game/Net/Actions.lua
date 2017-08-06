@@ -34,6 +34,9 @@ actions.syncLife = Action.new("player@syncLife", "lifes=%s&timestamp=%s")
 actions.queryBuyLifeCost = Action.new("player@queryBuyLifeCost", "")
 actions.buyLife = Action.new("player@buyLife", "lifes=%s&timestamp=%s")
 actions.buyItem = Action.new("player@buyItem", "cost=%s&buyTimes=%s")
+actions.getPayInfo = Action.new("pay@getInfo", "")
+actions.createOrder = Action.new("pay@createOrder", "itemId=%s")
+actions.getRankInfo = Action.new("pvp@getRankInfo", "page=%s")
 
 -- 多人对战相关
 actions.joinFight = Action.new("fight@join", "")

@@ -259,7 +259,7 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="btn_shop" ActionTag="215364878" Tag="309" IconVisible="False" LeftMargin="30.5000" RightMargin="505.5000" TopMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="74" Scale9Height="88" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                  <AbstractNodeData Name="btn_rank" ActionTag="215364878" Tag="309" IconVisible="False" LeftMargin="30.5000" RightMargin="505.5000" TopMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="46" Scale9Height="50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="104.0000" Y="110.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="82.5000" Y="55.0000" />
@@ -268,9 +268,9 @@
                     <PrePosition X="0.1289" Y="0.5500" />
                     <PreSize X="0.1625" Y="1.1000" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="PlistSubImage" Path="btn_shop.png" Plist="ui/plist/main.plist" />
-                    <PressedFileData Type="PlistSubImage" Path="btn_shop.png" Plist="ui/plist/main.plist" />
-                    <NormalFileData Type="PlistSubImage" Path="btn_shop.png" Plist="ui/plist/main.plist" />
+                    <DisabledFileData Type="Normal" Path="ui/rank/icon_gold_cup.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="ui/rank/icon_gold_cup.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="ui/rank/icon_gold_cup.png" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>

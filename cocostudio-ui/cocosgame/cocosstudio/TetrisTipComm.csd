@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="TetrisTip" Type="Scene" ID="8d4729b2-0c8a-400e-9287-4cc46cb7ef1f" Version="3.10.0.0" />
+  <PropertyGroup Name="TetrisTipComm_0" Type="Scene" ID="2f118eaa-a6e4-430f-b444-e82ef7010b1b" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -40,20 +40,20 @@
                 <PrePosition X="0.5000" Y="0.3803" />
                 <PreSize X="0.4563" Y="0.0757" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tips/btn_ok.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tips/btn_ok.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tips/btn_ok.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="btn_ok.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="btn_ok.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="btn_ok.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="icon" ActionTag="-1248946005" Tag="80" IconVisible="False" LeftMargin="260.0000" RightMargin="260.0000" TopMargin="405.0537" BottomMargin="610.9463" ctype="SpriteObjectData">
+              <AbstractNodeData Name="icon" ActionTag="-1248946005" Tag="80" IconVisible="False" LeftMargin="297.0000" RightMargin="297.0000" TopMargin="442.0537" BottomMargin="647.9463" ctype="SpriteObjectData">
                 <Size X="46.0000" Y="46.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="320.0000" Y="670.9463" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5906" />
-                <PreSize X="0.1875" Y="0.1056" />
+                <PreSize X="0.0719" Y="0.0405" />
                 <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
@@ -94,7 +94,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="61" G="136" B="171" />
               </AbstractNodeData>
-              <AbstractNodeData Name="icon_info" ActionTag="361938215" Tag="85" IconVisible="False" LeftMargin="162.3533" RightMargin="407.6467" TopMargin="558.6393" BottomMargin="507.3607" ctype="SpriteObjectData">
+              <AbstractNodeData Name="icon_info" ActionTag="361938215" Tag="85" IconVisible="False" LeftMargin="174.3533" RightMargin="419.6467" TopMargin="570.6393" BottomMargin="519.3607" ctype="SpriteObjectData">
                 <Size X="46.0000" Y="46.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="197.3533" Y="542.3607" />

@@ -196,6 +196,11 @@
             <filename>../../icon/shuidi.png</filename>
             <filename>../text/btn_ok.png</filename>
             <filename>../text/winner.png</filename>
+            <filename>../text/btn_buy_energy.png</filename>
+            <filename>../text/btn_buy_time.png</filename>
+            <filename>../text/btn_recv.png</filename>
+            <filename>../text/btn_watch_video.png</filename>
+            <filename>../shop/btn_buy.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

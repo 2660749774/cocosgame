@@ -20,11 +20,14 @@ function TetrisScene:onCreate()
     self.maxWidth = 852 - (852 - display.width) / 2
     self.powerLayer = cc.Layer:create()
     self.pvpLayer = cc.Layer:create()
+    self.rankLayer = cc.Layer:create()
     self.touchLayer = cc.Layer:create()
     
     self.pvpLayer:setPosition(cc.p(self.maxWidth, 0))
+    self.rankLayer:setPosition(cc.p(-self.maxWidth, 0))
     self:addObject(self.powerLayer, "scene")
     self:addObject(self.pvpLayer, "scene")
+    self:addObject(self.rankLayer, "scene")
     self:addObject(self.touchLayer, "scene")
 
     -- 创建副本界面
@@ -37,6 +40,11 @@ function TetrisScene:onCreate()
     self.btnPvp = pvpLayout['btn_pvp']
     self.btnCancel = pvpLayout['btn_cancel']
     self.searchPanel = pvpLayout['search_panel']
+
+    -- 创建排行榜界面
+    self.rankLayout = require("layout.TetrisRank").create()
+    self:fixLayout(self.rankLayout)
+    self.rankLayer:addChild(self.rankLayout['root'])
 
     -- 添加search动画
     local searchAnimLayout = require("layout.TetrisSearchAnimation").create()
@@ -56,40 +64,11 @@ function TetrisScene:onCreate()
     self:initPlayerInfo(barLayout)
     self:addObject(barLayout["root"], "scene")
 
-
+    -- 初始底部信息
     self:initBottomBar(barLayout)
     self.topPanel = barLayout['top_panel']
     self.bottomPanel = barLayout['bottom_panel']
     
-
-    -- 添加事件监听
-    -- self.btnMultiplayer = layout['btn_multiplayer']
-    -- self.inputHost = cc.EditBox:create(cc.size(350, 70), cc.Scale9Sprite:create(), cc.Scale9Sprite:create())
-    -- self.inputHost:setAnchorPoint(0.5, 0.5)
-    -- self.inputHost:setPosition(175, 35)
-    -- self.inputHost:setFontColor(cc.c3b(0, 128, 0))
-    -- self.inputHost:setText("192.168.1.4")
-    -- self.inputHost:setInputMode(6)
-    -- layout['bg_input']:addChild(self.inputHost)
-    
-    -- self.btnMultiplayer:addClickEventListener(handler(self, self.playMulti))
-
-    -- local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
-    -- local animation = stoneAnimLayout['animation']
-    -- stoneAnimLayout['root']:runAction(animation)
-    -- stoneAnimLayout['root']:setPosition(display.cx, display.cy)
-    -- animation:setTimeSpeed(0.12)
-    -- animation:gotoFrameAndPlay(0, true)
-    -- self.powerLayer:addChild(stoneAnimLayout['root']) 
-
-
-    -- local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
-    -- local animation = stoneAnimLayout['animation']
-    -- stoneAnimLayout['root']:runAction(animation)
-    -- stoneAnimLayout['root']:setPosition(display.cx + 28, display.cy)
-    -- animation:setTimeSpeed(0.12)
-    -- animation:gotoFrameAndPlay(0, true)
-    -- self.powerLayer:addChild(stoneAnimLayout['root']) 
 
     -- 注册事件监听
     self.powerProgressEventListener = handler(self, self.updatePowerProgress)
@@ -160,6 +139,9 @@ function TetrisScene:initPlayerInfo(barLayout)
 
     self.btnBuyEnergy = barLayout['btn_buy_energy']
     self.btnBuyEnergy:addClickEventListener(handler(self, self.buyEnergy))
+
+    self.btnBuyDiam = barLayout['btn_buy_item']
+    self.btnBuyDiam:addClickEventListener(handler(self, self.buyDiam))
 end
 
 --------------------------------
@@ -502,7 +484,7 @@ end
 -- 初始化底部bar
 -- @function [parent=#TetrisScene] initBottomBar
 function TetrisScene:initBottomBar(barLayout)
-    self.btnShop = barLayout['btn_shop']
+    self.btnRank = barLayout['btn_rank']
     self.btnSingle = barLayout['btn_single']
     self.btnMulti = barLayout['btn_multi']
     self.btnLeft = barLayout['btn_left']
@@ -520,7 +502,7 @@ function TetrisScene:initBottomBar(barLayout)
 
     self.btnSingle:addClickEventListener(handler(self, self.handleClickSingle))
     self.btnMulti:addClickEventListener(handler(self, self.handleClickMulti))
-    self.btnShop:addClickEventListener(handler(self, self.handleClickShop))
+    self.btnRank:addClickEventListener(handler(self, self.handleClickRank))
 
     self:handleClickSingle()
 end
@@ -534,8 +516,8 @@ function TetrisScene:handleClickSingle()
     self.barLight:runAction(cc.MoveTo:create(0.2, cc.p(320, 50) ))
     
     self.bar1:setPosition(cc.p(82.5, 50))
-    self.btnShop:setPosition(cc.p(82.5, 55))
-    self.btnShop:setScale(0.8)
+    self.btnRank:setPosition(cc.p(82.5, 55))
+    self.btnRank:setScale(0.8)
 
     self.bar2:setPosition(cc.p(320, 50))
     self.btnSingle:setPosition(cc.p(320, 85))
@@ -557,6 +539,7 @@ function TetrisScene:handleClickSingle()
 
     self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
     self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+    self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
 end
 
 function TetrisScene:handleClickMulti()
@@ -568,8 +551,8 @@ function TetrisScene:handleClickMulti()
     self.barLight:runAction(cc.MoveTo:create(0.2, cc.p(485, 50) ))
 
     self.bar1:setPosition(cc.p(82.5, 50))
-    self.btnShop:setPosition(cc.p(82.5, 55))
-    self.btnShop:setScale(0.8)
+    self.btnRank:setPosition(cc.p(82.5, 55))
+    self.btnRank:setScale(0.8)
 
     self.bar2:setPosition(cc.p(247.5, 50))
     self.btnSingle:setPosition(cc.p(247.5, 55))
@@ -590,10 +573,11 @@ function TetrisScene:handleClickMulti()
     
     self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
     self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+    self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth * 2, 0) ))
 end
 
-function TetrisScene:handleClickShop()
-    if (self.currBtn == "shop") then
+function TetrisScene:handleClickRank()
+    if (self.currBtn == "rank") then
         return
     end
 
@@ -601,9 +585,9 @@ function TetrisScene:handleClickShop()
      self.barLight:runAction(cc.MoveTo:create(0.2, cc.p(155, 50) ))
 
      self.bar1:setPosition(cc.p(82.5, 50))
-     self.btnShop:setPosition(cc.p(155, 85))
-     self.btnShop:setScale(1)
-     self.lbIntro:setString("商 店")
+     self.btnRank:setPosition(cc.p(155, 85))
+     self.btnRank:setScale(1)
+     self.lbIntro:setString("排行榜")
      self.lbIntro:setPosition(cc.p(155, 20))
 
      self.bar2:setPosition(cc.p(392.5, 50))
@@ -619,7 +603,13 @@ function TetrisScene:handleClickShop()
      self.btnRight:setPosition(cc.p(252, 50))
      self.btnRight:setVisible(true)
 
-     self.currBtn = "shop"
+     self.currBtn = "rank"
+     self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth * 2, 0) ))
+     self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+     self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+
+     -- 拉取PVP数据
+     self:initRankData()
 end
 
 function TetrisScene:pvpSearch()
@@ -718,6 +708,7 @@ function TetrisScene:resetPvpView()
     self.bottomPanel:setPosition(cc.p(320.00, 50))
 end
 
+
 function TetrisScene:buyEnergy()
     if not cmgr:isConnected() then
         Tips.showSceneTips("网络未连接，请检查网络！", 5, Tips.ERROR_COLOR)
@@ -726,6 +717,17 @@ function TetrisScene:buyEnergy()
 
     cmgr:send(actions.queryBuyLifeCost, function(response) 
         self:pushPanel("Tetris.view.TetrisTipsBuyEnergy", {response.data.cost})
+    end)
+end
+
+function TetrisScene:buyDiam()
+    if not cmgr:isConnected() then
+        Tips.showSceneTips("网络未连接，请检查网络！", 5, Tips.ERROR_COLOR)
+        return
+    end
+
+    cmgr:send(actions.getPayInfo, function(response) 
+        self:pushPanel("Tetris.view.TetrisShop", {response.data})
     end)
 end
 
@@ -752,7 +754,7 @@ function TetrisScene:addLayerTouchListener()
                 if math.abs(moveX) < 1 and math.abs(moveY) < 1 then
                     return
                 end
-                if math.abs(moveX) < math.abs(moveY) and self.currBtn == "single" then
+                if math.abs(moveX) < math.abs(moveY) and (self.currBtn == "single" or self.currBtn == "rank") then
                     self.layerTouchEnable = false
                 else
                     self.tableView:setTouchEnabled(false)
@@ -788,13 +790,24 @@ function TetrisScene:addLayerTouchListener()
 end
 
 function TetrisScene:onMoveEnd(moveX)
-    log:info("onMoveEnd:%s", moveX)
     if moveX > 0 then
         -- 向右移动
-        if self.currBtn == "single" then
+        if self.currBtn == "rank" then
             -- 停留在此
-            self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
-            self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+            self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+            self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+            self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth * 2, 0) ))
+        elseif self.currBtn == "single" then
+            local x, y = self.rankLayer:getPosition()
+            if x >= -426 then
+                -- 移动到排行榜
+                self:handleClickRank()
+            else
+                -- 停留在此
+                self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
+                self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+                self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+            end
         elseif self.currBtn == "multi" then
             local x, y = self.pvpLayer:getPosition()
             if x >= 426 then
@@ -802,19 +815,32 @@ function TetrisScene:onMoveEnd(moveX)
                 self:handleClickSingle()
             else
                 -- 停留在此
+                self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth * 2, 0) ))
                 self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
                 self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
             end
         end
     else
         -- 向左移动
-        if self.currBtn == "single" then
-            local x, y = self.powerLayer:getPosition()
+        if self.currBtn == "rank" then
+            local x, y = self.rankLayer:getPosition()
             if x <= -426 then
                 -- 移动到power
+                self:handleClickSingle()
+            else
+                -- 停留在此
+                self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+                self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
+                self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth * 2, 0) ))
+            end
+        elseif self.currBtn == "single" then
+            local x, y = self.powerLayer:getPosition()
+            if x <= -426 then
+                -- 移动到pvp
                 self:handleClickMulti()
             else
                 -- 停留在此
+                self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
                 self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
                 self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(self.maxWidth, 0) ))
             end
@@ -822,6 +848,7 @@ function TetrisScene:onMoveEnd(moveX)
             -- 停留在此
             self.powerLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth, 0) ))
             self.pvpLayer:runAction(cc.MoveTo:create(0.2, cc.p(0, 0) ))
+            self.rankLayer:runAction(cc.MoveTo:create(0.2, cc.p(-self.maxWidth * 2, 0) ))
         end
     end
 end
@@ -830,35 +857,54 @@ function TetrisScene:onMove(moveX)
     log:info("onMove:%s", moveX)
     if moveX > 0 then
         -- 向右移动
-        if self.currBtn == "single" then
-            local x, y = self.powerLayer:getPosition()
+        if self.currBtn == "rank" or self.currBtn == "single" then
+            local x, y = self.rankLayer:getPosition()
             if (x + moveX) > 0 then
                 return
             end
+            self.rankLayer:setPosition(x + moveX, y)
+
+            x, y = self.powerLayer:getPosition()
             self.powerLayer:setPosition(x + moveX, y)
 
             x, y = self.pvpLayer:getPosition()
             self.pvpLayer:setPosition(x + moveX, y)
         elseif self.currBtn == "multi" then
-            x, y = self.pvpLayer:getPosition()
+            local x, y = self.pvpLayer:getPosition()
             if (x + moveX) > self.maxWidth then
                 return
             end
             self.pvpLayer:setPosition(x + moveX, y)
 
-            local x, y = self.powerLayer:getPosition()
+            x, y = self.powerLayer:getPosition()
             self.powerLayer:setPosition(x + moveX, y)
 
-            
+            x, y = self.rankLayer:getPosition()
+            self.rankLayer:setPosition(x + moveX, y)
         end
     else
         -- 向左移动
-        if self.currBtn == "single" then
+        if self.currBtn == "rank" then
+            local x, y = self.rankLayer:getPosition()
+            if (x + moveX) < -self.maxWidth then
+                return
+            end
+            self.rankLayer:setPosition(x + moveX, y)
+            
+            x, y = self.powerLayer:getPosition()
+            self.powerLayer:setPosition(x + moveX, y)
+
+            x, y = self.pvpLayer:getPosition()
+            self.pvpLayer:setPosition(x + moveX, y)
+        elseif self.currBtn == "single" then
             local x, y = self.powerLayer:getPosition()
             if (x + moveX) < -self.maxWidth then
                 return
             end
             self.powerLayer:setPosition(x + moveX, y)
+
+            x, y = self.rankLayer:getPosition()
+            self.rankLayer:setPosition(x + moveX, y)
 
             x, y = self.pvpLayer:getPosition()
             self.pvpLayer:setPosition(x + moveX, y)
@@ -871,7 +917,84 @@ function TetrisScene:onMove(moveX)
 
             local x, y = self.powerLayer:getPosition()
             self.powerLayer:setPosition(x + moveX, y)
+
+            x, y = self.rankLayer:getPosition()
+            self.rankLayer:setPosition(x + moveX, y)
         end
+    end
+end
+
+--------------------------------
+-- 初始化排行榜数据
+-- @function [parent=#TetrisScene] initRankData
+function TetrisScene:initRankData()
+    -- 发包获取数据
+    if not self.rankList then
+        self.rankList = self.rankLayout['list_view']
+        self.lbMyRank = self.rankLayout['lb_myrank']
+        self.btnRecv = self.rankLayout['btn_recv']
+    end
+
+    -- 获取排行榜数据
+    cmgr:send(actions.getRankInfo, function(response)
+        local data = response.data
+        if data.myRank == -1 then
+            self.lbMyRank:setString("未上榜")
+        else
+            self.lbMyRank:setString(data.myRank)
+        end
+
+        if data.rewardState == 0 then
+            self.btnRecv:setEnabled(false)
+        else
+            self.btnRecv:setEnabled(true)
+        end
+
+        self:initRankList(data.rankList)
+        
+        for i=1, data.maxPage-1 do
+            self:getRankData(i)
+        end
+    end, 0)
+    
+    -- 清理数据
+    self.rankList:removeAllChildren()
+end
+
+function TetrisScene:getRankData(page)
+    cmgr:send(actions.getRankInfo, function(response)
+        self:initRankList(response.data.rankList)
+    end, page)
+end
+
+function TetrisScene:initRankList(dataList)
+    for _, data in pairs(dataList) do
+        local layout = require("layout.TetrisRankItem").create()
+        local cup = layout['sp_cup']
+        local lbName = layout['lb_name']
+        local lbPoint = layout['lb_point']
+        local lbRank = layout['lb_rank']
+        local bg = layout['bg']
+        if data.rank <= 3 then
+            cup:setTexture(string.format("ui/rank/cup%s.png", data.rank))
+        else
+            cup:setVisible(false)
+            lbRank:setString(data.rank)
+            lbRank:setVisible(true)
+        end
+
+        lbName:setString(data.playerName)
+        lbPoint:setString(data.points)
+        -- 是自己
+        if data.playerId == mmgr.player.playerId then
+            bg:setTexture("ui/rank/rank_line_self_bg.png")
+        end
+        
+        local panel = layout['panel']
+        panel:retain()
+        panel:removeFromParent()
+        panel:setScale(0.9)
+        self.rankList:pushBackCustomItem(panel)
     end
 end
 

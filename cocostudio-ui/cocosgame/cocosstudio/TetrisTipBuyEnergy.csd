@@ -99,9 +99,9 @@
                 <PrePosition X="0.5000" Y="0.3829" />
                 <PreSize X="0.4563" Y="0.0757" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tips/btn_buy_energy.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tips/btn_buy_energy.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tips/btn_buy_energy.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="btn_buy_energy.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="btn_buy_energy.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="btn_buy_energy.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -114,9 +114,9 @@
                 <PrePosition X="0.5000" Y="0.4707" />
                 <PreSize X="0.4563" Y="0.0757" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="ui/tips/btn_watch_video.png" Plist="" />
-                <PressedFileData Type="Normal" Path="ui/tips/btn_watch_video.png" Plist="" />
-                <NormalFileData Type="Normal" Path="ui/tips/btn_watch_video.png" Plist="" />
+                <DisabledFileData Type="PlistSubImage" Path="btn_watch_video.png" Plist="ui/plist/common.plist" />
+                <PressedFileData Type="PlistSubImage" Path="btn_watch_video.png" Plist="ui/plist/common.plist" />
+                <NormalFileData Type="PlistSubImage" Path="btn_watch_video.png" Plist="ui/plist/common.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
