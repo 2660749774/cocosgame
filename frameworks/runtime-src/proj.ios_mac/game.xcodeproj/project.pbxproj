@@ -51,15 +51,15 @@
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
 		84107B231D156A2E00F65181 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 84107B211D156A2E00F65181 /* lpack.c */; };
 		84107B261D156A7500F65181 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 84107B211D156A2E00F65181 /* lpack.c */; };
+		84173B951F3183160050CAEE /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84173B931F3183160050CAEE /* libcrypto.a */; };
+		84173B961F3183160050CAEE /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84173B941F3183160050CAEE /* libssl.a */; };
 		841BE8F11DFBED8800F496E4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 841BE8EE1DFBED8800F496E4 /* libcrypto.a */; };
 		841BE8F21DFBED8800F496E4 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 841BE8EF1DFBED8800F496E4 /* libcurl.a */; };
 		841BE8F31DFBED8800F496E4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 841BE8F01DFBED8800F496E4 /* libssl.a */; };
 		842CEEA31D51BE5B00F2D4B8 /* lua_cocos2dx_httprequest_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84DD69AB1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp */; };
 		842CEEAE1D51C98200F2D4B8 /* CCHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842CEEAB1D51C98200F2D4B8 /* CCHTTPRequest.cpp */; };
 		842CEEAF1D51C98C00F2D4B8 /* CCHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842CEEAB1D51C98200F2D4B8 /* CCHTTPRequest.cpp */; };
-		842CEEB01D51D18E00F2D4B8 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DD69AE1D4B31C900196C33 /* libcrypto.a */; };
 		842CEEB11D51D18E00F2D4B8 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DD69A81D4B30D400196C33 /* libcurl.a */; };
-		842CEEB21D51D18E00F2D4B8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DD69AF1D4B31C900196C33 /* libssl.a */; };
 		844AE5291E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
 		844AE52A1E14E95F00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
 		844F15251EF648B200C3F8AB /* HTTPDownload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15231EF648B200C3F8AB /* HTTPDownload.cpp */; };
@@ -523,6 +523,8 @@
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		84107B211D156A2E00F65181 /* lpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lpack.c; path = ../Classes/lua_extensions/lpack/lpack.c; sourceTree = "<group>"; };
 		84107B221D156A2E00F65181 /* lpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lpack.h; path = ../Classes/lua_extensions/lpack/lpack.h; sourceTree = "<group>"; };
+		84173B931F3183160050CAEE /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../cocos2d-x/external/openssl/prebuilt/ios/libcrypto.a"; sourceTree = "<group>"; };
+		84173B941F3183160050CAEE /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../cocos2d-x/external/openssl/prebuilt/ios/libssl.a"; sourceTree = "<group>"; };
 		841BE8EE1DFBED8800F496E4 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../cocos2d-x/external/curl/prebuilt/mac/libcrypto.a"; sourceTree = "<group>"; };
 		841BE8EF1DFBED8800F496E4 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = "../../cocos2d-x/external/curl/prebuilt/mac/libcurl.a"; sourceTree = "<group>"; };
 		841BE8F01DFBED8800F496E4 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../cocos2d-x/external/curl/prebuilt/mac/libssl.a"; sourceTree = "<group>"; };
@@ -918,12 +920,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84173B951F3183160050CAEE /* libcrypto.a in Frameworks */,
+				84173B961F3183160050CAEE /* libssl.a in Frameworks */,
 				84D14B361EC7500A001DCA1C /* AdSupport.framework in Frameworks */,
 				8478610D1E629E7700A6266A /* GameKit.framework in Frameworks */,
 				84E6CEC61E168EF800B7607D /* CoreText.framework in Frameworks */,
-				842CEEB01D51D18E00F2D4B8 /* libcrypto.a in Frameworks */,
 				842CEEB11D51D18E00F2D4B8 /* libcurl.a in Frameworks */,
-				842CEEB21D51D18E00F2D4B8 /* libssl.a in Frameworks */,
 				9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */,
 				ED545A891B68A23E00C3958E /* libiconv.dylib in Frameworks */,
 				9FF504871A5E88CE00AFDA55 /* libsimulator iOS.a in Frameworks */,
@@ -1476,6 +1478,8 @@
 		F293B3CB15EB7BE500256477 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84173B931F3183160050CAEE /* libcrypto.a */,
+				84173B941F3183160050CAEE /* libssl.a */,
 				84D14B351EC7500A001DCA1C /* AdSupport.framework */,
 				8478610C1E629E7700A6266A /* GameKit.framework */,
 				8478610A1E629E6000A6266A /* GameKit.framework */,
@@ -2150,7 +2154,10 @@
 					"$(SRCROOT)/../../cocos2d-x/cocos/scripting/lua-bindings/manual",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/mac/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/mac/",
+					"$(SRCROOT)/../../cocos2d-x/external/openssl/prebuilt/mac/",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-image_base",
@@ -2186,7 +2193,10 @@
 					"$(SRCROOT)/../../cocos2d-x/cocos/scripting/lua-bindings/manual",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/mac/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/mac/",
+					"$(SRCROOT)/../../cocos2d-x/external/openssl/prebuilt/mac/",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-image_base",
@@ -2280,7 +2290,10 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/ios/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/ios/",
+					"$(SRCROOT)/../../cocos2d-x/external/openssl/prebuilt/ios/",
+				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=x86_64]" = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -2325,7 +2338,10 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/ios/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/ios/",
+					"$(SRCROOT)/../../cocos2d-x/external/openssl/prebuilt/ios/",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=x86_64]" = (
