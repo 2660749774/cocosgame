@@ -393,7 +393,9 @@ end
 -- @function [parent=#TetrisMultiPanel] reset
 function TetrisMultiPanel:notifyGameOver(isSelf)
     if isSelf then
-        self.tetris:sendPack(actions.doUpdate, protos.DEAD, 0)
+        self.tetris:sendPack(actions.doUpdate, protos.DEAD, self.playerId)
+    else
+        self.tetris:sendPack(actions.doUpdate, protos.DEAD, self.targetId)
     end
 end
 

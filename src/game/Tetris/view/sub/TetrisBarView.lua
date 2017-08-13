@@ -30,6 +30,8 @@ function TetrisBarView:onCreate(scene)
 
     -- 初始化按钮信息
     self:initBottomBar()
+    self.topPanel = self.layout['top_panel']
+    self.bottomPanel = self.layout['bottom_panel']
 
     -- 添加按钮监听器
     self.playerDataListener = handler(self, self.updatePlayerData)
