@@ -854,7 +854,7 @@ function TetrisScene:onMoveEnd(moveX)
 end
 
 function TetrisScene:onMove(moveX)
-    log:info("onMove:%s", moveX)
+    -- log:info("onMove:%s", moveX)
     if moveX > 0 then
         -- 向右移动
         if self.currBtn == "rank" or self.currBtn == "single" then
@@ -933,6 +933,7 @@ function TetrisScene:initRankData()
         self.rankList = self.rankLayout['list_view']
         self.lbMyRank = self.rankLayout['lb_myrank']
         self.btnRecv = self.rankLayout['btn_recv']
+        self.rankList:init()
     end
 
     -- 获取排行榜数据
@@ -949,53 +950,78 @@ function TetrisScene:initRankData()
         else
             self.btnRecv:setEnabled(true)
         end
+        self.maxPage = data.maxPage
+        self.currPage = 1
+        self.fetchData = true
+        self.itemCount = 0
 
         self:initRankList(data.rankList)
-        
-        for i=1, data.maxPage-1 do
-            self:getRankData(i)
+
+        if self.maxPage > self.currPage then
+            self.rankList:onScroll(function(event) 
+                if self.fetchData then
+                    return
+                end
+                local percent = self.rankList:getScrollPercent()
+                -- log:info("scroll percent:%s, eventName:%s", percent, event.name)
+                if percent >= 0.6 and (self.maxPage > self.currPage) then
+                     self.fetchData = true
+                     self:getRankData(self.currPage)
+                     self.currPage = self.currPage + 1
+                end
+            end)
         end
     end, 0)
     
     -- 清理数据
     self.rankList:removeAllChildren()
+    self.rankList:init()
 end
 
 function TetrisScene:getRankData(page)
+    -- log:info("fetch data:%s", page)
     cmgr:send(actions.getRankInfo, function(response)
         self:initRankList(response.data.rankList)
     end, page)
 end
 
 function TetrisScene:initRankList(dataList)
-    for _, data in pairs(dataList) do
-        local layout = require("layout.TetrisRankItem").create()
-        local cup = layout['sp_cup']
-        local lbName = layout['lb_name']
-        local lbPoint = layout['lb_point']
-        local lbRank = layout['lb_rank']
-        local bg = layout['bg']
-        if data.rank <= 3 then
-            cup:setTexture(string.format("ui/rank/cup%s.png", data.rank))
-        else
-            cup:setVisible(false)
-            lbRank:setString(data.rank)
-            lbRank:setVisible(true)
-        end
+    scheduler.scheduleGlobalByCoroutine(function()
+        for index, data in pairs(dataList) do
+            local layout = require("layout.TetrisRankItem").create()
+            local cup = layout['sp_cup']
+            local lbName = layout['lb_name']
+            local lbPoint = layout['lb_point']
+            local lbRank = layout['lb_rank']
+            local bg = layout['bg']
+            if data.rank <= 3 then
+                cup:setTexture(string.format("ui/rank/cup%s.png", data.rank))
+            else
+                cup:setVisible(false)
+                lbRank:setString(data.rank)
+                lbRank:setVisible(true)
+            end
 
-        lbName:setString(data.playerName)
-        lbPoint:setString(data.points)
-        -- 是自己
-        if data.playerId == mmgr.player.playerId then
-            bg:setTexture("ui/rank/rank_line_self_bg.png")
+            lbName:setString(data.playerName)
+            lbPoint:setString(data.points)
+            -- 是自己
+            if data.playerId == mmgr.player.playerId then
+                bg:setTexture("ui/rank/rank_line_self_bg.png")
+            end
+            
+            local panel = layout['panel']
+            panel:retain()
+            panel:removeFromParent()
+            panel:setScale(0.9)
+
+            self.rankList:addItem(panel, true)
+            coroutine.yield()
         end
-        
-        local panel = layout['panel']
-        panel:retain()
-        panel:removeFromParent()
-        panel:setScale(0.9)
-        self.rankList:pushBackCustomItem(panel)
-    end
+        self.fetchData = false
+    end, 0)
+    
+    
+    
 end
 
 --------------------------------
