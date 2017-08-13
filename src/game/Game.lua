@@ -10,6 +10,7 @@
 cc.exports.BaseScene = require "core.mvc.BaseScene"
 cc.exports.BaseApp = require "core.mvc.BaseApp"
 cc.exports.BasePanel = require "core.mvc.BasePanel"
+cc.exports.BaseView = require "core.mvc.BaseView"
 
 
 local Game = class("MyApp", BaseApp)

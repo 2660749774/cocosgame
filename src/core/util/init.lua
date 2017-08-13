@@ -12,6 +12,7 @@ utils.crypto = import(".crypto")
 utils.gameArchive = import(".GameArchiveFile").new()
 cc.exports.RandomUtil = import(".RandomUtil")
 cc.exports.ColorUtil = import(".ColorUtil")
+cc.exports.ShaderUtil = import(".ShaderUtil")
 RandomUtil:init()
 
 return utils
