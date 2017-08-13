@@ -8,7 +8,7 @@ config.checkUpdate = false
 config.hotswapUrl = "http://192.168.1.4/checkUpdate.action"
 
 -- 登录服务器地址
-config.loginHost = "192.168.1.4"
+config.loginHost = "106.15.225.156"
 config.loginPort = 8010
 
 

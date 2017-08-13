@@ -56,6 +56,8 @@ function UDPConnectManager:open(conv, host, port)
     -- 建立新的连接
     local socket = net.SocketUDP.new()
 
+    log:info("open udp conv:%s, host:%s, port:%s", conv, host, port)
+
     socket:addEventListener(net.SocketUDP.EVENT_DATA, handler(self, self.reciveDate))
     socket:addEventListener(net.SocketUDP.EVENT_CLOSE, handler(self, self.udpClose))
     socket:addEventListener(net.SocketUDP.EVENT_CONNECTED, handler(self, self.udpConnected))
@@ -98,7 +100,7 @@ function UDPConnectManager:send(action, ...)
     
     -- requestId递增
     self.requestId = self.requestId + 1
-    -- log:info("send data %s %s", action.command, #args)
+    log:info("send data %s %s", action.command, #args)
 end
 
 --------------------------------
@@ -233,8 +235,8 @@ function UDPConnectManager:decode()
 
     -- 打印日志
     command = trim(command)
-    -- log:info("udp recv command:%s, requestId:%d", command, requestId)
-    -- log:info("udp recv content:%s", content)
+    log:info("udp recv command:%s, requestId:%d", command, requestId)
+    log:info("udp recv content:%s", content)
     -- 转换为json
     local response = json.decode(content)
     

@@ -264,11 +264,11 @@ function fixscheduler:send(action, protoId, ...)
         -- 记录延迟
         actions.recordDelay(seq, "send", cc.Util:getCurrentTime())
 
-        if ucmgr:isConnected() then
-            ucmgr:send(action, protoId, unpack(args))
-        else
+        -- if ucmgr:isConnected() then
+        --     ucmgr:send(action, protoId, unpack(args))
+        -- else
             cmgr:send(action, nil, protoId, unpack(args))
-        end
+        -- end
         
         -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
     end
