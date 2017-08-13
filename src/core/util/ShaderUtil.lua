@@ -42,7 +42,7 @@ function ShaderUtil.setGray(node)
     end
 
     -- 文字
-    if node.getVirtualRenderer and iskindof(node:getVirtualRenderer(), "cc.Label") then
+    if node.getVirtualRenderer and iskindof(node:getVirtualRenderer(), "cc.Label") and node:getVirtualRenderer().enableGray then
         node:getVirtualRenderer():enableGray(true)
         return
     end
@@ -63,6 +63,8 @@ function ShaderUtil.setGray(node)
         local virtualRenderer = node:getVirtualRenderer()
         if virtualRenderer.getSprite then
             virtualRenderer:getSprite():setGLProgram(glProgram)
+        else
+            virtualRenderer:setGLProgram(glProgram)
         end
     else
         node:setGLProgram(glProgram)
@@ -80,7 +82,7 @@ function ShaderUtil.removeGray(node)
     end
 
     -- 文字
-    if node.getVirtualRenderer and iskindof(node:getVirtualRenderer(), "cc.Label") then
+    if node.getVirtualRenderer and iskindof(node:getVirtualRenderer(), "cc.Label") and node:getVirtualRenderer().enableGray then
         node:getVirtualRenderer():enableGray(false)
         return
     end
@@ -101,6 +103,8 @@ function ShaderUtil.removeGray(node)
         local virtualRenderer = node:getVirtualRenderer()
         if virtualRenderer.getSprite then
             virtualRenderer:getSprite():setGLProgram(glProgram)
+        else
+            virtualRenderer:setGLProgram(glProgram)
         end
         return
     else
