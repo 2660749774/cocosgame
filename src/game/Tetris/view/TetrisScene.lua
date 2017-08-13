@@ -958,6 +958,7 @@ function TetrisScene:initRankData()
         self:initRankList(data.rankList)
 
         if self.maxPage > self.currPage then
+            -- 监听滑动事件，拉取剩余数据
             self.rankList:onScroll(function(event) 
                 if self.fetchData then
                     return
@@ -978,6 +979,9 @@ function TetrisScene:initRankData()
     self.rankList:init()
 end
 
+--------------------------------
+-- 拉取排行榜数据
+-- @function [parent=#TetrisScene] getRankData
 function TetrisScene:getRankData(page)
     -- log:info("fetch data:%s", page)
     cmgr:send(actions.getRankInfo, function(response)
@@ -985,7 +989,11 @@ function TetrisScene:getRankData(page)
     end, page)
 end
 
+--------------------------------
+-- 将数据插入排行榜
+-- @function [parent=#TetrisScene] getRankData
 function TetrisScene:initRankList(dataList)
+    -- 携程方式插入
     scheduler.scheduleGlobalByCoroutine(function()
         for index, data in pairs(dataList) do
             local layout = require("layout.TetrisRankItem").create()
@@ -1019,9 +1027,6 @@ function TetrisScene:initRankList(dataList)
         end
         self.fetchData = false
     end, 0)
-    
-    
-    
 end
 
 --------------------------------
