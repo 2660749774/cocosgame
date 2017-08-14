@@ -349,17 +349,11 @@
 		84E6CEC91E16921600B7607D /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E6CEC81E16921600B7607D /* Util.cpp */; };
 		84E6CECA1E16921B00B7607D /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E6CEC81E16921600B7607D /* Util.cpp */; };
 		9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */; };
-		9FC760431A67791200D1E6E7 /* lang in Resources */ = {isa = PBXBuildFile; fileRef = 9FC760401A67791200D1E6E7 /* lang */; };
-		9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
 		9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF504831A5E87B100AFDA55 /* ConsoleWindowController.m */; };
 		9FF504861A5E881200AFDA55 /* libsimulator Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF5047E1A5E86D600AFDA55 /* libsimulator Mac.a */; };
 		9FF504871A5E88CE00AFDA55 /* libsimulator iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF504801A5E86D600AFDA55 /* libsimulator iOS.a */; };
 		9FFC07361A4A764100AED399 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFC07341A4A764100AED399 /* MainMenu.xib */; };
-		9FFE009F1ACCF59E00D6E35A /* lua_debugger.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE009B1ACCF59E00D6E35A /* lua_debugger.c */; };
-		9FFE00A01ACCF59E00D6E35A /* lua_debugger.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE009B1ACCF59E00D6E35A /* lua_debugger.c */; };
-		9FFE00A11ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE009D1ACCF59E00D6E35A /* RuntimeLuaImpl.cpp */; };
-		9FFE00A21ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE009D1ACCF59E00D6E35A /* RuntimeLuaImpl.cpp */; };
 		C03781B918BF655400FE4F13 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C03781B718BF655400FE4F13 /* res */; };
 		C03781BB18BF655400FE4F13 /* src in Resources */ = {isa = PBXBuildFile; fileRef = C03781B818BF655400FE4F13 /* src */; };
 		C05D1C121923449100B808A4 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C05D1C111923449100B808A4 /* config.json */; };
@@ -851,20 +845,12 @@
 		84E6CEC71E16921600B7607D /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = ../Classes/util/Util.h; sourceTree = "<group>"; };
 		84E6CEC81E16921600B7607D /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = ../Classes/util/Util.cpp; sourceTree = "<group>"; };
 		9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		9FC7603F1A67791200D1E6E7 /* CodeIDESupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeIDESupport.h; sourceTree = "<group>"; };
-		9FC760401A67791200D1E6E7 /* lang */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lang; sourceTree = "<group>"; };
-		9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleConfigParser.cpp; sourceTree = "<group>"; };
-		9FC760421A67791200D1E6E7 /* SimpleConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleConfigParser.h; sourceTree = "<group>"; };
 		9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsimulator.xcodeproj; path = "../../cocos2d-x/tools/simulator/libsimulator/proj.ios_mac/libsimulator.xcodeproj"; sourceTree = "<group>"; };
 		9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
 		9FF504821A5E87B100AFDA55 /* ConsoleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleWindowController.h; sourceTree = "<group>"; };
 		9FF504831A5E87B100AFDA55 /* ConsoleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleWindowController.m; sourceTree = "<group>"; };
 		9FFC07351A4A764100AED399 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9FFC07371A4A765100AED399 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
-		9FFE009B1ACCF59E00D6E35A /* lua_debugger.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_debugger.c; sourceTree = "<group>"; };
-		9FFE009C1ACCF59E00D6E35A /* lua_debugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_debugger.h; sourceTree = "<group>"; };
-		9FFE009D1ACCF59E00D6E35A /* RuntimeLuaImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuntimeLuaImpl.cpp; sourceTree = "<group>"; };
-		9FFE009E1ACCF59E00D6E35A /* RuntimeLuaImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeLuaImpl.h; sourceTree = "<group>"; };
 		C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_lua_bindings.xcodeproj; path = "../../cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac/cocos2d_lua_bindings.xcodeproj"; sourceTree = "<group>"; };
 		C03781B718BF655400FE4F13 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../../../res; sourceTree = "<group>"; };
 		C03781B818BF655400FE4F13 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../src; sourceTree = "<group>"; };
@@ -1416,22 +1402,6 @@
 			name = auto;
 			sourceTree = "<group>";
 		};
-		9FC7603E1A67791200D1E6E7 /* ide-support */ = {
-			isa = PBXGroup;
-			children = (
-				9FFE009B1ACCF59E00D6E35A /* lua_debugger.c */,
-				9FFE009C1ACCF59E00D6E35A /* lua_debugger.h */,
-				9FFE009D1ACCF59E00D6E35A /* RuntimeLuaImpl.cpp */,
-				9FFE009E1ACCF59E00D6E35A /* RuntimeLuaImpl.h */,
-				9FC7603F1A67791200D1E6E7 /* CodeIDESupport.h */,
-				9FC760401A67791200D1E6E7 /* lang */,
-				9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */,
-				9FC760421A67791200D1E6E7 /* SimpleConfigParser.h */,
-			);
-			name = "ide-support";
-			path = "../Classes/ide-support";
-			sourceTree = "<group>";
-		};
 		9FF504791A5E86D600AFDA55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1530,7 +1500,6 @@
 				842CEEAA1D51C7F000F2D4B8 /* network */,
 				84DD69AA1D4B30F200196C33 /* auto */,
 				84A186D71D152A9F0004995F /* lua_extensions */,
-				9FC7603E1A67791200D1E6E7 /* ide-support */,
 				15427CE2198F237300DC375D /* lua_module_register.h */,
 				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
@@ -1711,7 +1680,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */,
-				9FC760431A67791200D1E6E7 /* lang in Resources */,
 				5023817617EBBE3400990C9B /* Icon.icns in Resources */,
 				9FFC07361A4A764100AED399 /* MainMenu.xib in Resources */,
 			);
@@ -1795,7 +1763,6 @@
 				847B1A2A1E61BCF800EDE087 /* hrtimer.cpp in Sources */,
 				847B1A5D1E61BCF800EDE087 /* 3way.cpp in Sources */,
 				847B1A0C1E61BCF800EDE087 /* rc6.cpp in Sources */,
-				9FFE00A01ACCF59E00D6E35A /* lua_debugger.c in Sources */,
 				847B19EF1E61BCF800EDE087 /* ttmac.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
 				84107B261D156A7500F65181 /* lpack.c in Sources */,
@@ -1910,7 +1877,6 @@
 				847B1A501E61BCF800EDE087 /* camellia.cpp in Sources */,
 				847B19E71E61BCF800EDE087 /* xtrcrypt.cpp in Sources */,
 				847B1A3A1E61BCF800EDE087 /* emsa2.cpp in Sources */,
-				9FFE00A21ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
 				847B1A2C1E61BCF800EDE087 /* hex.cpp in Sources */,
 				847B1A361E61BCF800EDE087 /* filters.cpp in Sources */,
 				847B19F01E61BCF800EDE087 /* trdlocal.cpp in Sources */,
@@ -1925,7 +1891,6 @@
 			files = (
 				847B197C1E61A86B00EDE087 /* shacal2.cpp in Sources */,
 				847B19B71E61A86B00EDE087 /* filters.cpp in Sources */,
-				9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp in Sources */,
 				844AE5291E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */,
 				847B19711E61A86B00EDE087 /* tftables.cpp in Sources */,
 				844F15411EF6B1E400C3F8AB /* lfs.c in Sources */,
@@ -2001,7 +1966,6 @@
 				847B19D01E61A86B00EDE087 /* casts.cpp in Sources */,
 				847B19781E61A86B00EDE087 /* skipjack.cpp in Sources */,
 				847B198E1E61A86B00EDE087 /* randpool.cpp in Sources */,
-				9FFE009F1ACCF59E00D6E35A /* lua_debugger.c in Sources */,
 				847B19C71E61A86B00EDE087 /* default.cpp in Sources */,
 				847B196E1E61A86B00EDE087 /* trdlocal.cpp in Sources */,
 				847B19BB1E61A86B00EDE087 /* emsa2.cpp in Sources */,
@@ -2049,7 +2013,6 @@
 				847B19641E61A86B00EDE087 /* zdeflate.cpp in Sources */,
 				847B19801E61A86B00EDE087 /* seed.cpp in Sources */,
 				847B19651E61A86B00EDE087 /* xtrcrypt.cpp in Sources */,
-				9FFE00A11ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
 				847861121E62A18200A6266A /* SDKGameCenter.mm in Sources */,
 				84A186DA1D152ABA0004995F /* lua_will_extensions.c in Sources */,
 				84BA0F3C1E6C08980065FDBB /* ikcp.c in Sources */,
@@ -2145,6 +2108,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					GLFW_EXPOSE_NATIVE_COCOA,
 					GLFW_EXPOSE_NATIVE_NSGL,
+					USE_AUDIO_ENGINE,
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -2184,6 +2148,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					GLFW_EXPOSE_NATIVE_COCOA,
 					GLFW_EXPOSE_NATIVE_NSGL,
+					USE_AUDIO_ENGINE,
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -2279,7 +2244,7 @@
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CC_CODE_IDE_DEBUG_SUPPORT=0",
+					USE_AUDIO_ENGINE,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Classes/protobuf-lite",
@@ -2287,6 +2252,7 @@
 					"$(SRCROOT)/../../cocos2d-x/tools/simulator/libsimulator/lib",
 					"$(SRCROOT)/../../cocos2d-x/cocos/scripting/lua-bindings/manual",
 					"$(SRCROOT)/../../cocos2d-x/external/curl/include/ios/",
+					"$(SRCROOT)/../../cocos2d-x/external/json/",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -2327,7 +2293,7 @@
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CC_CODE_IDE_DEBUG_SUPPORT=0",
+					USE_AUDIO_ENGINE,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Classes/protobuf-lite",
@@ -2335,6 +2301,7 @@
 					"$(SRCROOT)/../../cocos2d-x/tools/simulator/libsimulator/lib",
 					"$(SRCROOT)/../../cocos2d-x/cocos/scripting/lua-bindings/manual",
 					"$(SRCROOT)/../../cocos2d-x/external/curl/include/ios/",
+					"$(SRCROOT)/../../cocos2d-x/external/json/",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
