@@ -9,3 +9,10 @@ Cocos2d-x引擎修改点
 
 增加`setLastFrameCallFunc`的导出
 
+### 3. 移除`CC_CODE_IDE_DEBUG_SUPPORT`支持
+
+- 移除所有对`CodeIDESupport.h`文件的依赖
+
+### 4. 支持新老音效库的切换
+
+
