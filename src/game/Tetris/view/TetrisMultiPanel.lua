@@ -207,7 +207,7 @@ function TetrisMultiPanel:playGame()
 
     -- 建立udp连接
     if (udpConv) then
-        ucmgr:open(udpConv, cmgr.host, 8010)
+        ucmgr:open(udpConv, cmgr.host, cmgr.port)
         -- 添加PushHandler
         ucmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
     end

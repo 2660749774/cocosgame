@@ -19,6 +19,9 @@ function trimArray(array)
     return _array
 end
 
+--------------------------------
+-- 给string添加endwith方法
+-- @function trim
 function string.endwith(input, text)
     if input == nil or text == nil then
         return false
@@ -36,6 +39,9 @@ function string.endwith(input, text)
     end
 end
 
+--------------------------------
+-- 给string添加startwith方法
+-- @function trim
 function string.startwith(input, text)
     if input == nil or text == nil then
         return false
