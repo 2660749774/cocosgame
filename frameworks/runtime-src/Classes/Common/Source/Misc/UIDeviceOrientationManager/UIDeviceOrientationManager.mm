@@ -15,7 +15,7 @@
 
 + (void)load
 {
-	UnityRegisterLifeCycleListener([UIDeviceOrientationManager Instance]);
+	CocosRegisterLifeCycleListener([UIDeviceOrientationManager Instance]);
 }
 
 - (id)init
@@ -34,7 +34,7 @@
 - (void)dealloc
 {
 	// Unregister from callbacks
-	UnityUnregisterLifeCycleListener(self);
+	CocosUnregisterLifeCycleListener(self);
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:UIDeviceOrientationDidChangeNotification
 												  object:[UIDevice currentDevice]];

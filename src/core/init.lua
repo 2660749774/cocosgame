@@ -26,7 +26,6 @@ cc.exports.ResourceGroup = {
 
 -- layers 定义
 cc.exports.layers = require "core.Layers"
-cc.exports.nativeBridge = require "core.native.NativeBridge"
 
 -- 重新定义traceback
 __G__TRACKBACK__ = function(msg)
@@ -52,10 +51,12 @@ cc.exports.net = require("core.net.init")
 
 -- game init
 cc.exports.rmgr = require "core.manager.ResourceManager".new()
+cc.exports.emgr = require "core.manager.EventManager".new()
+cc.exports.EventDefine = require "game.Common.EventDefine"
+cc.exports.amgr = require "core.manager.AudioManager".new()
+cc.exports.nativeBridge = require "core.native.NativeBridge"
 cc.exports.cmgr = require "core.manager.ConnectManager".new(false)
 cc.exports.ucmgr = require "core.manager.UDPConnectManager".new(false)
-cc.exports.emgr = require "core.manager.EventManager".new()
-cc.exports.amgr = require "core.manager.AudioManager".new()
 
 
 

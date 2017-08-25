@@ -1,6 +1,6 @@
 #include "LifeCycleListener.h"
 
-void UnityRegisterLifeCycleListener(id<LifeCycleListener> obj)
+void CocosRegisterLifeCycleListener(id<LifeCycleListener> obj)
 {
     #define REGISTER_SELECTOR(sel, notif_name)                  \
     if([obj respondsToSelector:sel])                            \
@@ -21,7 +21,7 @@ void UnityRegisterLifeCycleListener(id<LifeCycleListener> obj)
     #undef REGISTER_SELECTOR
 }
 
-void UnityUnregisterLifeCycleListener(id<LifeCycleListener> obj)
+void CocosUnregisterLifeCycleListener(id<LifeCycleListener> obj)
 {
     [[NSNotificationCenter defaultCenter] removeObserver: obj name: UIApplicationDidFinishLaunchingNotification object: nil];
     [[NSNotificationCenter defaultCenter] removeObserver: obj name: UIApplicationDidBecomeActiveNotification object: nil];

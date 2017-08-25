@@ -10,7 +10,7 @@
 #import "Reachability.h"
 #import "HandlerBase.h"
 #include <arpa/inet.h>
-#import "IOSBridge.h"
+#import "LuaBridge.h"
 
 @interface NetworkConnectivityHandler : HandlerBase
 

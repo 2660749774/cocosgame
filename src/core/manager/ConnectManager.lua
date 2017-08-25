@@ -40,6 +40,8 @@ function ConnectManger:ctor(compress)
 
     -- 是否启用压缩
     self.compress = compress or false
+
+    emgr:addEventListener(EventDefine.APP_STATE_CHANGE, handler(self, self.onAppStateChange))
     
     log:info("init cmgr succ")
 end
@@ -77,6 +79,7 @@ function ConnectManger:open(host, port)
     self.socket = socket
     self.host = host
     self.port = port
+    self.networkName = nativeBridge.getNetworkName()
 end
 
 --------------------------------
@@ -223,6 +226,28 @@ function ConnectManger:tcpConnectedFail(event)
     local event = {type="conn", status="fail"}
     for _, callback in pairs(self.connCallback) do
         callback(event)
+    end
+end
+
+--------------------------------
+-- 处理AppState改变
+-- @function [parent=#ConnectManger] onAppStateChange
+function ConnectManger:onAppStateChange(event)
+    if event == "enterForeground" then
+        -- 后台切回前台，重新建立连接
+        if self:isConnected() then
+            self:close()
+            self:open(self.host, self.port)
+        end
+    else
+        local networkName = nativeBridge.getNetworkName()
+        if networkName ~= self.networkName then
+            -- 网络发生变化重连
+            if self:isConnected() then
+                self:close()
+                self:open(self.host, self.port)
+            end
+        end
     end
 end
 

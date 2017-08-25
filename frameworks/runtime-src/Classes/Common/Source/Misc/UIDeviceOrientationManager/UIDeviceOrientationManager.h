@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
+#import "LifeCycleListener.h"
 
 @protocol UIDeviceOrientationObserver <NSObject>
 

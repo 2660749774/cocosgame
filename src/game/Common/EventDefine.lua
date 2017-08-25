@@ -16,4 +16,7 @@ EventDefine.PLAYER_UPDATE = "PLAYER_UPDATE"
 -- 界面改变
 EventDefine.VIEW_CHANGE = "VIEW_CHANGE"
 
+-- App状态改变
+EventDefine.APP_STATE_CHANGE = "APP_STATE_CHANGE"
+
 return EventDefine

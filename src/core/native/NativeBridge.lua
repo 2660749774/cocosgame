@@ -10,31 +10,105 @@ local NativeBridge = {}
 
 local UserDefaultUtil = require("core.util.UserDefaultUtil")
 local RandomUtil = require("core.util.RandomUtil")
+local targetPlatform = nil
+local deviceInfo = nil
+local deviceId = nil
 
 --------------------------------
 -- NativeBridge 初始化
 -- @function [parent=#NativeBridge] init
 function NativeBridge.init()
+	log:info("[native]init")
     NativeBridge.platform = cc.Application:getInstance():getTargetPlatform()
 
+	-- 注册自身
 	local args = {}
 	args.action = "registerScriptHandler"
 	args.listener = NativeBridge.callLua
-
+	args.host = "www.baidu.com"
 	NativeBridge.callNativeMethod(args)
+	
+	targetPlatform = cc.Application:getInstance():getTargetPlatform()
+	log:info("targetPlatform:%s", targetPlatform)
+
+	-- 主动调用
+	NativeBridge.getDeviceId()
+	NativeBridge.getDeviceInfo()
 end
 
 --------------------------------
 -- 获取设备Id
 -- @function [parent=#NativeBridge] getDeviceId
 function NativeBridge.getDeviceId()
-	local deviceId = UserDefaultUtil.getStringForKey("game.deviceId", "")
-	if deviceId == "" then
-		-- FIXME 去获取真实Id
-		deviceId = NativeBridge.getFakeDeviceId()
-		UserDefaultUtil.setStringForKey("game.deviceId", deviceId)
+	if deviceId ~= nil then
+		return deviceId
 	end
+	
+	deviceId = UserDefaultUtil.getStringForKey("game.deviceId", "")
+	if deviceId == "" then
+		if targetPlatform == cc.PLATFORM_OS_ANDROID 
+			or targetPlatform == cc.PLATFORM_OS_IPHONE
+			or targetPlatform == cc.PLATFORM_OS_IPAD then
+			-- ios、android平台
+			local args = {
+				action = "getDeviceId"
+			}
+			deviceId = NativeBridge.callNativeMethodWithReturn(args)
+			UserDefaultUtil.setStringForKey("game.deviceId", deviceId)
+		else
+			-- FIXME 去获取真实Id
+			deviceId = NativeBridge.getFakeDeviceId()
+			UserDefaultUtil.setStringForKey("game.deviceId", deviceId)
+		end
+	end
+	log:info("deviceId:%s", deviceId)
 	return deviceId
+end
+
+--------------------------------
+-- 获取设备信息
+-- @function [parent=#NativeBridge] getDeviceInfo
+function NativeBridge.getDeviceInfo()
+	if deviceInfo ~= nil then
+		return deviceInfo
+	end
+
+	if targetPlatform == cc.PLATFORM_OS_ANDROID 
+			or targetPlatform == cc.PLATFORM_OS_IPHONE
+			or targetPlatform == cc.PLATFORM_OS_IPAD then
+			-- ios、android平台
+			local args = {
+				action = "getDeviceInfo"
+			}
+			local _deviceInfo = NativeBridge.callNativeMethodWithReturn(args)
+			if _deviceInfo ~= nil and deviceInfo ~= "" then
+				deviceInfo = json.decode(_deviceInfo)
+			end
+	else
+		deviceInfo = {}
+	end
+
+	log:info("deviceInfo:")
+	log:showTable(deviceInfo)
+	return deviceInfo
+end
+
+--------------------------------
+-- 获取网络信息
+-- @function [parent=#NativeBridge] getNetworkName
+function NativeBridge.getNetworkName()
+	local networkName = "unknow"
+	if targetPlatform == cc.PLATFORM_OS_ANDROID 
+			or targetPlatform == cc.PLATFORM_OS_IPHONE
+			or targetPlatform == cc.PLATFORM_OS_IPAD then
+			-- ios、android平台
+			local args = {
+				action = "getNetworkName"
+			}
+			networkName = NativeBridge.callNativeMethodWithReturn(args)
+	end
+	log:info("networkName:%s", networkName)
+	return networkName
 end
 
 --------------------------------
@@ -67,6 +141,13 @@ function NativeBridge.callLua(jsonStr)
 	elseif json.action == "sdk.logout" then
 		g_login._isAutoLoginSdk = true
 		g_login:backToLogin(enum.ui.layer.sdkLogin)
+	elseif json.action == "enterBackground"
+		or json.action == "enterForeground"
+		or json.action == "becomeActive"
+		or json.action == "resignActive" 
+		or json.action == "memoryWarning"
+		or json.action == "networkChanged" then
+		emgr:dispatchEvent(EventDefine.APP_STATE_CHANGE, json.action)
 	end
 end
 

@@ -105,12 +105,11 @@ function TetrisPvpView:handlePvpPush(response)
 
     local udpConv = nil
     if response.data.schedule ~= nil then
-        local scheduleData = nil
-        if response.data.schedule.def == nil then
-            scheduleData = response.data.schedule
+        local scheduleData = response.data.schedule
+        if scheduleData.def == nil then
             scheduleData.def = {playerId=0, playerName="机器人小C", score=0, isAI=true, isHost=false}
             scheduleData.att.isHost = true
-        elseif response.data.schedule.att.playerId == mmgr.player.playerId then
+        elseif scheduleData.att.playerId == mmgr.player.playerId then
             scheduleData.att.isHost = true
             scheduleData.def.isHost = false
         else

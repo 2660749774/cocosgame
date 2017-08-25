@@ -10,7 +10,7 @@
 #define Unity_iPhone_Defines_h
 
 #import "Utility.h"
-#import "IOSBridge.h"
+#import "LuaBridge.h"
 
 // OS Version
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)

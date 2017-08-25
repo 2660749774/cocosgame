@@ -60,6 +60,21 @@
 		842CEEAE1D51C98200F2D4B8 /* CCHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842CEEAB1D51C98200F2D4B8 /* CCHTTPRequest.cpp */; };
 		842CEEAF1D51C98C00F2D4B8 /* CCHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842CEEAB1D51C98200F2D4B8 /* CCHTTPRequest.cpp */; };
 		842CEEB11D51D18E00F2D4B8 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DD69A81D4B30D400196C33 /* libcurl.a */; };
+		844A74F11F50101E00633B12 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844A74F01F50101E00633B12 /* CFNetwork.framework */; };
+		844A74F31F50106000633B12 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844A74F21F50106000633B12 /* SystemConfiguration.framework */; };
+		844A74F51F50106D00633B12 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844A74F41F50106D00633B12 /* SystemConfiguration.framework */; };
+		844A75011F5010C000633B12 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A74FA1F5010C000633B12 /* Reachability.m */; };
+		844A75021F5010C000633B12 /* NetworkConnectivityBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A74FE1F5010C000633B12 /* NetworkConnectivityBinding.m */; };
+		844A75031F5010C000633B12 /* NetworkConnectivityHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A75001F5010C000633B12 /* NetworkConnectivityHandler.m */; };
+		844A75201F50111700633B12 /* HandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A75091F50111700633B12 /* HandlerBase.m */; };
+		844A75211F50111700633B12 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A750C1F50111700633B12 /* Singleton.m */; };
+		844A75221F50111700633B12 /* SingletonContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A750F1F50111700633B12 /* SingletonContainer.m */; };
+		844A75231F50111700633B12 /* CustomWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A75151F50111700633B12 /* CustomWebView.m */; };
+		844A75241F50111700633B12 /* WebViewToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A75181F50111700633B12 /* WebViewToolBar.m */; };
+		844A75261F50111700633B12 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A751F1F50111700633B12 /* Utility.m */; };
+		844A752A1F5012C200633B12 /* UIDeviceOrientationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 844A75291F5012C200633B12 /* UIDeviceOrientationManager.mm */; };
+		844A752D1F50130800633B12 /* LifeCycleListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 844A752B1F50130800633B12 /* LifeCycleListener.mm */; };
+		844A752F1F5013BD00633B12 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844A752E1F5013BD00633B12 /* CoreTelephony.framework */; };
 		844AE5291E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
 		844AE52A1E14E95F00FAB16E /* lua_cocos2dx_util_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */; };
 		844F15251EF648B200C3F8AB /* HTTPDownload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 844F15231EF648B200C3F8AB /* HTTPDownload.cpp */; };
@@ -341,8 +356,6 @@
 		84BA0F3E1E6C09CE0065FDBB /* lkcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F361E6C08980065FDBB /* lkcp.c */; };
 		84BA0F3F1E6C09CE0065FDBB /* ikcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F381E6C08980065FDBB /* ikcp.c */; };
 		84D14B2A1EC7429C001DCA1C /* LuaBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84D14B291EC7429C001DCA1C /* LuaBridge.mm */; };
-		84D14B2B1EC7429C001DCA1C /* LuaBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84D14B291EC7429C001DCA1C /* LuaBridge.mm */; };
-		84D14B331EC74E32001DCA1C /* IOSUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84D14B321EC74E32001DCA1C /* IOSUtil.mm */; };
 		84D14B361EC7500A001DCA1C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D14B351EC7500A001DCA1C /* AdSupport.framework */; };
 		84DD69AD1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84DD69AB1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp */; };
 		84E6CEC61E168EF800B7607D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E6CEC51E168EF800B7607D /* CoreText.framework */; };
@@ -526,6 +539,33 @@
 		842CEEAB1D51C98200F2D4B8 /* CCHTTPRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCHTTPRequest.cpp; path = "../../cocos2d-x/tools/simulator/libsimulator/lib/network/CCHTTPRequest.cpp"; sourceTree = "<group>"; };
 		842CEEAC1D51C98200F2D4B8 /* CCHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHTTPRequest.h; path = "../../cocos2d-x/tools/simulator/libsimulator/lib/network/CCHTTPRequest.h"; sourceTree = "<group>"; };
 		842CEEAD1D51C98200F2D4B8 /* CCHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHTTPRequestDelegate.h; path = "../../cocos2d-x/tools/simulator/libsimulator/lib/network/CCHTTPRequestDelegate.h"; sourceTree = "<group>"; };
+		844A74F01F50101E00633B12 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		844A74F21F50106000633B12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		844A74F41F50106D00633B12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		844A74F91F5010C000633B12 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		844A74FA1F5010C000633B12 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		844A74FD1F5010C000633B12 /* NetworkConnectivityBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkConnectivityBinding.h; sourceTree = "<group>"; };
+		844A74FE1F5010C000633B12 /* NetworkConnectivityBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkConnectivityBinding.m; sourceTree = "<group>"; };
+		844A74FF1F5010C000633B12 /* NetworkConnectivityHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkConnectivityHandler.h; sourceTree = "<group>"; };
+		844A75001F5010C000633B12 /* NetworkConnectivityHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkConnectivityHandler.m; sourceTree = "<group>"; };
+		844A75081F50111700633B12 /* HandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandlerBase.h; sourceTree = "<group>"; };
+		844A75091F50111700633B12 /* HandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandlerBase.m; sourceTree = "<group>"; };
+		844A750B1F50111700633B12 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		844A750C1F50111700633B12 /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
+		844A750E1F50111700633B12 /* SingletonContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonContainer.h; sourceTree = "<group>"; };
+		844A750F1F50111700633B12 /* SingletonContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonContainer.m; sourceTree = "<group>"; };
+		844A75111F50111700633B12 /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		844A75141F50111700633B12 /* CustomWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWebView.h; sourceTree = "<group>"; };
+		844A75151F50111700633B12 /* CustomWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWebView.m; sourceTree = "<group>"; };
+		844A75171F50111700633B12 /* WebViewToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewToolBar.h; sourceTree = "<group>"; };
+		844A75181F50111700633B12 /* WebViewToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewToolBar.m; sourceTree = "<group>"; };
+		844A751E1F50111700633B12 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		844A751F1F50111700633B12 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		844A75281F5012C200633B12 /* UIDeviceOrientationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceOrientationManager.h; sourceTree = "<group>"; };
+		844A75291F5012C200633B12 /* UIDeviceOrientationManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIDeviceOrientationManager.mm; sourceTree = "<group>"; };
+		844A752B1F50130800633B12 /* LifeCycleListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LifeCycleListener.mm; sourceTree = "<group>"; };
+		844A752C1F50130800633B12 /* LifeCycleListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeCycleListener.h; sourceTree = "<group>"; };
+		844A752E1F5013BD00633B12 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		844AE5271E14E86B00FAB16E /* lua_cocos2dx_util_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_util_auto.cpp; path = ../Classes/auto/lua_cocos2dx_util_auto.cpp; sourceTree = "<group>"; };
 		844AE5281E14E86B00FAB16E /* lua_cocos2dx_util_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_util_auto.hpp; path = ../Classes/auto/lua_cocos2dx_util_auto.hpp; sourceTree = "<group>"; };
 		844F15231EF648B200C3F8AB /* HTTPDownload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPDownload.cpp; path = ../Classes/network/HTTPDownload.cpp; sourceTree = "<group>"; };
@@ -833,8 +873,6 @@
 		84BA0F381E6C08980065FDBB /* ikcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ikcp.c; path = ../Classes/kcp/ikcp.c; sourceTree = "<group>"; };
 		84D14B261EC741BD001DCA1C /* LuaBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaBridge.h; path = ../Classes/LuaBridge.h; sourceTree = "<group>"; };
 		84D14B291EC7429C001DCA1C /* LuaBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LuaBridge.mm; path = ../Classes/LuaBridge.mm; sourceTree = "<group>"; };
-		84D14B2F1EC74D81001DCA1C /* IOSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSUtil.h; path = ../Classes/IOSUtil.h; sourceTree = "<group>"; };
-		84D14B321EC74E32001DCA1C /* IOSUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSUtil.mm; path = ../Classes/IOSUtil.mm; sourceTree = "<group>"; };
 		84D14B351EC7500A001DCA1C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
 		84DD69A81D4B30D400196C33 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = "../../cocos2d-x/external/curl/prebuilt/ios/libcurl.a"; sourceTree = "<group>"; };
 		84DD69AB1D4B310000196C33 /* lua_cocos2dx_httprequest_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_httprequest_auto.cpp; path = ../Classes/auto/lua_cocos2dx_httprequest_auto.cpp; sourceTree = "<group>"; };
@@ -880,6 +918,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844A74F31F50106000633B12 /* SystemConfiguration.framework in Frameworks */,
 				8478610B1E629E6000A6266A /* GameKit.framework in Frameworks */,
 				841BE8F11DFBED8800F496E4 /* libcrypto.a in Frameworks */,
 				841BE8F21DFBED8800F496E4 /* libcurl.a in Frameworks */,
@@ -906,9 +945,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844A752F1F5013BD00633B12 /* CoreTelephony.framework in Frameworks */,
+				844A74F51F50106D00633B12 /* SystemConfiguration.framework in Frameworks */,
+				844A74F11F50101E00633B12 /* CFNetwork.framework in Frameworks */,
+				84D14B361EC7500A001DCA1C /* AdSupport.framework in Frameworks */,
 				84173B951F3183160050CAEE /* libcrypto.a in Frameworks */,
 				84173B961F3183160050CAEE /* libssl.a in Frameworks */,
-				84D14B361EC7500A001DCA1C /* AdSupport.framework in Frameworks */,
 				8478610D1E629E7700A6266A /* GameKit.framework in Frameworks */,
 				84E6CEC61E168EF800B7607D /* CoreText.framework in Frameworks */,
 				842CEEB11D51D18E00F2D4B8 /* libcurl.a in Frameworks */,
@@ -1013,6 +1055,173 @@
 				842CEEAD1D51C98200F2D4B8 /* CCHTTPRequestDelegate.h */,
 			);
 			name = network;
+			sourceTree = "<group>";
+		};
+		844A74F61F5010C000633B12 /* NetworkConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				844A74F71F5010C000633B12 /* External */,
+				844A74FB1F5010C000633B12 /* Source */,
+			);
+			name = NetworkConnectivity;
+			path = ../Classes/NetworkConnectivity;
+			sourceTree = "<group>";
+		};
+		844A74F71F5010C000633B12 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				844A74F81F5010C000633B12 /* Reachability */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		844A74F81F5010C000633B12 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				844A74F91F5010C000633B12 /* Reachability.h */,
+				844A74FA1F5010C000633B12 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		844A74FB1F5010C000633B12 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				844A74FC1F5010C000633B12 /* Binding */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		844A74FC1F5010C000633B12 /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				844A74FD1F5010C000633B12 /* NetworkConnectivityBinding.h */,
+				844A74FE1F5010C000633B12 /* NetworkConnectivityBinding.m */,
+				844A74FF1F5010C000633B12 /* NetworkConnectivityHandler.h */,
+				844A75001F5010C000633B12 /* NetworkConnectivityHandler.m */,
+			);
+			path = Binding;
+			sourceTree = "<group>";
+		};
+		844A75041F50111700633B12 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				844A75051F50111700633B12 /* Source */,
+			);
+			name = Common;
+			path = ../Classes/Common;
+			sourceTree = "<group>";
+		};
+		844A75051F50111700633B12 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				844A75061F50111700633B12 /* Base */,
+				844A75101F50111700633B12 /* Defines */,
+				844A75121F50111700633B12 /* Extensions */,
+				844A75191F50111700633B12 /* Misc */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		844A75061F50111700633B12 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				844A752B1F50130800633B12 /* LifeCycleListener.mm */,
+				844A752C1F50130800633B12 /* LifeCycleListener.h */,
+				844A75071F50111700633B12 /* Handler */,
+				844A750A1F50111700633B12 /* Singleton */,
+				844A750D1F50111700633B12 /* SingletonContainer */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		844A75071F50111700633B12 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				844A75081F50111700633B12 /* HandlerBase.h */,
+				844A75091F50111700633B12 /* HandlerBase.m */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		844A750A1F50111700633B12 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				844A750B1F50111700633B12 /* Singleton.h */,
+				844A750C1F50111700633B12 /* Singleton.m */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
+		844A750D1F50111700633B12 /* SingletonContainer */ = {
+			isa = PBXGroup;
+			children = (
+				844A750E1F50111700633B12 /* SingletonContainer.h */,
+				844A750F1F50111700633B12 /* SingletonContainer.m */,
+			);
+			path = SingletonContainer;
+			sourceTree = "<group>";
+		};
+		844A75101F50111700633B12 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				844A75111F50111700633B12 /* Defines.h */,
+			);
+			path = Defines;
+			sourceTree = "<group>";
+		};
+		844A75121F50111700633B12 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				844A75131F50111700633B12 /* Webview */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		844A75131F50111700633B12 /* Webview */ = {
+			isa = PBXGroup;
+			children = (
+				844A75141F50111700633B12 /* CustomWebView.h */,
+				844A75151F50111700633B12 /* CustomWebView.m */,
+				844A75161F50111700633B12 /* WebViewToolBar */,
+			);
+			path = Webview;
+			sourceTree = "<group>";
+		};
+		844A75161F50111700633B12 /* WebViewToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				844A75171F50111700633B12 /* WebViewToolBar.h */,
+				844A75181F50111700633B12 /* WebViewToolBar.m */,
+			);
+			path = WebViewToolBar;
+			sourceTree = "<group>";
+		};
+		844A75191F50111700633B12 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				844A75271F5012C200633B12 /* UIDeviceOrientationManager */,
+				844A751D1F50111700633B12 /* Utility */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		844A751D1F50111700633B12 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				844A751E1F50111700633B12 /* Utility.h */,
+				844A751F1F50111700633B12 /* Utility.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		844A75271F5012C200633B12 /* UIDeviceOrientationManager */ = {
+			isa = PBXGroup;
+			children = (
+				844A75281F5012C200633B12 /* UIDeviceOrientationManager.h */,
+				844A75291F5012C200633B12 /* UIDeviceOrientationManager.mm */,
+			);
+			path = UIDeviceOrientationManager;
 			sourceTree = "<group>";
 		};
 		844AE5231E14E63500FAB16E /* util */ = {
@@ -1448,6 +1657,10 @@
 		F293B3CB15EB7BE500256477 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				844A752E1F5013BD00633B12 /* CoreTelephony.framework */,
+				844A74F41F50106D00633B12 /* SystemConfiguration.framework */,
+				844A74F21F50106000633B12 /* SystemConfiguration.framework */,
+				844A74F01F50101E00633B12 /* CFNetwork.framework */,
 				84173B931F3183160050CAEE /* libcrypto.a */,
 				84173B941F3183160050CAEE /* libssl.a */,
 				84D14B351EC7500A001DCA1C /* AdSupport.framework */,
@@ -1493,6 +1706,8 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				844A75041F50111700633B12 /* Common */,
+				844A74F61F5010C000633B12 /* NetworkConnectivity */,
 				844F153E1EF6B1E400C3F8AB /* lfs */,
 				84BA0F2F1E6C08870065FDBB /* kcp */,
 				847B16141E61433D00EDE087 /* crypto */,
@@ -1505,8 +1720,6 @@
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
 				84D14B291EC7429C001DCA1C /* LuaBridge.mm */,
 				84D14B261EC741BD001DCA1C /* LuaBridge.h */,
-				84D14B2F1EC74D81001DCA1C /* IOSUtil.h */,
-				84D14B321EC74E32001DCA1C /* IOSUtil.mm */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1576,7 +1789,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
-						DevelopmentTeam = K442222L9V;
+						DevelopmentTeam = T9AV7L8BJN;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1783,7 +1996,6 @@
 				847B1A571E61BCF800EDE087 /* authenc.cpp in Sources */,
 				847B1A421E61BCF800EDE087 /* dh2.cpp in Sources */,
 				847B1A231E61BCF800EDE087 /* marss.cpp in Sources */,
-				84D14B2B1EC7429C001DCA1C /* LuaBridge.mm in Sources */,
 				847B1A071E61BCF800EDE087 /* rng.cpp in Sources */,
 				847B1A4C1E61BCF800EDE087 /* channels.cpp in Sources */,
 				847B19FF1E61BCF800EDE087 /* sha.cpp in Sources */,
@@ -1899,6 +2111,7 @@
 				847B19791E61A86B00EDE087 /* simple.cpp in Sources */,
 				847B198F1E61A86B00EDE087 /* rabin.cpp in Sources */,
 				847B19DF1E61A86B00EDE087 /* 3way.cpp in Sources */,
+				844A75011F5010C000633B12 /* Reachability.m in Sources */,
 				847B19851E61A86B00EDE087 /* rsa.cpp in Sources */,
 				847B19C41E61A86B00EDE087 /* dh.cpp in Sources */,
 				847B19A31E61A86B00EDE087 /* mars.cpp in Sources */,
@@ -1931,10 +2144,11 @@
 				847B19D11E61A86B00EDE087 /* cast.cpp in Sources */,
 				847B19A91E61A86B00EDE087 /* idea.cpp in Sources */,
 				847B19921E61A86B00EDE087 /* pssr.cpp in Sources */,
+				844A75021F5010C000633B12 /* NetworkConnectivityBinding.m in Sources */,
 				847B197A1E61A86B00EDE087 /* sharkbox.cpp in Sources */,
 				847B19891E61A86B00EDE087 /* rdtables.cpp in Sources */,
 				847B19B51E61A86B00EDE087 /* fipsalgt.cpp in Sources */,
-				84D14B331EC74E32001DCA1C /* IOSUtil.mm in Sources */,
+				844A75221F50111700633B12 /* SingletonContainer.m in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
 				847B19DE1E61A86B00EDE087 /* adler32.cpp in Sources */,
 				847B19D51E61A86B00EDE087 /* bfinit.cpp in Sources */,
@@ -1945,6 +2159,7 @@
 				847B19AA1E61A86B00EDE087 /* ida.cpp in Sources */,
 				84A186DE1D152AD90004995F /* lua_zlib.c in Sources */,
 				847B19CB1E61A86B00EDE087 /* cpu.cpp in Sources */,
+				844A75261F50111700633B12 /* Utility.m in Sources */,
 				847B19DC1E61A86B00EDE087 /* algparam.cpp in Sources */,
 				847B19861E61A86B00EDE087 /* rng.cpp in Sources */,
 				84BA0F3A1E6C08980065FDBB /* lutil.c in Sources */,
@@ -1982,11 +2197,13 @@
 				844F152A1EF648C200C3F8AB /* lua_cocos2dx_httpdownload_auto.cpp in Sources */,
 				847B19931E61A86B00EDE087 /* polynomi.cpp in Sources */,
 				847B19B21E61A86B00EDE087 /* gf2n.cpp in Sources */,
+				844A75241F50111700633B12 /* WebViewToolBar.m in Sources */,
 				847B19DD1E61A86B00EDE087 /* algebra.cpp in Sources */,
 				847B196B1E61A86B00EDE087 /* vmac.cpp in Sources */,
 				847B19971E61A86B00EDE087 /* osrng.cpp in Sources */,
 				847B19D21E61A86B00EDE087 /* camellia.cpp in Sources */,
 				847B19811E61A86B00EDE087 /* seal.cpp in Sources */,
+				844A75031F5010C000633B12 /* NetworkConnectivityHandler.m in Sources */,
 				847B19C31E61A86B00EDE087 /* dh2.cpp in Sources */,
 				847B161A1E61436700EDE087 /* CryptoUtil.cpp in Sources */,
 				847B19B61E61A86B00EDE087 /* fips140.cpp in Sources */,
@@ -2003,12 +2220,15 @@
 				847B19C61E61A86B00EDE087 /* des.cpp in Sources */,
 				847B19D71E61A86B00EDE087 /* base64.cpp in Sources */,
 				844F15251EF648B200C3F8AB /* HTTPDownload.cpp in Sources */,
+				844A75211F50111700633B12 /* Singleton.m in Sources */,
 				847B19B31E61A86B00EDE087 /* gf2_32.cpp in Sources */,
 				847B18511E615B4700EDE087 /* lua_cocos2dx_crypto_auto.cpp in Sources */,
 				847B19AC1E61A86B00EDE087 /* hmac.cpp in Sources */,
 				84D14B2A1EC7429C001DCA1C /* LuaBridge.mm in Sources */,
+				844A752A1F5012C200633B12 /* UIDeviceOrientationManager.mm in Sources */,
 				847B197D1E61A86B00EDE087 /* sha3.cpp in Sources */,
 				847B19AF1E61A86B00EDE087 /* gost.cpp in Sources */,
+				844A752D1F50130800633B12 /* LifeCycleListener.mm in Sources */,
 				847B19691E61A86B00EDE087 /* wake.cpp in Sources */,
 				847B19641E61A86B00EDE087 /* zdeflate.cpp in Sources */,
 				847B19801E61A86B00EDE087 /* seed.cpp in Sources */,
@@ -2020,10 +2240,12 @@
 				847B19CD1E61A86B00EDE087 /* channels.cpp in Sources */,
 				84BA0F3B1E6C08980065FDBB /* lkcp.c in Sources */,
 				847B19B81E61A86B00EDE087 /* files.cpp in Sources */,
+				844A75231F50111700633B12 /* CustomWebView.m in Sources */,
 				847B19701E61A86B00EDE087 /* tiger.cpp in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
 				847B19C01E61A86B00EDE087 /* eax.cpp in Sources */,
 				847B19D81E61A86B00EDE087 /* base32.cpp in Sources */,
+				844A75201F50111700633B12 /* HandlerBase.m in Sources */,
 				847B19D41E61A86B00EDE087 /* blowfish.cpp in Sources */,
 				847B199B1E61A86B00EDE087 /* mqv.cpp in Sources */,
 				847B199A1E61A86B00EDE087 /* nbtheory.cpp in Sources */,
@@ -2235,9 +2457,9 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = K442222L9V;
+				DEVELOPMENT_TEAM = T9AV7L8BJN;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2270,8 +2492,8 @@
 					100000000,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoshitang.game.gametest;
-				PROVISIONING_PROFILE = "08331293-b505-4465-af34-269f430ca9dd";
-				PROVISIONING_PROFILE_SPECIFIER = gametest;
+				PROVISIONING_PROFILE = "f1436f1d-d5b6-44d9-807d-de36bb86bbd1";
+				PROVISIONING_PROFILE_SPECIFIER = "ZWJ(dev)113:*";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";

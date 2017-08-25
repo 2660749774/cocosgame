@@ -115,7 +115,7 @@
         if (!newConnectivityStatus)
         {
             NSLog(@"[NetworkConnectivityHandler] is not reachable");
-            [IOSBridge networkChanged:false];
+            [LuaBridge networkChanged:false];
         }
     }
     else
@@ -123,7 +123,7 @@
         if (newConnectivityStatus)
         {
             NSLog(@"[NetworkConnectivityHandler] is reachable");
-            [IOSBridge networkChanged:true];
+            [LuaBridge networkChanged:true];
         }
     }
 	

@@ -19,7 +19,6 @@ cc.exports.confmgr = require("game.Common.ConfigManager").new("")
 
 -- 申明全局Tips
 cc.exports.Tips = require "game.Common.Tips"
-cc.exports.EventDefine = require "game.Common.EventDefine"
 
 
 

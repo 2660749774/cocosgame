@@ -112,6 +112,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         return false;
     }
 #endif
+    
 
     return true;
 }

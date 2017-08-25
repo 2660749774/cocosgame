@@ -12,5 +12,5 @@
 - (void)willTerminate:(NSNotification*)notification;
 @end
 
-void UnityRegisterLifeCycleListener(id<LifeCycleListener> obj);
-void UnityUnregisterLifeCycleListener(id<LifeCycleListener> obj);
+void CocosRegisterLifeCycleListener(id<LifeCycleListener> obj);
+void CocosUnregisterLifeCycleListener(id<LifeCycleListener> obj);
