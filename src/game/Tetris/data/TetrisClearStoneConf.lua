@@ -17,7 +17,7 @@ function TetrisClearStoneConf:ctor(confId, blockType, maxBlockNum, blockArray)
     self.confId = confId
     self.blockArray = blockArray
     self.blockType = blockType
-    self.maxBlockNum = maxBlockNum * 2
+    self.maxBlockNum = maxBlockNum * 3
     self.targetName = "寻找水源"
     self.starArray = {maxBlockNum, math.floor(maxBlockNum * 0.8), math.floor(maxBlockNum * 0.5)}
 

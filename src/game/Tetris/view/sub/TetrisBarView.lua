@@ -274,5 +274,12 @@ function TetrisBarView:buyDiam()
     end)
 end
 
+--------------------------------
+-- 界面退出时候调用
+-- @function [parent=#TetrisBarView] buyDiam
+function TetrisBarView:onExit()
+    emgr:removeEventListener(EventDefine.PLAYER_UPDATE, self.playerDataListener)
+end
+
 return TetrisBarView
 

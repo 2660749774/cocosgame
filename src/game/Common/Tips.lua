@@ -8,7 +8,7 @@
 local Tips = {}
 
 Tips.DEFAULT_COLOR = "#FFA500"
-Tips.ERROR_COLOR = "#ED5B3F"
+Tips.ERROR_COLOR = "#FFA500"
 
 --------------------------------
 -- 创建方法

@@ -238,6 +238,7 @@ function ConnectManger:onAppStateChange(event)
         if self:isConnected() then
             self:close()
             self:open(self.host, self.port)
+            app:changeScene("Login")
         end
     else
         local networkName = nativeBridge.getNetworkName()
@@ -246,6 +247,7 @@ function ConnectManger:onAppStateChange(event)
             if self:isConnected() then
                 self:close()
                 self:open(self.host, self.port)
+                app:changeScene("Login")
             end
         end
     end

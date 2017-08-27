@@ -190,7 +190,7 @@ function TetrisTimeModePanel:updateNextBlock(nextBlock)
         local index = RandomUtil:nextInt(#nextBlock.blocks)
 
         nextBlock.blocks[index].extraAttributes = true
-        if RandomUtil:nextBoolean() then
+        if RandomUtil:nextDouble() < 0.7 then
             nextBlock.blocks[index].time = 10
             -- label:setString("时")
             -- label:setPosition(13.5, 13.5)

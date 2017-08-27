@@ -51,6 +51,7 @@
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
 		84107B231D156A2E00F65181 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 84107B211D156A2E00F65181 /* lpack.c */; };
 		84107B261D156A7500F65181 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 84107B211D156A2E00F65181 /* lpack.c */; };
+		8414F3361F52745B00686680 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8414F3351F52745B00686680 /* Images.xcassets */; };
 		84173B951F3183160050CAEE /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84173B931F3183160050CAEE /* libcrypto.a */; };
 		84173B961F3183160050CAEE /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84173B941F3183160050CAEE /* libssl.a */; };
 		841BE8F11DFBED8800F496E4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 841BE8EE1DFBED8800F496E4 /* libcrypto.a */; };
@@ -369,7 +370,6 @@
 		9FFC07361A4A764100AED399 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFC07341A4A764100AED399 /* MainMenu.xib */; };
 		C03781B918BF655400FE4F13 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C03781B718BF655400FE4F13 /* res */; };
 		C03781BB18BF655400FE4F13 /* src in Resources */ = {isa = PBXBuildFile; fileRef = C03781B818BF655400FE4F13 /* src */; };
-		C05D1C121923449100B808A4 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C05D1C111923449100B808A4 /* config.json */; };
 		C07828F818B4D72E00BD2287 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C07828F418B4D72E00BD2287 /* main.m */; };
 		C07828FA18B4D72E00BD2287 /* SimulatorApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = C07828F718B4D72E00BD2287 /* SimulatorApp.mm */; };
 		D6B061351803AC000077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B061341803AC000077942B /* CoreMotion.framework */; };
@@ -530,6 +530,7 @@
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		84107B211D156A2E00F65181 /* lpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lpack.c; path = ../Classes/lua_extensions/lpack/lpack.c; sourceTree = "<group>"; };
 		84107B221D156A2E00F65181 /* lpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lpack.h; path = ../Classes/lua_extensions/lpack/lpack.h; sourceTree = "<group>"; };
+		8414F3351F52745B00686680 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84173B931F3183160050CAEE /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../cocos2d-x/external/openssl/prebuilt/ios/libcrypto.a"; sourceTree = "<group>"; };
 		84173B941F3183160050CAEE /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../cocos2d-x/external/openssl/prebuilt/ios/libssl.a"; sourceTree = "<group>"; };
 		841BE8EE1DFBED8800F496E4 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../cocos2d-x/external/curl/prebuilt/mac/libcrypto.a"; sourceTree = "<group>"; };
@@ -892,7 +893,6 @@
 		C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_lua_bindings.xcodeproj; path = "../../cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac/cocos2d_lua_bindings.xcodeproj"; sourceTree = "<group>"; };
 		C03781B718BF655400FE4F13 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../../../res; sourceTree = "<group>"; };
 		C03781B818BF655400FE4F13 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../src; sourceTree = "<group>"; };
-		C05D1C111923449100B808A4 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../../../config.json; sourceTree = "<group>"; };
 		C07828F418B4D72E00BD2287 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C07828F618B4D72E00BD2287 /* SimulatorApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorApp.h; sourceTree = "<group>"; };
 		C07828F718B4D72E00BD2287 /* SimulatorApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SimulatorApp.mm; sourceTree = "<group>"; };
@@ -1633,6 +1633,7 @@
 		F293B3BD15EB7BE500256477 = {
 			isa = PBXGroup;
 			children = (
+				8414F3351F52745B00686680 /* Images.xcassets */,
 				9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */,
 				C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */,
 				15A8A4031834BDA200142BE0 /* cocos2d_libs.xcodeproj */,
@@ -1727,7 +1728,6 @@
 		F293BC4615EB859D00256477 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C05D1C111923449100B808A4 /* config.json */,
 				C03781B718BF655400FE4F13 /* res */,
 				C03781B818BF655400FE4F13 /* src */,
 			);
@@ -1789,7 +1789,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
-						DevelopmentTeam = T9AV7L8BJN;
+						DevelopmentTeam = K442222L9V;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1910,6 +1910,7 @@
 				5023811917EBBCAC00990C9B /* Default-568h@2x.png in Resources */,
 				5091733917ECE17A00D62437 /* Icon-58.png in Resources */,
 				5023811F17EBBCAC00990C9B /* Icon-152.png in Resources */,
+				8414F3361F52745B00686680 /* Images.xcassets in Resources */,
 				5023812017EBBCAC00990C9B /* Icon-57.png in Resources */,
 				521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */,
 				C03781B918BF655400FE4F13 /* res in Resources */,
@@ -1921,7 +1922,6 @@
 				C03781BB18BF655400FE4F13 /* src in Resources */,
 				5091733817ECE17A00D62437 /* Icon-50.png in Resources */,
 				5023812117EBBCAC00990C9B /* Icon-72.png in Resources */,
-				C05D1C121923449100B808A4 /* config.json in Resources */,
 				521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2456,10 +2456,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = T9AV7L8BJN;
+				DEVELOPMENT_TEAM = K442222L9V;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2492,8 +2493,8 @@
 					100000000,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoshitang.game.gametest;
-				PROVISIONING_PROFILE = "f1436f1d-d5b6-44d9-807d-de36bb86bbd1";
-				PROVISIONING_PROFILE_SPECIFIER = "ZWJ(dev)113:*";
+				PROVISIONING_PROFILE = "08331293-b505-4465-af34-269f430ca9dd";
+				PROVISIONING_PROFILE_SPECIFIER = gametest;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -2506,6 +2507,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Game Reign Network Technology Co.LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Game Reign Network Technology Co.LTD";
 				COMPRESS_PNG_FILES = NO;

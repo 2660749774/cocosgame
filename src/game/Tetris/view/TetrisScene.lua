@@ -66,8 +66,8 @@ function TetrisScene:createPowerView()
 
     local progress = utils.gameArchive:queryData("power.progress")
     if progress then
-        self.currPowerId = 2--progress.powerId
-        self.currArmyId = 41--progress.armyId
+        self.currPowerId = progress.powerId
+        self.currArmyId = progress.armyId
     else
         self.currPowerId = 1
         self.currArmyId = 1
@@ -589,7 +589,8 @@ end
 function TetrisScene:onExit()
     -- 卸载资源
     -- 移除事件监听
-    emgr:removeEventListener(EventDefine.EventDefine, self.eventListener)
+    emgr:removeEventListener(EventDefine.POWER_PROGRESS_UPDATE, self.powerProgressEventListener)
+    emgr:removeEventListener(EventDefine.VIEW_CHANGE, self.viewChangeListener)
 end
 
 return TetrisScene
