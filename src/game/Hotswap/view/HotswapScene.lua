@@ -69,7 +69,7 @@ end
 -- 弹出提示更新的对话框
 -- @function [parent=#HotswapScene] showUpdatePopup
 function HotswapScene:showUpdatePopup(tips, fileSize, callback)
-    local msg = string.format("检查到有新的版本，点击更新。\n本次更新大小：%sM", fileSize)
+    local msg = string.format("检查到有新的版本，点击更新。\n本次更新大小：%s", fileSize)
     self:pushPanel("Hotswap.view.HotswapTips", { msg, callback })
 end
 
@@ -87,6 +87,13 @@ end
 function HotswapScene:updateProgress(progress)
     self.progress:setVisible(true)
     self.progress:setPercent(math.ceil(progress * 100))
+end
+
+--------------------------------
+-- 隐藏进度条
+-- @function [parent=#HotswapScene] hidenProgress
+function HotswapScene:hidenProgress()
+    self.progress:setVisible(false)
 end
 
 --------------------------------

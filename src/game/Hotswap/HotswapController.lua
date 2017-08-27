@@ -82,9 +82,6 @@ function HotswapController:over()
     for _, path in ipairs(searchPaths) do
         log:tag(self.TAG, "searchPath:%s", path)
     end
-    if self.hasUpdate then
-        app:reloadGame()
-    end
     app:enterGame(self.hasUpdate)
 end
 
@@ -263,7 +260,7 @@ end
 function HotswapController:downloadResUpdateCallback(event)
     if event.state == cc.HTTP.StateProgress then
         -- 更新进度
-        self:updateTips(string.format("正在下载更新%sM/%sM", self:formatSize(event.dltotal), self:formatSize(event.total)))
+        self:updateTips(string.format("正在下载更新%s/%s", self:formatSize(event.dltotal), self:formatSize(event.total)))
         self:updateProgress(event.dltotal / event.total)
         log:tag(self.TAG, "dowload resUpdate progress total:%s dltotal:%s", event.total, event.dltotal)
     elseif event.state ~= cc.HTTP.StateCompleted then
@@ -296,11 +293,12 @@ function HotswapController:downloadResUpdateCallback(event)
         return
     else
         log:info("doResUpdate end")
-        self:updateTips("下载更新完成")
+        self:updateTips("下载更新完成，正在校验文件...")
         self:updateProgress(1)
 
+        scheduler.performWithDelayGlobal(handler(self, self.unzipResUpdate), 0)
         -- 下载完成，解压文件
-        self:unzipResUpdate()
+        -- self:unzipResUpdate()
     end
 end
 
@@ -320,8 +318,7 @@ function HotswapController:unzipResUpdate()
         self:doResUpdate(self.updateInfo)
         return
     end
-
-    self:updateTips("正在校验文件...")
+    
     -- 校验md5
     local md5 = string.lower(self.cryptoUtil:md5File(file))
     log:tag(self.TAG, "unzip file md5:%s", md5)
@@ -368,9 +365,11 @@ function HotswapController:unZipCallback(event)
         return
     else
         log:tag(self.TAG, "unzipResUpdate end")
-        self:updateTips("更新完成")
+        self:updateTips("正在整理文件...")
+        self:hidenProgress()
+
         -- 解压成功
-        self:doUnZipOver()
+        scheduler.performWithDelayGlobal(handler(self, self.doUnZipOver), 0)
     end
 end
 
@@ -560,8 +559,10 @@ function HotswapController:listFiles(rootPath, files)
             local attr = lfs.attributes(path)  
             if attr ~= nil then
                 if attr.mode == 'directory' then  
+                    -- log:tag(self.TAG, "list file path:%s, mode:%s", path, attr.mode)
                     self:listFiles(path, files)  
                 else  
+                    -- log:tag(self.TAG, "list file path:%s, filename:%s", path, entry)
                     table.insert(files, {path=path, filename=entry})  
                 end  
             end
@@ -589,11 +590,25 @@ function HotswapController:updateProgress(progress)
 end
 
 --------------------------------
+-- 隐藏进度
+-- @function [parent=#HotswapController] updateProgress
+function HotswapController:hidenProgress()
+    if self.view and self.view.hidenProgress then
+        self.view:hidenProgress()
+    end
+end
+
+--------------------------------
 -- 格式化大小
 -- @function [parent=#HotswapController] updateTips
 function HotswapController:formatSize(fileSize)
     local mb = fileSize / (1024 * 1024)
-    return string.format("%0.2f", mb)
+    if mb < 1 then
+        kb = fileSize / 1024
+        return string.format("%0.2fK", kb)
+    else
+        return string.format("%0.2fM", mb)
+    end
 end
 
 
