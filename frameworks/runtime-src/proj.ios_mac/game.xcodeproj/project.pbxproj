@@ -872,6 +872,7 @@
 		84BA0F361E6C08980065FDBB /* lkcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lkcp.c; path = ../Classes/kcp/lkcp.c; sourceTree = "<group>"; };
 		84BA0F371E6C08980065FDBB /* ikcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ikcp.h; path = ../Classes/kcp/ikcp.h; sourceTree = "<group>"; };
 		84BA0F381E6C08980065FDBB /* ikcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ikcp.c; path = ../Classes/kcp/ikcp.c; sourceTree = "<group>"; };
+		84C20E071F528B8B006E8EBC /* game-mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "game-mobile.entitlements"; path = "game-mobile/game-mobile.entitlements"; sourceTree = "<group>"; };
 		84D14B261EC741BD001DCA1C /* LuaBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaBridge.h; path = ../Classes/LuaBridge.h; sourceTree = "<group>"; };
 		84D14B291EC7429C001DCA1C /* LuaBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LuaBridge.mm; path = ../Classes/LuaBridge.mm; sourceTree = "<group>"; };
 		84D14B351EC7500A001DCA1C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
@@ -1633,6 +1634,7 @@
 		F293B3BD15EB7BE500256477 = {
 			isa = PBXGroup;
 			children = (
+				84C20E071F528B8B006E8EBC /* game-mobile.entitlements */,
 				8414F3351F52745B00686680 /* Images.xcassets */,
 				9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */,
 				C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */,
@@ -1791,6 +1793,11 @@
 					F293B3C715EB7BE500256477 = {
 						DevelopmentTeam = K442222L9V;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

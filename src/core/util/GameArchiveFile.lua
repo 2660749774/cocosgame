@@ -68,7 +68,7 @@ end
 -- @function [parent=#GameArchiveFile] loseLife
 function GameArchiveFile:loseLife(num)
     self.lifes = self.lifes - num
-    emgr:dispatchEvent(EventDefine.PLAYER_LIFES_UPDATE, self.lifes)
+    emgr:dispatchEvent(EventDefine.PLAYER_UPDATE, { lifes = self.lifes })
     self:saveData()
 
     self:syncLifeData()

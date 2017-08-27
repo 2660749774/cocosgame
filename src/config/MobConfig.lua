@@ -5,7 +5,7 @@ config.game = "tetris"
 
 -- 动更服务器地址
 config.checkUpdate = false
-config.hotswapUrl = "http://192.168.1.4/checkUpdate.action"
+config.hotswapUrl = "http://106.15.225.156/checkUpdate.action"
 
 -- 登录服务器地址
 config.loginHost = "106.15.225.156"

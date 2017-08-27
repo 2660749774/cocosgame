@@ -18,6 +18,7 @@ end
 -- 添加事件监听器
 -- @function [parent=#EventManager] addEventListener
 function EventManager:addEventListener(eventName, listener)
+    -- log:info("[emgr]add event listener name:%s, listeners:%s", eventName, listener)
     eventName = string.upper(tostring(eventName))
     if self.listeners[eventName] == nil then
         self.listeners[eventName] = {}
@@ -31,6 +32,7 @@ end
 -- @function [parent=#EventManager] dispatchEvent
 function EventManager:dispatchEvent(eventName, data)
     eventName = string.upper(tostring(eventName))
+    -- log:info("[emgr]dispath event name:%s, listeners:%s", eventName, self.listeners[eventName])
     if self.listeners[eventName] == nil then
         return
     end
@@ -44,6 +46,7 @@ end
 -- 移除事件监听
 -- @function [parent=#EventManager] removeEventListener
 function EventManager:removeEventListener(eventName, listener)
+    -- log:info("[emgr]remove event listener name:%s, listeners:%s", eventName, listener)
     eventName = string.upper(tostring(eventName))
     if self.listeners[eventName] == nil then
         return

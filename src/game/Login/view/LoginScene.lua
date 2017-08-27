@@ -45,6 +45,9 @@ end
 -- 连接服务器
 -- @function [parent=#LoginScene] connectServer
 function LoginScene:connectServer()
+    -- 先进行一次http请求
+    net.WebUtil.sendRequest("https://www.baidu.com")
+
     log:info("login server host:%s, port:%s", self.host, self.port)
     self:updateTips("正在加载...")
 

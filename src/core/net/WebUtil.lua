@@ -203,7 +203,9 @@ function WebUtil.wrapperCallback(callback)
         end
 
         -- 回调玩家callback
-        callback(data)
+        if callback then
+            callback(data)
+        end
     end
     return _wrapperFunc
 end
