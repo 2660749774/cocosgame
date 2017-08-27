@@ -498,9 +498,11 @@
         <Project Name="TetrisPvpResult.csd" Type="Scene" />
         <Project Name="TetrisPvpStartIntro.csd" Type="Scene" />
         <Project Name="TetrisRank.csd" Type="Scene" />
+        <Project Name="TetrisRankItem.csd" Type="Scene" />
         <Project Name="TetrisScene_Net.csd" Type="Scene" />
         <Project Name="TetrisSearchAnimation.csd" Type="Scene" />
-        <Project Name="TetrisTipComm.csd" Type="Scene" />
+        <Project Name="TetrisShop.csd" Type="Scene" />
+        <Project Name="TetrisShopItem.csd" Type="Scene" />
         <Project Name="TetrisSpar.csd" Type="Scene" />
         <Project Name="TetrisStart.csd" Type="Scene" />
         <Project Name="TetrisStartAnimation.csd" Type="Scene" />
@@ -510,10 +512,9 @@
         <Project Name="TetrisTimeMode.csd" Type="Scene" />
         <Project Name="TetrisTipBuyEnergy.csd" Type="Scene" />
         <Project Name="TetrisTipBuyTime.csd" Type="Scene" />
-        <Project Name="TetrisShop.csd" Type="Scene" />
+        <Project Name="TetrisTipComm.csd" Type="Scene" />
         <Project Name="TetrisTipUpdate.csd" Type="Scene" />
-        <Project Name="TetrisRankItem.csd" Type="Scene" />
-        <Project Name="TetrisShopItem.csd" Type="Scene" />
+        <Project Name="TetrisHotswap.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

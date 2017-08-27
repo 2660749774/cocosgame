@@ -25,44 +25,76 @@ end
 -- 启动游戏
 -- @function [parent=#Game] startup
 function Game:startup()
+    -- 无需重新加载的模块
+    self.noReloadModule = {}
+
+    -- app暴露给全局
+    cc.exports.app = self
+
+    -- 记录无需重新加载的模块
+    self:recordNoReloadModule()
+
     -- 游戏core初始化
     require "core.init"
 
     -- 游戏game初始化
     require "game.init"
-    
-    -- app暴露给全局
-    cc.exports.app = self
+
+    if confmgr.config.checkUpdate then
+        -- 进行动更
+        self:changeScene("Hotswap")
+    else
+        -- 切换到入口函数
+        self:enterGame(false)
+    end
+end
+
+--------------------------------
+-- 重新载入游戏
+-- @function [parent=#Game] enterGame
+function Game:enterGame(hasUpdated)
+    if hasUpdated then
+        -- 清理缓存资源
+        cc.FileUtils:getInstance():purgeCachedEntries()
+
+        -- 重在Lua模块
+        self:reloadLuaCode()
+
+        -- 游戏core初始化
+        require "core.init"
+
+        -- 游戏game初始化
+        require "game.init"
+    end
 
     -- 初始化native桥
     nativeBridge.init()
 
-    if confmgr.config.checkUpdate then
-        -- 进行动更
-        local hotswap = require("game.hotswap.HotSwapController").new(nil, confmgr)
-        hotswap:start()
-    else
-        -- 切换到入口函数
-        self:changeScene("Login")
-    end
+    -- 进入游戏
+    self:changeScene("Login")
+end
 
-    local random1 = require("core.util.Random").new(11111)
-    local random2 = require("core.util.Random").new(11111)
-    
-    local sum = {}
-    for i=1, 10000000 do
-        local n = random1:random(2)
-        if sum[n] then
-            sum[n] = sum[n] + 1
-        else
-            sum[n] = 1
+--------------------------------
+-- 重新载入Lua
+-- @function [parent=#Game] reloadLuaCode
+function Game:reloadLuaCode()
+    for moduleName, _ in pairs(package.loaded) do
+        if self.noReloadModule[moduleName] ~= true then
+            package.loaded[moduleName] = nil
         end
     end
+end
 
-    for key, value in pairs(sum) do
-        log:info("%s prob %s", key, value / 10000000)
+--------------------------------
+-- 记录无需载入的名单
+-- @function [parent=#Game] recordNoReloadModule
+function Game:recordNoReloadModule()
+    for moduleName, _ in pairs(package.loaded) do
+        print("moduleName:" .. moduleName)
+        if moduleName ~= "config" then
+            self.noReloadModule[moduleName] = true
+        end
     end
-
 end
 
 return Game

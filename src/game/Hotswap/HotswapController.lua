@@ -26,7 +26,6 @@ function HotswapController:ctor(view, confmgr)
     self.localVersion = {}
 
     
-
     -- 当前状态
     self.state = 0
 
@@ -78,18 +77,24 @@ end
 -- @function [parent=#HotswapController] over
 function HotswapController:over()
     log:tag(self.TAG, "checkUpdate end")
-
+    
     local searchPaths = self.fileUtils:getSearchPaths()
     for _, path in ipairs(searchPaths) do
         log:tag(self.TAG, "searchPath:%s", path)
     end
-    app:changeScene("Login")
+    if self.hasUpdate then
+        app:reloadGame()
+    end
+    app:enterGame(self.hasUpdate)
 end
 
 --------------------------------
 -- 检查版本号
 -- @function [parent=#HotswapController] checkUpdate
 function HotswapController:checkUpdate()
+    -- 更新提示消息
+    self:updateTips("正在检查版本更新...")
+
     -- 获取本地版本号
     self:getLocalVersion()
 
@@ -185,10 +190,10 @@ function HotswapController:checkUpdateCallback(data)
             self:doResUpdate(response.data)
         elseif response.data.state == 2 then
             -- 推荐强更
-            self:doClientUpdate(response.data)
+            self:doClientUpdate(response.data, false)
         elseif response.data.state == 3 then
             -- 强制更新
-            self:doClientUpdate(response.data)
+            self:doClientUpdate(response.data, true)
         else
             -- 不正常的state
             self:over()
@@ -219,7 +224,18 @@ function HotswapController:doResUpdate(data)
     log:tag(self.TAG, "doResUpdate start")
     self.updateInfo = data
     self.retryCount = 0
-    self:showUpdatePopup(data.tips, data.fileSize, handler(self, self.downloadResUpdate))
+    self:showUpdatePopup(data.tips, self:formatSize(data.fileSize), handler(self, self.downloadResUpdate))
+end
+
+--------------------------------
+-- 进行客户端更新
+-- @function [parent=#HotswapController] doClientUpdate
+function HotswapController:doClientUpdate(data, forceUpdate)
+    self:showClientUpdatePopup(function()
+        log:tag(self.TAG, "doClientUpdate callback")
+        cc.Application:getInstance():openURL(data.forceUrl)
+        self:updateTips("请更新客户端后，重新打开应用")
+    end)
 end
 
 --------------------------------
@@ -236,6 +252,8 @@ function HotswapController:downloadResUpdate()
     log:tag(self.TAG, "download resUpdate url:%s", url)
     log:tag(self.TAG, "download resUpdate cdnIndex:%s", self.cdnIndex)
 
+    self:updateTips("正在下载更新")
+
     WebUtil.downloadFile(url, self:joinPath(self:getDownloadDir(), self.updateInfo.version), handler(self, self.downloadResUpdateCallback))
 end
 
@@ -245,6 +263,8 @@ end
 function HotswapController:downloadResUpdateCallback(event)
     if event.state == cc.HTTP.StateProgress then
         -- 更新进度
+        self:updateTips(string.format("正在下载更新%sM/%sM", self:formatSize(event.dltotal), self:formatSize(event.total)))
+        self:updateProgress(event.dltotal / event.total)
         log:tag(self.TAG, "dowload resUpdate progress total:%s dltotal:%s", event.total, event.dltotal)
     elseif event.state ~= cc.HTTP.StateCompleted then
         -- 下载出错
@@ -276,6 +296,8 @@ function HotswapController:downloadResUpdateCallback(event)
         return
     else
         log:info("doResUpdate end")
+        self:updateTips("下载更新完成")
+        self:updateProgress(1)
 
         -- 下载完成，解压文件
         self:unzipResUpdate()
@@ -299,11 +321,12 @@ function HotswapController:unzipResUpdate()
         return
     end
 
+    self:updateTips("正在校验文件...")
     -- 校验md5
     local md5 = string.lower(self.cryptoUtil:md5File(file))
     log:tag(self.TAG, "unzip file md5:%s", md5)
 
-    if md5 ~= self.updateInfo.md5 then
+    if md5 ~= string.lower(self.updateInfo.md5) then
         log:tag(self.TAG, "download file md5 error, excepted:%s, actual:%s", self.updateInfo.md5, md5)
         -- 删除错误文件
         self.fileUtils:removeFile(file)
@@ -311,6 +334,8 @@ function HotswapController:unzipResUpdate()
         self:doResUpdate(self.updateInfo)
         return
     end
+
+    self:updateTips("正在解压更新")
 
     -- 解压文件
     self:cleanDir(self.tempDir)
@@ -325,10 +350,12 @@ end
 function HotswapController:unZipCallback(event)
     if event.name == "progress" then
         -- 更新进度
-        log:tag(self.TAG, "unzip file progress total:%s dltotal:%s", event.total, event.dltotal)
+        log:tag(self.TAG, "unzip file progress total:%s uctotal:%s", event.total, event.uctotal)
+        self:updateTips(string.format("正在解压更新:%s/%s", event.uctotal, event.total))
+        self:updateProgress(event.uctotal / event.total)
     elseif event.name ~= "completed" then
         -- 解压失败
-        log:tag(self.TAG, "unzip file failed, errorCode:%s, errorMessage:%s", data.errorCode, data.errorMessage)
+        log:tag(self.TAG, "unzip file failed, errorCode:%s, errorMessage:%s", event.errorCode, event.errorMessage)
         log:tag(self.TAG, "unzipResUpdate end")
 
         -- 清空临时目录
@@ -341,6 +368,7 @@ function HotswapController:unZipCallback(event)
         return
     else
         log:tag(self.TAG, "unzipResUpdate end")
+        self:updateTips("更新完成")
         -- 解压成功
         self:doUnZipOver()
     end
@@ -378,7 +406,10 @@ function HotswapController:doUnZipOver()
     log:tag(self.TAG, "moving resUpdate end")
 
     -- 添加搜索路径
-    self.fileUtils:addSearchPath(self.updateDirName, true)
+    self.fileUtils:addSearchPath(self.updateDir, true)
+
+    -- 标记经历过更新
+    self.hasUpdate = true
     
     -- 进行清理
     self:cleanup()
@@ -432,6 +463,17 @@ function HotswapController:showUpdatePopup(tips, fileSize, callback)
 end
 
 --------------------------------
+-- 弹出动更提示框
+-- @function [parent=#HotswapController] showClientUpdatePopup
+function HotswapController:showClientUpdatePopup(callback)
+    if self.view then
+        self.view:showClientUpdatePopup(callback)
+    else
+        callback()
+    end
+end
+
+--------------------------------
 -- 获取本地版本号
 -- @function [parent=#HotswapController] getLocalVersion
 function HotswapController:getLocalVersion()
@@ -445,7 +487,9 @@ function HotswapController:getLocalVersion()
     log:tag(self.TAG, "底包类型:%s", originVersion.packType)
 
     -- 获取资源版本号
+    log:tag(self.TAG, "获取资源版本号Key:%s", HotswapData.version.resKey)
     local resVersion = UserDefaultUtil.getStringForKey(HotswapData.version.resKey, "")
+    log:tag(self.TAG, "资源版本号:%s", resVersion)
     if resVersion == "" then
         resVersion = originVersion.resVersion
         UserDefaultUtil.setStringForKey(HotswapData.version.resKey, resVersion)
@@ -524,6 +568,32 @@ function HotswapController:listFiles(rootPath, files)
         end  
     end  
     return files
+end
+
+--------------------------------
+-- 更新提示消息
+-- @function [parent=#HotswapController] updateTips
+function HotswapController:updateTips(tips)
+    if self.view and self.view.updateTips then
+        self.view:updateTips(tips)
+    end
+end
+
+--------------------------------
+-- 更新进度
+-- @function [parent=#HotswapController] updateProgress
+function HotswapController:updateProgress(progress)
+    if self.view and self.view.updateProgress then
+        self.view:updateProgress(progress)
+    end
+end
+
+--------------------------------
+-- 格式化大小
+-- @function [parent=#HotswapController] updateTips
+function HotswapController:formatSize(fileSize)
+    local mb = fileSize / (1024 * 1024)
+    return string.format("%0.2f", mb)
 end
 
 
