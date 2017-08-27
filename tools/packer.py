@@ -1,5 +1,5 @@
 #-*-encoding:utf8-*-
-import mysqlutil
+# import mysqlutil
 import os
 import hashlib
 import uuid
