@@ -41,6 +41,7 @@ THE SOFTWARE.
 #include "unzip.h"
 #endif
 #include <sys/stat.h>
+#include "CryptoUtil.h"
 
 NS_CC_BEGIN
 
@@ -816,6 +817,12 @@ std::string FileUtils::fullPathForFilename(const std::string &filename) const
     {
         return filename;
     }
+
+    #ifdef MD5_FILE
+    CCLOG("src filename:", filename.c_str())
+    filename = CryptoUtil::md5(filename)
+    CCLOG("md5 filename:", filename.c_str())
+    #endif
 
     // Already Cached ?
     auto cacheIter = _fullPathCache.find(filename);
