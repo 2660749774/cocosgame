@@ -2,6 +2,7 @@
 #include "network/HTTPDownload.h"
 #include "scripting/lua-bindings/manual/tolua_fix.h"
 #include "scripting/lua-bindings/manual/LuaBasicConversions.h"
+#include "scripting/lua-bindings/manual/CCLuaValue.h"
 
 int lua_cocos2dx_httpdownload_HTTPDownload_getErrorCode(lua_State* tolua_S)
 {

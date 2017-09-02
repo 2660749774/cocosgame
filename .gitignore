@@ -37,3 +37,9 @@ cocostudio-ui/res
 archivedata
 *.log
 update
+obj
+assets
+apk
+build
+*.iml
+.settings
