@@ -24,6 +24,7 @@ class packer:
         self.game_dir = os.path.join(self.workcopy_dir, self.game)
         self.out_dir = os.path.join(self.output_dir, str(uuid.uuid1()))
         self.fileMap = {}
+        self.out_log = open(os.path.join(self.output_dir, "pack.log"), 'wb')
 
         self.log("game:%s", self.game)
         self.log("git url:%s", self.git_url)
@@ -58,6 +59,7 @@ class packer:
         self.clenup()
 
         self.log("pack success")
+        self.out_log.close()
     
     '''
     环境检查
@@ -87,7 +89,10 @@ class packer:
             for filename in filenames:
                 filePath = os.path.join(parent, filename)
                 relativePath = filePath[len(rootPath)+1:]
-                filenameMd5 = self.md5(relativePath)
+                if filename == "main.lua":
+                    filenameMd5 = self.md5("src/main.lua")
+                else:
+                    filenameMd5 = self.md5(relativePath)
                 fileMd5 = self.md5file(filePath)
                 fileSize = os.path.getsize(filePath)
 
@@ -170,7 +175,7 @@ class packer:
     '''
     def md5(self, content):
         m = hashlib.md5()
-        m.update(content)
+        m.update(content.lower())
 
         return m.hexdigest()
     
@@ -203,6 +208,8 @@ class packer:
             return
         
         print(fmt%args)
+        self.out_log.write(fmt%args + "\n")
+        self.out_log.flush()
 
 if __name__ == '__main__':
     config = {
