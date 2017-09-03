@@ -177,7 +177,17 @@ class packer:
         m = hashlib.md5()
         m.update(content.lower())
 
-        return m.hexdigest()
+        newFileName = m.hexdigest()
+
+        if content.endswith(".wav"):
+            newFileName = newFileName + ".wav"
+        elif content.endswith(".mp3"):
+            newFileName = newFileName + ".mp3"
+        elif content.endswith(".ogg"): 
+            newFileName = newFileName + ".ogg"
+        
+
+        return newFileName        
     
     '''
     计算文件md5
