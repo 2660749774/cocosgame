@@ -1,13 +1,27 @@
 
 cc.FileUtils:getInstance():setPopupNotify(false)
 
+-- 平台常量定义
+local PLATFORM_OS_WINDOWS = 0
+local PLATFORM_OS_LINUX   = 1
+local PLATFORM_OS_MAC     = 2
+local PLATFORM_OS_ANDROID = 3
+local PLATFORM_OS_IPHONE  = 4
+local PLATFORM_OS_IPAD    = 5
+local PLATFORM_OS_BLACKBERRY = 6
+local PLATFORM_OS_NACL    = 7
+local PLATFORM_OS_EMSCRIPTEN = 8
+local PLATFORM_OS_TIZEN   = 9
+local PLATFORM_OS_WINRT   = 10
+local PLATFORM_OS_WP8     = 11
+
+-- 根据平台添加搜索路径
 local platform = cc.Application:getInstance():getTargetPlatform()
-print("platform is" .. platform)
-if platform == cc.PLATFORM_OS_ANDROID then
+if platform == PLATFORM_OS_ANDROID then
     print("add search path assets")
     cc.FileUtils:getInstance():addSearchPath("assets/")
-elseif platform == cc.PLATFORM_OS_IPHONE 
-    or platform == cc.PLATFORM_OS_IPAD then
+elseif platform == PLATFORM_OS_IPHONE 
+    or platform == PLATFORM_OS_IPAD then
     print("add search path Raw")
     cc.FileUtils:getInstance():addSearchPath("Raw/")
 else
