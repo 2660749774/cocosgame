@@ -1,10 +1,18 @@
 
 cc.FileUtils:getInstance():setPopupNotify(false)
-cc.FileUtils:getInstance():addSearchPath("src/")
-cc.FileUtils:getInstance():addSearchPath("res/")
-cc.FileUtils:getInstance():addSearchPath("../../../res/")
 
-
+local platform = cc.Application:getInstance():getTargetPlatform()
+if platform == cc.PLATFORM_OS_ANDROID then
+    cc.FileUtils:getInstance():addSearchPath("assets/")
+elseif platform == cc.PLATFORM_OS_IPHONE
+    or platform == cc.PLATFORM_OS_IPAD then
+    cc.FileUtils:getInstance():addSearchPath("Raw/")
+else
+    -- mac or win
+    cc.FileUtils:getInstance():addSearchPath("src/")
+    cc.FileUtils:getInstance():addSearchPath("res/")
+    cc.FileUtils:getInstance():addSearchPath("../../../res/")
+end
 
 require "config"
 require "cocos.init"

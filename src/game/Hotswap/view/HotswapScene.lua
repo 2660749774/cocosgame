@@ -31,7 +31,7 @@ function HotswapScene:onCreate()
     self:addObject(layout["root"], "scene")
 
     -- 动更controller
-    self.hotswap = require("game.hotswap.HotSwapController").new(self, confmgr)
+    self.hotswap = require("game.Hotswap.HotSwapController").new(self, confmgr)
     self.hotswap:start()
 end
 
