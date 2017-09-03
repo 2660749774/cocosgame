@@ -19,4 +19,9 @@ Cocos2d-x引擎修改点
 
 - 支持MD5文件路径
 
+### 6. 修改`AppDelegate.cpp`
+
+- 添加基本搜索路径`assets`
+
+
 

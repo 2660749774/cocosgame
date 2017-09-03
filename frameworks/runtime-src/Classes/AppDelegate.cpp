@@ -107,6 +107,13 @@ bool AppDelegate::applicationDidFinishLaunching()
     runtimeEngine->addRuntime(RuntimeLuaImpl::create(), kRuntimeEngineLua);
     runtimeEngine->start();
 #else
+    Platform platform = cocos2d::Application::getInstance()->getTargetPlatform();
+    if (platform == Platform::OS_ANDROID) {
+        cocos2d::FileUtils::getInstance()->addSearchPath("assets");
+    } else if (platform == Platform::OS_IPAD || platform == Platform::OS_IPHONE) {
+        cocos2d::FileUtils::getInstance()->addSearchPath("assets");
+    }
+    
     if (engine->executeScriptFile("src/main.lua"))
     {
         return false;

@@ -17,17 +17,8 @@ local PLATFORM_OS_WP8     = 11
 
 -- 根据平台添加搜索路径
 local platform = cc.Application:getInstance():getTargetPlatform()
-if platform == PLATFORM_OS_ANDROID then
-    print("add search path assets")
-    cc.FileUtils:getInstance():addSearchPath("assets/")
-elseif platform == PLATFORM_OS_IPHONE 
-    or platform == PLATFORM_OS_IPAD then
-    print("add search path Raw")
-    cc.FileUtils:getInstance():addSearchPath("Raw/")
-else
+if platform == PLATFORM_OS_WINDOWS or platform == PLATFORM_OS_MAC then
     -- mac or win
-    print("add search path src")
-    print("add search path res")
     cc.FileUtils:getInstance():addSearchPath("src/")
     cc.FileUtils:getInstance():addSearchPath("res/")
     cc.FileUtils:getInstance():addSearchPath("../../../res/")
