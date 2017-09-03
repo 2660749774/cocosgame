@@ -26,8 +26,66 @@ end
 
 require "config"
 require "cocos.init"
+cc.exports.log = (require "core.log").new()
 
 local function main()
+    -- 添加搜索路径
+    local TAG = "main"
+
+    -- 获取底包版本号
+    local originVersion = require("game.version")
+    log:tag(TAG, "底包资源版本号:%s", originVersion.resVersion)
+    log:tag(TAG, "底包客户端版本号:%s", originVersion.clientVersion)
+    log:tag(TAG, "底包编译版本号:%s", originVersion.buildNo)
+    log:tag(TAG, "底包类型:%s", originVersion.packType)
+
+    -- 获取动更资源版本号
+    local userDefault = cc.UserDefault:getInstance()
+    local fileUtils = cc.FileUtils:getInstance()
+    local resMove = userDefault:getStringForKey("resMoving", "false")
+    local resVersion = userDefault:getStringForKey("resVersion", "")
+    local updateDir = userDefault:getStringForKey("resDir", "")
+
+    log:tag(TAG, "资源版本号:%s", resVersion)
+    log:tag(TAG, "资源移动标志位:%s", resMove)
+    log:tag(TAG, "资源所在目录:%s", updateDir)
+
+    if resVersion ~= "" then
+        -- 动更过
+        local appCoverInstall = false
+
+        local originVersionArray = string.split(originVersion.resVersion, ".")
+        for i=1, 4 do
+            originVersionArray[i] = tonumber(originVersionArray[i])
+        end
+        local resVersionArray = string.split(resVersion, ".")
+        for i=1, 4 do
+            resVersionArray[i] = tonumber(resVersionArray[i])
+        end
+        for i=1, 4 do
+            if originVersionArray[i] > resVersionArray[i] then
+                appCoverInstall = true
+            end
+        end
+
+        local writePath = fileUtils:getWritablePath()
+        if string.sub(writePath, -1, -1) ~= "/" then
+            writePath = writePath .. "/"
+        end
+
+        log:tag(TAG, "覆盖安装:%s", appCoverInstall)
+        log:tag(TAG, "是否在移动:%s", resMove)
+        if updateDir == "" then
+            updateDir = "update"
+        end
+        if updateDir and resMove == "false" then
+            local updatePath = writePath .. updateDir
+            log:tag(TAG, "添加搜索路径:%s, front:%s", updatePath, appCoverInstall == false)
+            fileUtils:addSearchPath(updatePath, appCoverInstall == false)
+        end
+    end
+
+    -- 启动游戏
     local game = require("game.Game").new("game")
     game:startup()
 end
