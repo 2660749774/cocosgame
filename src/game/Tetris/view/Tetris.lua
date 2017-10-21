@@ -14,6 +14,7 @@ local Block5 = import(".Block5")
 local Block6 = import(".Block6")
 local Block7 = import(".Block7")
 local ai = import("..AI.TetrisAI")
+local tetrisCore = import("..core.TetrisCore")
 
 --------------------------------
 -- 创建方法
@@ -46,6 +47,7 @@ function Tetris:ctor(bg, isNet, isSelf, parent)
     else
         self.blockPic = 'fangkuai3.png'
     end
+    self.core = tetrisCore:create(false, 378, 810)
 
 end
 
@@ -72,6 +74,9 @@ function Tetris:doUpdate(dt)
     if nil ~= self.parent and self.parent.doUpdate then
         self.parent:doUpdate(dt / self.fixScheduler.timeScale)
     end
+
+    self.core:doUpdate(dt)
+    self.core:print()
 
     if self.block ~= nil then
         local x, y = self.block:getPosition()
@@ -1224,6 +1229,8 @@ end
 function Tetris:createRandomBlock()
     local type = self.parent:nextInt(7, self.randomTimes)
     self.randomTimes = self.randomTimes + 1
+
+    self.core:createBlock(type, 7, 30, 1)
 
     return self:createBlock(type, 0, self.blockPic)
 end

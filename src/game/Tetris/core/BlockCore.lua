@@ -5,15 +5,15 @@
 -- Time: 15:16
 -- To change this template use File | Settings | File Templates.
 -- BlockCore 方块core
+local BlockCore = class("BlockCore")
 
 --------------------------------
 -- 创建方法
 -- @function [parent=#BlockCore] onCreate
-function BlockCore:ctor(x, y, idx, shapes)
+function BlockCore:ctor(x, y, idx)
     self.x = x
     self.y = y
     self.idx = idx
-    self.shapes = shapes
 end
 
 --------------------------------
