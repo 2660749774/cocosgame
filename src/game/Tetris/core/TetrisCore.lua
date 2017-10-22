@@ -59,6 +59,9 @@ function TetrisCore:doUpdate(dt)
 
         -- 判断消除
         self:checkBlockEliminate()
+
+        -- 当前block消失
+        self.block = nil
     end
 end
 
@@ -82,7 +85,9 @@ function TetrisCore:createBlock(type, x, y, idx)
     elseif type == 7 then
         block = Block7:create(x, y, idx)
     end
-    self.block = block
+    if self.block == nil then
+        self.block = block
+    end
     log:info("[core]creatBlock:%s", self.block)
     return block
 end
@@ -160,11 +165,11 @@ function TetrisCore:checkAvailable(tx, ty, blockArray)
     for i = 1, 4 do
         for j = 1, 4 do
             if blockArray[i][j] ~= 0 then
-                if (tx + j < 0) or (tx + j >= self.col) or (ty + i < 0) or (ty + i >= self.row) then
+                if (tx + j < 1) or (tx + j > self.col) or (ty + i < 1) then
                     -- 边界检查
                     return false
                 end
-                if self.grids[ty + i][tx + j] == 1 then
+                if self.grids[ty + i] and self.grids[ty + i][tx + j] == 1 then
                     return false
                 end
             end
