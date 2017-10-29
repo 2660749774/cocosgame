@@ -9,7 +9,7 @@
 local TetrisSinglePanel = import(".TetrisSinglePanel")
 local TetrisTimeModePanel = class("TetrisTimeModePanel", TetrisSinglePanel)
 local TetrisPowerConf = import("..data.TetrisPowerConf")
-local Tetris = import (".Tetris")
+local Tetris = import (".TetrisNew")
 local RandomUtil = require "core.util.RandomUtil"
 
 --------------------------------

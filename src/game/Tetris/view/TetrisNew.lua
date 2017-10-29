@@ -4,105 +4,246 @@
 -- Date: 2016/12/31
 -- Time: 15:16
 -- To change this template use File | Settings | File Templates.
--- Tetris 俄罗斯方块
-local Tetris = class("Tetris")
-local Block1 = import(".Block1")
-local Block2 = import(".Block2")
-local Block3 = import(".Block3")
-local Block4 = import(".Block4")
-local Block5 = import(".Block5")
-local Block6 = import(".Block6")
-local Block7 = import(".Block7")
-local ai = import("..AI.TetrisAI")
-local tetrisCore = import("..core.TetrisCore")
+-- TetrisNew 俄罗斯方块
+local TetrisNew = class("TetrisNew")
+local TetrisCore = import("..core.TetrisCore")
+local BlockView = import(".block.BlockView")
 
 --------------------------------
 -- 创建方法
--- @function [parent=#Tetris] onCreate
-function Tetris:ctor(bg, isNet, isSelf, parent)
+-- @function [parent=#TetrisNew] onCreate
+function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.bg = bg
     self.isNet = isNet
     self.parent = parent
     self.isSelf = isSelf
-   
-    self.grids = {}
-    self.id = 0
-    self.blockMap = {}
-    self.checkDownCount = 0 -- 计数器
-    self.blockWidth = 27
-    self.fixPixel = 3
-    self.gameOverFlag = false
-    self.hang = 0
-    self.removeLineNums = 0
-    self.disableDown = false
-    self.randomTimes = 1
-    self.block = nil
-    self.nextBlock = nil
-    self.isAI = false
-    self.pause = false
-    self.checkBlockRemoveTimes = 0
-    self.needCheckAgain = false
-    if self.isSelf then
-        self.blockPic = 'fangkuai.png'
-    else
-        self.blockPic = 'fangkuai3.png'
-    end
-    self.core = tetrisCore:create(false, 378, 810)
 
+    self.core = TetrisCore:create(false, 378, 810)
+    self.grids = {} -- 当前方格
+    self.nextBlock = nil -- 下一块方块
+    self.pic = 'fangkuai.png'
+
+    -- 输入采集相关变量
+    self.keyCode = -1
+    self.collectCd = 0
+    self.collectInputInterval = 0.025
+    self.collectInputRatio = 1
+    self.downNum = 0
 end
 
-function Tetris:pauseGame()
+function TetrisNew:pauseGame()
     self.pause = true
 end
 
-function Tetris:resumeGame()
+function TetrisNew:resumeGame()
     self.pause = false
 end
 
 --------------------------------
 -- 每一帧运行
--- @function [parent=#Tetris] playGame
-function Tetris:doUpdate(dt)
-    if self.isSelf then
-        -- log:info("doUpdate frameNum:%s, serverFrameNum:%s, timeScale:%s, fixTimeScale:%s, isSelf:%s, updateTime:%s, fixTime:%s", self.fixScheduler.frameNum, self.fixScheduler.serverFrameNum, self.fixScheduler.timeScale, self.fixScheduler.fixTimeScale, self.isSelf, self.fixScheduler.updateTime, self.fixScheduler.fixTime)
-    end
+-- @function [parent=#TetrisNew] doUpdate
+function TetrisNew:doUpdate(dt)
+    -- 1. 采集输入
+    self:collectInput(dt)
 
-    if self.gameOverFlag or self.disableDown or self.pause then
-        return
-    end
-
-    if nil ~= self.parent and self.parent.doUpdate then
-        self.parent:doUpdate(dt / self.fixScheduler.timeScale)
-    end
-
-    self.core:doUpdate(dt)
-    self.core:print()
-
+    -- 2. 同步block位置信息
     if self.block ~= nil then
-        local x, y = self.block:getPosition()
-        if self.block:checkDown(self.grids) then
-            -- 强制减速
-            if self.fixScheduler and self.fixScheduler.timeScale > 1 then
-                self.fixScheduler:setTimeScale(1)
-                return
-            end
-            self.checkDownCount = self.checkDownCount + 1
-            if self.checkDownCount == 2 then
-                -- 处理向下
-                self:_handleDown(self.block, false)
-                self.checkDownCount = 0
-            end
-        else
-            self.block:setPosition(cc.p(x, y - self.blockWidth))
-            self.checkDownCount = 0
+        self.block:doUpdate()
+    end
+
+    -- 3. 取事件进行更新
+    local event = self.core:pollEvent()
+    if (event ~= nil) then
+        log:info("[view]update event:%s", event.name)
+        -- 处理event
+        if event.name == "GameStart" then
+            -- 游戏开始
+            self:initGridView()
+
+            -- 创建nextBlock
+            self:updateNextBlock(event.nextBlock)
+        elseif event.name == "RoundStart" then
+            -- 回合开始
+            self.block = BlockView:create(event.block, self.pic)
+            self.block:doUpdate()
+            self.bg:addChild(self.block)
+            self:roundReset()
+
+            -- 更新下一个block
+            self:updateNextBlock(event.nextBlock)
+        elseif event.name == "Shake" then
+            -- 震屏
+            self:shake(self.bg, 0.05)
+        elseif event.name == "MergeBlock" then
+            -- 合并block
+            self:merge(self.block)
+            self.block = nil
+        elseif event.name == "Eliminate" then
+            -- 进行消除
+            self:doEliminate(event.eliminateArr)
         end
     end
 end
 
 --------------------------------
+-- 回合重置
+-- @function [parent=#TetrisNew] roundReset
+function TetrisNew:roundReset()
+    self.collectInputRatio = 1
+    self.keyCode = -1
+    self.downNum = 0
+    self.collectCd = 0
+
+    self:refreshGrid()  
+end
+
+--------------------------------
+-- 采集输入
+-- @function [parent=#TetrisNew] collectInput
+function TetrisNew:collectInput(dt)
+    -- 采集输入
+    dt = dt * self.collectInputRatio
+    if self.collectCd > 0 then
+        self.collectCd = self.collectCd - dt
+    else
+        local keyCode = self.keyCode
+        if keyCode ~= -1 then
+            if self.keyCode == 11 then
+                keyCode = 1
+            elseif self.keyCode == 21 then
+                keyCode = 2
+            elseif self.keyCode == 31 then
+                keyCode = 3
+            elseif self.keyCode == 51 then
+                keyCode = 5
+                self.downNum = 5
+            end
+
+            -- 对于快速下降特殊处理
+            if keyCode == 5 then
+                self.downNum = self.downNum - 1
+                if self.downNum <= 0 then
+                    self.keyCode = -1
+                    self.collectInputRatio = 1
+                end
+            end
+            self.core:handleInput(keyCode)
+        end
+        self.collectCd = self.collectInputInterval
+    end
+end
+
+--------------------------------
+-- 合并节点
+-- @function [parent=#TetrisNew] merge
+function TetrisNew:merge(block)
+    local blockArray = block:getBlockArray()
+    local tx = block.model.x
+    local ty = block.model.y
+    local index = 4
+    for i = 4, 1, -1 do
+        for j = 1, 4 do
+            if blockArray[i][j] ~= 0 then
+                local bx, by = j, (4 - i) + 1
+                self.grids[ty + by][tx + bx] = block:getBlock(index)
+                index = index - 1
+            end
+        end
+    end
+end
+
+--------------------------------
+-- 打印tetris
+-- @function [parent=#TetrisNew] print
+function TetrisNew:print()
+    local fmt = ""
+    for i = 1, self.col do
+        if i == 1 then
+            fmt = fmt .. "%s"
+        else
+            fmt = fmt .. " %s"
+        end
+    end
+    for i = self.row, 1, -1 do
+        log:info(fmt, unpack(self.grids[i]))
+    end
+end
+
+--------------------------------
+-- 进行消除
+-- @function [parent=#TetrisNew] doEliminate
+function TetrisNew:doEliminate(eliminateArr)
+    -- 获取需要消除的行
+    local removeBlocks = {}
+    for i = 1, self.row do
+        if eliminateArr[i] then
+            for j = 1, self.col do
+                table.insert(removeBlocks, self.grids[i][j])
+            end
+        end
+    end
+    
+    -- 整理方块
+    local nextIdx = 1
+    self.upperBlockList = {}
+    for i = 1, self.row do
+        while (nextIdx <= self.row and eliminateArr[nextIdx]) do
+            nextIdx = nextIdx + 1
+        end
+
+        if i == nextIdx then
+            nextIdx = nextIdx + 1
+        else
+            if nextIdx <= self.row then
+                for j = 1, self.col do
+                    local block = self.grids[nextIdx][j]
+                    self.grids[i][j] = block
+                    if block and block ~= 0 then
+                        -- 需要改变坐标
+                        block.moveLines = nextIdx - i
+                        table.insert(self.upperBlockList, block)
+                    end
+                end
+                nextIdx = nextIdx + 1
+            else
+                for j = 1, self.col do
+                    self.grids[i][j] = 0
+                end
+            end
+        end
+    end
+
+    -- 添加动画
+    self.callbackNums = #removeBlocks
+    self.callbackCount = 0
+    if #removeBlocks > 0 then
+        -- 播放音效
+        amgr:playEffect("remove_block.wav")
+
+        local action = cc.Blink:create(0.5, 3)
+        for _, block in pairs(removeBlocks) do
+            -- 闪烁动画
+            local sequence = cc.Sequence:create(action:clone(), 
+            cc.CallFunc:create(handler(self, self.removeCallBack), {sender = block}))
+            block:runAction(sequence)
+        end
+    end
+end
+
+--------------------------------
+-- 更新下一个节点
+-- @function [parent=#TetrisNew] updateNextBlock
+function TetrisNew:updateNextBlock(model)
+    local oldNextBlock = self.nextBlock
+    self.nextBlock = BlockView:create(model, self.pic)
+
+    self.parent:roundStart(oldNextBlock, self.nextBlock)
+end
+
+--------------------------------
 -- 进行AI模拟
--- @function [parent=#Tetris] playGame
-function Tetris:aiSimulate(dt)
+-- @function [parent=#TetrisNew] playGame
+function TetrisNew:aiSimulate(dt)
     if self.gameOverFlag or self.disableDown then
         return
     end
@@ -131,7 +272,7 @@ function Tetris:aiSimulate(dt)
 
 end
 
-function Tetris:doAction(action) 
+function TetrisNew:doAction(action) 
     if self.block then
         local x, y = self.block:getPosition()
         local idx = self.block.curIndex;
@@ -151,8 +292,8 @@ end
 
 --------------------------------
 -- 处理推送
--- @function [parent=#Tetris] getPlayerInfo
-function Tetris:handleServerFrame(eventList)
+-- @function [parent=#TetrisNew] getPlayerInfo
+function TetrisNew:handleServerFrame(eventList)
     for _, data in pairs(eventList) do
         if data.protoId == protos.KEY_PRESS then
             data.keyCode = tonumber(data.args)
@@ -178,8 +319,8 @@ end
 
 --------------------------------
 -- 更新服务器帧数
--- @function [parent=#Tetris] updateServerFrameNum
-function Tetris:updateServerFrameNum(frameNum)
+-- @function [parent=#TetrisNew] updateServerFrameNum
+function TetrisNew:updateServerFrameNum(frameNum)
     if self.fixScheduler then
         self.fixScheduler:updateServerFrameNum(frameNum)
     end
@@ -187,8 +328,8 @@ end
 
 --------------------------------
 -- 添加服务器网络帧内容
--- @function [parent=#Tetris] addServerFrame
-function Tetris:addServerFrame(frameNum, event)
+-- @function [parent=#TetrisNew] addServerFrame
+function TetrisNew:addServerFrame(frameNum, event)
     if self.fixScheduler then
         self.fixScheduler:addServerFrame(frameNum, event)
         -- if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
@@ -201,93 +342,28 @@ end
 
 --------------------------------
 -- 获取本地帧号
--- @function [parent=#Tetris] getLocalFrameNum
-function Tetris:getLocalFrameNum()
+-- @function [parent=#TetrisNew] getLocalFrameNum
+function TetrisNew:getLocalFrameNum()
     if self.fixScheduler then
         return self.fixScheduler.frameNum
     end
     return 0
 end
 
-
---------------------------------
--- 下一个方块
--- @function [parent=#Tetris] roundStart
-function Tetris:roundStart()
-    if self.gameOverFlag then
-        return
-    end
-
-    -- log:info("roundStart begin")
-    local oldNextBlock = self.nextBlock
-
-    -- 创建方块
-    self.block = self:createBlock(self.nextBlock.blockType, self.nextBlock.angle, self.nextBlock.pic)
-    self:updateBlock(self.block, self.nextBlock)
-    if self.isNet then
-        self.block:setPosition(cc.p(138, 435))
-    else
-        self.block:setPosition(cc.p(165, 435))
-    end
-    self.bg:addChild(self.block)
-
-    -- 随机下一块方块
-    self:createNextBlock()
-
-    -- 充值下一个方块状态
-    self.parent:roundStart(oldNextBlock, self.nextBlock, self.isSelf)
-
-    -- 重置按钮状态
-    if self.downScheduler then
-        self.fixScheduler:unscheduleTask(self.downScheduler)
-        self.downScheduler = nil
-    end
-    if self.btnDownLowLongPress then
-        if not self.isNet then
-            self:handleDownLow(nil, 52)
-        end
-        self.btnDownLowLongPress = false
-    end
-
-    -- 充值加速器状态
-    self.fixScheduler:setTimeScale(1)
-    self.disableDown = false
-    self.moves = nil
-    self.moveStep = 1
-    self.aicd = nil
-end
-
 --------------------------------
 -- 游戏开始
--- @function [parent=#Tetris] gameStart
-function Tetris:gameStart(conf) 
-    -- log:info("[Tetris]gameStart nextBlock:%s", self.nextBlock)
-    self:initGridBlock(conf)
+-- @function [parent=#TetrisNew] gameStart
+function TetrisNew:gameStart(conf) 
+    self.core:gameStart(conf)
 
-    -- 随机下一块方块
-    if nil == self.nextBlock then
-        self:createNextBlock()
-    end
-
-    -- 设置定时器
-    self.fixScheduler = require "core.fixscheduler".new(0.05)
-    self.fixScheduler:addServerFrameHandler(handler(self, self.handleServerFrame))
-    if not self.isNet then
-        self.fixScheduler:updateServerFrameNum(-1)
-    end
-    self.updateTask = self.fixScheduler:scheduleTask(handler(self, self.doUpdate), 0.5)
-    if self.isAI then
-        self.aiTask = self.fixScheduler:scheduleTask(handler(self, self.aiSimulate))
-    end
-
-    -- 回合开始
-    self:roundStart()
+    -- 添加计时器
+    scheduler.scheduleUpdateGlobal(handler(self, self.doUpdate))
 end
 
 --------------------------------
 -- 游戏结束
--- @function [parent=#Tetris] gameStart
-function Tetris:gameOver()
+-- @function [parent=#TetrisNew] gameStart
+function TetrisNew:gameOver()
     self.gameOverFlag = true
     self.parent:notifyGameOver(self.isSelf)
     -- 停止定时任务
@@ -301,8 +377,8 @@ end
 
 --------------------------------
 -- 清理重置
--- @function [parent=#Tetris] reset
-function Tetris:reset() 
+-- @function [parent=#TetrisNew] reset
+function TetrisNew:reset() 
     -- 停止定时任务
     if self.updateTask then
         self.fixScheduler:destroy()
@@ -339,8 +415,8 @@ end
 
 --------------------------------
 -- 初始化Grid
--- @function [parent=#Tetris] initGrid
-function Tetris:initGrid(width, height)
+-- @function [parent=#TetrisNew] initGrid
+function TetrisNew:initGrid(width, height)
     local x = width / self.blockWidth
     local y = height / self.blockWidth
 
@@ -355,63 +431,28 @@ function Tetris:initGrid(width, height)
 end
 
 --------------------------------
--- 根据配置初始化基础方块
--- @function [parent=#Tetris] createSingleBlock
-function Tetris:initGridBlock(conf)
-    if conf == nil then
-        return
-    end
-
-    local blockArray = conf.blockArray
-    local pic = string.format("%s.png", conf.blockType)
-    
-    for i = 1, #blockArray do
-        for j = 1, #blockArray[i] do
-            if blockArray[i][j] == 1 then
-                local gridX = j
-                local gridY = #blockArray - i + 1
-                local sprite = self:createSingleBlock(pic, gridX, gridY)
-                sprite.confBlock = true
-                sprite.stoneBlock = iskindof(conf, "TetrisClearStoneConf")
-                self.grids[gridY][gridX] = sprite
-                self.bg:addChild(sprite)
-            elseif blockArray[i][j] == 2 then
-                local gridX = j
-                local gridY = #blockArray - i + 1
-                local sprite = self:createSingleBlock("fangkuai9.png", gridX, gridY)
-                sprite.confBlock = true
-                sprite.hasStar = true
-                self.grids[gridY][gridX] = sprite
-                self.bg:addChild(sprite)
-            elseif blockArray[i][j] == 3 then
-                local gridX = j
-                local gridY = #blockArray - i + 1
-                local sprite = self:createSingleBlock("fangkuai11.png", gridX, gridY)
-                sprite.confBlock = true
-                sprite.sparBlock = true
-                sprite.pic = "fangkuai11.png"
-                self.grids[gridY][gridX] = sprite
-                self.bg:addChild(sprite)
-            elseif blockArray[i][j] == 4 then
-                local gridX = j
-                local gridY = #blockArray - i + 1
-                local sprite = self:createSingleBlock(pic, gridX, gridY)
-                sprite.confBlock = true
-                sprite.stoneBlock = true
-                sprite.hasShuidi = true
-                self.bg:addChild(sprite)
-                
-                self.grids[gridY][gridX] = sprite
-                
+-- 初始化初始显示方格
+-- @function [parent=#TetrisNew] initGridView
+function TetrisNew:initGridView()
+    local grids = self.core.grids
+    for y=1, #grids do
+        self.grids[y] = {}
+        for x=1, #grids[y] do
+            if grids[y][x] == 0 then
+                self.grids[y][x] = 0
+            else
+                -- TODO 创建指定block
             end
         end
     end
+    self.row = #grids
+    self.col = #grids[1]
 end
 
 --------------------------------
 -- 创建单个方块
--- @function [parent=#Tetris] createSingleBlock
-function Tetris:createSingleBlock(pic, gridX, gridY)
+-- @function [parent=#TetrisNew] createSingleBlock
+function TetrisNew:createSingleBlock(pic, gridX, gridY)
     local sprite = cc.Sprite:createWithSpriteFrameName(pic)
     sprite:setAnchorPoint(0, 0)
     sprite:setPosition((gridX - 1) * self.blockWidth + 3, (gridY - 1) * self.blockWidth + 3)
@@ -422,195 +463,69 @@ end
 
 --------------------------------
 -- 处理翻转
--- @function [parent=#Tetris] 
-function Tetris:handleShift(event, keyCode)
-    if self.block == nil then
-        return
-    else
-        -- 发送玩家按钮事件
-        if event ~= nil and self.isNet and self.fixScheduler then
-            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 3)
-            return
-        end
-
-        -- 更新位置
-        local x, y = self.block:getPosition()
-        self.block:doRotation(self.grids)
-        return
-    end
+-- @function [parent=#TetrisNew] 
+function TetrisNew:handleShift(event, keyCode)
+    self.core:handleInput(3)
 end
 
 --------------------------------
 -- 处理左移动
--- @function [parent=#Tetris] handleLeft
-function Tetris:handleLeft(event, keyCode)
-    if self.block == nil then
-        return
-    end
-    -- if self.isSelf then
-    --     local serverFrame = (event == nil)
-    --     if not serverFrame then
-    --         self.leftTime = cc.Util:getCurrentTime()
-    --         self.delay = 0
-    --     else
-    --         self.delay = cc.Util:getCurrentTime() - self.leftTime
-    --         log:info("handleLeft serverFrame:%s, delay:%s, updateTime:%s", serverFrame, self.delay, self.fixScheduler.updateTime)
-    --     end
-    -- end
-    -- 发送按钮事件
-    if event ~= nil then
-        keyCode = 1
-        if event.type == "longPress" then
-            if event.longPress then
-                keyCode = 11
-            else
-                keyCode = 12
-            end
+-- @function [parent=#TetrisNew] handleLeft
+function TetrisNew:handleLeft(event, keyCode)
+    if event.type == "longPress" then
+        if event.longPress then
+            self.keyCode = 11
+        else
+            self.keyCode = -1
         end
-
-        if self.isNet and self.fixScheduler then
-            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
-            return
-        end
+    else
+        self.core:handleInput(1)
     end
-
-    -- 更新控制信息
-    if keyCode == 11 then
-        self.disableDown = true
-    elseif keyCode == 12 then
-        self.disableDown = false
-    end
-
-    -- 设置位置
-    local x, y = self.block:getPosition()
-    self.block:handleLeft(self.grids)
 end
 
 --------------------------------
 -- 处理右移动
--- @function [parent=#Tetris] handleRight
-function Tetris:handleRight(event, keyCode)
-    if self.block == nil then
-        return
-    end
-
-    -- 发送按钮事件
-    if event ~= nil then
-        keyCode = 2
-        if event.type == "longPress" then
-            if event.longPress then
-                keyCode = 21
-            else
-                keyCode = 22
-            end
+-- @function [parent=#TetrisNew] handleRight
+function TetrisNew:handleRight(event, keyCode)
+    if event.type == "longPress" then
+        if event.longPress then
+            self.keyCode = 21
+        else
+            self.keyCode = -1
         end
-
-        if self.isNet and self.fixScheduler then
-            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
-            return
-        end
+    else
+        self.core:handleInput(2)
     end
-
-    -- 更新控制信息
-    if keyCode == 21 then
-        self.disableDown = true
-    elseif keyCode == 22 then
-        self.disableDown = false
-    end
-
-    -- 更新位置信息
-    local x, y = self.block:getPosition()
-    self.block:handleRight(self.grids)
 end
 
 --------------------------------
 -- 处理极速下降
--- @function [parent=#Tetris] handleDown
-function Tetris:handleDown(event, keyCode)
-    if self.block == nil then
-        return
-    end
-
-    if nil ~= event and self.isNet and self.fixScheduler then
-        self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 4)
-        return
-    end
-
-    self:_handleDown(self.block, false)
-    self:shake(self.bg, 0.05)
+-- @function [parent=#TetrisNew] handleDown
+function TetrisNew:handleDown(event, keyCode)
+    self.core:handleInput(4)
 end
 
 --------------------------------
 -- 处理加速下降
--- @function [parent=#Tetris] handleDownLow
-function Tetris:handleDownLow(event, keyCode)
-    -- 发送按钮事件
-    if event ~= nil then
-        keyCode = 5
-        -- log:info("handleDownLow event type:%s, longPress:%s", event.type, event.longPress)
-        if event.type == "longPress" then
-            if event.longPress then
-                keyCode = 51
-            else
-                keyCode = 52
-            end
+-- @function [parent=#TetrisNew] handleDownLow
+function TetrisNew:handleDownLow(event, keyCode)
+    self.downNum = 5
+    self.collectInputRatio = 2
+    if event.type == "longPress" then
+        if event.longPress then
+            self.keyCode = 51
+        else
+            self.keyCode = -1
         end
-
-        if self.isNet and self.fixScheduler then
-            self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
-            return
-        end
-    end
-
-    -- log:info("handleDownLow keyCode:%s", keyCode)
-    -- 更新控制信息
-    if keyCode == 5 then
-        if self.downScheduler ~= nil then
-            self.fixScheduler:unscheduleTask(self.downScheduler)
-        end
-
-        -- 加速
-        self.fixScheduler:setTimeScale(25, 5)
-        self.downInterval = 0
-        self.btnDownLowLongPress = false
-        
-        -- 计时间
-        -- self.downScheduler = self.fixScheduler:scheduleTask(function() 
-        --     if not self.btnDownLowLongPress and self.downScheduler then
-        --         self.fixScheduler:unscheduleTask(self.downScheduler)
-        --         self.downScheduler = nil
-
-        --         if self.isNet then
-        --             self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 52)
-        --         else
-        --             self.fixScheduler:setTimeScale(1)
-        --         end
-        --     end
-        -- end, 5)
-    elseif keyCode == 51 then
-        if self.btnDownLowLongPress then
-            return
-        end
-
-        -- 加速
-        self.btnDownLowLongPress = true
-        self.fixScheduler:setTimeScale(25, -1)
-        self.downInterval = 0
-    elseif keyCode == 52 then
-        if self.downScheduler then
-            self.fixScheduler:unscheduleTask(self.downScheduler)
-            self.downScheduler = nil
-            self.downInterval = 0
-        end
-        self.btnDownLowLongPress = false
-        self.fixScheduler:setTimeScale(1)
+    else
+        self.keyCode = 5
     end
 end
 
 --------------------------------
 -- 发送网络包
--- @function [parent=#Tetris] sendPack
-function Tetris:sendPack(action, protoId, ...)
+-- @function [parent=#TetrisNew] sendPack
+function TetrisNew:sendPack(action, protoId, ...)
     if self.fixScheduler then
         self.fixScheduler:send(action, protoId, ...)
     end
@@ -618,8 +533,8 @@ end
 
 --------------------------------
 -- 处理向下
--- @function [parent=#Tetris] _handleDown
-function Tetris:_handleDown(block, simulate)
+-- @function [parent=#TetrisNew] _handleDown
+function TetrisNew:_handleDown(block, simulate)
     if block == nil then
         return
     end
@@ -650,8 +565,8 @@ end
 
 --------------------------------
 -- 消除判断
--- @function [parent=#Tetris] checkBlockRemove
-function Tetris:checkBlockRemove()
+-- @function [parent=#TetrisNew] checkBlockRemove
+function TetrisNew:checkBlockRemove()
     
     -- 检查引用计数器 + 1
     self.needCheckAgain = false
@@ -798,7 +713,7 @@ function Tetris:checkBlockRemove()
                 end
 
                 -- 添加动画
-                local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
+                local stoneAnimLayout = require("layout.TetrisNewStoneAnimation").create()
                 local animation = stoneAnimLayout['animation']
                 stoneAnimLayout['root']:runAction(animation)
                 stoneAnimLayout['root']:setPosition(x + 13, y + 13)
@@ -828,40 +743,12 @@ function Tetris:checkBlockRemove()
             end
         end
     end
-
-    if #removeBlocks == 0 then
-        self:removeCallBack()
-    end
 end
 
 --------------------------------
--- 处理移除回调
--- @function [parent=#Tetris] removeCallBack
-function Tetris:removeCallBack(sender)
-    if sender then
-        if sender.hasStar then
-            self:flyStar(sender)
-            sender:removeFromParent()
-        elseif sender.sparBlock then
-            self:handleSparBlock(sender)
-        elseif sender.shuidiBlock then
-            self:handleShuidiBlock(sender)
-        elseif sender.extraAttributes then
-            self:handleExtraAttributes(sender)
-            sender:removeFromParent()
-        else
-            sender:removeFromParent()
-        end
-    end
-
-    
-    self.callbackCount = self.callbackCount + 1
-    if self.callbackCount < self.callbackNums then
-        return
-    end
-
-    -- log:info("removeCallback:%s, %s, %s", self.isSelf, self.removeLineNums, self.callbackNums)
-
+-- 刷新方格
+-- @function [parent=#TetrisNew] refreshGrid
+function TetrisNew:refreshGrid()
     -- 处理上面的方块
     if self.upperBlockList and #self.upperBlockList > 0 then
         for _, block in pairs(self.upperBlockList) do 
@@ -871,53 +758,19 @@ function Tetris:removeCallBack(sender)
         end
         self.upperBlockList = {}
     end
+end
 
-    -- 更新视图
-    self.parent:updateScore(self.removeLineNums, self.isSelf)
-
-    -- 通知服务器消除
-    if self.isNet and self.removeLineNums > 0 and self.fixScheduler then
-        if self.isSelf then
-            self.fixScheduler:send(actions.doUpdate, protos.REMOVE_LINES, self.removeLineNums)
-        elseif self.isAI then
-            self.fixScheduler:send(actions.doUpdate, protos.REMOVE_LINES, self.removeLineNums .. ",true")
-        end
-    end
-    -- if self.isSelf then
-    --     self.parent:updateScore(self.removeLineNums)
-    -- elseif self.removeLineNums > 0 then
-    --     -- 通知服务器
-    --     self.fixScheduler:send(actions.doUpdate, protos.REMOVE_LINES, self.removeLineNums .. ",true")
-    -- end
-
-    -- 更新统计数据
-    self.hang = self.hang + self.removeLineNums
-    self.removeLineNums = 0
-
-    -- 随机下一个
-    -- log:info("call roundStart")
-    -- if self.isNet then
-    --     self.disableDown = true
-    --     self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, 100)
-    -- else
-    -- 检查引用计数器 - 1
-    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
-    -- log:info("block remove times step5, count:%s", self.checkBlockRemoveTimes)
-    if self.checkBlockRemoveTimes == 0 then
-        if self.needCheckAgain then
-            self:checkBlockRemove()
-        else
-            self:roundStart()
-        end
-    end
-    -- end
-    -- self:roundStart()
+--------------------------------
+-- 处理移除回调
+-- @function [parent=#TetrisNew] removeCallBack
+function TetrisNew:removeCallBack(sender)
+    sender:removeFromParent()
 end
 
 --------------------------------
 -- 处理下沉方块
--- @function [parent=#Tetris] handleSparBlock
-function Tetris:handleSparBlock(sender)
+-- @function [parent=#TetrisNew] handleSparBlock
+function TetrisNew:handleSparBlock(sender)
     local gridX = sender.gridX
     local gridY = sender.gridY
 
@@ -992,8 +845,8 @@ end
 
 --------------------------------
 -- 处理水滴block
--- @function [parent=#Tetris] handleShuidiBlock
-function Tetris:handleShuidiBlock(sender)
+-- @function [parent=#TetrisNew] handleShuidiBlock
+function TetrisNew:handleShuidiBlock(sender)
     -- 移除自身
     local gridX = sender.gridX
     local gridY = sender.gridY
@@ -1033,7 +886,7 @@ end
 --------------------------------
 -- 固定位置插入一个block
 -- @function [parent=#BaseBlock] insertBlock
-function Tetris:insertBlock(gridX, gridY, block)
+function TetrisNew:insertBlock(gridX, gridY, block)
     for i = #self.grids, gridY, -1 do
         local block = self.grids[i][gridX]
         if block and block ~= 0 then
@@ -1050,7 +903,7 @@ end
 --------------------------------
 -- 检查是可以下降得格数
 -- @function [parent=#BaseBlock] checkSparBlockDownGridPos
-function Tetris:checkSparBlockDownGridPos(gridX, gridY)
+function TetrisNew:checkSparBlockDownGridPos(gridX, gridY)
     -- log:info("sparblock, gridX:%s, gridY:%s", gridX, gridY)
 
     -- 检查自己所处位置是否合法
@@ -1073,8 +926,8 @@ end
 
 --------------------------------
 -- 播放收集星星动画
--- @function [parent=#Tetris] flyStar
-function Tetris:flyStar(sender)
+-- @function [parent=#TetrisNew] flyStar
+function TetrisNew:flyStar(sender)
     local x, y = sender:getPosition()
     local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
     local star = cc.Sprite:createWithSpriteFrameName("star.png")
@@ -1110,8 +963,8 @@ end
 
 --------------------------------
 -- 处理额外属性
--- @function [parent=#Tetris] handleExtraAttributes
-function Tetris:handleExtraAttributes(sender)
+-- @function [parent=#TetrisNew] handleExtraAttributes
+function TetrisNew:handleExtraAttributes(sender)
     if self.parent.handleExtraAttributes then
         self.parent:handleExtraAttributes(sender)
     end
@@ -1119,82 +972,17 @@ end
 
 --------------------------------
 -- 增加行数
--- @function [parent=#Tetris] addLines
-function Tetris:addLines(lines)
-    local num = #lines
-
-    -- 处理上面的方块
-    for i = #self.grids, 1, -1 do
-        for j = 1, #self.grids[i] do
-            if self.grids[i][j] ~= 0 then
-                local block = self.grids[i][j]
-                -- log:info("addLines i:%s, j:%s, block:%s", i, j, block)
-                if not ((i + num) > #self.grids) then
-                    local x, y = block:getPosition()
-                    block:setPosition(cc.p(x, y + self.blockWidth * num))
-                    self.grids[i][j] = 0
-                    self.grids[i + num][j] = block
-                elseif not tolua.isnull(block) then
-                    block:removeFromParent()
-                end
-            end
-        end           
-    end
-
-    -- 添加新的方块
-    local index = 1
-    for index, line in pairs(lines) do
-        for i=1, #line do
-            local value = line[i]
-            if value == 1 then
-                local sprite = cc.Sprite:createWithSpriteFrameName(self.blockPic)
-                local x = (i - 1) * self.blockWidth + self.fixPixel
-                local y = (index - 1) * self.blockWidth + self.fixPixel
-                sprite:setPosition(cc.p(x, y))
-                sprite:setAnchorPoint(cc.p(0, 0))
-                self.bg:addChild(sprite)
-                self.grids[index][i] = sprite
-            end
-        end
-        index = index + 1
-    end
-
-    -- 如果当前方块已经不能下落
-    if self.block and not self.block:handleDown(self.grids, true) then
-        local x, y = self.block:getPosition()
-        self.block:setPosition(cc.p(x, y + self.blockWidth * num))
-    end
-end
-
---------------------------------
--- 创建一个随机方块
--- @function [parent=#Tetris] createRandomBlock
-function Tetris:createBlock(type, angle, pic)
-    local block = nil
-    if type == 1 then
-        block = Block1:create(angle, 3, 273, pic)
-    elseif type == 2 then
-        block = Block2:create(angle, 3, 273, pic)
-    elseif type == 3 then
-        block = Block3:create(angle, 3, 273, pic)
-    elseif type == 4 then
-        block = Block4:create(angle, 3, 273, pic)
-    elseif type == 5 then
-        block = Block5:create(angle, 3, 273, pic)
-    elseif type == 6 then
-        block = Block6:create(angle, 3, 273, pic)
-    elseif type == 7 then
-        block = Block7:create(angle, 3, 273, pic)
-    end
-
-    return block
+-- @function [parent=#TetrisNew] addLines
+function TetrisNew:addLines(lines)
+    
 end
 
 --------------------------------
 -- 随机下一个方块
--- @function [parent=#Tetris] createNextBlock
-function Tetris:createNextBlock()
-    self.nextBlock = self:createRandomBlock()
+-- @function [parent=#TetrisNew] createNextBlock
+function TetrisNew:createNextBlock()
+    -- 创建下一个出现的方块
+    self.core:createNextBlock()
 
     -- 更新下一个节点
     if self.parent.updateNextBlock then
@@ -1206,8 +994,8 @@ end
 
 --------------------------------
 -- 更新block
--- @function [parent=#Tetris] updateBlock
-function Tetris:updateBlock(block, nextBlock)
+-- @function [parent=#TetrisNew] updateBlock
+function TetrisNew:updateBlock(block, nextBlock)
     -- log:info("updateblock start")
     for i=1, #nextBlock.blocks do 
         local sprite = nextBlock.blocks[i]
@@ -1223,22 +1011,11 @@ function Tetris:updateBlock(block, nextBlock)
     end
 end
 
---------------------------------
--- 创建一个随机方块
--- @function [parent=#Tetris] Tetris
-function Tetris:createRandomBlock()
-    local type = self.parent:nextInt(7, self.randomTimes)
-    self.randomTimes = self.randomTimes + 1
-
-    self.core:createBlock(type, 7, 30, 1)
-
-    return self:createBlock(type, 0, self.blockPic)
-end
 
 --------------------------------
 -- 震屏效果
--- @function [parent=#Tetris] shake
-function Tetris:shake(node, interval)
+-- @function [parent=#TetrisNew] shake
+function TetrisNew:shake(node, interval)
     local x, y = node:getPosition()
     local _interval = 0
     local schedulerHandle = nil
@@ -1255,19 +1032,19 @@ end
 
 --------------------------------
 -- 格子坐标转换成像素坐标
--- @function [parent=#Tetris] convertGridToPosition
-function Tetris:convertGridToPosition(gridX, gridY)
+-- @function [parent=#TetrisNew] convertGridToPosition
+function TetrisNew:convertGridToPosition(gridX, gridY)
     return (gridX - 1) * self.blockWidth + self.fixPixel, (gridY - 1) * self.blockWidth + self.fixPixel
 end
 
 --------------------------------
 -- 退出时清理操作
--- @function [parent=#Tetris] onExit
-function Tetris:onExit()
+-- @function [parent=#TetrisNew] onExit
+function TetrisNew:onExit()
     if self.fixScheduler then
         self.fixScheduler:destroy()
     end
 end
 
-return Tetris
+return TetrisNew
 

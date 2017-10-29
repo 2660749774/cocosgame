@@ -163,7 +163,7 @@ function fixscheduler:addServerFrame(frameNum, event)
         actions.recordDelay(event.seq, "recv", cc.Util:getCurrentTime())
     end
     -- if event.protoId == 1 and event.keyCode == 100 then
-    --     -- log:info("addServerFrame keyCode 100 frameNum:%s, localFrameNum:%s", frameNum, self.frameNum)
+        -- log:info("addServerFrame keyCode 100 frameNum:%s, localFrameNum:%s", frameNum, self.frameNum)
     -- end
 end
 
@@ -306,6 +306,7 @@ end
 -- 处理网络帧
 -- @function [parent=#fixscheduler] doServerFrame
 function fixscheduler:doServerFrame()
+    -- log:info("doServerFrame frameNum:%s, handler:%s, event:%s", self.frameNum, self.serverFrameHandler, self.serverFrame[self.frameNum])
     if nil == self.serverFrameHandler then
         return
     end

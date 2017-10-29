@@ -10,10 +10,11 @@ local BlockCore = class("BlockCore")
 --------------------------------
 -- 创建方法
 -- @function [parent=#BlockCore] onCreate
-function BlockCore:ctor(x, y, idx)
+function BlockCore:ctor(type, x, y, idx)
     self.x = x
     self.y = y
     self.idx = idx
+    self.type = type
 end
 
 --------------------------------
@@ -91,6 +92,9 @@ end
 -- @function [parent=#BlockCore] shift
 function BlockCore:shift()
     self.idx = (self.idx + 1) % 4
+    if self.idx == 0 then
+        self.idx = 4
+    end
 end
 
 

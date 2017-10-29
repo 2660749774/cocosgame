@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 -- TetrisSinglePanel 俄罗斯方块
 local TetrisSinglePanel = class("TetrisSinglePanel", BasePanel)
-local Tetris = import (".Tetris")
+local Tetris = import (".TetrisNew")
 local RandomUtil = require "core.util.RandomUtil"
 
 
@@ -137,13 +137,13 @@ function TetrisSinglePanel:gameStart(data)
     -- 初始化随机数
     RandomUtil:setRandomseed(data.randomseed)
 
-    -- 随机下一块方块
-    local nextBlock = self.tetris:createNextBlock()
+    -- -- 随机下一块方块
+    -- local nextBlock = self.tetris:createNextBlock()
 
-    -- 处理居中
-    local offsetx, offsety = nextBlock:getOffSet()
-    nextBlock:setPosition(cc.p(0, -offsety))
-    self.nextBg:addChild(nextBlock)
+    -- -- 处理居中
+    -- local offsetx, offsety = nextBlock:getOffSet()
+    -- nextBlock:setPosition(cc.p(0, -offsety))
+    -- self.nextBg:addChild(nextBlock)
 
     -- 游戏开始
     self.tetris.isAI = false
@@ -161,8 +161,8 @@ function TetrisSinglePanel:roundStart(oldNextBlock, newNextBlock)
 
     -- 显示下一个方块
     if newNextBlock then
-        local offsetx, offsety = newNextBlock:getOffSet()
-        newNextBlock:setPosition(cc.p(0, -offsety))
+        -- local offsetx, offsety = newNextBlock:getOffSet()
+        -- newNextBlock:setPosition(cc.p(0, -offsety))
         self.nextBg:addChild(newNextBlock)
     end
 

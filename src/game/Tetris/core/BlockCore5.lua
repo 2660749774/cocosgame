@@ -28,7 +28,7 @@ local BlockCore5 = class("BlockCore5", BlockCore)
 -- 构造函数
 -- @function [parent=#BlockCore5] ctor
 function BlockCore5:ctor(x, y, idx)
-    BlockCore.ctor(self, x, y, idx)
+    BlockCore.ctor(self, 5, x, y, idx)
     self:initShape()
 end
 
