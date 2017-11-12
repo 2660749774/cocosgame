@@ -14,6 +14,7 @@ local Block4 = import(".BlockCore4")
 local Block5 = import(".BlockCore5")
 local Block6 = import(".BlockCore6")
 local Block7 = import(".BlockCore7")
+local BlockProp = import(".BlockProp")
 local RandomUtil = require "core.util.RandomUtil"
 
 --------------------------------
@@ -37,6 +38,7 @@ function TetrisCore:ctor(isNet, width, height)
     self.block = nil
     self.nextBlock = nil
     self.eventStack = {}
+    self.gridsProperties = {}
 end
 
 --------------------------------
@@ -44,7 +46,7 @@ end
 -- @function [parent=#TetrisCore] onCreate
 function TetrisCore:init(conf)
     self:initGrid(self.width, self.height)
-    -- self:initGridBlock(conf)
+    self:initGridBlock(conf)
 end
 
 --------------------------------
@@ -99,22 +101,51 @@ function TetrisCore:doUpdate(dt)
 end
 
 --------------------------------
+-- 更新服务器帧号
+-- @function [parent=#TetrisCore] updateServerFrameNum
+function TetrisCore:updateServerFrameNum(frameNum)
+    if self.fixScheduler then
+        self.fixScheduler:updateServerFrameNum(frameNum)
+    end
+end
+
+--------------------------------
+-- 添加服务器帧
+-- @function [parent=#TetrisCore] addServerFrame
+function TetrisCore:addServerFrame(frameNum, eventData)
+    if self.fixScheduler then
+        self.fixScheduler:addServerFrame(frameNum, eventData)
+    end
+end
+
+--------------------------------
 -- 处理输入
 -- @function [parent=#TetrisCore] handleInput
 function TetrisCore:handleInput(keyCode)
     -- TODO 网络下，发送服务器
-    log:info("[core]handleInput %s", keyCode)
     -- self:handleFrameData({keyCode=keyCode})
-    self.fixScheduler:addServerFrame(self.fixScheduler.frameNum + 1, {keyCode=keyCode})
+    if self.isNet then
+        self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
+    else
+        self.fixScheduler:addServerFrame(self.fixScheduler.frameNum + 1, {protoId = protos.KEY_PRESS, args = keyCode})
+    end
+    
 end
 
 --------------------------------
 -- 处理服务器帧
 -- @function [parent=#TetrisCore] handleInput
 function TetrisCore:handleServerFrame(eventList)
-    log:info("[core]handleServerFrame %s", data)
-    for _, event in pairs(eventList) do
-        self:handleFrameData(event)
+    log:info("handleServerFrame")
+    log:showTable(eventList)
+    for _, data in pairs(eventList) do
+        if data.protoId == protos.KEY_PRESS then
+            data.keyCode = tonumber(data.args)
+            self:handleFrameData(data)
+        elseif data.protoId == protos.REMOVE_LINES then
+            -- self:addLines(data.args)
+        end
+        -- self:handleFrameData(event)
     end
 end
 
@@ -273,6 +304,7 @@ function TetrisCore:checkBlockEliminate()
     -- 消除判断
     local eliminateArr = {}
     local eliminateNum = 0
+    local eliminateGrids = {}
     for i = #self.grids, 1, -1 do
         local canEliminate = true
         for j = 1, #self.grids[i] do
@@ -282,10 +314,14 @@ function TetrisCore:checkBlockEliminate()
             end
         end
         if canEliminate then
-            eliminateArr[i] = true
+            eliminateArr[i] = 1
             eliminateNum = eliminateNum + 1
+            
+            for k = 1, #self.grids[i] do
+                table.insert(eliminateGrids, {y = i, x = k})
+            end
         else
-            eliminateArr[i] = false
+            eliminateArr[i] = 0
         end
     end
 
@@ -293,7 +329,7 @@ function TetrisCore:checkBlockEliminate()
     if eliminateNum > 0 then
         local nextIdx = 1
         for i = 1, self.row do
-            while (nextIdx <= self.row and eliminateArr[nextIdx]) do
+            while (nextIdx <= self.row and eliminateArr[nextIdx] == 1) do
                 nextIdx = nextIdx + 1
             end
 
@@ -313,11 +349,23 @@ function TetrisCore:checkBlockEliminate()
             end
         end
 
+        -- 处理特殊方块
+        for _, block in pairs(eliminateGrids) do
+            local blockProp = self:getBlockProp(block.x, block.y)
+            if blockProp and blockProp.blockType == 4 then
+                self:insertGridBlock(block.x, block.y, 2, 6)
+            elseif blockProp then
+                self.gridsProperties[block.y][block.x] = nil
+            end
+        end
+        
+
         -- 插入消除事件
         table.insert(self.eventStack, {
             name = "Eliminate",
             eliminateArr = eliminateArr
         })
+        self:print()
     end
 
     return eliminateNum > 0
@@ -352,7 +400,7 @@ function TetrisCore:checkAvailable(tx, ty, blockArray)
                     -- 边界检查
                     return false
                 end
-                if self.grids[ty + by] and self.grids[ty + by][tx + bx] == 1 then
+                if self.grids[ty + by] and self.grids[ty + by][tx + bx] ~= 0 then
                     return false
                 end
             end
@@ -360,6 +408,22 @@ function TetrisCore:checkAvailable(tx, ty, blockArray)
     end
 
     return true
+end
+
+--------------------------------
+-- 指定位置插入数据
+-- @function [parent=#TetrisCore] insertGridBlock
+function TetrisCore:insertGridBlock(x, y, value, gridType)
+    for i = #self.grids, y, -1 do
+        local _value = self.grids[i][x]
+        if _value ~= 0 then
+            self.grids[i + 1][x] = _value
+            self.grids[i][x] = 0
+        end          
+    end
+    self.grids[y][x] = value
+    -- 指定位置插入一个水滴方块
+    self.gridsProperties[y][x] = BlockProp:create("", gridType)
 end
 
 --------------------------------
@@ -373,8 +437,67 @@ function TetrisCore:initGrid(width, height)
         for j = 1, self.col do
             if self.grids[i] == nil then
                 self.grids[i] = {}
+                self.gridsProperties[i] = {}
             end
             table.insert(self.grids[i], 0)
+            table.insert(self.gridsProperties[i], nil)
+        end
+    end
+end
+
+--------------------------------
+-- 初始化GridBlock
+-- @function [parent=#TetrisCore] initGridBlock
+function TetrisCore:initGridBlock(conf)
+    if conf == nil then
+        return
+    end
+
+    local blockArray = conf.blockArray
+    local pic = string.format("%s.png", conf.blockType)
+    
+    for i = 1, #blockArray do
+        for j = 1, #blockArray[i] do
+            if blockArray[i][j] == 1 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+                
+                -- 创建方块配置
+                local blockType = 1
+                if iskindof(conf, "TetrisClearStoneConf") then
+                    blockType = 5
+                end
+                local prob = BlockProp:create(pic, blockType)
+                self.grids[gridY][gridX] = 2
+                self.gridsProperties[gridY][gridX] = prob    
+            elseif blockArray[i][j] == 2 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+
+                -- 创建方块配置
+                local blockType = 2
+                local prob = BlockProp:create("fangkuai9.png", blockType)
+                self.grids[gridY][gridX] = 2
+                self.gridsProperties[gridY][gridX] = prob  
+            elseif blockArray[i][j] == 3 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+
+                -- 创建方块配置
+                local blockType = 3
+                local prob = BlockProp:create("fangkuai11.png", blockType)
+                self.grids[gridY][gridX] = 2
+                self.gridsProperties[gridY][gridX] = prob  
+            elseif blockArray[i][j] == 4 then
+                local gridX = j
+                local gridY = #blockArray - i + 1
+
+                -- 创建方块配置
+                local blockType = 4
+                local prob = BlockProp:create(pic, blockType)
+                self.grids[gridY][gridX] = 2
+                self.gridsProperties[gridY][gridX] = prob  
+            end
         end
     end
 end
@@ -394,6 +517,7 @@ function TetrisCore:print()
     for i = self.row, 1, -1 do
         log:info(fmt, unpack(self.grids[i]))
     end
+    log:info("-------------------------------------------")
 end
 
 --------------------------------
@@ -406,6 +530,13 @@ function TetrisCore:pollEvent()
         table.remove(self.eventStack, 1)
     end
     return event
+end
+
+--------------------------------
+-- 获取方块配置
+-- @function [parent=#TetrisCore] getBlockProp
+function TetrisCore:getBlockProp(x, y)
+    return self.gridsProperties[y][x]
 end
 
 

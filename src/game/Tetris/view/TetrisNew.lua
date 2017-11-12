@@ -8,6 +8,7 @@
 local TetrisNew = class("TetrisNew")
 local TetrisCore = import("..core.TetrisCore")
 local BlockView = import(".block.BlockView")
+local BlockProp = import("..core.BlockProp")
 
 --------------------------------
 -- 创建方法
@@ -18,7 +19,7 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.parent = parent
     self.isSelf = isSelf
 
-    self.core = TetrisCore:create(false, 378, 810)
+    self.core = TetrisCore:create(isNet, 378, 810)
     self.grids = {} -- 当前方格
     self.nextBlock = nil -- 下一块方块
     self.pic = 'fangkuai.png'
@@ -157,6 +158,7 @@ end
 -- @function [parent=#TetrisNew] print
 function TetrisNew:print()
     local fmt = ""
+    local t = {}
     for i = 1, self.col do
         if i == 1 then
             fmt = fmt .. "%s"
@@ -164,9 +166,22 @@ function TetrisNew:print()
             fmt = fmt .. " %s"
         end
     end
-    for i = self.row, 1, -1 do
-        log:info(fmt, unpack(self.grids[i]))
+    for i = 1, self.row do
+        for j = 1, #self.grids[i] do
+            if t[i] == nil then
+                t[i] = {}
+            end
+            if self.grids[i][j] ~= 0 then
+                t[i][j] = 'B'
+            else
+                t[i][j] = '0'
+            end
+        end
     end
+    for i = self.row, 1, -1 do
+        log:info(fmt, unpack(t[i]))
+    end
+    log:info("-------------------------------------------")
 end
 
 --------------------------------
@@ -175,10 +190,17 @@ end
 function TetrisNew:doEliminate(eliminateArr)
     -- 获取需要消除的行
     local removeBlocks = {}
+    local eliminateGrids = {}
     for i = 1, self.row do
-        if eliminateArr[i] then
+        if eliminateArr[i] ~= 0 then
             for j = 1, self.col do
                 table.insert(removeBlocks, self.grids[i][j])
+
+                -- 特殊处理
+                local prop = self.grids[i][j].prop 
+                if prop and prop.blockType == 4 then
+                    table.insert(eliminateGrids, {y = i, x = j, prop = prop})
+                end
             end
         end
     end
@@ -187,7 +209,7 @@ function TetrisNew:doEliminate(eliminateArr)
     local nextIdx = 1
     self.upperBlockList = {}
     for i = 1, self.row do
-        while (nextIdx <= self.row and eliminateArr[nextIdx]) do
+        while (nextIdx <= self.row and eliminateArr[nextIdx] == 1) do
             nextIdx = nextIdx + 1
         end
 
@@ -213,6 +235,17 @@ function TetrisNew:doEliminate(eliminateArr)
         end
     end
 
+    -- 处理特殊方块
+    for _, value in pairs(eliminateGrids) do
+        if value.prop and value.prop.blockType == 4 then
+            -- 创建水滴方块
+            local blockProp = BlockProp:create("fangkuai12.png", 6)
+            local block = self:createGridBlock(blockProp, value.x, value.y)
+ 
+            self:insertGridBlock(value.x, value.y, block)
+        end
+    end
+
     -- 添加动画
     self.callbackNums = #removeBlocks
     self.callbackCount = 0
@@ -228,6 +261,23 @@ function TetrisNew:doEliminate(eliminateArr)
             block:runAction(sequence)
         end
     end
+end
+
+--------------------------------
+-- 指定位置插入数据
+-- @function [parent=#TetrisNew] insertGridBlock
+function TetrisNew:insertGridBlock(x, y, value)
+    for i = #self.grids, y, -1 do
+        local _value = self.grids[i][x]
+        if _value and _value ~= 0 then
+            self.grids[i + 1][x] = _value
+            self.grids[i][x] = 0
+            if _value.moveLines then
+                _value.moveLines = _value.moveLines - 1
+            end
+        end          
+    end
+    self.grids[y][x] = value
 end
 
 --------------------------------
@@ -321,8 +371,8 @@ end
 -- 更新服务器帧数
 -- @function [parent=#TetrisNew] updateServerFrameNum
 function TetrisNew:updateServerFrameNum(frameNum)
-    if self.fixScheduler then
-        self.fixScheduler:updateServerFrameNum(frameNum)
+    if self.core then
+        self.core:updateServerFrameNum(frameNum)
     end
 end
 
@@ -330,8 +380,8 @@ end
 -- 添加服务器网络帧内容
 -- @function [parent=#TetrisNew] addServerFrame
 function TetrisNew:addServerFrame(frameNum, event)
-    if self.fixScheduler then
-        self.fixScheduler:addServerFrame(frameNum, event)
+    if self.core then
+        self.core:addServerFrame(frameNum, event)
         -- if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
             -- local delay = cc.Util:getCurrentTime() - self.leftTime
             -- log:info("recive tcp callback, delay:%s, localFramNum:%s, serverFrame:%s, updateTime:%s", 
@@ -350,9 +400,6 @@ function TetrisNew:getLocalFrameNum()
     return 0
 end
 
---------------------------------
--- 游戏开始
--- @function [parent=#TetrisNew] gameStart
 function TetrisNew:gameStart(conf) 
     self.core:gameStart(conf)
 
@@ -440,13 +487,24 @@ function TetrisNew:initGridView()
         for x=1, #grids[y] do
             if grids[y][x] == 0 then
                 self.grids[y][x] = 0
-            else
-                -- TODO 创建指定block
+            elseif grids[y][x] == 2 then
+                self.grids[y][x] = self:createGridBlock(self.core:getBlockProp(x, y), x, y)
             end
         end
     end
     self.row = #grids
     self.col = #grids[1]
+end
+
+--------------------------------
+-- 创建指定方块
+-- @function [parent=#TetrisNew] createSingleBlock
+function TetrisNew:createGridBlock(blockProp, x, y)
+    local block = self:createSingleBlock(blockProp.pic, x, y)
+    block.prop = blockProp
+    self.bg:addChild(block)
+
+    return block
 end
 
 --------------------------------
@@ -757,6 +815,7 @@ function TetrisNew:refreshGrid()
             block.moveLines = 0
         end
         self.upperBlockList = {}
+        self:print()
     end
 end
 

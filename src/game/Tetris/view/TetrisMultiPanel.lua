@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 -- TetrisMultiPanel 俄罗斯方块
 local TetrisMultiPanel = class("TetrisMultiPanel", BasePanel)
-local Tetris = import (".Tetris")
+local Tetris = import (".TetrisNew")
 
 --------------------------------
 -- 创建方法
