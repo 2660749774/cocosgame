@@ -32,12 +32,20 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.downNum = 0
 end
 
+--------------------------------
+-- 暂停游戏
+-- @function [parent=#TetrisNew] pauseGame
 function TetrisNew:pauseGame()
     self.pause = true
+    self.core:pauseGame()
 end
 
+--------------------------------
+-- 恢复游戏
+-- @function [parent=#TetrisNew] resumeGame
 function TetrisNew:resumeGame()
     self.pause = false
+    self.core:resumeGame()
 end
 
 --------------------------------
@@ -66,12 +74,16 @@ function TetrisNew:doUpdate(dt)
         elseif event.name == "RoundStart" then
             -- 回合开始
             self.block = BlockView:create(event.block, self.pic)
+            self.block:updateAttribute(self.nextBlock)
             self.block:doUpdate()
             self.bg:addChild(self.block)
             self:roundReset()
 
             -- 更新下一个block
             self:updateNextBlock(event.nextBlock)
+
+            -- 更新方块数量
+            self.parent:updateBlockNum()
         elseif event.name == "Shake" then
             -- 震屏
             self:shake(self.bg, 0.05)
@@ -84,6 +96,9 @@ function TetrisNew:doUpdate(dt)
             self:doEliminate(event.eliminateArr)
         end
     end
+
+    -- 4. 父节点更新
+    self.parent:doUpdate(dt)
 end
 
 --------------------------------
@@ -202,6 +217,7 @@ function TetrisNew:doEliminate(eliminateArr)
                     table.insert(eliminateGrids, {y = i, x = j, prop = prop})
                 end
             end
+            self.removeLineNums = self.removeLineNums + 1
         end
     end
     
@@ -286,6 +302,7 @@ end
 function TetrisNew:updateNextBlock(model)
     local oldNextBlock = self.nextBlock
     self.nextBlock = BlockView:create(model, self.pic)
+    self.parent:updateNextBlock(self.nextBlock)
 
     self.parent:roundStart(oldNextBlock, self.nextBlock)
 end
@@ -404,7 +421,7 @@ function TetrisNew:gameStart(conf)
     self.core:gameStart(conf)
 
     -- 添加计时器
-    scheduler.scheduleUpdateGlobal(handler(self, self.doUpdate))
+    self.schedulerHandler = scheduler.scheduleUpdateGlobal(handler(self, self.doUpdate))
 end
 
 --------------------------------
@@ -413,12 +430,12 @@ end
 function TetrisNew:gameOver()
     self.gameOverFlag = true
     self.parent:notifyGameOver(self.isSelf)
+
+    self.core:gameOver()
     -- 停止定时任务
-    if self.updateTask then
-        self.fixScheduler:destroy()
-        self.fixScheduler:unscheduleTask(self.updateTask)
-        self.updateTask = nil
-        self.fixScheduler = nil
+    if self.schedulerHandler then
+        scheduler.unscheduleGlobal(self.schedulerHandler)
+        self.schedulerHandler = nil
     end
 end
 
@@ -665,7 +682,7 @@ function TetrisNew:checkBlockRemove()
     end
 
     -- 处理上面的方块
-    -- self.removeLineNums = #removeLines
+    self.removeLineNums = #removeLines
     self.callbackNums = #removeBlocks
     self.callbackCount = 0
 
@@ -824,8 +841,64 @@ end
 -- 处理移除回调
 -- @function [parent=#TetrisNew] removeCallBack
 function TetrisNew:removeCallBack(sender)
-    sender:removeFromParent()
+    -- 更新分数
+    self.callbackCount = self.callbackCount + 1
+    if self.callbackCount >= self.callbackNums then
+        self.parent:updateScore(self.removeLineNums)
+    end
+
+    if sender.extraAttributes then
+        self.parent:handleExtraAttributes(sender)
+    end
+
+    if sender.prop and sender.prop.blockType == 6 then
+        self:flyShuidiBlock(sender)
+    else
+        sender:removeFromParent()
+    end
+
+    
 end
+
+
+--------------------------------
+-- 处理飞翔
+-- @function [parent=#TetrisNew] flyShuidiBlock
+function TetrisNew:flyShuidiBlock(sender)
+    -- 移除自身
+    local gridX = sender.gridX
+    local gridY = sender.gridY
+    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
+
+    sender:removeFromParent()
+
+    -- 添加水滴
+    local sprite = cc.Sprite:createWithSpriteFrameName("shuidi.png")
+    sprite:setAnchorPoint(0, 0)
+    sprite:setPosition(pos.x, pos.y)
+    self.parent:addChild(sprite)
+
+    local offset = display.width - 640
+    -- 放大
+    local action1 = cc.ScaleTo:create (1, 2.0)
+
+    -- 贝塞尔运动
+    local bezierConfig = {
+        cc.p(pos.x, pos.y - 250),   
+        cc.p(350 + offset, 900),  
+        cc.p(510 + offset, 1030),  
+    }  
+    local action2 = cc.BezierTo:create(1, bezierConfig)
+
+    local sequence = cc.Sequence:create(action1, action2, 
+                                        cc.CallFunc:create(function() 
+                                            -- 移除自身
+                                            sprite:removeFromParent()
+                                            self.parent:updateShuidiNum(self.core.grids)
+                                        end))
+    sprite:runAction(sequence)
+end
+
 
 --------------------------------
 -- 处理下沉方块

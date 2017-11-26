@@ -69,6 +69,27 @@ function BlockView:updateBlock()
 end
 
 --------------------------------
+-- 更新额外属性
+-- @function [parent=#BlockView] updateAttribute
+function BlockView:updateAttribute(block)
+    if not block then
+        return
+    end
+    local blocks = block.blocks
+    for i = 1, #blocks do
+        local sprite = blocks[i]
+        if sprite.extraAttributes then
+            sprite:retain()
+            sprite:removeFromParent()
+
+            self.blocks[i]:removeFromParent()
+            self.blocks[i] = sprite
+            self:addChild(sprite)
+        end
+    end
+end
+
+--------------------------------
 -- 获取block方块
 -- @function [parent=#BlockView] getBlockArray
 function BlockView:getBlockArray()

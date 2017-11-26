@@ -38,6 +38,8 @@ function TetrisCore:ctor(isNet, width, height)
     self.block = nil
     self.nextBlock = nil
     self.eventStack = {}
+    self.eliminateNum = 0
+    self.pause = false
 end
 
 --------------------------------
@@ -57,11 +59,22 @@ function TetrisCore:doUpdate(dt)
         return
     end
 
+    if self.pause then
+        return
+    end
+
     -- 暂停计数器更新
     if self.pauseFrameNum > 0 then
         self.pauseFrameNum = self.pauseFrameNum - 1
         if self.pauseFrameNum <= 0 then
-            self:roundStart()
+            -- 新回合开始
+            -- self:roundStart()
+            -- 再次检查
+            if self:checkBlockEliminate() then
+                self.pauseFrameNum = 1
+            else
+                self:roundStart()
+            end
         end
         return
     end
@@ -250,6 +263,33 @@ function TetrisCore:roundStart()
 
     -- 设置速度
     self.fixScheduler:setTimeScale(1)
+    self.eliminateNum = 0
+end
+
+--------------------------------
+-- 暂停游戏
+-- @function [parent=#TetrisCore] pauseGame
+function TetrisCore:pauseGame()
+    self.pause = true
+end
+
+--------------------------------
+-- 恢复游戏
+-- @function [parent=#TetrisCore] resumeGame
+function TetrisCore:resumeGame()
+    self.pause = false
+end
+
+--------------------------------
+-- 游戏结束
+-- @function [parent=#TetrisCore] gameOver
+function TetrisCore:gameOver()
+    self.state = 2
+    if self.fixScheduler then
+        self.fixScheduler:destroy()
+        self.fixScheduler:unscheduleTask(self.updateTask)
+        self.fixScheduler = nil
+    end
 end
 
 --------------------------------
@@ -365,6 +405,7 @@ function TetrisCore:checkBlockEliminate()
             eliminateArr = eliminateArr
         })
         -- self:print()
+        self.eliminateNum = eliminateNum
     end
 
     return eliminateNum > 0

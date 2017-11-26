@@ -88,9 +88,9 @@ function TetrisClearStonePanel:loadConfig(type, powerId, armyId)
 end
 
 --------------------------------
--- 更新剩余方块数
--- @function [parent=#TetrisClearStonePanel] roundStart
-function TetrisClearStonePanel:updateBlockNum()
+-- 更新显示
+-- @function [parent=#TetrisClearStonePanel] refreshView
+function TetrisClearStonePanel:refreshView()
     local blockNum = self.totalBlockNum - self.blockNum
     if blockNum <= 0 and self.removeFangkuaiNum ~= self.totalFangkuaiNum then
         self.tetris:pauseGame()
@@ -120,20 +120,24 @@ function TetrisClearStonePanel:notifyGameOver()
 end
 
 --------------------------------
--- 更新分数
--- @function [parent=#TetrisClearStonePanel] updateScore
-function TetrisClearStonePanel:updateScore(removeLineNums)
-    TetrisSinglePanel.updateScore(self, removeLineNums)
-    self.blockNum =  self.blockNum + 1
+-- 更新方块数
+-- @function [parent=#TetrisClearStonePanel] updateBlockNum
+function TetrisClearStonePanel:updateBlockNum()
+    self.blockNum = self.blockNum + 1
+    self:refreshView()
+end
 
+--------------------------------
+-- 更新分数
+-- @function [parent=#TetrisClearStonePanel] updateShuidiNum
+function TetrisClearStonePanel:updateShuidiNum(grids)
     -- 判断是否胜利
     local totalFangkuaiNum = 0
-    local grids = self.tetris.grids
     for i = 1, #grids do
         for j = 1, #grids[i] do
             if grids[i][j] ~= nil and grids[i][j] ~= 0 then
                 local block = grids[i][j]
-                if block.hasShuidi ~= nil and block.hasShuidi then
+                if block.blockType == 4 or block.blockType == 6 then
                     totalFangkuaiNum = totalFangkuaiNum + 1
                 end
             end
@@ -141,23 +145,11 @@ function TetrisClearStonePanel:updateScore(removeLineNums)
     end
 
     self.removeFangkuaiNum = self.totalFangkuaiNum - totalFangkuaiNum
-    self:updateBlockNum()
+    self:refreshView()
     if (totalFangkuaiNum > 0) then
         return
     end
 
-    -- 胜利了，该模式下胜利即3颗星星通关
-    -- local starArray = self.starArray
-    -- local blockNum = self.blockNum
-    -- for i=3, 1, -1 do
-    --     log:info("cmp score star:%s, need:%s, value:%s", i, starArray[i], blockNum)
-    --     if blockNum <= starArray[i] then
-    --         star = i
-    --         break
-    --     end
-    -- end
-
-    -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
     self.pass = true
     self.tetris:gameOver()
     self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 3, self.removeFangkuaiNum})
@@ -170,7 +162,7 @@ function TetrisClearStonePanel:reset()
     TetrisSinglePanel.reset(self)
 
     self.blockNum = 0
-    self:updateBlockNum()
+    self:refreshView()
 end
 
 

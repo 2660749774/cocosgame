@@ -174,6 +174,12 @@ function TetrisSinglePanel:roundStart(oldNextBlock, newNextBlock)
 end
 
 --------------------------------
+-- 更新方块数
+-- @function [parent=#TetrisSinglePanel] updateBlockNum
+function TetrisSinglePanel:updateBlockNum()
+end
+
+--------------------------------
 -- 更新分数
 -- @function [parent=#TetrisSinglePanel] updateScore
 function TetrisSinglePanel:updateScore(removeLineNums)
