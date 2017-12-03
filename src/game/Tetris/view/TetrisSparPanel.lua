@@ -66,13 +66,13 @@ function TetrisSparPanel:gameStart(data)
     -- 初始化随机数
     RandomUtil:setRandomseed(data.randomseed)
 
-    -- 随机下一块方块
-    local nextBlock = self.tetris:createNextBlock()
+    -- -- 随机下一块方块
+    -- local nextBlock = self.tetris:createNextBlock()
 
-    -- 处理居中
-    local offsetx, offsety = nextBlock:getOffSet()
-    nextBlock:setPosition(cc.p(0, -offsety))
-    self.nextBg:addChild(nextBlock)
+    -- -- 处理居中
+    -- local offsetx, offsety = nextBlock:getOffSet()
+    -- nextBlock:setPosition(cc.p(0, -offsety))
+    -- self.nextBg:addChild(nextBlock)
 
     -- 游戏开始
     self.tetris.isAI = false

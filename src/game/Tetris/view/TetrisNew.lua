@@ -23,6 +23,7 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.grids = {} -- 当前方格
     self.nextBlock = nil -- 下一块方块
     self.pic = 'fangkuai.png'
+    self.fixPixel = 3
 
     -- 输入采集相关变量
     self.keyCode = -1
@@ -93,7 +94,7 @@ function TetrisNew:doUpdate(dt)
             self.block = nil
         elseif event.name == "Eliminate" then
             -- 进行消除
-            self:doEliminate(event.eliminateArr)
+            self:doEliminate(event.eliminateArr, event.eliminateProp)
         end
     end
 
@@ -109,8 +110,6 @@ function TetrisNew:roundReset()
     self.keyCode = -1
     self.downNum = 0
     self.collectCd = 0
-
-    self:refreshGrid()  
 end
 
 --------------------------------
@@ -202,20 +201,30 @@ end
 --------------------------------
 -- 进行消除
 -- @function [parent=#TetrisNew] doEliminate
-function TetrisNew:doEliminate(eliminateArr)
+function TetrisNew:doEliminate(eliminateArr, eliminateProp)
     -- 获取需要消除的行
     local removeBlocks = {}
     local eliminateGrids = {}
     for i = 1, self.row do
         if eliminateArr[i] ~= 0 then
             for j = 1, self.col do
-                table.insert(removeBlocks, self.grids[i][j])
+                local block = self.grids[i][j]
+            
+                if eliminateProp[i] then
+                    local prop = eliminateProp[i][j]
+                    if prop then
+                        block.eliminateProp = prop
+                    end
+                end
+                table.insert(removeBlocks, block)
 
                 -- 特殊处理
-                local prop = self.grids[i][j].prop 
-                if prop and prop.blockType == 4 then
-                    table.insert(eliminateGrids, {y = i, x = j, prop = prop})
-                end
+                -- local prop = self.grids[i][j].prop 
+                -- if prop and prop.blockType == 4 then
+                --     table.insert(eliminateGrids, {y = i, x = j, prop = prop})
+                -- elseif prop and prop.blockType == 3 then
+                --     table.insert(eliminateGrids, {y = i, x = j, prop = prop})
+                -- end
             end
             self.removeLineNums = self.removeLineNums + 1
         end
@@ -251,30 +260,53 @@ function TetrisNew:doEliminate(eliminateArr)
         end
     end
 
-    -- 处理特殊方块
-    for _, value in pairs(eliminateGrids) do
-        if value.prop and value.prop.blockType == 4 then
-            -- 创建水滴方块
-            local blockProp = BlockProp:create("fangkuai12.png", 6)
-            local block = self:createGridBlock(blockProp, value.x, value.y)
- 
-            self:insertGridBlock(value.x, value.y, block)
-        end
-    end
-
     -- 添加动画
     self.callbackNums = #removeBlocks
     self.callbackCount = 0
     if #removeBlocks > 0 then
+        self:print()
         -- 播放音效
         amgr:playEffect("remove_block.wav")
 
         local action = cc.Blink:create(0.5, 3)
         for _, block in pairs(removeBlocks) do
-            -- 闪烁动画
-            local sequence = cc.Sequence:create(action:clone(), 
-            cc.CallFunc:create(handler(self, self.removeCallBack), {sender = block}))
-            block:runAction(sequence)
+            -- 消除特殊事件处理
+            if block.eliminateProp then
+                -- 处理消除事件
+                local prop = block.eliminateProp
+                if prop.type == "insert" then
+                    local newBlock = self:createGridBlock(prop.prop, prop.x, prop.y)
+                    self:insertGridBlock(prop.x, prop.y, newBlock)
+                    prop.newBlock = newBlock
+                elseif prop.type == "replace" then
+                    local targetY = prop.targetY
+                    local newBlock = self:createGridBlock(prop.prop, prop.x, prop.y)
+                    self:replaceGridBlock(prop.x, prop.y, targetY, newBlock)
+                    prop.newBlock = newBlock
+                end
+            end
+
+            if block.prop and (block.prop.blockType == 4 or block.prop.blockType == 5) then
+                -- 石头方块
+                block:setVisible(false)
+                local x, y = block:getPosition()
+                local stoneAnimLayout = require("layout.TetrisStoneAnimation").create()
+                local animation = stoneAnimLayout['animation']
+                stoneAnimLayout['root']:runAction(animation)
+                stoneAnimLayout['root']:setPosition(x + 13, y + 13)
+                animation:setTimeSpeed(0.12)
+                animation:gotoFrameAndPlay(0, false)
+                animation:setLastFrameCallFunc(function()
+                    stoneAnimLayout['root']:removeFromParent()
+                    self:removeCallBack(block)
+                end)
+                self.bg:addChild(stoneAnimLayout['root']) 
+            else
+                -- 闪烁动画
+                local sequence = cc.Sequence:create(action:clone(), 
+                cc.CallFunc:create(handler(self, self.removeCallBack), {sender = block}))
+                block:runAction(sequence)
+            end
         end
     end
 end
@@ -282,7 +314,8 @@ end
 --------------------------------
 -- 指定位置插入数据
 -- @function [parent=#TetrisNew] insertGridBlock
-function TetrisNew:insertGridBlock(x, y, value)
+function TetrisNew:insertGridBlock(x, y, block)
+    block:setVisible(false)
     for i = #self.grids, y, -1 do
         local _value = self.grids[i][x]
         if _value and _value ~= 0 then
@@ -293,7 +326,62 @@ function TetrisNew:insertGridBlock(x, y, value)
             end
         end          
     end
-    self.grids[y][x] = value
+    self.grids[y][x] = block
+end
+
+--------------------------------
+-- 替换方块
+-- @function [parent=#TetrisNew] replaceGridBlock
+function TetrisNew:replaceGridBlock(x, y, ty, block)
+    block:setVisible(false)
+    local targetX, targetY = self:convertGridToPosition(x, ty)
+    if y == ty then
+        self:insertGridBlock(x, y, block)
+    elseif ty >= 1 then
+        -- 替换原有block
+        self.grids[ty][x] = block
+    end
+end
+
+--------------------------------
+-- 插入动画表现
+-- @function [parent=#TetrisNew] doInsertGridBlockAnim
+function TetrisNew:doInsertGridBlockAnim(x, y, block)
+    log:info("doInsertGridBlockAnim x:%s, y:%s, block:%s", x, y, block)
+    block:setScale(0)
+    block:setVisible(true)
+    local action1 = cc.ScaleTo:create(0.2, 1)
+    local action2 = cc.DelayTime:create(0.2)
+    local sequence = cc.Sequence:create(action1, action2)
+    block:runAction(sequence)
+end
+
+--------------------------------
+-- 处理替换方块动画
+-- @function [parent=#TetrisNew] doReplaceGridBlockAnim
+function TetrisNew:doReplaceGridBlockAnim(x, y, ty, block)
+    local targetX, targetY = self:convertGridToPosition(x, ty)
+    block:setVisible(true)
+    if y ~= ty then
+        -- 创建动画
+        local action = cc.MoveTo:create(1, cc.p(targetX, targetY))
+        local sequence = cc.Sequence:create(action, 
+                cc.CallFunc:create(
+                    function() 
+                        -- 移除自身
+                        if ty < 1 then
+                            -- 回调父类
+                            if self.parent.updateFlyStar then
+                                self.parent:updateFlyStar()
+                            end
+                            block:removeFromParent()
+                        end
+                    end
+                )
+        )
+        
+        block:runAction(sequence)
+    end
 end
 
 --------------------------------
@@ -841,28 +929,41 @@ end
 -- 处理移除回调
 -- @function [parent=#TetrisNew] removeCallBack
 function TetrisNew:removeCallBack(sender)
-    -- 更新分数
-    self.callbackCount = self.callbackCount + 1
-    if self.callbackCount >= self.callbackNums then
-        self.parent:updateScore(self.removeLineNums)
-    end
-
+    -- 处理额外属性
     if sender.extraAttributes then
         self.parent:handleExtraAttributes(sender)
     end
 
+    -- 消除特殊事件处理
+    if sender.eliminateProp then
+        -- 处理消除事件
+        local prop = sender.eliminateProp
+        if prop.type == "insert" then
+            self:doInsertGridBlockAnim(prop.x, prop.y, prop.newBlock)
+        elseif prop.type == "replace" then
+            self:doReplaceGridBlockAnim(prop.x, prop.y, prop.targetY, prop.newBlock)
+        end
+    end
+
+    -- 特殊方块处理
     if sender.prop and sender.prop.blockType == 6 then
+        -- 水滴方块
         self:flyShuidiBlock(sender)
     else
         sender:removeFromParent()
     end
 
-    
+    -- 更新分数
+    self.callbackCount = self.callbackCount + 1
+    if self.callbackCount >= self.callbackNums then
+        self.parent:updateScore(self.removeLineNums)
+        self:refreshGrid()  
+    end
 end
 
 
 --------------------------------
--- 处理飞翔
+-- 处理水滴方块
 -- @function [parent=#TetrisNew] flyShuidiBlock
 function TetrisNew:flyShuidiBlock(sender)
     -- 移除自身
@@ -898,7 +999,6 @@ function TetrisNew:flyShuidiBlock(sender)
                                         end))
     sprite:runAction(sequence)
 end
-
 
 --------------------------------
 -- 处理下沉方块

@@ -98,8 +98,8 @@ function TetrisCore:doUpdate(dt)
             name = "MergeBlock"
         })
 
-        -- log:info("-----------------------------------------------")
-        -- self:print()
+        log:info("-----------------------------------------------")
+        self:print()
         -- 当前block消失
         self.block = nil
 
@@ -344,6 +344,7 @@ function TetrisCore:checkBlockEliminate()
     local eliminateArr = {}
     local eliminateNum = 0
     local eliminateGrids = {}
+    local eliminateProp = {}
     for i = #self.grids, 1, -1 do
         local canEliminate = true
         for j = 1, #self.grids[i] do
@@ -394,7 +395,30 @@ function TetrisCore:checkBlockEliminate()
         -- 处理特殊方块
         for _, block in pairs(eliminateGrids) do
             if block.blockType == 4 then
-                self:insertGridBlock(block.x, block.y, 2, 6)
+                -- 插入一个方块
+                local prop = BlockProp:create("fangkuai12.png", 6)
+                self:insertGridBlock(block.x, block.y, prop)
+
+                if eliminateProp[block.y] == nil then
+                    eliminateProp[block.y] = {}
+                end
+                eliminateProp[block.y][block.x] = { type = "insert", prop = prop, x = block.x, y = block.y }
+            elseif block.blockType == 3 then
+                -- 重置方块
+                local targetY = self:checkSparBlockDownGridPos(block.x, block.y)
+                local prop = BlockProp:create("fangkuai11.png", block.blockType)
+                if targetY >= 1 then
+                    if targetY == block.y then
+                        self:insertGridBlock(block.x, block.y, prop)
+                    else
+                        self.grids[targetY][block.x] = prop
+                    end
+                end
+
+                if eliminateProp[block.y] == nil then
+                    eliminateProp[block.y] = {}
+                end
+                eliminateProp[block.y][block.x] = { type = "replace", targetY = targetY, prop = prop, x = block.x, y = block.y }
             end
         end
         
@@ -402,13 +426,35 @@ function TetrisCore:checkBlockEliminate()
         -- 插入消除事件
         table.insert(self.eventStack, {
             name = "Eliminate",
-            eliminateArr = eliminateArr
+            eliminateArr = eliminateArr,
+            eliminateProp = eliminateProp
         })
-        -- self:print()
+        self:print()
         self.eliminateNum = eliminateNum
     end
 
     return eliminateNum > 0
+end
+
+--------------------------------
+-- 检查是可以下降得格数
+-- @function [parent=#TetrisCore] checkSparBlockDownGridPos
+function TetrisCore:checkSparBlockDownGridPos(gridX, gridY)
+    -- 检查自己所处位置是否合法
+    local pos = gridY - 1
+    for i = gridY - 1, 1, -1 do
+        if self.grids[i][gridX] ~= nil and self.grids[i][gridX] == 0 then
+            pos = i
+        else
+            break
+        end
+    end
+
+    if pos > 0 and self.grids[pos][gridX] ~= 0 and self.grids[pos][gridX].blockType == 3 then
+        pos = pos + 1
+    end
+
+    return pos
 end
 
 --------------------------------
@@ -453,7 +499,7 @@ end
 --------------------------------
 -- 指定位置插入数据
 -- @function [parent=#TetrisCore] insertGridBlock
-function TetrisCore:insertGridBlock(x, y, value, gridType)
+function TetrisCore:insertGridBlock(x, y, prop)
     for i = #self.grids, y, -1 do
         local _value = self.grids[i][x]
         if _value ~= 0 then
@@ -462,7 +508,7 @@ function TetrisCore:insertGridBlock(x, y, value, gridType)
         end          
     end
     -- 指定位置插入一个水滴方块
-    self.grids[y][x] = BlockProp:create("", gridType)
+    self.grids[y][x] = prop
 end
 
 --------------------------------
@@ -495,6 +541,7 @@ function TetrisCore:initGridBlock(conf)
     
     for i = 1, #blockArray do
         for j = 1, #blockArray[i] do
+            -- log:info("x:%s, y:%s, prop:%s", j, #blockArray - i + 1, blockArray[i][j])
             if blockArray[i][j] == 1 then
                 local gridX = j
                 local gridY = #blockArray - i + 1
@@ -520,7 +567,7 @@ function TetrisCore:initGridBlock(conf)
 
                 -- 创建方块配置
                 local blockType = 3
-                local prob = BlockProp:create("fangkuai11.png", blockType)
+                local prop = BlockProp:create("fangkuai11.png", blockType)
                 self.grids[gridY][gridX] = prop
             elseif blockArray[i][j] == 4 then
                 local gridX = j

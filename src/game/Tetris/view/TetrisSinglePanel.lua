@@ -180,6 +180,13 @@ function TetrisSinglePanel:updateBlockNum()
 end
 
 --------------------------------
+-- 更新时间
+-- @function [parent=#TetrisSinglePanel] doUpdate
+function TetrisSinglePanel:doUpdate(dt)
+    return
+end
+
+--------------------------------
 -- 更新分数
 -- @function [parent=#TetrisSinglePanel] updateScore
 function TetrisSinglePanel:updateScore(removeLineNums)
