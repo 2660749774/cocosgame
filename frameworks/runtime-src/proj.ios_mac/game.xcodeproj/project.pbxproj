@@ -350,6 +350,400 @@
 		84A186EF1D152B3F0004995F /* lua_cjson.c in Sources */ = {isa = PBXBuildFile; fileRef = 84A186E21D152AFC0004995F /* lua_cjson.c */; };
 		84A186F01D152B420004995F /* strbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 84A186E41D152AFC0004995F /* strbuf.c */; };
 		84A186F21D152B4A0004995F /* lua_zlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 84A186DC1D152AD90004995F /* lua_zlib.c */; };
+		84A977871FA81F5700C55936 /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A977851FA81F5500C55936 /* LaunchScreenBackground.png */; };
+		84A977881FA81F5700C55936 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A977861FA81F5600C55936 /* LaunchScreen.storyboard */; };
+		84A97A191FA821BC00C55936 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9778B1FA821BB00C55936 /* init.lua */; };
+		84A97A1A1FA821BC00C55936 /* Layers.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9778C1FA821BB00C55936 /* Layers.lua */; };
+		84A97A1B1FA821BC00C55936 /* WebUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9778E1FA821BB00C55936 /* WebUtil.lua */; };
+		84A97A1C1FA821BC00C55936 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9778F1FA821BB00C55936 /* init.lua */; };
+		84A97A1D1FA821BC00C55936 /* testkcp.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977901FA821BB00C55936 /* testkcp.lua */; };
+		84A97A1E1FA821BC00C55936 /* SocketTCP.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977911FA821BB00C55936 /* SocketTCP.lua */; };
+		84A97A1F1FA821BC00C55936 /* SocketUDP.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977921FA821BB00C55936 /* SocketUDP.lua */; };
+		84A97A201FA821BC00C55936 /* network.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977931FA821BB00C55936 /* network.lua */; };
+		84A97A211FA821BC00C55936 /* latencysm.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977941FA821BB00C55936 /* latencysm.lua */; };
+		84A97A221FA821BC00C55936 /* NativeBridge.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977961FA821BB00C55936 /* NativeBridge.lua */; };
+		84A97A231FA821BC00C55936 /* corefunctions.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977981FA821BB00C55936 /* corefunctions.lua */; };
+		84A97A241FA821BC00C55936 /* GameState.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977991FA821BB00C55936 /* GameState.lua */; };
+		84A97A251FA821BC00C55936 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9779A1FA821BB00C55936 /* init.lua */; };
+		84A97A261FA821BC00C55936 /* crypto.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9779B1FA821BB00C55936 /* crypto.lua */; };
+		84A97A271FA821BC00C55936 /* json.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9779C1FA821BB00C55936 /* json.lua */; };
+		84A97A281FA821BC00C55936 /* ColorUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9779D1FA821BB00C55936 /* ColorUtil.lua */; };
+		84A97A291FA821BC00C55936 /* bit.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9779E1FA821BB00C55936 /* bit.lua */; };
+		84A97A2A1FA821BC00C55936 /* RandomUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9779F1FA821BB00C55936 /* RandomUtil.lua */; };
+		84A97A2B1FA821BC00C55936 /* ShaderUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A01FA821BB00C55936 /* ShaderUtil.lua */; };
+		84A97A2C1FA821BC00C55936 /* UserDefaultUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A11FA821BB00C55936 /* UserDefaultUtil.lua */; };
+		84A97A2D1FA821BC00C55936 /* Localize.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A21FA821BB00C55936 /* Localize.lua */; };
+		84A97A2E1FA821BC00C55936 /* GameArchiveFile.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A31FA821BB00C55936 /* GameArchiveFile.lua */; };
+		84A97A2F1FA821BC00C55936 /* ByteArray.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A41FA821BB00C55936 /* ByteArray.lua */; };
+		84A97A301FA821BC00C55936 /* ByteArrayVarint.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A51FA821BB00C55936 /* ByteArrayVarint.lua */; };
+		84A97A311FA821BC00C55936 /* Timer.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A61FA821BB00C55936 /* Timer.lua */; };
+		84A97A321FA821BD00C55936 /* Random.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A71FA821BB00C55936 /* Random.lua */; };
+		84A97A331FA821BD00C55936 /* RandomLua.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A81FA821BB00C55936 /* RandomLua.lua */; };
+		84A97A341FA821BD00C55936 /* toluaEx.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977A91FA821BB00C55936 /* toluaEx.lua */; };
+		84A97A351FA821BD00C55936 /* filter.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977AA1FA821BB00C55936 /* filter.lua */; };
+		84A97A361FA821BD00C55936 /* base64.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977AB1FA821BB00C55936 /* base64.lua */; };
+		84A97A371FA821BD00C55936 /* BasePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977AD1FA821BB00C55936 /* BasePanel.lua */; };
+		84A97A381FA821BD00C55936 /* BaseView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977AE1FA821BB00C55936 /* BaseView.lua */; };
+		84A97A391FA821BD00C55936 /* BaseApp.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977AF1FA821BB00C55936 /* BaseApp.lua */; };
+		84A97A3A1FA821BD00C55936 /* BaseScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977B01FA821BB00C55936 /* BaseScene.lua */; };
+		84A97A3B1FA821BD00C55936 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977B21FA821BB00C55936 /* init.lua */; };
+		84A97A3C1FA821BD00C55936 /* RichLabel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977B41FA821BB00C55936 /* RichLabel.lua */; };
+		84A97A3D1FA821BD00C55936 /* label.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977B61FA821BB00C55936 /* label.lua */; };
+		84A97A3E1FA821BD00C55936 /* label_img.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977B71FA821BB00C55936 /* label_img.lua */; };
+		84A97A3F1FA821BD00C55936 /* label_div.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977B81FA821BB00C55936 /* label_div.lua */; };
+		84A97A401FA821BD00C55936 /* labelparser.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977B91FA821BB00C55936 /* labelparser.lua */; };
+		84A97A411FA821BD00C55936 /* ListViewEx.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977BA1FA821BB00C55936 /* ListViewEx.lua */; };
+		84A97A421FA821BD00C55936 /* ButtonEx.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977BB1FA821BB00C55936 /* ButtonEx.lua */; };
+		84A97A431FA821BD00C55936 /* fixscheduler_bak.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977BC1FA821BB00C55936 /* fixscheduler_bak.lua */; };
+		84A97A441FA821BD00C55936 /* AudioManager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977BE1FA821BB00C55936 /* AudioManager.lua */; };
+		84A97A451FA821BD00C55936 /* ResourceManager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977BF1FA821BB00C55936 /* ResourceManager.lua */; };
+		84A97A461FA821BD00C55936 /* ConnectManager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C01FA821BB00C55936 /* ConnectManager.lua */; };
+		84A97A471FA821BD00C55936 /* EventManager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C11FA821BB00C55936 /* EventManager.lua */; };
+		84A97A481FA821BD00C55936 /* UDPConnectManager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C21FA821BB00C55936 /* UDPConnectManager.lua */; };
+		84A97A491FA821BD00C55936 /* scheduler.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C31FA821BB00C55936 /* scheduler.lua */; };
+		84A97A4A1FA821BD00C55936 /* log.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C41FA821BB00C55936 /* log.lua */; };
+		84A97A4B1FA821BD00C55936 /* fixscheduler.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C51FA821BB00C55936 /* fixscheduler.lua */; };
+		84A97A4C1FA821BD00C55936 /* BaseViewModel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C71FA821BB00C55936 /* BaseViewModel.lua */; };
+		84A97A4D1FA821BD00C55936 /* Binder.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C81FA821BB00C55936 /* Binder.lua */; };
+		84A97A4E1FA821BD00C55936 /* BaseModel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977C91FA821BB00C55936 /* BaseModel.lua */; };
+		84A97A4F1FA821BD00C55936 /* main.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977CA1FA821BB00C55936 /* main.lua */; };
+		84A97A501FA821BD00C55936 /* WinConfig.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977CC1FA821BB00C55936 /* WinConfig.lua */; };
+		84A97A511FA821BD00C55936 /* MobConfig.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977CD1FA821BB00C55936 /* MobConfig.lua */; };
+		84A97A521FA821BD00C55936 /* TetrisStartCountAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977CF1FA821BB00C55936 /* TetrisStartCountAnimation.lua */; };
+		84A97A531FA821BD00C55936 /* TetrisRankItem.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D01FA821BB00C55936 /* TetrisRankItem.lua */; };
+		84A97A541FA821BD00C55936 /* TetrisShop.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D11FA821BB00C55936 /* TetrisShop.lua */; };
+		84A97A551FA821BD00C55936 /* TetrisPvp.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D21FA821BB00C55936 /* TetrisPvp.lua */; };
+		84A97A561FA821BD00C55936 /* TetrisLoading.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D31FA821BB00C55936 /* TetrisLoading.lua */; };
+		84A97A571FA821BD00C55936 /* TetrisPowerStart.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D41FA821BB00C55936 /* TetrisPowerStart.lua */; };
+		84A97A581FA821BD00C55936 /* TetrisStart.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D51FA821BB00C55936 /* TetrisStart.lua */; };
+		84A97A591FA821BD00C55936 /* TetrisPvpStartIntro.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D61FA821BB00C55936 /* TetrisPvpStartIntro.lua */; };
+		84A97A5A1FA821BD00C55936 /* TetrisMeteor.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D71FA821BB00C55936 /* TetrisMeteor.lua */; };
+		84A97A5B1FA821BD00C55936 /* TetrisAttackAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D81FA821BB00C55936 /* TetrisAttackAnimation.lua */; };
+		84A97A5C1FA821BD00C55936 /* TetrisStartIntro.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977D91FA821BB00C55936 /* TetrisStartIntro.lua */; };
+		84A97A5D1FA821BD00C55936 /* ConsolePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977DA1FA821BB00C55936 /* ConsolePanel.lua */; };
+		84A97A5E1FA821BD00C55936 /* PowerFailPopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977DB1FA821BB00C55936 /* PowerFailPopup.lua */; };
+		84A97A5F1FA821BD00C55936 /* TetrisTipBuyTime.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977DC1FA821BB00C55936 /* TetrisTipBuyTime.lua */; };
+		84A97A601FA821BD00C55936 /* TetrisStartAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977DD1FA821BB00C55936 /* TetrisStartAnimation.lua */; };
+		84A97A611FA821BD00C55936 /* TetrisTipUpdate.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977DE1FA821BB00C55936 /* TetrisTipUpdate.lua */; };
+		84A97A621FA821BD00C55936 /* TetrisStartCountAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E01FA821BB00C55936 /* TetrisStartCountAnimation.lua */; };
+		84A97A631FA821BD00C55936 /* TestMVVMScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E11FA821BB00C55936 /* TestMVVMScene.lua */; };
+		84A97A641FA821BD00C55936 /* TetrisPvp.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E21FA821BB00C55936 /* TetrisPvp.lua */; };
+		84A97A651FA821BD00C55936 /* TetrisPowerStart.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E31FA821BB00C55936 /* TetrisPowerStart.lua */; };
+		84A97A661FA821BD00C55936 /* TetrisScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E41FA821BB00C55936 /* TetrisScene.lua */; };
+		84A97A671FA821BD00C55936 /* listTestPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E51FA821BB00C55936 /* listTestPanel.lua */; };
+		84A97A681FA821BD00C55936 /* TetrisMeteor.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E61FA821BB00C55936 /* TetrisMeteor.lua */; };
+		84A97A691FA821BD00C55936 /* TetrisStartIntro.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E71FA821BB00C55936 /* TetrisStartIntro.lua */; };
+		84A97A6A1FA821BD00C55936 /* ConsolePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E81FA821BB00C55936 /* ConsolePanel.lua */; };
+		84A97A6B1FA821BD00C55936 /* PowerFailPopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977E91FA821BB00C55936 /* PowerFailPopup.lua */; };
+		84A97A6C1FA821BD00C55936 /* TetrisStartAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977EA1FA821BB00C55936 /* TetrisStartAnimation.lua */; };
+		84A97A6D1FA821BD00C55936 /* MainLayout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977EB1FA821BB00C55936 /* MainLayout.lua */; };
+		84A97A6E1FA821BD00C55936 /* TestLuaLayout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977EC1FA821BB00C55936 /* TestLuaLayout.lua */; };
+		84A97A6F1FA821BD00C55936 /* CommTips.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977ED1FA821BB00C55936 /* CommTips.lua */; };
+		84A97A701FA821BD00C55936 /* TetrisMeteor2.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977EE1FA821BB00C55936 /* TetrisMeteor2.lua */; };
+		84A97A711FA821BD00C55936 /* TetrisEndIntro.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977EF1FA821BB00C55936 /* TetrisEndIntro.lua */; };
+		84A97A721FA821BD00C55936 /* TetrisMeteorAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F01FA821BB00C55936 /* TetrisMeteorAnimation.lua */; };
+		84A97A731FA821BD00C55936 /* PageTestScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F11FA821BB00C55936 /* PageTestScene.lua */; };
+		84A97A741FA821BD00C55936 /* TetrisPowerArmy.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F21FA821BB00C55936 /* TetrisPowerArmy.lua */; };
+		84A97A751FA821BD00C55936 /* TetrisClearStone.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F31FA821BB00C55936 /* TetrisClearStone.lua */; };
+		84A97A761FA821BD00C55936 /* PowerSuccPopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F41FA821BB00C55936 /* PowerSuccPopup.lua */; };
+		84A97A771FA821BD00C55936 /* TetrisSearchAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F51FA821BB00C55936 /* TetrisSearchAnimation.lua */; };
+		84A97A781FA821BD00C55936 /* TetrisSpar.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F61FA821BB00C55936 /* TetrisSpar.lua */; };
+		84A97A791FA821BD00C55936 /* GameLayout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F71FA821BB00C55936 /* GameLayout.lua */; };
+		84A97A7A1FA821BD00C55936 /* TetrisScene_Net.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F81FA821BB00C55936 /* TetrisScene_Net.lua */; };
+		84A97A7B1FA821BD00C55936 /* TetrisTimeMode.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977F91FA821BB00C55936 /* TetrisTimeMode.lua */; };
+		84A97A7C1FA821BD00C55936 /* LoadingScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977FA1FA821BB00C55936 /* LoadingScene.lua */; };
+		84A97A7D1FA821BD00C55936 /* TetrisMainBar.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977FB1FA821BB00C55936 /* TetrisMainBar.lua */; };
+		84A97A7E1FA821BD00C55936 /* TetrisMainScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977FC1FA821BB00C55936 /* TetrisMainScene.lua */; };
+		84A97A7F1FA821BD00C55936 /* ModalMask.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977FD1FA821BB00C55936 /* ModalMask.lua */; };
+		84A97A801FA821BD00C55936 /* PowerStartPopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977FE1FA821BB00C55936 /* PowerStartPopup.lua */; };
+		84A97A811FA821BD00C55936 /* scrollTestPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A977FF1FA821BB00C55936 /* scrollTestPanel.lua */; };
+		84A97A821FA821BD00C55936 /* TetrisLogin.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978001FA821BB00C55936 /* TetrisLogin.lua */; };
+		84A97A831FA821BD00C55936 /* PowerPausePopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978011FA821BB00C55936 /* PowerPausePopup.lua */; };
+		84A97A841FA821BD00C55936 /* TetrisMaze.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978021FA821BB00C55936 /* TetrisMaze.lua */; };
+		84A97A851FA821BD00C55936 /* LoginLayout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978031FA821BB00C55936 /* LoginLayout.lua */; };
+		84A97A861FA821BD00C55936 /* TetrisPowerLoop.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978041FA821BB00C55936 /* TetrisPowerLoop.lua */; };
+		84A97A871FA821BD00C55936 /* UITestScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978051FA821BB00C55936 /* UITestScene.lua */; };
+		84A97A881FA821BD00C55936 /* ListItem.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978061FA821BB00C55936 /* ListItem.lua */; };
+		84A97A891FA821BD00C55936 /* 2048Scene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978071FA821BB00C55936 /* 2048Scene.lua */; };
+		84A97A8A1FA821BD00C55936 /* ButtonTestScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978081FA821BB00C55936 /* ButtonTestScene.lua */; };
+		84A97A8B1FA821BD00C55936 /* LoadingPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978091FA821BB00C55936 /* LoadingPanel.lua */; };
+		84A97A8C1FA821BD00C55936 /* TetrisNode.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9780A1FA821BB00C55936 /* TetrisNode.lua */; };
+		84A97A8D1FA821BD00C55936 /* SliderTestScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9780B1FA821BB00C55936 /* SliderTestScene.lua */; };
+		84A97A8E1FA821BD00C55936 /* ListItem_0.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9780C1FA821BB00C55936 /* ListItem_0.lua */; };
+		84A97A8F1FA821BD00C55936 /* TetrisTipComm.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9780D1FA821BB00C55936 /* TetrisTipComm.lua */; };
+		84A97A901FA821BD00C55936 /* LuaExtend.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9780E1FA821BB00C55936 /* LuaExtend.lua */; };
+		84A97A911FA821BD00C55936 /* CommTips.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9780F1FA821BB00C55936 /* CommTips.lua */; };
+		84A97A921FA821BD00C55936 /* TetrisMeteor2.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978101FA821BB00C55936 /* TetrisMeteor2.lua */; };
+		84A97A931FA821BD00C55936 /* TetrisEndIntro.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978111FA821BB00C55936 /* TetrisEndIntro.lua */; };
+		84A97A941FA821BD00C55936 /* TetrisMeteorAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978121FA821BB00C55936 /* TetrisMeteorAnimation.lua */; };
+		84A97A951FA821BD00C55936 /* TetrisPvpResult.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978131FA821BB00C55936 /* TetrisPvpResult.lua */; };
+		84A97A961FA821BD00C55936 /* TetrisPowerArmy.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978141FA821BB00C55936 /* TetrisPowerArmy.lua */; };
+		84A97A971FA821BD00C55936 /* TetrisClearStone.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978151FA821BB00C55936 /* TetrisClearStone.lua */; };
+		84A97A981FA821BD00C55936 /* PowerSuccPopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978161FA821BB00C55936 /* PowerSuccPopup.lua */; };
+		84A97A991FA821BD00C55936 /* TetrisSearchAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978171FA821BB00C55936 /* TetrisSearchAnimation.lua */; };
+		84A97A9A1FA821BD00C55936 /* TetrisShopItem.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978181FA821BB00C55936 /* TetrisShopItem.lua */; };
+		84A97A9B1FA821BD00C55936 /* TetrisSpar.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978191FA821BB00C55936 /* TetrisSpar.lua */; };
+		84A97A9C1FA821BD00C55936 /* TetrisPvpEndIntro.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9781A1FA821BB00C55936 /* TetrisPvpEndIntro.lua */; };
+		84A97A9D1FA821BD00C55936 /* TetrisScene_Net.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9781B1FA821BB00C55936 /* TetrisScene_Net.lua */; };
+		84A97A9E1FA821BD00C55936 /* TetrisTimeMode.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9781C1FA821BB00C55936 /* TetrisTimeMode.lua */; };
+		84A97A9F1FA821BD00C55936 /* TetrisMainBar.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9781D1FA821BB00C55936 /* TetrisMainBar.lua */; };
+		84A97AA01FA821BD00C55936 /* TetrisMainScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9781E1FA821BB00C55936 /* TetrisMainScene.lua */; };
+		84A97AA11FA821BD00C55936 /* TetrisHotswap.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9781F1FA821BB00C55936 /* TetrisHotswap.lua */; };
+		84A97AA21FA821BD00C55936 /* ModalMask.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978201FA821BB00C55936 /* ModalMask.lua */; };
+		84A97AA31FA821BD00C55936 /* PowerStartPopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978211FA821BB00C55936 /* PowerStartPopup.lua */; };
+		84A97AA41FA821BD00C55936 /* TetrisPointAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978221FA821BB00C55936 /* TetrisPointAnimation.lua */; };
+		84A97AA51FA821BD00C55936 /* TetrisLogin.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978231FA821BB00C55936 /* TetrisLogin.lua */; };
+		84A97AA61FA821BD00C55936 /* PowerPausePopup.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978241FA821BB00C55936 /* PowerPausePopup.lua */; };
+		84A97AA71FA821BD00C55936 /* TetrisMaze.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978251FA821BB00C55936 /* TetrisMaze.lua */; };
+		84A97AA81FA821BD00C55936 /* TetrisPowerLoop.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978261FA821BB00C55936 /* TetrisPowerLoop.lua */; };
+		84A97AA91FA821BD00C55936 /* TetrisRank.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978271FA821BB00C55936 /* TetrisRank.lua */; };
+		84A97AAA1FA821BD00C55936 /* TetrisStoneAnimation.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978281FA821BB00C55936 /* TetrisStoneAnimation.lua */; };
+		84A97AAB1FA821BD00C55936 /* TetrisTipBuyEnergy.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978291FA821BB00C55936 /* TetrisTipBuyEnergy.lua */; };
+		84A97AAC1FA821BD00C55936 /* LuaExtend.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9782A1FA821BB00C55936 /* LuaExtend.lua */; };
+		84A97AAD1FA821BD00C55936 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9782C1FA821BB00C55936 /* init.lua */; };
+		84A97AAE1FA821BD00C55936 /* Actions.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9782E1FA821BB00C55936 /* Actions.lua */; };
+		84A97AAF1FA821BD00C55936 /* Game.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9782F1FA821BB00C55936 /* Game.lua */; };
+		84A97AB01FA821BD00C55936 /* LoadingScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978321FA821BB00C55936 /* LoadingScene.lua */; };
+		84A97AB11FA821BD00C55936 /* LoadingPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978331FA821BB00C55936 /* LoadingPanel.lua */; };
+		84A97AB21FA821BD00C55936 /* BlockCore1.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978361FA821BB00C55936 /* BlockCore1.lua */; };
+		84A97AB31FA821BD00C55936 /* BlockCore2.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978371FA821BB00C55936 /* BlockCore2.lua */; };
+		84A97AB41FA821BD00C55936 /* BlockCore.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978381FA821BB00C55936 /* BlockCore.lua */; };
+		84A97AB51FA821BD00C55936 /* BlockCore3.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978391FA821BB00C55936 /* BlockCore3.lua */; };
+		84A97AB61FA821BD00C55936 /* BlockCore7.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9783A1FA821BB00C55936 /* BlockCore7.lua */; };
+		84A97AB71FA821BD00C55936 /* BlockCore6.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9783B1FA821BB00C55936 /* BlockCore6.lua */; };
+		84A97AB81FA821BD00C55936 /* BlockCore4.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9783C1FA821BB00C55936 /* BlockCore4.lua */; };
+		84A97AB91FA821BD00C55936 /* BlockCore5.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9783D1FA821BB00C55936 /* BlockCore5.lua */; };
+		84A97ABA1FA821BD00C55936 /* TetrisCore.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9783E1FA821BB00C55936 /* TetrisCore.lua */; };
+		84A97ABB1FA821BD00C55936 /* TetrisAI.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978401FA821BB00C55936 /* TetrisAI.lua */; };
+		84A97ABC1FA821BD00C55936 /* Block2.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978421FA821BB00C55936 /* Block2.lua */; };
+		84A97ABD1FA821BD00C55936 /* TetrisSinglePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978431FA821BB00C55936 /* TetrisSinglePanel.lua */; };
+		84A97ABE1FA821BD00C55936 /* TetrisPowerStartIntroPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978441FA821BB00C55936 /* TetrisPowerStartIntroPanel.lua */; };
+		84A97ABF1FA821BD00C55936 /* Block3.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978451FA821BB00C55936 /* Block3.lua */; };
+		84A97AC01FA821BD00C55936 /* Block1.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978461FA821BB00C55936 /* Block1.lua */; };
+		84A97AC11FA821BD00C55936 /* BaseBlock.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978471FA821BB00C55936 /* BaseBlock.lua */; };
+		84A97AC21FA821BD00C55936 /* Block4.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978481FA821BB00C55936 /* Block4.lua */; };
+		84A97AC31FA821BD00C55936 /* TetrisScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978491FA821BB00C55936 /* TetrisScene.lua */; };
+		84A97AC41FA821BD00C55936 /* TetrisPowerFailPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9784A1FA821BB00C55936 /* TetrisPowerFailPanel.lua */; };
+		84A97AC51FA821BD00C55936 /* Block5.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9784B1FA821BB00C55936 /* Block5.lua */; };
+		84A97AC61FA821BD00C55936 /* Block7.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9784C1FA821BB00C55936 /* Block7.lua */; };
+		84A97AC71FA821BD00C55936 /* Block6.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9784D1FA821BB00C55936 /* Block6.lua */; };
+		84A97AC81FA821BD00C55936 /* TetrisTipsBuyTimePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9784E1FA821BB00C55936 /* TetrisTipsBuyTimePanel.lua */; };
+		84A97AC91FA821BD00C55936 /* Tetris.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9784F1FA821BB00C55936 /* Tetris.lua */; };
+		84A97ACA1FA821BD00C55936 /* TetrisTipsPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978501FA821BB00C55936 /* TetrisTipsPanel.lua */; };
+		84A97ACB1FA821BD00C55936 /* TetrisMeteor2Panel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978511FA821BB00C55936 /* TetrisMeteor2Panel.lua */; };
+		84A97ACC1FA821BD00C55936 /* TetrisTimeModePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978521FA821BB00C55936 /* TetrisTimeModePanel.lua */; };
+		84A97ACD1FA821BD00C55936 /* TetrisPowerEndIntroPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978531FA821BB00C55936 /* TetrisPowerEndIntroPanel.lua */; };
+		84A97ACE1FA821BD00C55936 /* TetrisPvpEndIntroPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978541FA821BB00C55936 /* TetrisPvpEndIntroPanel.lua */; };
+		84A97ACF1FA821BD00C55936 /* TetrisSparPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978551FA821BB00C55936 /* TetrisSparPanel.lua */; };
+		84A97AD01FA821BD00C55936 /* TetrisClearStonePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978561FA821BB00C55936 /* TetrisClearStonePanel.lua */; };
+		84A97AD11FA821BD00C55936 /* TetrisPvpResultPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978571FA821BB00C55936 /* TetrisPvpResultPanel.lua */; };
+		84A97AD21FA821BD00C55936 /* TetrisTipsBuyEnergyPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978581FA821BB00C55936 /* TetrisTipsBuyEnergyPanel.lua */; };
+		84A97AD31FA821BD00C55936 /* TetrisPowerPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978591FA821BB00C55936 /* TetrisPowerPanel.lua */; };
+		84A97AD41FA821BD00C55936 /* TetrisPvpStartIntroPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9785A1FA821BB00C55936 /* TetrisPvpStartIntroPanel.lua */; };
+		84A97AD51FA821BD00C55936 /* TetrisRankView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9785C1FA821BB00C55936 /* TetrisRankView.lua */; };
+		84A97AD61FA821BD00C55936 /* TetrisPvpView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9785D1FA821BB00C55936 /* TetrisPvpView.lua */; };
+		84A97AD71FA821BD00C55936 /* TetrisBarView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9785E1FA821BB00C55936 /* TetrisBarView.lua */; };
+		84A97AD81FA821BD00C55936 /* TetrisPowerSuccPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9785F1FA821BB00C55936 /* TetrisPowerSuccPanel.lua */; };
+		84A97AD91FA821BD00C55936 /* TetrisPowerStartPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978601FA821BB00C55936 /* TetrisPowerStartPanel.lua */; };
+		84A97ADA1FA821BD00C55936 /* TetrisMultiPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978611FA821BB00C55936 /* TetrisMultiPanel.lua */; };
+		84A97ADB1FA821BD00C55936 /* TetrisMazePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978621FA821BB00C55936 /* TetrisMazePanel.lua */; };
+		84A97ADC1FA821BD00C55936 /* TetrisPowerPausePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978631FA821BB00C55936 /* TetrisPowerPausePanel.lua */; };
+		84A97ADD1FA821BD00C55936 /* TetrisShopPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978641FA821BB00C55936 /* TetrisShopPanel.lua */; };
+		84A97ADE1FA821BD00C55936 /* TetrisMeteorPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978651FA821BB00C55936 /* TetrisMeteorPanel.lua */; };
+		84A97ADF1FA821BD00C55936 /* TetrisMeteorConf.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978671FA821BB00C55936 /* TetrisMeteorConf.lua */; };
+		84A97AE01FA821BD00C55936 /* TetrisPowerConf.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978681FA821BB00C55936 /* TetrisPowerConf.lua */; };
+		84A97AE11FA821BD00C55936 /* TetrisClearStoneConf.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978691FA821BB00C55936 /* TetrisClearStoneConf.lua */; };
+		84A97AE21FA821BD00C55936 /* TetrisTimeModeConf.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9786A1FA821BB00C55936 /* TetrisTimeModeConf.lua */; };
+		84A97AE31FA821BD00C55936 /* TetrisMeteor2Conf.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9786B1FA821BB00C55936 /* TetrisMeteor2Conf.lua */; };
+		84A97AE41FA821BD00C55936 /* TetrisSparConf.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9786C1FA821BB00C55936 /* TetrisSparConf.lua */; };
+		84A97AE51FA821BD00C55936 /* TetrisMazeConf.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9786D1FA821BB00C55936 /* TetrisMazeConf.lua */; };
+		84A97AE61FA821BD00C55936 /* StartScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978701FA821BB00C55936 /* StartScene.lua */; };
+		84A97AE71FA821BD00C55936 /* Test.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978711FA821BB00C55936 /* Test.lua */; };
+		84A97AE81FA821BD00C55936 /* ModelManager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978731FA821BB00C55936 /* ModelManager.lua */; };
+		84A97AE91FA821BD00C55936 /* ConsolePanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978741FA821BB00C55936 /* ConsolePanel.lua */; };
+		84A97AEA1FA821BD00C55936 /* ConfigManager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978751FA821BB00C55936 /* ConfigManager.lua */; };
+		84A97AEB1FA821BD00C55936 /* Tips.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978761FA821BB00C55936 /* Tips.lua */; };
+		84A97AEC1FA821BD00C55936 /* Player.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978781FA821BB00C55936 /* Player.lua */; };
+		84A97AED1FA821BD00C55936 /* EventDefine.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978791FA821BB00C55936 /* EventDefine.lua */; };
+		84A97AEE1FA821BD00C55936 /* version.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9787A1FA821BB00C55936 /* version.lua */; };
+		84A97AEF1FA821BD00C55936 /* HotswapController.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9787C1FA821BB00C55936 /* HotswapController.lua */; };
+		84A97AF01FA821BD00C55936 /* HotswapData.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9787D1FA821BB00C55936 /* HotswapData.lua */; };
+		84A97AF11FA821BD00C55936 /* HotswapScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9787F1FA821BB00C55936 /* HotswapScene.lua */; };
+		84A97AF21FA821BD00C55936 /* HotswapTipsPanel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978801FA821BB00C55936 /* HotswapTipsPanel.lua */; };
+		84A97AF31FA821BD00C55936 /* Constants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978821FA821BB00C55936 /* Constants.lua */; };
+		84A97AF41FA821BD00C55936 /* LoginScene.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978851FA821BB00C55936 /* LoginScene.lua */; };
+		84A97AF51FA821BD00C55936 /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978861FA821BB00C55936 /* config.lua */; };
+		84A97AF61FA821BD00C55936 /* experimentalUIConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978891FA821BB00C55936 /* experimentalUIConstants.lua */; };
+		84A97AF71FA821BD00C55936 /* GuiConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9788A1FA821BB00C55936 /* GuiConstants.lua */; };
+		84A97AF81FA821BD00C55936 /* DeprecatedUIFunc.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9788B1FA821BB00C55936 /* DeprecatedUIFunc.lua */; };
+		84A97AF91FA821BD00C55936 /* DeprecatedUIEnum.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9788C1FA821BB00C55936 /* DeprecatedUIEnum.lua */; };
+		84A97AFA1FA821BD00C55936 /* 3dConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9788E1FA821BB00C55936 /* 3dConstants.lua */; };
+		84A97AFB1FA821BD00C55936 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9788F1FA821BB00C55936 /* init.lua */; };
+		84A97AFC1FA821BD00C55936 /* DeprecatedCocosBuilderClass.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978911FA821BB00C55936 /* DeprecatedCocosBuilderClass.lua */; };
+		84A97AFD1FA821BD00C55936 /* CCBReaderLoad.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978921FA821BB00C55936 /* CCBReaderLoad.lua */; };
+		84A97AFE1FA821BD00C55936 /* DeprecatedExtensionEnum.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978941FA821BB00C55936 /* DeprecatedExtensionEnum.lua */; };
+		84A97AFF1FA821BD00C55936 /* DeprecatedExtensionClass.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978951FA821BB00C55936 /* DeprecatedExtensionClass.lua */; };
+		84A97B001FA821BD00C55936 /* DeprecatedExtensionFunc.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978961FA821BB00C55936 /* DeprecatedExtensionFunc.lua */; };
+		84A97B011FA821BD00C55936 /* ExtensionConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978971FA821BB00C55936 /* ExtensionConstants.lua */; };
+		84A97B021FA821BD00C55936 /* SpineConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978991FA821BB00C55936 /* SpineConstants.lua */; };
+		84A97B031FA821BD00C55936 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9789B1FA821BB00C55936 /* init.lua */; };
+		84A97B041FA821BD00C55936 /* SpriteEx.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9789D1FA821BB00C55936 /* SpriteEx.lua */; };
+		84A97B051FA821BD00C55936 /* UISlider.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9789E1FA821BB00C55936 /* UISlider.lua */; };
+		84A97B061FA821BD00C55936 /* UITextField.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A9789F1FA821BB00C55936 /* UITextField.lua */; };
+		84A97B071FA821BD00C55936 /* UIScrollView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A01FA821BB00C55936 /* UIScrollView.lua */; };
+		84A97B081FA821BD00C55936 /* UICheckBox.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A11FA821BB00C55936 /* UICheckBox.lua */; };
+		84A97B091FA821BD00C55936 /* UIEditBox.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A21FA821BB00C55936 /* UIEditBox.lua */; };
+		84A97B0A1FA821BD00C55936 /* UIListView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A31FA821BB00C55936 /* UIListView.lua */; };
+		84A97B0B1FA821BD00C55936 /* NodeEx.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A41FA821BB00C55936 /* NodeEx.lua */; };
+		84A97B0C1FA821BD00C55936 /* LayerEx.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A51FA821BB00C55936 /* LayerEx.lua */; };
+		84A97B0D1FA821BD00C55936 /* UIWidget.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A61FA821BB00C55936 /* UIWidget.lua */; };
+		84A97B0E1FA821BD00C55936 /* MenuEx.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A71FA821BB00C55936 /* MenuEx.lua */; };
+		84A97B0F1FA821BD00C55936 /* UIPageView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A81FA821BB00C55936 /* UIPageView.lua */; };
+		84A97B101FA821BD00C55936 /* package_support.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978A91FA821BB00C55936 /* package_support.lua */; };
+		84A97B111FA821BD00C55936 /* event.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978AB1FA821BB00C55936 /* event.lua */; };
+		84A97B121FA821BD00C55936 /* display.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978AC1FA821BB00C55936 /* display.lua */; };
+		84A97B131FA821BD00C55936 /* device.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978AD1FA821BB00C55936 /* device.lua */; };
+		84A97B141FA821BD00C55936 /* audio.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978AE1FA821BB00C55936 /* audio.lua */; };
+		84A97B151FA821BD00C55936 /* transition.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978AF1FA821BB00C55936 /* transition.lua */; };
+		84A97B161FA821BD00C55936 /* DeprecatedNetworkEnum.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978B11FA821BB00C55936 /* DeprecatedNetworkEnum.lua */; };
+		84A97B171FA821BD00C55936 /* DeprecatedNetworkFunc.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978B21FA821BB00C55936 /* DeprecatedNetworkFunc.lua */; };
+		84A97B181FA821BD00C55936 /* DeprecatedNetworkClass.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978B31FA821BB00C55936 /* DeprecatedNetworkClass.lua */; };
+		84A97B191FA821BD00C55936 /* NetworkConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978B41FA821BB00C55936 /* NetworkConstants.lua */; };
+		84A97B1A1FA821BD00C55936 /* ControllerConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978B61FA821BB00C55936 /* ControllerConstants.lua */; };
+		84A97B1B1FA821BD00C55936 /* functions.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978B81FA821BB00C55936 /* functions.lua */; };
+		84A97B1C1FA821BD00C55936 /* json.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978B91FA821BB00C55936 /* json.lua */; };
+		84A97B1D1FA821BD00C55936 /* DeprecatedOpenglEnum.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978BA1FA821BB00C55936 /* DeprecatedOpenglEnum.lua */; };
+		84A97B1E1FA821BD00C55936 /* Opengl.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978BB1FA821BB00C55936 /* Opengl.lua */; };
+		84A97B1F1FA821BD00C55936 /* DeprecatedCocos2dEnum.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978BC1FA821BB00C55936 /* DeprecatedCocos2dEnum.lua */; };
+		84A97B201FA821BD00C55936 /* Cocos2dConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978BD1FA821BB00C55936 /* Cocos2dConstants.lua */; };
+		84A97B211FA821BD00C55936 /* luaj.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978BE1FA821BB00C55936 /* luaj.lua */; };
+		84A97B221FA821BD00C55936 /* luaoc.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978BF1FA821BB00C55936 /* luaoc.lua */; };
+		84A97B231FA821BD00C55936 /* OpenglConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C01FA821BB00C55936 /* OpenglConstants.lua */; };
+		84A97B241FA821BD00C55936 /* DeprecatedCocos2dClass.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C11FA821BB00C55936 /* DeprecatedCocos2dClass.lua */; };
+		84A97B251FA821BD00C55936 /* DrawPrimitives.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C21FA821BB00C55936 /* DrawPrimitives.lua */; };
+		84A97B261FA821BD00C55936 /* DeprecatedCocos2dFunc.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C31FA821BB00C55936 /* DeprecatedCocos2dFunc.lua */; };
+		84A97B271FA821BD00C55936 /* bitExtend.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C41FA821BB00C55936 /* bitExtend.lua */; };
+		84A97B281FA821BD00C55936 /* deprecated.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C51FA821BB00C55936 /* deprecated.lua */; };
+		84A97B291FA821BD00C55936 /* Cocos2d.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C61FA821BB00C55936 /* Cocos2d.lua */; };
+		84A97B2A1FA821BD00C55936 /* DeprecatedCocosDenshionFunc.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C81FA821BB00C55936 /* DeprecatedCocosDenshionFunc.lua */; };
+		84A97B2B1FA821BD00C55936 /* AudioEngine.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978C91FA821BB00C55936 /* AudioEngine.lua */; };
+		84A97B2C1FA821BD00C55936 /* DeprecatedCocosDenshionClass.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978CA1FA821BB00C55936 /* DeprecatedCocosDenshionClass.lua */; };
+		84A97B2D1FA821BD00C55936 /* physics3d-constants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978CC1FA821BB00C55936 /* physics3d-constants.lua */; };
+		84A97B2E1FA821BD00C55936 /* DeprecatedCocoStudioFunc.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978CE1FA821BB00C55936 /* DeprecatedCocoStudioFunc.lua */; };
+		84A97B2F1FA821BD00C55936 /* StudioConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978CF1FA821BB00C55936 /* StudioConstants.lua */; };
+		84A97B301FA821BD00C55936 /* DeprecatedCocoStudioClass.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978D01FA821BB00C55936 /* DeprecatedCocoStudioClass.lua */; };
+		84A97B311FA821BD00C55936 /* CocoStudio.lua in Resources */ = {isa = PBXBuildFile; fileRef = 84A978D11FA821BB00C55936 /* CocoStudio.lua */; };
+		84A97B321FA821BD00C55936 /* remove_gray.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 84A978D31FA821BB00C55936 /* remove_gray.fsh */; };
+		84A97B331FA821BD00C55936 /* add_gray.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 84A978D41FA821BB00C55936 /* add_gray.fsh */; };
+		84A97B341FA821BD00C55936 /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978D81FA821BB00C55936 /* main.png */; };
+		84A97B351FA821BD00C55936 /* main.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A978D91FA821BB00C55936 /* main.plist */; };
+		84A97B361FA821BD00C55936 /* singlematch.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978DA1FA821BB00C55936 /* singlematch.png */; };
+		84A97B371FA821BD00C55936 /* singlematch.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A978DB1FA821BB00C55936 /* singlematch.plist */; };
+		84A97B381FA821BD00C55936 /* common.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978DC1FA821BB00C55936 /* common.png */; };
+		84A97B391FA821BD00C55936 /* common.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A978DD1FA821BB00C55936 /* common.plist */; };
+		84A97B3A1FA821BD00C55936 /* power_fail_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E01FA821BB00C55936 /* power_fail_bg2.png */; };
+		84A97B3B1FA821BD00C55936 /* power_star_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E11FA821BB00C55936 /* power_star_bg2.png */; };
+		84A97B3C1FA821BD00C55936 /* popup_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E21FA821BB00C55936 /* popup_bg.png */; };
+		84A97B3D1FA821BD00C55936 /* power_pass_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E31FA821BB00C55936 /* power_pass_bg2.png */; };
+		84A97B3E1FA821BD00C55936 /* progress.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E51FA821BB00C55936 /* progress.png */; };
+		84A97B3F1FA821BD00C55936 /* progress_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E61FA821BB00C55936 /* progress_blue.png */; };
+		84A97B401FA821BD00C55936 /* progress_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E71FA821BB00C55936 /* progress_bg.png */; };
+		84A97B411FA821BD00C55936 /* loading_progress_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978E91FA821BC00C55936 /* loading_progress_bg.png */; };
+		84A97B421FA821BD00C55936 /* loading_progress.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978EA1FA821BC00C55936 /* loading_progress.png */; };
+		84A97B431FA821BD00C55936 /* loading_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978EB1FA821BC00C55936 /* loading_bg.png */; };
+		84A97B441FA821BD00C55936 /* icon_diam4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978EE1FA821BC00C55936 /* icon_diam4.png */; };
+		84A97B451FA821BD00C55936 /* icon_diam5.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978EF1FA821BC00C55936 /* icon_diam5.png */; };
+		84A97B461FA821BD00C55936 /* shop_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F01FA821BC00C55936 /* shop_bg.png */; };
+		84A97B471FA821BD00C55936 /* icon_diam2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F11FA821BC00C55936 /* icon_diam2.png */; };
+		84A97B481FA821BD00C55936 /* icon_diam3.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F21FA821BC00C55936 /* icon_diam3.png */; };
+		84A97B491FA821BD00C55936 /* icon_diam1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F31FA821BC00C55936 /* icon_diam1.png */; };
+		84A97B4A1FA821BD00C55936 /* intro_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F51FA821BC00C55936 /* intro_bg.png */; };
+		84A97B4B1FA821BD00C55936 /* main_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F61FA821BC00C55936 /* main_bg2.png */; };
+		84A97B4C1FA821BD00C55936 /* net_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F71FA821BC00C55936 /* net_bg.png */; };
+		84A97B4D1FA821BD00C55936 /* main_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F81FA821BC00C55936 /* main_bg1.png */; };
+		84A97B4E1FA821BD00C55936 /* multimatch_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978F91FA821BC00C55936 /* multimatch_bg.png */; };
+		84A97B4F1FA821BD00C55936 /* singlematch_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978FA1FA821BC00C55936 /* singlematch_bg.png */; };
+		84A97B501FA821BD00C55936 /* intro_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978FB1FA821BC00C55936 /* intro_bg2.png */; };
+		84A97B511FA821BD00C55936 /* pvp_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978FC1FA821BC00C55936 /* pvp_bg.png */; };
+		84A97B521FA821BD00C55936 /* diam_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978FE1FA821BC00C55936 /* diam_icon.png */; };
+		84A97B531FA821BD00C55936 /* btn_buy_energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A978FF1FA821BC00C55936 /* btn_buy_energy.png */; };
+		84A97B541FA821BD00C55936 /* btn_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979001FA821BC00C55936 /* btn_ok.png */; };
+		84A97B551FA821BD00C55936 /* tips_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979011FA821BC00C55936 /* tips_bg.png */; };
+		84A97B561FA821BD00C55936 /* btn_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979021FA821BC00C55936 /* btn_cancel.png */; };
+		84A97B571FA821BD00C55936 /* btn_watch_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979031FA821BC00C55936 /* btn_watch_video.png */; };
+		84A97B581FA821BD00C55936 /* nonetwork_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979041FA821BC00C55936 /* nonetwork_icon.png */; };
+		84A97B591FA821BD00C55936 /* tips_inner_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979051FA821BC00C55936 /* tips_inner_bg.png */; };
+		84A97B5A1FA821BD00C55936 /* btn_buy_time.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979061FA821BC00C55936 /* btn_buy_time.png */; };
+		84A97B5B1FA821BD00C55936 /* number_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979081FA821BC00C55936 /* number_blue.png */; };
+		84A97B5C1FA821BD00C55936 /* number_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979091FA821BC00C55936 /* number_red.png */; };
+		84A97B5D1FA821BD00C55936 /* number.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9790A1FA821BC00C55936 /* number.png */; };
+		84A97B5E1FA821BD00C55936 /* number_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9790B1FA821BC00C55936 /* number_small.png */; };
+		84A97B5F1FA821BD00C55936 /* number2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9790C1FA821BC00C55936 /* number2.png */; };
+		84A97B601FA821BD00C55936 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9790D1FA821BC00C55936 /* point.png */; };
+		84A97B611FA821BD00C55936 /* army_num_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9790E1FA821BC00C55936 /* army_num_out.png */; };
+		84A97B621FA821BD00C55936 /* number_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9790F1FA821BC00C55936 /* number_yellow.png */; };
+		84A97B631FA821BD00C55936 /* rank.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979101FA821BC00C55936 /* rank.png */; };
+		84A97B641FA821BD00C55936 /* army_num_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979111FA821BC00C55936 /* army_num_in.png */; };
+		84A97B651FA821BD00C55936 /* split.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979121FA821BC00C55936 /* split.png */; };
+		84A97B661FA821BD00C55936 /* btn_matchbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979141FA821BC00C55936 /* btn_matchbg.png */; };
+		84A97B671FA821BD00C55936 /* blue_win_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979151FA821BC00C55936 /* blue_win_bg.png */; };
+		84A97B681FA821BD00C55936 /* pic_blue_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979161FA821BC00C55936 /* pic_blue_bg.png */; };
+		84A97B691FA821BD00C55936 /* btn_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979171FA821BC00C55936 /* btn_search.png */; };
+		84A97B6A1FA821BD00C55936 /* pic_red_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979181FA821BC00C55936 /* pic_red_bg.png */; };
+		84A97B6B1FA821BD00C55936 /* pvp_score_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979191FA821BC00C55936 /* pvp_score_bg.png */; };
+		84A97B6C1FA821BD00C55936 /* net_title_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9791A1FA821BC00C55936 /* net_title_bg.png */; };
+		84A97B6D1FA821BD00C55936 /* pvp_end_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9791B1FA821BC00C55936 /* pvp_end_bg.png */; };
+		84A97B6E1FA821BD00C55936 /* building_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9791C1FA821BC00C55936 /* building_bg.png */; };
+		84A97B6F1FA821BD00C55936 /* red_win_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9791D1FA821BC00C55936 /* red_win_bg.png */; };
+		84A97B701FA821BD00C55936 /* pvp_start_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9791E1FA821BC00C55936 /* pvp_start_bg.png */; };
+		84A97B711FA821BE00C55936 /* pvp_result.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9791F1FA821BC00C55936 /* pvp_result.png */; };
+		84A97B721FA821BE00C55936 /* icon_gold_cup.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979211FA821BC00C55936 /* icon_gold_cup.png */; };
+		84A97B731FA821BE00C55936 /* rank_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979221FA821BC00C55936 /* rank_bg1.png */; };
+		84A97B741FA821BE00C55936 /* rank_line_self_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979231FA821BC00C55936 /* rank_line_self_bg.png */; };
+		84A97B751FA821BE00C55936 /* rank_self_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979241FA821BC00C55936 /* rank_self_bg.png */; };
+		84A97B761FA821BE00C55936 /* cup1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979251FA821BC00C55936 /* cup1.png */; };
+		84A97B771FA821BE00C55936 /* cup3.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979261FA821BC00C55936 /* cup3.png */; };
+		84A97B781FA821BE00C55936 /* cup2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979271FA821BC00C55936 /* cup2.png */; };
+		84A97B791FA821BE00C55936 /* rank_line_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979281FA821BC00C55936 /* rank_line_bg.png */; };
+		84A97B7A1FA821BE00C55936 /* rank_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979291FA821BC00C55936 /* rank_bg.png */; };
+		84A97B7B1FA821BE00C55936 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9792B1FA821BC00C55936 /* gear.png */; };
+		84A97B7C1FA821BE00C55936 /* big_gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9792C1FA821BC00C55936 /* big_gear.png */; };
+		84A97B7D1FA821BE00C55936 /* gamename_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9792D1FA821BC00C55936 /* gamename_bg.png */; };
+		84A97B7E1FA821BE00C55936 /* pack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A9792F1FA821BC00C55936 /* pack.png */; };
+		84A97B7F1FA821BE00C55936 /* pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A979301FA821BC00C55936 /* pack.plist */; };
+		84A97C321FA821BE00C55936 /* yun_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979F11FA821BC00C55936 /* yun_left.png */; };
+		84A97C331FA821BE00C55936 /* yun_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979F21FA821BC00C55936 /* yun_right.png */; };
+		84A97C341FA821BE00C55936 /* anim_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979F41FA821BC00C55936 /* anim_start.png */; };
+		84A97C351FA821BE00C55936 /* anim_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979F51FA821BC00C55936 /* anim_1.png */; };
+		84A97C361FA821BE00C55936 /* anim_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979F61FA821BC00C55936 /* anim_2.png */; };
+		84A97C371FA821BE00C55936 /* anim_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979F71FA821BC00C55936 /* anim_3.png */; };
+		84A97C381FA821BE00C55936 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979F91FA821BC00C55936 /* bubble.png */; };
+		84A97C391FA821BE00C55936 /* attack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979FB1FA821BC00C55936 /* attack.png */; };
+		84A97C3A1FA821BE00C55936 /* meteor2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979FD1FA821BC00C55936 /* meteor2.png */; };
+		84A97C3B1FA821BE00C55936 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A979FF1FA821BC00C55936 /* 4.png */; };
+		84A97C3C1FA821BE00C55936 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A001FA821BC00C55936 /* 2.png */; };
+		84A97C3D1FA821BE00C55936 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A011FA821BC00C55936 /* 3.png */; };
+		84A97C3E1FA821BE00C55936 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A021FA821BC00C55936 /* 1.png */; };
+		84A97C3F1FA821BE00C55936 /* Sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A041FA821BC00C55936 /* Sprite.png */; };
+		84A97C401FA821BE00C55936 /* SliderNode_Disable.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A051FA821BC00C55936 /* SliderNode_Disable.png */; };
+		84A97C411FA821BE00C55936 /* Button_Press.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A061FA821BC00C55936 /* Button_Press.png */; };
+		84A97C421FA821BE00C55936 /* SliderNode_Press.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A071FA821BC00C55936 /* SliderNode_Press.png */; };
+		84A97C431FA821BE00C55936 /* Button_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A081FA821BC00C55936 /* Button_Normal.png */; };
+		84A97C441FA821BE00C55936 /* SliderNode_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A091FA821BC00C55936 /* SliderNode_Normal.png */; };
+		84A97C451FA821BE00C55936 /* Button_Disable.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A0A1FA821BC00C55936 /* Button_Disable.png */; };
+		84A97C461FA821BE00C55936 /* main_bg2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A0C1FA821BC00C55936 /* main_bg2.wav */; };
+		84A97C471FA821BE00C55936 /* remove_block.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A0D1FA821BC00C55936 /* remove_block.wav */; };
+		84A97C481FA821BE00C55936 /* power_fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A0E1FA821BC00C55936 /* power_fail.mp3 */; };
+		84A97C491FA821BE00C55936 /* rotation.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A0F1FA821BC00C55936 /* rotation.wav */; };
+		84A97C4A1FA821BE00C55936 /* click_btn1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A101FA821BC00C55936 /* click_btn1.wav */; };
+		84A97C4B1FA821BE00C55936 /* power_bg1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A111FA821BC00C55936 /* power_bg1.mp3 */; };
+		84A97C4C1FA821BE00C55936 /* power_bg3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A121FA821BC00C55936 /* power_bg3.mp3 */; };
+		84A97C4D1FA821BE00C55936 /* click_btn2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A131FA821BC00C55936 /* click_btn2.wav */; };
+		84A97C4E1FA821BE00C55936 /* power_bg2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A141FA821BC00C55936 /* power_bg2.mp3 */; };
+		84A97C4F1FA821BE00C55936 /* main_bg1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A151FA821BC00C55936 /* main_bg1.mp3 */; };
+		84A97C501FA821BE00C55936 /* main_bg3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A161FA821BC00C55936 /* main_bg3.mp3 */; };
+		84A97C511FA821BE00C55936 /* power_pass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A171FA821BC00C55936 /* power_pass.wav */; };
+		84A97C521FA821BE00C55936 /* block_down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A97A181FA821BC00C55936 /* block_down.wav */; };
 		84BA0F3A1E6C08980065FDBB /* lutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F341E6C08980065FDBB /* lutil.c */; };
 		84BA0F3B1E6C08980065FDBB /* lkcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F361E6C08980065FDBB /* lkcp.c */; };
 		84BA0F3C1E6C08980065FDBB /* ikcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 84BA0F381E6C08980065FDBB /* ikcp.c */; };
@@ -864,6 +1258,400 @@
 		84A186E31D152AFC0004995F /* lua_cjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lua_cjson.h; path = ../Classes/lua_extensions/cjson/lua_cjson.h; sourceTree = "<group>"; };
 		84A186E41D152AFC0004995F /* strbuf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = strbuf.c; path = ../Classes/lua_extensions/cjson/strbuf.c; sourceTree = "<group>"; };
 		84A186E51D152AFC0004995F /* strbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strbuf.h; path = ../Classes/lua_extensions/cjson/strbuf.h; sourceTree = "<group>"; };
+		84A977851FA81F5500C55936 /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
+		84A977861FA81F5600C55936 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84A9778B1FA821BB00C55936 /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		84A9778C1FA821BB00C55936 /* Layers.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Layers.lua; sourceTree = "<group>"; };
+		84A9778E1FA821BB00C55936 /* WebUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebUtil.lua; sourceTree = "<group>"; };
+		84A9778F1FA821BB00C55936 /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		84A977901FA821BB00C55936 /* testkcp.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testkcp.lua; sourceTree = "<group>"; };
+		84A977911FA821BB00C55936 /* SocketTCP.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SocketTCP.lua; sourceTree = "<group>"; };
+		84A977921FA821BB00C55936 /* SocketUDP.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SocketUDP.lua; sourceTree = "<group>"; };
+		84A977931FA821BB00C55936 /* network.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = network.lua; sourceTree = "<group>"; };
+		84A977941FA821BB00C55936 /* latencysm.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latencysm.lua; sourceTree = "<group>"; };
+		84A977961FA821BB00C55936 /* NativeBridge.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NativeBridge.lua; sourceTree = "<group>"; };
+		84A977981FA821BB00C55936 /* corefunctions.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corefunctions.lua; sourceTree = "<group>"; };
+		84A977991FA821BB00C55936 /* GameState.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameState.lua; sourceTree = "<group>"; };
+		84A9779A1FA821BB00C55936 /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		84A9779B1FA821BB00C55936 /* crypto.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = crypto.lua; sourceTree = "<group>"; };
+		84A9779C1FA821BB00C55936 /* json.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json.lua; sourceTree = "<group>"; };
+		84A9779D1FA821BB00C55936 /* ColorUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ColorUtil.lua; sourceTree = "<group>"; };
+		84A9779E1FA821BB00C55936 /* bit.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bit.lua; sourceTree = "<group>"; };
+		84A9779F1FA821BB00C55936 /* RandomUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RandomUtil.lua; sourceTree = "<group>"; };
+		84A977A01FA821BB00C55936 /* ShaderUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ShaderUtil.lua; sourceTree = "<group>"; };
+		84A977A11FA821BB00C55936 /* UserDefaultUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserDefaultUtil.lua; sourceTree = "<group>"; };
+		84A977A21FA821BB00C55936 /* Localize.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Localize.lua; sourceTree = "<group>"; };
+		84A977A31FA821BB00C55936 /* GameArchiveFile.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameArchiveFile.lua; sourceTree = "<group>"; };
+		84A977A41FA821BB00C55936 /* ByteArray.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ByteArray.lua; sourceTree = "<group>"; };
+		84A977A51FA821BB00C55936 /* ByteArrayVarint.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ByteArrayVarint.lua; sourceTree = "<group>"; };
+		84A977A61FA821BB00C55936 /* Timer.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Timer.lua; sourceTree = "<group>"; };
+		84A977A71FA821BB00C55936 /* Random.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Random.lua; sourceTree = "<group>"; };
+		84A977A81FA821BB00C55936 /* RandomLua.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RandomLua.lua; sourceTree = "<group>"; };
+		84A977A91FA821BB00C55936 /* toluaEx.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = toluaEx.lua; sourceTree = "<group>"; };
+		84A977AA1FA821BB00C55936 /* filter.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filter.lua; sourceTree = "<group>"; };
+		84A977AB1FA821BB00C55936 /* base64.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = base64.lua; sourceTree = "<group>"; };
+		84A977AD1FA821BB00C55936 /* BasePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasePanel.lua; sourceTree = "<group>"; };
+		84A977AE1FA821BB00C55936 /* BaseView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseView.lua; sourceTree = "<group>"; };
+		84A977AF1FA821BB00C55936 /* BaseApp.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseApp.lua; sourceTree = "<group>"; };
+		84A977B01FA821BB00C55936 /* BaseScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseScene.lua; sourceTree = "<group>"; };
+		84A977B21FA821BB00C55936 /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		84A977B41FA821BB00C55936 /* RichLabel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RichLabel.lua; sourceTree = "<group>"; };
+		84A977B61FA821BB00C55936 /* label.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = label.lua; sourceTree = "<group>"; };
+		84A977B71FA821BB00C55936 /* label_img.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = label_img.lua; sourceTree = "<group>"; };
+		84A977B81FA821BB00C55936 /* label_div.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = label_div.lua; sourceTree = "<group>"; };
+		84A977B91FA821BB00C55936 /* labelparser.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labelparser.lua; sourceTree = "<group>"; };
+		84A977BA1FA821BB00C55936 /* ListViewEx.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ListViewEx.lua; sourceTree = "<group>"; };
+		84A977BB1FA821BB00C55936 /* ButtonEx.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ButtonEx.lua; sourceTree = "<group>"; };
+		84A977BC1FA821BB00C55936 /* fixscheduler_bak.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixscheduler_bak.lua; sourceTree = "<group>"; };
+		84A977BE1FA821BB00C55936 /* AudioManager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AudioManager.lua; sourceTree = "<group>"; };
+		84A977BF1FA821BB00C55936 /* ResourceManager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ResourceManager.lua; sourceTree = "<group>"; };
+		84A977C01FA821BB00C55936 /* ConnectManager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConnectManager.lua; sourceTree = "<group>"; };
+		84A977C11FA821BB00C55936 /* EventManager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventManager.lua; sourceTree = "<group>"; };
+		84A977C21FA821BB00C55936 /* UDPConnectManager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UDPConnectManager.lua; sourceTree = "<group>"; };
+		84A977C31FA821BB00C55936 /* scheduler.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scheduler.lua; sourceTree = "<group>"; };
+		84A977C41FA821BB00C55936 /* log.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = log.lua; sourceTree = "<group>"; };
+		84A977C51FA821BB00C55936 /* fixscheduler.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixscheduler.lua; sourceTree = "<group>"; };
+		84A977C71FA821BB00C55936 /* BaseViewModel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseViewModel.lua; sourceTree = "<group>"; };
+		84A977C81FA821BB00C55936 /* Binder.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Binder.lua; sourceTree = "<group>"; };
+		84A977C91FA821BB00C55936 /* BaseModel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseModel.lua; sourceTree = "<group>"; };
+		84A977CA1FA821BB00C55936 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.lua; sourceTree = "<group>"; };
+		84A977CC1FA821BB00C55936 /* WinConfig.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WinConfig.lua; sourceTree = "<group>"; };
+		84A977CD1FA821BB00C55936 /* MobConfig.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MobConfig.lua; sourceTree = "<group>"; };
+		84A977CF1FA821BB00C55936 /* TetrisStartCountAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStartCountAnimation.lua; sourceTree = "<group>"; };
+		84A977D01FA821BB00C55936 /* TetrisRankItem.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisRankItem.lua; sourceTree = "<group>"; };
+		84A977D11FA821BB00C55936 /* TetrisShop.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisShop.lua; sourceTree = "<group>"; };
+		84A977D21FA821BB00C55936 /* TetrisPvp.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvp.lua; sourceTree = "<group>"; };
+		84A977D31FA821BB00C55936 /* TetrisLoading.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisLoading.lua; sourceTree = "<group>"; };
+		84A977D41FA821BB00C55936 /* TetrisPowerStart.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerStart.lua; sourceTree = "<group>"; };
+		84A977D51FA821BB00C55936 /* TetrisStart.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStart.lua; sourceTree = "<group>"; };
+		84A977D61FA821BB00C55936 /* TetrisPvpStartIntro.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvpStartIntro.lua; sourceTree = "<group>"; };
+		84A977D71FA821BB00C55936 /* TetrisMeteor.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteor.lua; sourceTree = "<group>"; };
+		84A977D81FA821BB00C55936 /* TetrisAttackAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisAttackAnimation.lua; sourceTree = "<group>"; };
+		84A977D91FA821BB00C55936 /* TetrisStartIntro.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStartIntro.lua; sourceTree = "<group>"; };
+		84A977DA1FA821BB00C55936 /* ConsolePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsolePanel.lua; sourceTree = "<group>"; };
+		84A977DB1FA821BB00C55936 /* PowerFailPopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerFailPopup.lua; sourceTree = "<group>"; };
+		84A977DC1FA821BB00C55936 /* TetrisTipBuyTime.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTipBuyTime.lua; sourceTree = "<group>"; };
+		84A977DD1FA821BB00C55936 /* TetrisStartAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStartAnimation.lua; sourceTree = "<group>"; };
+		84A977DE1FA821BB00C55936 /* TetrisTipUpdate.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTipUpdate.lua; sourceTree = "<group>"; };
+		84A977E01FA821BB00C55936 /* TetrisStartCountAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStartCountAnimation.lua; sourceTree = "<group>"; };
+		84A977E11FA821BB00C55936 /* TestMVVMScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestMVVMScene.lua; sourceTree = "<group>"; };
+		84A977E21FA821BB00C55936 /* TetrisPvp.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvp.lua; sourceTree = "<group>"; };
+		84A977E31FA821BB00C55936 /* TetrisPowerStart.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerStart.lua; sourceTree = "<group>"; };
+		84A977E41FA821BB00C55936 /* TetrisScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisScene.lua; sourceTree = "<group>"; };
+		84A977E51FA821BB00C55936 /* listTestPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = listTestPanel.lua; sourceTree = "<group>"; };
+		84A977E61FA821BB00C55936 /* TetrisMeteor.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteor.lua; sourceTree = "<group>"; };
+		84A977E71FA821BB00C55936 /* TetrisStartIntro.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStartIntro.lua; sourceTree = "<group>"; };
+		84A977E81FA821BB00C55936 /* ConsolePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsolePanel.lua; sourceTree = "<group>"; };
+		84A977E91FA821BB00C55936 /* PowerFailPopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerFailPopup.lua; sourceTree = "<group>"; };
+		84A977EA1FA821BB00C55936 /* TetrisStartAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStartAnimation.lua; sourceTree = "<group>"; };
+		84A977EB1FA821BB00C55936 /* MainLayout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MainLayout.lua; sourceTree = "<group>"; };
+		84A977EC1FA821BB00C55936 /* TestLuaLayout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestLuaLayout.lua; sourceTree = "<group>"; };
+		84A977ED1FA821BB00C55936 /* CommTips.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommTips.lua; sourceTree = "<group>"; };
+		84A977EE1FA821BB00C55936 /* TetrisMeteor2.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteor2.lua; sourceTree = "<group>"; };
+		84A977EF1FA821BB00C55936 /* TetrisEndIntro.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisEndIntro.lua; sourceTree = "<group>"; };
+		84A977F01FA821BB00C55936 /* TetrisMeteorAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteorAnimation.lua; sourceTree = "<group>"; };
+		84A977F11FA821BB00C55936 /* PageTestScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PageTestScene.lua; sourceTree = "<group>"; };
+		84A977F21FA821BB00C55936 /* TetrisPowerArmy.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerArmy.lua; sourceTree = "<group>"; };
+		84A977F31FA821BB00C55936 /* TetrisClearStone.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisClearStone.lua; sourceTree = "<group>"; };
+		84A977F41FA821BB00C55936 /* PowerSuccPopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerSuccPopup.lua; sourceTree = "<group>"; };
+		84A977F51FA821BB00C55936 /* TetrisSearchAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisSearchAnimation.lua; sourceTree = "<group>"; };
+		84A977F61FA821BB00C55936 /* TetrisSpar.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisSpar.lua; sourceTree = "<group>"; };
+		84A977F71FA821BB00C55936 /* GameLayout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameLayout.lua; sourceTree = "<group>"; };
+		84A977F81FA821BB00C55936 /* TetrisScene_Net.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisScene_Net.lua; sourceTree = "<group>"; };
+		84A977F91FA821BB00C55936 /* TetrisTimeMode.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTimeMode.lua; sourceTree = "<group>"; };
+		84A977FA1FA821BB00C55936 /* LoadingScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadingScene.lua; sourceTree = "<group>"; };
+		84A977FB1FA821BB00C55936 /* TetrisMainBar.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMainBar.lua; sourceTree = "<group>"; };
+		84A977FC1FA821BB00C55936 /* TetrisMainScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMainScene.lua; sourceTree = "<group>"; };
+		84A977FD1FA821BB00C55936 /* ModalMask.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModalMask.lua; sourceTree = "<group>"; };
+		84A977FE1FA821BB00C55936 /* PowerStartPopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerStartPopup.lua; sourceTree = "<group>"; };
+		84A977FF1FA821BB00C55936 /* scrollTestPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrollTestPanel.lua; sourceTree = "<group>"; };
+		84A978001FA821BB00C55936 /* TetrisLogin.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisLogin.lua; sourceTree = "<group>"; };
+		84A978011FA821BB00C55936 /* PowerPausePopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerPausePopup.lua; sourceTree = "<group>"; };
+		84A978021FA821BB00C55936 /* TetrisMaze.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMaze.lua; sourceTree = "<group>"; };
+		84A978031FA821BB00C55936 /* LoginLayout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoginLayout.lua; sourceTree = "<group>"; };
+		84A978041FA821BB00C55936 /* TetrisPowerLoop.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerLoop.lua; sourceTree = "<group>"; };
+		84A978051FA821BB00C55936 /* UITestScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UITestScene.lua; sourceTree = "<group>"; };
+		84A978061FA821BB00C55936 /* ListItem.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ListItem.lua; sourceTree = "<group>"; };
+		84A978071FA821BB00C55936 /* 2048Scene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2048Scene.lua; sourceTree = "<group>"; };
+		84A978081FA821BB00C55936 /* ButtonTestScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ButtonTestScene.lua; sourceTree = "<group>"; };
+		84A978091FA821BB00C55936 /* LoadingPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadingPanel.lua; sourceTree = "<group>"; };
+		84A9780A1FA821BB00C55936 /* TetrisNode.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisNode.lua; sourceTree = "<group>"; };
+		84A9780B1FA821BB00C55936 /* SliderTestScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SliderTestScene.lua; sourceTree = "<group>"; };
+		84A9780C1FA821BB00C55936 /* ListItem_0.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ListItem_0.lua; sourceTree = "<group>"; };
+		84A9780D1FA821BB00C55936 /* TetrisTipComm.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTipComm.lua; sourceTree = "<group>"; };
+		84A9780E1FA821BB00C55936 /* LuaExtend.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaExtend.lua; sourceTree = "<group>"; };
+		84A9780F1FA821BB00C55936 /* CommTips.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommTips.lua; sourceTree = "<group>"; };
+		84A978101FA821BB00C55936 /* TetrisMeteor2.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteor2.lua; sourceTree = "<group>"; };
+		84A978111FA821BB00C55936 /* TetrisEndIntro.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisEndIntro.lua; sourceTree = "<group>"; };
+		84A978121FA821BB00C55936 /* TetrisMeteorAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteorAnimation.lua; sourceTree = "<group>"; };
+		84A978131FA821BB00C55936 /* TetrisPvpResult.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvpResult.lua; sourceTree = "<group>"; };
+		84A978141FA821BB00C55936 /* TetrisPowerArmy.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerArmy.lua; sourceTree = "<group>"; };
+		84A978151FA821BB00C55936 /* TetrisClearStone.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisClearStone.lua; sourceTree = "<group>"; };
+		84A978161FA821BB00C55936 /* PowerSuccPopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerSuccPopup.lua; sourceTree = "<group>"; };
+		84A978171FA821BB00C55936 /* TetrisSearchAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisSearchAnimation.lua; sourceTree = "<group>"; };
+		84A978181FA821BB00C55936 /* TetrisShopItem.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisShopItem.lua; sourceTree = "<group>"; };
+		84A978191FA821BB00C55936 /* TetrisSpar.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisSpar.lua; sourceTree = "<group>"; };
+		84A9781A1FA821BB00C55936 /* TetrisPvpEndIntro.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvpEndIntro.lua; sourceTree = "<group>"; };
+		84A9781B1FA821BB00C55936 /* TetrisScene_Net.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisScene_Net.lua; sourceTree = "<group>"; };
+		84A9781C1FA821BB00C55936 /* TetrisTimeMode.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTimeMode.lua; sourceTree = "<group>"; };
+		84A9781D1FA821BB00C55936 /* TetrisMainBar.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMainBar.lua; sourceTree = "<group>"; };
+		84A9781E1FA821BB00C55936 /* TetrisMainScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMainScene.lua; sourceTree = "<group>"; };
+		84A9781F1FA821BB00C55936 /* TetrisHotswap.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisHotswap.lua; sourceTree = "<group>"; };
+		84A978201FA821BB00C55936 /* ModalMask.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModalMask.lua; sourceTree = "<group>"; };
+		84A978211FA821BB00C55936 /* PowerStartPopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerStartPopup.lua; sourceTree = "<group>"; };
+		84A978221FA821BB00C55936 /* TetrisPointAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPointAnimation.lua; sourceTree = "<group>"; };
+		84A978231FA821BB00C55936 /* TetrisLogin.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisLogin.lua; sourceTree = "<group>"; };
+		84A978241FA821BB00C55936 /* PowerPausePopup.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PowerPausePopup.lua; sourceTree = "<group>"; };
+		84A978251FA821BB00C55936 /* TetrisMaze.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMaze.lua; sourceTree = "<group>"; };
+		84A978261FA821BB00C55936 /* TetrisPowerLoop.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerLoop.lua; sourceTree = "<group>"; };
+		84A978271FA821BB00C55936 /* TetrisRank.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisRank.lua; sourceTree = "<group>"; };
+		84A978281FA821BB00C55936 /* TetrisStoneAnimation.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisStoneAnimation.lua; sourceTree = "<group>"; };
+		84A978291FA821BB00C55936 /* TetrisTipBuyEnergy.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTipBuyEnergy.lua; sourceTree = "<group>"; };
+		84A9782A1FA821BB00C55936 /* LuaExtend.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaExtend.lua; sourceTree = "<group>"; };
+		84A9782C1FA821BB00C55936 /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		84A9782E1FA821BB00C55936 /* Actions.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Actions.lua; sourceTree = "<group>"; };
+		84A9782F1FA821BB00C55936 /* Game.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Game.lua; sourceTree = "<group>"; };
+		84A978321FA821BB00C55936 /* LoadingScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadingScene.lua; sourceTree = "<group>"; };
+		84A978331FA821BB00C55936 /* LoadingPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadingPanel.lua; sourceTree = "<group>"; };
+		84A978361FA821BB00C55936 /* BlockCore1.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore1.lua; sourceTree = "<group>"; };
+		84A978371FA821BB00C55936 /* BlockCore2.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore2.lua; sourceTree = "<group>"; };
+		84A978381FA821BB00C55936 /* BlockCore.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore.lua; sourceTree = "<group>"; };
+		84A978391FA821BB00C55936 /* BlockCore3.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore3.lua; sourceTree = "<group>"; };
+		84A9783A1FA821BB00C55936 /* BlockCore7.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore7.lua; sourceTree = "<group>"; };
+		84A9783B1FA821BB00C55936 /* BlockCore6.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore6.lua; sourceTree = "<group>"; };
+		84A9783C1FA821BB00C55936 /* BlockCore4.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore4.lua; sourceTree = "<group>"; };
+		84A9783D1FA821BB00C55936 /* BlockCore5.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlockCore5.lua; sourceTree = "<group>"; };
+		84A9783E1FA821BB00C55936 /* TetrisCore.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisCore.lua; sourceTree = "<group>"; };
+		84A978401FA821BB00C55936 /* TetrisAI.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisAI.lua; sourceTree = "<group>"; };
+		84A978421FA821BB00C55936 /* Block2.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Block2.lua; sourceTree = "<group>"; };
+		84A978431FA821BB00C55936 /* TetrisSinglePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisSinglePanel.lua; sourceTree = "<group>"; };
+		84A978441FA821BB00C55936 /* TetrisPowerStartIntroPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerStartIntroPanel.lua; sourceTree = "<group>"; };
+		84A978451FA821BB00C55936 /* Block3.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Block3.lua; sourceTree = "<group>"; };
+		84A978461FA821BB00C55936 /* Block1.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Block1.lua; sourceTree = "<group>"; };
+		84A978471FA821BB00C55936 /* BaseBlock.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseBlock.lua; sourceTree = "<group>"; };
+		84A978481FA821BB00C55936 /* Block4.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Block4.lua; sourceTree = "<group>"; };
+		84A978491FA821BB00C55936 /* TetrisScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisScene.lua; sourceTree = "<group>"; };
+		84A9784A1FA821BB00C55936 /* TetrisPowerFailPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerFailPanel.lua; sourceTree = "<group>"; };
+		84A9784B1FA821BB00C55936 /* Block5.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Block5.lua; sourceTree = "<group>"; };
+		84A9784C1FA821BB00C55936 /* Block7.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Block7.lua; sourceTree = "<group>"; };
+		84A9784D1FA821BB00C55936 /* Block6.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Block6.lua; sourceTree = "<group>"; };
+		84A9784E1FA821BB00C55936 /* TetrisTipsBuyTimePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTipsBuyTimePanel.lua; sourceTree = "<group>"; };
+		84A9784F1FA821BB00C55936 /* Tetris.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tetris.lua; sourceTree = "<group>"; };
+		84A978501FA821BB00C55936 /* TetrisTipsPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTipsPanel.lua; sourceTree = "<group>"; };
+		84A978511FA821BB00C55936 /* TetrisMeteor2Panel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteor2Panel.lua; sourceTree = "<group>"; };
+		84A978521FA821BB00C55936 /* TetrisTimeModePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTimeModePanel.lua; sourceTree = "<group>"; };
+		84A978531FA821BB00C55936 /* TetrisPowerEndIntroPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerEndIntroPanel.lua; sourceTree = "<group>"; };
+		84A978541FA821BB00C55936 /* TetrisPvpEndIntroPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvpEndIntroPanel.lua; sourceTree = "<group>"; };
+		84A978551FA821BB00C55936 /* TetrisSparPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisSparPanel.lua; sourceTree = "<group>"; };
+		84A978561FA821BB00C55936 /* TetrisClearStonePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisClearStonePanel.lua; sourceTree = "<group>"; };
+		84A978571FA821BB00C55936 /* TetrisPvpResultPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvpResultPanel.lua; sourceTree = "<group>"; };
+		84A978581FA821BB00C55936 /* TetrisTipsBuyEnergyPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTipsBuyEnergyPanel.lua; sourceTree = "<group>"; };
+		84A978591FA821BB00C55936 /* TetrisPowerPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerPanel.lua; sourceTree = "<group>"; };
+		84A9785A1FA821BB00C55936 /* TetrisPvpStartIntroPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvpStartIntroPanel.lua; sourceTree = "<group>"; };
+		84A9785C1FA821BB00C55936 /* TetrisRankView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisRankView.lua; sourceTree = "<group>"; };
+		84A9785D1FA821BB00C55936 /* TetrisPvpView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPvpView.lua; sourceTree = "<group>"; };
+		84A9785E1FA821BB00C55936 /* TetrisBarView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisBarView.lua; sourceTree = "<group>"; };
+		84A9785F1FA821BB00C55936 /* TetrisPowerSuccPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerSuccPanel.lua; sourceTree = "<group>"; };
+		84A978601FA821BB00C55936 /* TetrisPowerStartPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerStartPanel.lua; sourceTree = "<group>"; };
+		84A978611FA821BB00C55936 /* TetrisMultiPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMultiPanel.lua; sourceTree = "<group>"; };
+		84A978621FA821BB00C55936 /* TetrisMazePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMazePanel.lua; sourceTree = "<group>"; };
+		84A978631FA821BB00C55936 /* TetrisPowerPausePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerPausePanel.lua; sourceTree = "<group>"; };
+		84A978641FA821BB00C55936 /* TetrisShopPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisShopPanel.lua; sourceTree = "<group>"; };
+		84A978651FA821BB00C55936 /* TetrisMeteorPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteorPanel.lua; sourceTree = "<group>"; };
+		84A978671FA821BB00C55936 /* TetrisMeteorConf.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteorConf.lua; sourceTree = "<group>"; };
+		84A978681FA821BB00C55936 /* TetrisPowerConf.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisPowerConf.lua; sourceTree = "<group>"; };
+		84A978691FA821BB00C55936 /* TetrisClearStoneConf.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisClearStoneConf.lua; sourceTree = "<group>"; };
+		84A9786A1FA821BB00C55936 /* TetrisTimeModeConf.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisTimeModeConf.lua; sourceTree = "<group>"; };
+		84A9786B1FA821BB00C55936 /* TetrisMeteor2Conf.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMeteor2Conf.lua; sourceTree = "<group>"; };
+		84A9786C1FA821BB00C55936 /* TetrisSparConf.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisSparConf.lua; sourceTree = "<group>"; };
+		84A9786D1FA821BB00C55936 /* TetrisMazeConf.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TetrisMazeConf.lua; sourceTree = "<group>"; };
+		84A978701FA821BB00C55936 /* StartScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StartScene.lua; sourceTree = "<group>"; };
+		84A978711FA821BB00C55936 /* Test.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.lua; sourceTree = "<group>"; };
+		84A978731FA821BB00C55936 /* ModelManager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelManager.lua; sourceTree = "<group>"; };
+		84A978741FA821BB00C55936 /* ConsolePanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsolePanel.lua; sourceTree = "<group>"; };
+		84A978751FA821BB00C55936 /* ConfigManager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConfigManager.lua; sourceTree = "<group>"; };
+		84A978761FA821BB00C55936 /* Tips.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tips.lua; sourceTree = "<group>"; };
+		84A978781FA821BB00C55936 /* Player.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Player.lua; sourceTree = "<group>"; };
+		84A978791FA821BB00C55936 /* EventDefine.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventDefine.lua; sourceTree = "<group>"; };
+		84A9787A1FA821BB00C55936 /* version.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = version.lua; sourceTree = "<group>"; };
+		84A9787C1FA821BB00C55936 /* HotswapController.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HotswapController.lua; sourceTree = "<group>"; };
+		84A9787D1FA821BB00C55936 /* HotswapData.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HotswapData.lua; sourceTree = "<group>"; };
+		84A9787F1FA821BB00C55936 /* HotswapScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HotswapScene.lua; sourceTree = "<group>"; };
+		84A978801FA821BB00C55936 /* HotswapTipsPanel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HotswapTipsPanel.lua; sourceTree = "<group>"; };
+		84A978821FA821BB00C55936 /* Constants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Constants.lua; sourceTree = "<group>"; };
+		84A978851FA821BB00C55936 /* LoginScene.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoginScene.lua; sourceTree = "<group>"; };
+		84A978861FA821BB00C55936 /* config.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.lua; sourceTree = "<group>"; };
+		84A978891FA821BB00C55936 /* experimentalUIConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = experimentalUIConstants.lua; sourceTree = "<group>"; };
+		84A9788A1FA821BB00C55936 /* GuiConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GuiConstants.lua; sourceTree = "<group>"; };
+		84A9788B1FA821BB00C55936 /* DeprecatedUIFunc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedUIFunc.lua; sourceTree = "<group>"; };
+		84A9788C1FA821BB00C55936 /* DeprecatedUIEnum.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedUIEnum.lua; sourceTree = "<group>"; };
+		84A9788E1FA821BB00C55936 /* 3dConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3dConstants.lua; sourceTree = "<group>"; };
+		84A9788F1FA821BB00C55936 /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		84A978911FA821BB00C55936 /* DeprecatedCocosBuilderClass.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocosBuilderClass.lua; sourceTree = "<group>"; };
+		84A978921FA821BB00C55936 /* CCBReaderLoad.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CCBReaderLoad.lua; sourceTree = "<group>"; };
+		84A978941FA821BB00C55936 /* DeprecatedExtensionEnum.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedExtensionEnum.lua; sourceTree = "<group>"; };
+		84A978951FA821BB00C55936 /* DeprecatedExtensionClass.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedExtensionClass.lua; sourceTree = "<group>"; };
+		84A978961FA821BB00C55936 /* DeprecatedExtensionFunc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedExtensionFunc.lua; sourceTree = "<group>"; };
+		84A978971FA821BB00C55936 /* ExtensionConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExtensionConstants.lua; sourceTree = "<group>"; };
+		84A978991FA821BB00C55936 /* SpineConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpineConstants.lua; sourceTree = "<group>"; };
+		84A9789B1FA821BB00C55936 /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		84A9789D1FA821BB00C55936 /* SpriteEx.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpriteEx.lua; sourceTree = "<group>"; };
+		84A9789E1FA821BB00C55936 /* UISlider.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UISlider.lua; sourceTree = "<group>"; };
+		84A9789F1FA821BB00C55936 /* UITextField.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UITextField.lua; sourceTree = "<group>"; };
+		84A978A01FA821BB00C55936 /* UIScrollView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UIScrollView.lua; sourceTree = "<group>"; };
+		84A978A11FA821BB00C55936 /* UICheckBox.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UICheckBox.lua; sourceTree = "<group>"; };
+		84A978A21FA821BB00C55936 /* UIEditBox.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UIEditBox.lua; sourceTree = "<group>"; };
+		84A978A31FA821BB00C55936 /* UIListView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UIListView.lua; sourceTree = "<group>"; };
+		84A978A41FA821BB00C55936 /* NodeEx.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NodeEx.lua; sourceTree = "<group>"; };
+		84A978A51FA821BB00C55936 /* LayerEx.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LayerEx.lua; sourceTree = "<group>"; };
+		84A978A61FA821BB00C55936 /* UIWidget.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UIWidget.lua; sourceTree = "<group>"; };
+		84A978A71FA821BB00C55936 /* MenuEx.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MenuEx.lua; sourceTree = "<group>"; };
+		84A978A81FA821BB00C55936 /* UIPageView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UIPageView.lua; sourceTree = "<group>"; };
+		84A978A91FA821BB00C55936 /* package_support.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = package_support.lua; sourceTree = "<group>"; };
+		84A978AB1FA821BB00C55936 /* event.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = event.lua; sourceTree = "<group>"; };
+		84A978AC1FA821BB00C55936 /* display.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = display.lua; sourceTree = "<group>"; };
+		84A978AD1FA821BB00C55936 /* device.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = device.lua; sourceTree = "<group>"; };
+		84A978AE1FA821BB00C55936 /* audio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = audio.lua; sourceTree = "<group>"; };
+		84A978AF1FA821BB00C55936 /* transition.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transition.lua; sourceTree = "<group>"; };
+		84A978B11FA821BB00C55936 /* DeprecatedNetworkEnum.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedNetworkEnum.lua; sourceTree = "<group>"; };
+		84A978B21FA821BB00C55936 /* DeprecatedNetworkFunc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedNetworkFunc.lua; sourceTree = "<group>"; };
+		84A978B31FA821BB00C55936 /* DeprecatedNetworkClass.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedNetworkClass.lua; sourceTree = "<group>"; };
+		84A978B41FA821BB00C55936 /* NetworkConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NetworkConstants.lua; sourceTree = "<group>"; };
+		84A978B61FA821BB00C55936 /* ControllerConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ControllerConstants.lua; sourceTree = "<group>"; };
+		84A978B81FA821BB00C55936 /* functions.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = functions.lua; sourceTree = "<group>"; };
+		84A978B91FA821BB00C55936 /* json.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json.lua; sourceTree = "<group>"; };
+		84A978BA1FA821BB00C55936 /* DeprecatedOpenglEnum.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedOpenglEnum.lua; sourceTree = "<group>"; };
+		84A978BB1FA821BB00C55936 /* Opengl.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Opengl.lua; sourceTree = "<group>"; };
+		84A978BC1FA821BB00C55936 /* DeprecatedCocos2dEnum.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocos2dEnum.lua; sourceTree = "<group>"; };
+		84A978BD1FA821BB00C55936 /* Cocos2dConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cocos2dConstants.lua; sourceTree = "<group>"; };
+		84A978BE1FA821BB00C55936 /* luaj.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = luaj.lua; sourceTree = "<group>"; };
+		84A978BF1FA821BB00C55936 /* luaoc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = luaoc.lua; sourceTree = "<group>"; };
+		84A978C01FA821BB00C55936 /* OpenglConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OpenglConstants.lua; sourceTree = "<group>"; };
+		84A978C11FA821BB00C55936 /* DeprecatedCocos2dClass.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocos2dClass.lua; sourceTree = "<group>"; };
+		84A978C21FA821BB00C55936 /* DrawPrimitives.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DrawPrimitives.lua; sourceTree = "<group>"; };
+		84A978C31FA821BB00C55936 /* DeprecatedCocos2dFunc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocos2dFunc.lua; sourceTree = "<group>"; };
+		84A978C41FA821BB00C55936 /* bitExtend.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bitExtend.lua; sourceTree = "<group>"; };
+		84A978C51FA821BB00C55936 /* deprecated.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deprecated.lua; sourceTree = "<group>"; };
+		84A978C61FA821BB00C55936 /* Cocos2d.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cocos2d.lua; sourceTree = "<group>"; };
+		84A978C81FA821BB00C55936 /* DeprecatedCocosDenshionFunc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocosDenshionFunc.lua; sourceTree = "<group>"; };
+		84A978C91FA821BB00C55936 /* AudioEngine.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AudioEngine.lua; sourceTree = "<group>"; };
+		84A978CA1FA821BB00C55936 /* DeprecatedCocosDenshionClass.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocosDenshionClass.lua; sourceTree = "<group>"; };
+		84A978CC1FA821BB00C55936 /* physics3d-constants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "physics3d-constants.lua"; sourceTree = "<group>"; };
+		84A978CE1FA821BB00C55936 /* DeprecatedCocoStudioFunc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocoStudioFunc.lua; sourceTree = "<group>"; };
+		84A978CF1FA821BB00C55936 /* StudioConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StudioConstants.lua; sourceTree = "<group>"; };
+		84A978D01FA821BB00C55936 /* DeprecatedCocoStudioClass.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeprecatedCocoStudioClass.lua; sourceTree = "<group>"; };
+		84A978D11FA821BB00C55936 /* CocoStudio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CocoStudio.lua; sourceTree = "<group>"; };
+		84A978D31FA821BB00C55936 /* remove_gray.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = remove_gray.fsh; sourceTree = "<group>"; };
+		84A978D41FA821BB00C55936 /* add_gray.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = add_gray.fsh; sourceTree = "<group>"; };
+		84A978D81FA821BB00C55936 /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
+		84A978D91FA821BB00C55936 /* main.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = main.plist; sourceTree = "<group>"; };
+		84A978DA1FA821BB00C55936 /* singlematch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = singlematch.png; sourceTree = "<group>"; };
+		84A978DB1FA821BB00C55936 /* singlematch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = singlematch.plist; sourceTree = "<group>"; };
+		84A978DC1FA821BB00C55936 /* common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common.png; sourceTree = "<group>"; };
+		84A978DD1FA821BB00C55936 /* common.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = common.plist; sourceTree = "<group>"; };
+		84A978E01FA821BB00C55936 /* power_fail_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power_fail_bg2.png; sourceTree = "<group>"; };
+		84A978E11FA821BB00C55936 /* power_star_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power_star_bg2.png; sourceTree = "<group>"; };
+		84A978E21FA821BB00C55936 /* popup_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popup_bg.png; sourceTree = "<group>"; };
+		84A978E31FA821BB00C55936 /* power_pass_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power_pass_bg2.png; sourceTree = "<group>"; };
+		84A978E51FA821BB00C55936 /* progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress.png; sourceTree = "<group>"; };
+		84A978E61FA821BB00C55936 /* progress_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress_blue.png; sourceTree = "<group>"; };
+		84A978E71FA821BB00C55936 /* progress_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress_bg.png; sourceTree = "<group>"; };
+		84A978E91FA821BC00C55936 /* loading_progress_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_progress_bg.png; sourceTree = "<group>"; };
+		84A978EA1FA821BC00C55936 /* loading_progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_progress.png; sourceTree = "<group>"; };
+		84A978EB1FA821BC00C55936 /* loading_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_bg.png; sourceTree = "<group>"; };
+		84A978EE1FA821BC00C55936 /* icon_diam4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_diam4.png; sourceTree = "<group>"; };
+		84A978EF1FA821BC00C55936 /* icon_diam5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_diam5.png; sourceTree = "<group>"; };
+		84A978F01FA821BC00C55936 /* shop_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop_bg.png; sourceTree = "<group>"; };
+		84A978F11FA821BC00C55936 /* icon_diam2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_diam2.png; sourceTree = "<group>"; };
+		84A978F21FA821BC00C55936 /* icon_diam3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_diam3.png; sourceTree = "<group>"; };
+		84A978F31FA821BC00C55936 /* icon_diam1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_diam1.png; sourceTree = "<group>"; };
+		84A978F51FA821BC00C55936 /* intro_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_bg.png; sourceTree = "<group>"; };
+		84A978F61FA821BC00C55936 /* main_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_bg2.png; sourceTree = "<group>"; };
+		84A978F71FA821BC00C55936 /* net_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = net_bg.png; sourceTree = "<group>"; };
+		84A978F81FA821BC00C55936 /* main_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_bg1.png; sourceTree = "<group>"; };
+		84A978F91FA821BC00C55936 /* multimatch_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = multimatch_bg.png; sourceTree = "<group>"; };
+		84A978FA1FA821BC00C55936 /* singlematch_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = singlematch_bg.png; sourceTree = "<group>"; };
+		84A978FB1FA821BC00C55936 /* intro_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_bg2.png; sourceTree = "<group>"; };
+		84A978FC1FA821BC00C55936 /* pvp_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pvp_bg.png; sourceTree = "<group>"; };
+		84A978FE1FA821BC00C55936 /* diam_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diam_icon.png; sourceTree = "<group>"; };
+		84A978FF1FA821BC00C55936 /* btn_buy_energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_buy_energy.png; sourceTree = "<group>"; };
+		84A979001FA821BC00C55936 /* btn_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_ok.png; sourceTree = "<group>"; };
+		84A979011FA821BC00C55936 /* tips_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_bg.png; sourceTree = "<group>"; };
+		84A979021FA821BC00C55936 /* btn_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_cancel.png; sourceTree = "<group>"; };
+		84A979031FA821BC00C55936 /* btn_watch_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_watch_video.png; sourceTree = "<group>"; };
+		84A979041FA821BC00C55936 /* nonetwork_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nonetwork_icon.png; sourceTree = "<group>"; };
+		84A979051FA821BC00C55936 /* tips_inner_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_inner_bg.png; sourceTree = "<group>"; };
+		84A979061FA821BC00C55936 /* btn_buy_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_buy_time.png; sourceTree = "<group>"; };
+		84A979081FA821BC00C55936 /* number_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_blue.png; sourceTree = "<group>"; };
+		84A979091FA821BC00C55936 /* number_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_red.png; sourceTree = "<group>"; };
+		84A9790A1FA821BC00C55936 /* number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number.png; sourceTree = "<group>"; };
+		84A9790B1FA821BC00C55936 /* number_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_small.png; sourceTree = "<group>"; };
+		84A9790C1FA821BC00C55936 /* number2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number2.png; sourceTree = "<group>"; };
+		84A9790D1FA821BC00C55936 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
+		84A9790E1FA821BC00C55936 /* army_num_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army_num_out.png; sourceTree = "<group>"; };
+		84A9790F1FA821BC00C55936 /* number_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_yellow.png; sourceTree = "<group>"; };
+		84A979101FA821BC00C55936 /* rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rank.png; sourceTree = "<group>"; };
+		84A979111FA821BC00C55936 /* army_num_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army_num_in.png; sourceTree = "<group>"; };
+		84A979121FA821BC00C55936 /* split.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = split.png; sourceTree = "<group>"; };
+		84A979141FA821BC00C55936 /* btn_matchbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_matchbg.png; sourceTree = "<group>"; };
+		84A979151FA821BC00C55936 /* blue_win_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_win_bg.png; sourceTree = "<group>"; };
+		84A979161FA821BC00C55936 /* pic_blue_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_blue_bg.png; sourceTree = "<group>"; };
+		84A979171FA821BC00C55936 /* btn_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_search.png; sourceTree = "<group>"; };
+		84A979181FA821BC00C55936 /* pic_red_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_red_bg.png; sourceTree = "<group>"; };
+		84A979191FA821BC00C55936 /* pvp_score_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pvp_score_bg.png; sourceTree = "<group>"; };
+		84A9791A1FA821BC00C55936 /* net_title_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = net_title_bg.png; sourceTree = "<group>"; };
+		84A9791B1FA821BC00C55936 /* pvp_end_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pvp_end_bg.png; sourceTree = "<group>"; };
+		84A9791C1FA821BC00C55936 /* building_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_bg.png; sourceTree = "<group>"; };
+		84A9791D1FA821BC00C55936 /* red_win_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_win_bg.png; sourceTree = "<group>"; };
+		84A9791E1FA821BC00C55936 /* pvp_start_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pvp_start_bg.png; sourceTree = "<group>"; };
+		84A9791F1FA821BC00C55936 /* pvp_result.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pvp_result.png; sourceTree = "<group>"; };
+		84A979211FA821BC00C55936 /* icon_gold_cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_gold_cup.png; sourceTree = "<group>"; };
+		84A979221FA821BC00C55936 /* rank_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rank_bg1.png; sourceTree = "<group>"; };
+		84A979231FA821BC00C55936 /* rank_line_self_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rank_line_self_bg.png; sourceTree = "<group>"; };
+		84A979241FA821BC00C55936 /* rank_self_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rank_self_bg.png; sourceTree = "<group>"; };
+		84A979251FA821BC00C55936 /* cup1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cup1.png; sourceTree = "<group>"; };
+		84A979261FA821BC00C55936 /* cup3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cup3.png; sourceTree = "<group>"; };
+		84A979271FA821BC00C55936 /* cup2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cup2.png; sourceTree = "<group>"; };
+		84A979281FA821BC00C55936 /* rank_line_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rank_line_bg.png; sourceTree = "<group>"; };
+		84A979291FA821BC00C55936 /* rank_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rank_bg.png; sourceTree = "<group>"; };
+		84A9792B1FA821BC00C55936 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		84A9792C1FA821BC00C55936 /* big_gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_gear.png; sourceTree = "<group>"; };
+		84A9792D1FA821BC00C55936 /* gamename_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamename_bg.png; sourceTree = "<group>"; };
+		84A9792F1FA821BC00C55936 /* pack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pack.png; sourceTree = "<group>"; };
+		84A979301FA821BC00C55936 /* pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pack.plist; sourceTree = "<group>"; };
+		84A979F11FA821BC00C55936 /* yun_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yun_left.png; sourceTree = "<group>"; };
+		84A979F21FA821BC00C55936 /* yun_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yun_right.png; sourceTree = "<group>"; };
+		84A979F41FA821BC00C55936 /* anim_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim_start.png; sourceTree = "<group>"; };
+		84A979F51FA821BC00C55936 /* anim_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim_1.png; sourceTree = "<group>"; };
+		84A979F61FA821BC00C55936 /* anim_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim_2.png; sourceTree = "<group>"; };
+		84A979F71FA821BC00C55936 /* anim_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim_3.png; sourceTree = "<group>"; };
+		84A979F91FA821BC00C55936 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		84A979FB1FA821BC00C55936 /* attack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attack.png; sourceTree = "<group>"; };
+		84A979FD1FA821BC00C55936 /* meteor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor2.png; sourceTree = "<group>"; };
+		84A979FF1FA821BC00C55936 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		84A97A001FA821BC00C55936 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		84A97A011FA821BC00C55936 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		84A97A021FA821BC00C55936 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		84A97A041FA821BC00C55936 /* Sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sprite.png; sourceTree = "<group>"; };
+		84A97A051FA821BC00C55936 /* SliderNode_Disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderNode_Disable.png; sourceTree = "<group>"; };
+		84A97A061FA821BC00C55936 /* Button_Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Press.png; sourceTree = "<group>"; };
+		84A97A071FA821BC00C55936 /* SliderNode_Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderNode_Press.png; sourceTree = "<group>"; };
+		84A97A081FA821BC00C55936 /* Button_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Normal.png; sourceTree = "<group>"; };
+		84A97A091FA821BC00C55936 /* SliderNode_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderNode_Normal.png; sourceTree = "<group>"; };
+		84A97A0A1FA821BC00C55936 /* Button_Disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Disable.png; sourceTree = "<group>"; };
+		84A97A0C1FA821BC00C55936 /* main_bg2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = main_bg2.wav; sourceTree = "<group>"; };
+		84A97A0D1FA821BC00C55936 /* remove_block.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = remove_block.wav; sourceTree = "<group>"; };
+		84A97A0E1FA821BC00C55936 /* power_fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = power_fail.mp3; sourceTree = "<group>"; };
+		84A97A0F1FA821BC00C55936 /* rotation.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rotation.wav; sourceTree = "<group>"; };
+		84A97A101FA821BC00C55936 /* click_btn1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_btn1.wav; sourceTree = "<group>"; };
+		84A97A111FA821BC00C55936 /* power_bg1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = power_bg1.mp3; sourceTree = "<group>"; };
+		84A97A121FA821BC00C55936 /* power_bg3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = power_bg3.mp3; sourceTree = "<group>"; };
+		84A97A131FA821BC00C55936 /* click_btn2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_btn2.wav; sourceTree = "<group>"; };
+		84A97A141FA821BC00C55936 /* power_bg2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = power_bg2.mp3; sourceTree = "<group>"; };
+		84A97A151FA821BC00C55936 /* main_bg1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = main_bg1.mp3; sourceTree = "<group>"; };
+		84A97A161FA821BC00C55936 /* main_bg3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = main_bg3.mp3; sourceTree = "<group>"; };
+		84A97A171FA821BC00C55936 /* power_pass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = power_pass.wav; sourceTree = "<group>"; };
+		84A97A181FA821BC00C55936 /* block_down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = block_down.wav; sourceTree = "<group>"; };
 		84BA0F331E6C08980065FDBB /* lutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lutil.h; path = ../Classes/kcp/lutil.h; sourceTree = "<group>"; };
 		84BA0F341E6C08980065FDBB /* lutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lutil.c; path = ../Classes/kcp/lutil.c; sourceTree = "<group>"; };
 		84BA0F351E6C08980065FDBB /* lkcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lkcp.h; path = ../Classes/kcp/lkcp.h; sourceTree = "<group>"; };
@@ -987,6 +1775,8 @@
 		5023810617EBBCAC00990C9B /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				84A977861FA81F5600C55936 /* LaunchScreen.storyboard */,
+				84A977851FA81F5500C55936 /* LaunchScreenBackground.png */,
 				847861061E629CCC00A6266A /* gamecenter */,
 				521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */,
 				521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */,
@@ -1578,6 +2368,998 @@
 			name = lpack;
 			sourceTree = "<group>";
 		};
+		84A977891FA821BB00C55936 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				84A9778A1FA821BB00C55936 /* core */,
+				84A977CA1FA821BB00C55936 /* main.lua */,
+				84A977CB1FA821BB00C55936 /* config */,
+				84A977CE1FA821BB00C55936 /* layout */,
+				84A9782A1FA821BB00C55936 /* LuaExtend.lua */,
+				84A9782B1FA821BB00C55936 /* game */,
+				84A978861FA821BB00C55936 /* config.lua */,
+				84A978871FA821BB00C55936 /* cocos */,
+				84A978D21FA821BB00C55936 /* shader */,
+			);
+			name = src;
+			path = ../../../src;
+			sourceTree = "<group>";
+		};
+		84A9778A1FA821BB00C55936 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				84A9778B1FA821BB00C55936 /* init.lua */,
+				84A9778C1FA821BB00C55936 /* Layers.lua */,
+				84A9778D1FA821BB00C55936 /* net */,
+				84A977951FA821BB00C55936 /* native */,
+				84A977971FA821BB00C55936 /* util */,
+				84A977AC1FA821BB00C55936 /* mvc */,
+				84A977B11FA821BB00C55936 /* component */,
+				84A977BC1FA821BB00C55936 /* fixscheduler_bak.lua */,
+				84A977BD1FA821BB00C55936 /* manager */,
+				84A977C31FA821BB00C55936 /* scheduler.lua */,
+				84A977C41FA821BB00C55936 /* log.lua */,
+				84A977C51FA821BB00C55936 /* fixscheduler.lua */,
+				84A977C61FA821BB00C55936 /* mvvm */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		84A9778D1FA821BB00C55936 /* net */ = {
+			isa = PBXGroup;
+			children = (
+				84A9778E1FA821BB00C55936 /* WebUtil.lua */,
+				84A9778F1FA821BB00C55936 /* init.lua */,
+				84A977901FA821BB00C55936 /* testkcp.lua */,
+				84A977911FA821BB00C55936 /* SocketTCP.lua */,
+				84A977921FA821BB00C55936 /* SocketUDP.lua */,
+				84A977931FA821BB00C55936 /* network.lua */,
+				84A977941FA821BB00C55936 /* latencysm.lua */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		84A977951FA821BB00C55936 /* native */ = {
+			isa = PBXGroup;
+			children = (
+				84A977961FA821BB00C55936 /* NativeBridge.lua */,
+			);
+			path = native;
+			sourceTree = "<group>";
+		};
+		84A977971FA821BB00C55936 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				84A977981FA821BB00C55936 /* corefunctions.lua */,
+				84A977991FA821BB00C55936 /* GameState.lua */,
+				84A9779A1FA821BB00C55936 /* init.lua */,
+				84A9779B1FA821BB00C55936 /* crypto.lua */,
+				84A9779C1FA821BB00C55936 /* json.lua */,
+				84A9779D1FA821BB00C55936 /* ColorUtil.lua */,
+				84A9779E1FA821BB00C55936 /* bit.lua */,
+				84A9779F1FA821BB00C55936 /* RandomUtil.lua */,
+				84A977A01FA821BB00C55936 /* ShaderUtil.lua */,
+				84A977A11FA821BB00C55936 /* UserDefaultUtil.lua */,
+				84A977A21FA821BB00C55936 /* Localize.lua */,
+				84A977A31FA821BB00C55936 /* GameArchiveFile.lua */,
+				84A977A41FA821BB00C55936 /* ByteArray.lua */,
+				84A977A51FA821BB00C55936 /* ByteArrayVarint.lua */,
+				84A977A61FA821BB00C55936 /* Timer.lua */,
+				84A977A71FA821BB00C55936 /* Random.lua */,
+				84A977A81FA821BB00C55936 /* RandomLua.lua */,
+				84A977A91FA821BB00C55936 /* toluaEx.lua */,
+				84A977AA1FA821BB00C55936 /* filter.lua */,
+				84A977AB1FA821BB00C55936 /* base64.lua */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		84A977AC1FA821BB00C55936 /* mvc */ = {
+			isa = PBXGroup;
+			children = (
+				84A977AD1FA821BB00C55936 /* BasePanel.lua */,
+				84A977AE1FA821BB00C55936 /* BaseView.lua */,
+				84A977AF1FA821BB00C55936 /* BaseApp.lua */,
+				84A977B01FA821BB00C55936 /* BaseScene.lua */,
+			);
+			path = mvc;
+			sourceTree = "<group>";
+		};
+		84A977B11FA821BB00C55936 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				84A977B21FA821BB00C55936 /* init.lua */,
+				84A977B31FA821BB00C55936 /* richlabel */,
+				84A977BA1FA821BB00C55936 /* ListViewEx.lua */,
+				84A977BB1FA821BB00C55936 /* ButtonEx.lua */,
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
+		84A977B31FA821BB00C55936 /* richlabel */ = {
+			isa = PBXGroup;
+			children = (
+				84A977B41FA821BB00C55936 /* RichLabel.lua */,
+				84A977B51FA821BB00C55936 /* labels */,
+				84A977B91FA821BB00C55936 /* labelparser.lua */,
+			);
+			path = richlabel;
+			sourceTree = "<group>";
+		};
+		84A977B51FA821BB00C55936 /* labels */ = {
+			isa = PBXGroup;
+			children = (
+				84A977B61FA821BB00C55936 /* label.lua */,
+				84A977B71FA821BB00C55936 /* label_img.lua */,
+				84A977B81FA821BB00C55936 /* label_div.lua */,
+			);
+			path = labels;
+			sourceTree = "<group>";
+		};
+		84A977BD1FA821BB00C55936 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				84A977BE1FA821BB00C55936 /* AudioManager.lua */,
+				84A977BF1FA821BB00C55936 /* ResourceManager.lua */,
+				84A977C01FA821BB00C55936 /* ConnectManager.lua */,
+				84A977C11FA821BB00C55936 /* EventManager.lua */,
+				84A977C21FA821BB00C55936 /* UDPConnectManager.lua */,
+			);
+			path = manager;
+			sourceTree = "<group>";
+		};
+		84A977C61FA821BB00C55936 /* mvvm */ = {
+			isa = PBXGroup;
+			children = (
+				84A977C71FA821BB00C55936 /* BaseViewModel.lua */,
+				84A977C81FA821BB00C55936 /* Binder.lua */,
+				84A977C91FA821BB00C55936 /* BaseModel.lua */,
+			);
+			path = mvvm;
+			sourceTree = "<group>";
+		};
+		84A977CB1FA821BB00C55936 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				84A977CC1FA821BB00C55936 /* WinConfig.lua */,
+				84A977CD1FA821BB00C55936 /* MobConfig.lua */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		84A977CE1FA821BB00C55936 /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				84A977CF1FA821BB00C55936 /* TetrisStartCountAnimation.lua */,
+				84A977D01FA821BB00C55936 /* TetrisRankItem.lua */,
+				84A977D11FA821BB00C55936 /* TetrisShop.lua */,
+				84A977D21FA821BB00C55936 /* TetrisPvp.lua */,
+				84A977D31FA821BB00C55936 /* TetrisLoading.lua */,
+				84A977D41FA821BB00C55936 /* TetrisPowerStart.lua */,
+				84A977D51FA821BB00C55936 /* TetrisStart.lua */,
+				84A977D61FA821BB00C55936 /* TetrisPvpStartIntro.lua */,
+				84A977D71FA821BB00C55936 /* TetrisMeteor.lua */,
+				84A977D81FA821BB00C55936 /* TetrisAttackAnimation.lua */,
+				84A977D91FA821BB00C55936 /* TetrisStartIntro.lua */,
+				84A977DA1FA821BB00C55936 /* ConsolePanel.lua */,
+				84A977DB1FA821BB00C55936 /* PowerFailPopup.lua */,
+				84A977DC1FA821BB00C55936 /* TetrisTipBuyTime.lua */,
+				84A977DD1FA821BB00C55936 /* TetrisStartAnimation.lua */,
+				84A977DE1FA821BB00C55936 /* TetrisTipUpdate.lua */,
+				84A977DF1FA821BB00C55936 /* bak */,
+				84A9780D1FA821BB00C55936 /* TetrisTipComm.lua */,
+				84A9780E1FA821BB00C55936 /* LuaExtend.lua */,
+				84A9780F1FA821BB00C55936 /* CommTips.lua */,
+				84A978101FA821BB00C55936 /* TetrisMeteor2.lua */,
+				84A978111FA821BB00C55936 /* TetrisEndIntro.lua */,
+				84A978121FA821BB00C55936 /* TetrisMeteorAnimation.lua */,
+				84A978131FA821BB00C55936 /* TetrisPvpResult.lua */,
+				84A978141FA821BB00C55936 /* TetrisPowerArmy.lua */,
+				84A978151FA821BB00C55936 /* TetrisClearStone.lua */,
+				84A978161FA821BB00C55936 /* PowerSuccPopup.lua */,
+				84A978171FA821BB00C55936 /* TetrisSearchAnimation.lua */,
+				84A978181FA821BB00C55936 /* TetrisShopItem.lua */,
+				84A978191FA821BB00C55936 /* TetrisSpar.lua */,
+				84A9781A1FA821BB00C55936 /* TetrisPvpEndIntro.lua */,
+				84A9781B1FA821BB00C55936 /* TetrisScene_Net.lua */,
+				84A9781C1FA821BB00C55936 /* TetrisTimeMode.lua */,
+				84A9781D1FA821BB00C55936 /* TetrisMainBar.lua */,
+				84A9781E1FA821BB00C55936 /* TetrisMainScene.lua */,
+				84A9781F1FA821BB00C55936 /* TetrisHotswap.lua */,
+				84A978201FA821BB00C55936 /* ModalMask.lua */,
+				84A978211FA821BB00C55936 /* PowerStartPopup.lua */,
+				84A978221FA821BB00C55936 /* TetrisPointAnimation.lua */,
+				84A978231FA821BB00C55936 /* TetrisLogin.lua */,
+				84A978241FA821BB00C55936 /* PowerPausePopup.lua */,
+				84A978251FA821BB00C55936 /* TetrisMaze.lua */,
+				84A978261FA821BB00C55936 /* TetrisPowerLoop.lua */,
+				84A978271FA821BB00C55936 /* TetrisRank.lua */,
+				84A978281FA821BB00C55936 /* TetrisStoneAnimation.lua */,
+				84A978291FA821BB00C55936 /* TetrisTipBuyEnergy.lua */,
+			);
+			path = layout;
+			sourceTree = "<group>";
+		};
+		84A977DF1FA821BB00C55936 /* bak */ = {
+			isa = PBXGroup;
+			children = (
+				84A977E01FA821BB00C55936 /* TetrisStartCountAnimation.lua */,
+				84A977E11FA821BB00C55936 /* TestMVVMScene.lua */,
+				84A977E21FA821BB00C55936 /* TetrisPvp.lua */,
+				84A977E31FA821BB00C55936 /* TetrisPowerStart.lua */,
+				84A977E41FA821BB00C55936 /* TetrisScene.lua */,
+				84A977E51FA821BB00C55936 /* listTestPanel.lua */,
+				84A977E61FA821BB00C55936 /* TetrisMeteor.lua */,
+				84A977E71FA821BB00C55936 /* TetrisStartIntro.lua */,
+				84A977E81FA821BB00C55936 /* ConsolePanel.lua */,
+				84A977E91FA821BB00C55936 /* PowerFailPopup.lua */,
+				84A977EA1FA821BB00C55936 /* TetrisStartAnimation.lua */,
+				84A977EB1FA821BB00C55936 /* MainLayout.lua */,
+				84A977EC1FA821BB00C55936 /* TestLuaLayout.lua */,
+				84A977ED1FA821BB00C55936 /* CommTips.lua */,
+				84A977EE1FA821BB00C55936 /* TetrisMeteor2.lua */,
+				84A977EF1FA821BB00C55936 /* TetrisEndIntro.lua */,
+				84A977F01FA821BB00C55936 /* TetrisMeteorAnimation.lua */,
+				84A977F11FA821BB00C55936 /* PageTestScene.lua */,
+				84A977F21FA821BB00C55936 /* TetrisPowerArmy.lua */,
+				84A977F31FA821BB00C55936 /* TetrisClearStone.lua */,
+				84A977F41FA821BB00C55936 /* PowerSuccPopup.lua */,
+				84A977F51FA821BB00C55936 /* TetrisSearchAnimation.lua */,
+				84A977F61FA821BB00C55936 /* TetrisSpar.lua */,
+				84A977F71FA821BB00C55936 /* GameLayout.lua */,
+				84A977F81FA821BB00C55936 /* TetrisScene_Net.lua */,
+				84A977F91FA821BB00C55936 /* TetrisTimeMode.lua */,
+				84A977FA1FA821BB00C55936 /* LoadingScene.lua */,
+				84A977FB1FA821BB00C55936 /* TetrisMainBar.lua */,
+				84A977FC1FA821BB00C55936 /* TetrisMainScene.lua */,
+				84A977FD1FA821BB00C55936 /* ModalMask.lua */,
+				84A977FE1FA821BB00C55936 /* PowerStartPopup.lua */,
+				84A977FF1FA821BB00C55936 /* scrollTestPanel.lua */,
+				84A978001FA821BB00C55936 /* TetrisLogin.lua */,
+				84A978011FA821BB00C55936 /* PowerPausePopup.lua */,
+				84A978021FA821BB00C55936 /* TetrisMaze.lua */,
+				84A978031FA821BB00C55936 /* LoginLayout.lua */,
+				84A978041FA821BB00C55936 /* TetrisPowerLoop.lua */,
+				84A978051FA821BB00C55936 /* UITestScene.lua */,
+				84A978061FA821BB00C55936 /* ListItem.lua */,
+				84A978071FA821BB00C55936 /* 2048Scene.lua */,
+				84A978081FA821BB00C55936 /* ButtonTestScene.lua */,
+				84A978091FA821BB00C55936 /* LoadingPanel.lua */,
+				84A9780A1FA821BB00C55936 /* TetrisNode.lua */,
+				84A9780B1FA821BB00C55936 /* SliderTestScene.lua */,
+				84A9780C1FA821BB00C55936 /* ListItem_0.lua */,
+			);
+			path = bak;
+			sourceTree = "<group>";
+		};
+		84A9782B1FA821BB00C55936 /* game */ = {
+			isa = PBXGroup;
+			children = (
+				84A9782C1FA821BB00C55936 /* init.lua */,
+				84A9782D1FA821BB00C55936 /* Net */,
+				84A9782F1FA821BB00C55936 /* Game.lua */,
+				84A978301FA821BB00C55936 /* Loading */,
+				84A978341FA821BB00C55936 /* Tetris */,
+				84A9786E1FA821BB00C55936 /* Start */,
+				84A978711FA821BB00C55936 /* Test.lua */,
+				84A978721FA821BB00C55936 /* Common */,
+				84A9787A1FA821BB00C55936 /* version.lua */,
+				84A9787B1FA821BB00C55936 /* Hotswap */,
+				84A978811FA821BB00C55936 /* Data */,
+				84A978831FA821BB00C55936 /* Login */,
+			);
+			path = game;
+			sourceTree = "<group>";
+		};
+		84A9782D1FA821BB00C55936 /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				84A9782E1FA821BB00C55936 /* Actions.lua */,
+			);
+			path = Net;
+			sourceTree = "<group>";
+		};
+		84A978301FA821BB00C55936 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				84A978311FA821BB00C55936 /* view */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		84A978311FA821BB00C55936 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				84A978321FA821BB00C55936 /* LoadingScene.lua */,
+				84A978331FA821BB00C55936 /* LoadingPanel.lua */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		84A978341FA821BB00C55936 /* Tetris */ = {
+			isa = PBXGroup;
+			children = (
+				84A978351FA821BB00C55936 /* core */,
+				84A9783F1FA821BB00C55936 /* AI */,
+				84A978411FA821BB00C55936 /* view */,
+				84A978661FA821BB00C55936 /* data */,
+			);
+			path = Tetris;
+			sourceTree = "<group>";
+		};
+		84A978351FA821BB00C55936 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				84A978361FA821BB00C55936 /* BlockCore1.lua */,
+				84A978371FA821BB00C55936 /* BlockCore2.lua */,
+				84A978381FA821BB00C55936 /* BlockCore.lua */,
+				84A978391FA821BB00C55936 /* BlockCore3.lua */,
+				84A9783A1FA821BB00C55936 /* BlockCore7.lua */,
+				84A9783B1FA821BB00C55936 /* BlockCore6.lua */,
+				84A9783C1FA821BB00C55936 /* BlockCore4.lua */,
+				84A9783D1FA821BB00C55936 /* BlockCore5.lua */,
+				84A9783E1FA821BB00C55936 /* TetrisCore.lua */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		84A9783F1FA821BB00C55936 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				84A978401FA821BB00C55936 /* TetrisAI.lua */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		84A978411FA821BB00C55936 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				84A978421FA821BB00C55936 /* Block2.lua */,
+				84A978431FA821BB00C55936 /* TetrisSinglePanel.lua */,
+				84A978441FA821BB00C55936 /* TetrisPowerStartIntroPanel.lua */,
+				84A978451FA821BB00C55936 /* Block3.lua */,
+				84A978461FA821BB00C55936 /* Block1.lua */,
+				84A978471FA821BB00C55936 /* BaseBlock.lua */,
+				84A978481FA821BB00C55936 /* Block4.lua */,
+				84A978491FA821BB00C55936 /* TetrisScene.lua */,
+				84A9784A1FA821BB00C55936 /* TetrisPowerFailPanel.lua */,
+				84A9784B1FA821BB00C55936 /* Block5.lua */,
+				84A9784C1FA821BB00C55936 /* Block7.lua */,
+				84A9784D1FA821BB00C55936 /* Block6.lua */,
+				84A9784E1FA821BB00C55936 /* TetrisTipsBuyTimePanel.lua */,
+				84A9784F1FA821BB00C55936 /* Tetris.lua */,
+				84A978501FA821BB00C55936 /* TetrisTipsPanel.lua */,
+				84A978511FA821BB00C55936 /* TetrisMeteor2Panel.lua */,
+				84A978521FA821BB00C55936 /* TetrisTimeModePanel.lua */,
+				84A978531FA821BB00C55936 /* TetrisPowerEndIntroPanel.lua */,
+				84A978541FA821BB00C55936 /* TetrisPvpEndIntroPanel.lua */,
+				84A978551FA821BB00C55936 /* TetrisSparPanel.lua */,
+				84A978561FA821BB00C55936 /* TetrisClearStonePanel.lua */,
+				84A978571FA821BB00C55936 /* TetrisPvpResultPanel.lua */,
+				84A978581FA821BB00C55936 /* TetrisTipsBuyEnergyPanel.lua */,
+				84A978591FA821BB00C55936 /* TetrisPowerPanel.lua */,
+				84A9785A1FA821BB00C55936 /* TetrisPvpStartIntroPanel.lua */,
+				84A9785B1FA821BB00C55936 /* sub */,
+				84A9785F1FA821BB00C55936 /* TetrisPowerSuccPanel.lua */,
+				84A978601FA821BB00C55936 /* TetrisPowerStartPanel.lua */,
+				84A978611FA821BB00C55936 /* TetrisMultiPanel.lua */,
+				84A978621FA821BB00C55936 /* TetrisMazePanel.lua */,
+				84A978631FA821BB00C55936 /* TetrisPowerPausePanel.lua */,
+				84A978641FA821BB00C55936 /* TetrisShopPanel.lua */,
+				84A978651FA821BB00C55936 /* TetrisMeteorPanel.lua */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		84A9785B1FA821BB00C55936 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+				84A9785C1FA821BB00C55936 /* TetrisRankView.lua */,
+				84A9785D1FA821BB00C55936 /* TetrisPvpView.lua */,
+				84A9785E1FA821BB00C55936 /* TetrisBarView.lua */,
+			);
+			path = sub;
+			sourceTree = "<group>";
+		};
+		84A978661FA821BB00C55936 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				84A978671FA821BB00C55936 /* TetrisMeteorConf.lua */,
+				84A978681FA821BB00C55936 /* TetrisPowerConf.lua */,
+				84A978691FA821BB00C55936 /* TetrisClearStoneConf.lua */,
+				84A9786A1FA821BB00C55936 /* TetrisTimeModeConf.lua */,
+				84A9786B1FA821BB00C55936 /* TetrisMeteor2Conf.lua */,
+				84A9786C1FA821BB00C55936 /* TetrisSparConf.lua */,
+				84A9786D1FA821BB00C55936 /* TetrisMazeConf.lua */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		84A9786E1FA821BB00C55936 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				84A9786F1FA821BB00C55936 /* view */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		84A9786F1FA821BB00C55936 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				84A978701FA821BB00C55936 /* StartScene.lua */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		84A978721FA821BB00C55936 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				84A978731FA821BB00C55936 /* ModelManager.lua */,
+				84A978741FA821BB00C55936 /* ConsolePanel.lua */,
+				84A978751FA821BB00C55936 /* ConfigManager.lua */,
+				84A978761FA821BB00C55936 /* Tips.lua */,
+				84A978771FA821BB00C55936 /* model */,
+				84A978791FA821BB00C55936 /* EventDefine.lua */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		84A978771FA821BB00C55936 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				84A978781FA821BB00C55936 /* Player.lua */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		84A9787B1FA821BB00C55936 /* Hotswap */ = {
+			isa = PBXGroup;
+			children = (
+				84A9787C1FA821BB00C55936 /* HotswapController.lua */,
+				84A9787D1FA821BB00C55936 /* HotswapData.lua */,
+				84A9787E1FA821BB00C55936 /* view */,
+			);
+			path = Hotswap;
+			sourceTree = "<group>";
+		};
+		84A9787E1FA821BB00C55936 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				84A9787F1FA821BB00C55936 /* HotswapScene.lua */,
+				84A978801FA821BB00C55936 /* HotswapTipsPanel.lua */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		84A978811FA821BB00C55936 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				84A978821FA821BB00C55936 /* Constants.lua */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		84A978831FA821BB00C55936 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				84A978841FA821BB00C55936 /* view */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		84A978841FA821BB00C55936 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				84A978851FA821BB00C55936 /* LoginScene.lua */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		84A978871FA821BB00C55936 /* cocos */ = {
+			isa = PBXGroup;
+			children = (
+				84A978881FA821BB00C55936 /* ui */,
+				84A9788D1FA821BB00C55936 /* 3d */,
+				84A9788F1FA821BB00C55936 /* init.lua */,
+				84A978901FA821BB00C55936 /* cocosbuilder */,
+				84A978931FA821BB00C55936 /* extension */,
+				84A978981FA821BB00C55936 /* spine */,
+				84A9789A1FA821BB00C55936 /* framework */,
+				84A978B01FA821BB00C55936 /* network */,
+				84A978B51FA821BB00C55936 /* controller */,
+				84A978B71FA821BB00C55936 /* cocos2d */,
+				84A978C71FA821BB00C55936 /* cocosdenshion */,
+				84A978CB1FA821BB00C55936 /* physics3d */,
+				84A978CD1FA821BB00C55936 /* cocostudio */,
+			);
+			path = cocos;
+			sourceTree = "<group>";
+		};
+		84A978881FA821BB00C55936 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				84A978891FA821BB00C55936 /* experimentalUIConstants.lua */,
+				84A9788A1FA821BB00C55936 /* GuiConstants.lua */,
+				84A9788B1FA821BB00C55936 /* DeprecatedUIFunc.lua */,
+				84A9788C1FA821BB00C55936 /* DeprecatedUIEnum.lua */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		84A9788D1FA821BB00C55936 /* 3d */ = {
+			isa = PBXGroup;
+			children = (
+				84A9788E1FA821BB00C55936 /* 3dConstants.lua */,
+			);
+			path = 3d;
+			sourceTree = "<group>";
+		};
+		84A978901FA821BB00C55936 /* cocosbuilder */ = {
+			isa = PBXGroup;
+			children = (
+				84A978911FA821BB00C55936 /* DeprecatedCocosBuilderClass.lua */,
+				84A978921FA821BB00C55936 /* CCBReaderLoad.lua */,
+			);
+			path = cocosbuilder;
+			sourceTree = "<group>";
+		};
+		84A978931FA821BB00C55936 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				84A978941FA821BB00C55936 /* DeprecatedExtensionEnum.lua */,
+				84A978951FA821BB00C55936 /* DeprecatedExtensionClass.lua */,
+				84A978961FA821BB00C55936 /* DeprecatedExtensionFunc.lua */,
+				84A978971FA821BB00C55936 /* ExtensionConstants.lua */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		84A978981FA821BB00C55936 /* spine */ = {
+			isa = PBXGroup;
+			children = (
+				84A978991FA821BB00C55936 /* SpineConstants.lua */,
+			);
+			path = spine;
+			sourceTree = "<group>";
+		};
+		84A9789A1FA821BB00C55936 /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				84A9789B1FA821BB00C55936 /* init.lua */,
+				84A9789C1FA821BB00C55936 /* extends */,
+				84A978A91FA821BB00C55936 /* package_support.lua */,
+				84A978AA1FA821BB00C55936 /* components */,
+				84A978AC1FA821BB00C55936 /* display.lua */,
+				84A978AD1FA821BB00C55936 /* device.lua */,
+				84A978AE1FA821BB00C55936 /* audio.lua */,
+				84A978AF1FA821BB00C55936 /* transition.lua */,
+			);
+			path = framework;
+			sourceTree = "<group>";
+		};
+		84A9789C1FA821BB00C55936 /* extends */ = {
+			isa = PBXGroup;
+			children = (
+				84A9789D1FA821BB00C55936 /* SpriteEx.lua */,
+				84A9789E1FA821BB00C55936 /* UISlider.lua */,
+				84A9789F1FA821BB00C55936 /* UITextField.lua */,
+				84A978A01FA821BB00C55936 /* UIScrollView.lua */,
+				84A978A11FA821BB00C55936 /* UICheckBox.lua */,
+				84A978A21FA821BB00C55936 /* UIEditBox.lua */,
+				84A978A31FA821BB00C55936 /* UIListView.lua */,
+				84A978A41FA821BB00C55936 /* NodeEx.lua */,
+				84A978A51FA821BB00C55936 /* LayerEx.lua */,
+				84A978A61FA821BB00C55936 /* UIWidget.lua */,
+				84A978A71FA821BB00C55936 /* MenuEx.lua */,
+				84A978A81FA821BB00C55936 /* UIPageView.lua */,
+			);
+			path = extends;
+			sourceTree = "<group>";
+		};
+		84A978AA1FA821BB00C55936 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				84A978AB1FA821BB00C55936 /* event.lua */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		84A978B01FA821BB00C55936 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				84A978B11FA821BB00C55936 /* DeprecatedNetworkEnum.lua */,
+				84A978B21FA821BB00C55936 /* DeprecatedNetworkFunc.lua */,
+				84A978B31FA821BB00C55936 /* DeprecatedNetworkClass.lua */,
+				84A978B41FA821BB00C55936 /* NetworkConstants.lua */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		84A978B51FA821BB00C55936 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				84A978B61FA821BB00C55936 /* ControllerConstants.lua */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		84A978B71FA821BB00C55936 /* cocos2d */ = {
+			isa = PBXGroup;
+			children = (
+				84A978B81FA821BB00C55936 /* functions.lua */,
+				84A978B91FA821BB00C55936 /* json.lua */,
+				84A978BA1FA821BB00C55936 /* DeprecatedOpenglEnum.lua */,
+				84A978BB1FA821BB00C55936 /* Opengl.lua */,
+				84A978BC1FA821BB00C55936 /* DeprecatedCocos2dEnum.lua */,
+				84A978BD1FA821BB00C55936 /* Cocos2dConstants.lua */,
+				84A978BE1FA821BB00C55936 /* luaj.lua */,
+				84A978BF1FA821BB00C55936 /* luaoc.lua */,
+				84A978C01FA821BB00C55936 /* OpenglConstants.lua */,
+				84A978C11FA821BB00C55936 /* DeprecatedCocos2dClass.lua */,
+				84A978C21FA821BB00C55936 /* DrawPrimitives.lua */,
+				84A978C31FA821BB00C55936 /* DeprecatedCocos2dFunc.lua */,
+				84A978C41FA821BB00C55936 /* bitExtend.lua */,
+				84A978C51FA821BB00C55936 /* deprecated.lua */,
+				84A978C61FA821BB00C55936 /* Cocos2d.lua */,
+			);
+			path = cocos2d;
+			sourceTree = "<group>";
+		};
+		84A978C71FA821BB00C55936 /* cocosdenshion */ = {
+			isa = PBXGroup;
+			children = (
+				84A978C81FA821BB00C55936 /* DeprecatedCocosDenshionFunc.lua */,
+				84A978C91FA821BB00C55936 /* AudioEngine.lua */,
+				84A978CA1FA821BB00C55936 /* DeprecatedCocosDenshionClass.lua */,
+			);
+			path = cocosdenshion;
+			sourceTree = "<group>";
+		};
+		84A978CB1FA821BB00C55936 /* physics3d */ = {
+			isa = PBXGroup;
+			children = (
+				84A978CC1FA821BB00C55936 /* physics3d-constants.lua */,
+			);
+			path = physics3d;
+			sourceTree = "<group>";
+		};
+		84A978CD1FA821BB00C55936 /* cocostudio */ = {
+			isa = PBXGroup;
+			children = (
+				84A978CE1FA821BB00C55936 /* DeprecatedCocoStudioFunc.lua */,
+				84A978CF1FA821BB00C55936 /* StudioConstants.lua */,
+				84A978D01FA821BB00C55936 /* DeprecatedCocoStudioClass.lua */,
+				84A978D11FA821BB00C55936 /* CocoStudio.lua */,
+			);
+			path = cocostudio;
+			sourceTree = "<group>";
+		};
+		84A978D21FA821BB00C55936 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+				84A978D31FA821BB00C55936 /* remove_gray.fsh */,
+				84A978D41FA821BB00C55936 /* add_gray.fsh */,
+			);
+			path = shader;
+			sourceTree = "<group>";
+		};
+		84A978D51FA821BB00C55936 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				84A978D61FA821BB00C55936 /* ui */,
+				84A9792E1FA821BC00C55936 /* res */,
+				84A979EE1FA821BC00C55936 /* tetris */,
+				84A979EF1FA821BC00C55936 /* animation */,
+				84A97A031FA821BC00C55936 /* Default */,
+				84A97A0B1FA821BC00C55936 /* audio */,
+			);
+			name = res;
+			path = ../../../res;
+			sourceTree = "<group>";
+		};
+		84A978D61FA821BB00C55936 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				84A978D71FA821BB00C55936 /* plist */,
+				84A978DE1FA821BB00C55936 /* power */,
+				84A978E81FA821BC00C55936 /* loading */,
+				84A978EC1FA821BC00C55936 /* tetris */,
+				84A978ED1FA821BC00C55936 /* shop */,
+				84A978F41FA821BC00C55936 /* bg */,
+				84A978FD1FA821BC00C55936 /* tips */,
+				84A979071FA821BC00C55936 /* number_atlas */,
+				84A979131FA821BC00C55936 /* pvp */,
+				84A979201FA821BC00C55936 /* rank */,
+				84A9792A1FA821BC00C55936 /* login */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		84A978D71FA821BB00C55936 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				84A978D81FA821BB00C55936 /* main.png */,
+				84A978D91FA821BB00C55936 /* main.plist */,
+				84A978DA1FA821BB00C55936 /* singlematch.png */,
+				84A978DB1FA821BB00C55936 /* singlematch.plist */,
+				84A978DC1FA821BB00C55936 /* common.png */,
+				84A978DD1FA821BB00C55936 /* common.plist */,
+			);
+			path = plist;
+			sourceTree = "<group>";
+		};
+		84A978DE1FA821BB00C55936 /* power */ = {
+			isa = PBXGroup;
+			children = (
+				84A978DF1FA821BB00C55936 /* popup */,
+				84A978E41FA821BB00C55936 /* match */,
+			);
+			path = power;
+			sourceTree = "<group>";
+		};
+		84A978DF1FA821BB00C55936 /* popup */ = {
+			isa = PBXGroup;
+			children = (
+				84A978E01FA821BB00C55936 /* power_fail_bg2.png */,
+				84A978E11FA821BB00C55936 /* power_star_bg2.png */,
+				84A978E21FA821BB00C55936 /* popup_bg.png */,
+				84A978E31FA821BB00C55936 /* power_pass_bg2.png */,
+			);
+			path = popup;
+			sourceTree = "<group>";
+		};
+		84A978E41FA821BB00C55936 /* match */ = {
+			isa = PBXGroup;
+			children = (
+				84A978E51FA821BB00C55936 /* progress.png */,
+				84A978E61FA821BB00C55936 /* progress_blue.png */,
+				84A978E71FA821BB00C55936 /* progress_bg.png */,
+			);
+			path = match;
+			sourceTree = "<group>";
+		};
+		84A978E81FA821BC00C55936 /* loading */ = {
+			isa = PBXGroup;
+			children = (
+				84A978E91FA821BC00C55936 /* loading_progress_bg.png */,
+				84A978EA1FA821BC00C55936 /* loading_progress.png */,
+				84A978EB1FA821BC00C55936 /* loading_bg.png */,
+			);
+			path = loading;
+			sourceTree = "<group>";
+		};
+		84A978EC1FA821BC00C55936 /* tetris */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tetris;
+			sourceTree = "<group>";
+		};
+		84A978ED1FA821BC00C55936 /* shop */ = {
+			isa = PBXGroup;
+			children = (
+				84A978EE1FA821BC00C55936 /* icon_diam4.png */,
+				84A978EF1FA821BC00C55936 /* icon_diam5.png */,
+				84A978F01FA821BC00C55936 /* shop_bg.png */,
+				84A978F11FA821BC00C55936 /* icon_diam2.png */,
+				84A978F21FA821BC00C55936 /* icon_diam3.png */,
+				84A978F31FA821BC00C55936 /* icon_diam1.png */,
+			);
+			path = shop;
+			sourceTree = "<group>";
+		};
+		84A978F41FA821BC00C55936 /* bg */ = {
+			isa = PBXGroup;
+			children = (
+				84A978F51FA821BC00C55936 /* intro_bg.png */,
+				84A978F61FA821BC00C55936 /* main_bg2.png */,
+				84A978F71FA821BC00C55936 /* net_bg.png */,
+				84A978F81FA821BC00C55936 /* main_bg1.png */,
+				84A978F91FA821BC00C55936 /* multimatch_bg.png */,
+				84A978FA1FA821BC00C55936 /* singlematch_bg.png */,
+				84A978FB1FA821BC00C55936 /* intro_bg2.png */,
+				84A978FC1FA821BC00C55936 /* pvp_bg.png */,
+			);
+			path = bg;
+			sourceTree = "<group>";
+		};
+		84A978FD1FA821BC00C55936 /* tips */ = {
+			isa = PBXGroup;
+			children = (
+				84A978FE1FA821BC00C55936 /* diam_icon.png */,
+				84A978FF1FA821BC00C55936 /* btn_buy_energy.png */,
+				84A979001FA821BC00C55936 /* btn_ok.png */,
+				84A979011FA821BC00C55936 /* tips_bg.png */,
+				84A979021FA821BC00C55936 /* btn_cancel.png */,
+				84A979031FA821BC00C55936 /* btn_watch_video.png */,
+				84A979041FA821BC00C55936 /* nonetwork_icon.png */,
+				84A979051FA821BC00C55936 /* tips_inner_bg.png */,
+				84A979061FA821BC00C55936 /* btn_buy_time.png */,
+			);
+			path = tips;
+			sourceTree = "<group>";
+		};
+		84A979071FA821BC00C55936 /* number_atlas */ = {
+			isa = PBXGroup;
+			children = (
+				84A979081FA821BC00C55936 /* number_blue.png */,
+				84A979091FA821BC00C55936 /* number_red.png */,
+				84A9790A1FA821BC00C55936 /* number.png */,
+				84A9790B1FA821BC00C55936 /* number_small.png */,
+				84A9790C1FA821BC00C55936 /* number2.png */,
+				84A9790D1FA821BC00C55936 /* point.png */,
+				84A9790E1FA821BC00C55936 /* army_num_out.png */,
+				84A9790F1FA821BC00C55936 /* number_yellow.png */,
+				84A979101FA821BC00C55936 /* rank.png */,
+				84A979111FA821BC00C55936 /* army_num_in.png */,
+				84A979121FA821BC00C55936 /* split.png */,
+			);
+			path = number_atlas;
+			sourceTree = "<group>";
+		};
+		84A979131FA821BC00C55936 /* pvp */ = {
+			isa = PBXGroup;
+			children = (
+				84A979141FA821BC00C55936 /* btn_matchbg.png */,
+				84A979151FA821BC00C55936 /* blue_win_bg.png */,
+				84A979161FA821BC00C55936 /* pic_blue_bg.png */,
+				84A979171FA821BC00C55936 /* btn_search.png */,
+				84A979181FA821BC00C55936 /* pic_red_bg.png */,
+				84A979191FA821BC00C55936 /* pvp_score_bg.png */,
+				84A9791A1FA821BC00C55936 /* net_title_bg.png */,
+				84A9791B1FA821BC00C55936 /* pvp_end_bg.png */,
+				84A9791C1FA821BC00C55936 /* building_bg.png */,
+				84A9791D1FA821BC00C55936 /* red_win_bg.png */,
+				84A9791E1FA821BC00C55936 /* pvp_start_bg.png */,
+				84A9791F1FA821BC00C55936 /* pvp_result.png */,
+			);
+			path = pvp;
+			sourceTree = "<group>";
+		};
+		84A979201FA821BC00C55936 /* rank */ = {
+			isa = PBXGroup;
+			children = (
+				84A979211FA821BC00C55936 /* icon_gold_cup.png */,
+				84A979221FA821BC00C55936 /* rank_bg1.png */,
+				84A979231FA821BC00C55936 /* rank_line_self_bg.png */,
+				84A979241FA821BC00C55936 /* rank_self_bg.png */,
+				84A979251FA821BC00C55936 /* cup1.png */,
+				84A979261FA821BC00C55936 /* cup3.png */,
+				84A979271FA821BC00C55936 /* cup2.png */,
+				84A979281FA821BC00C55936 /* rank_line_bg.png */,
+				84A979291FA821BC00C55936 /* rank_bg.png */,
+			);
+			path = rank;
+			sourceTree = "<group>";
+		};
+		84A9792A1FA821BC00C55936 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				84A9792B1FA821BC00C55936 /* gear.png */,
+				84A9792C1FA821BC00C55936 /* big_gear.png */,
+				84A9792D1FA821BC00C55936 /* gamename_bg.png */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		84A9792E1FA821BC00C55936 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				84A9792F1FA821BC00C55936 /* pack.png */,
+				84A979301FA821BC00C55936 /* pack.plist */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		84A979EE1FA821BC00C55936 /* tetris */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tetris;
+			sourceTree = "<group>";
+		};
+		84A979EF1FA821BC00C55936 /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				84A979F01FA821BC00C55936 /* yun */,
+				84A979F31FA821BC00C55936 /* start */,
+				84A979F81FA821BC00C55936 /* bubble */,
+				84A979FA1FA821BC00C55936 /* attacking */,
+				84A979FC1FA821BC00C55936 /* star */,
+				84A979FE1FA821BC00C55936 /* stone */,
+			);
+			path = animation;
+			sourceTree = "<group>";
+		};
+		84A979F01FA821BC00C55936 /* yun */ = {
+			isa = PBXGroup;
+			children = (
+				84A979F11FA821BC00C55936 /* yun_left.png */,
+				84A979F21FA821BC00C55936 /* yun_right.png */,
+			);
+			path = yun;
+			sourceTree = "<group>";
+		};
+		84A979F31FA821BC00C55936 /* start */ = {
+			isa = PBXGroup;
+			children = (
+				84A979F41FA821BC00C55936 /* anim_start.png */,
+				84A979F51FA821BC00C55936 /* anim_1.png */,
+				84A979F61FA821BC00C55936 /* anim_2.png */,
+				84A979F71FA821BC00C55936 /* anim_3.png */,
+			);
+			path = start;
+			sourceTree = "<group>";
+		};
+		84A979F81FA821BC00C55936 /* bubble */ = {
+			isa = PBXGroup;
+			children = (
+				84A979F91FA821BC00C55936 /* bubble.png */,
+			);
+			path = bubble;
+			sourceTree = "<group>";
+		};
+		84A979FA1FA821BC00C55936 /* attacking */ = {
+			isa = PBXGroup;
+			children = (
+				84A979FB1FA821BC00C55936 /* attack.png */,
+			);
+			path = attacking;
+			sourceTree = "<group>";
+		};
+		84A979FC1FA821BC00C55936 /* star */ = {
+			isa = PBXGroup;
+			children = (
+				84A979FD1FA821BC00C55936 /* meteor2.png */,
+			);
+			path = star;
+			sourceTree = "<group>";
+		};
+		84A979FE1FA821BC00C55936 /* stone */ = {
+			isa = PBXGroup;
+			children = (
+				84A979FF1FA821BC00C55936 /* 4.png */,
+				84A97A001FA821BC00C55936 /* 2.png */,
+				84A97A011FA821BC00C55936 /* 3.png */,
+				84A97A021FA821BC00C55936 /* 1.png */,
+			);
+			path = stone;
+			sourceTree = "<group>";
+		};
+		84A97A031FA821BC00C55936 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				84A97A041FA821BC00C55936 /* Sprite.png */,
+				84A97A051FA821BC00C55936 /* SliderNode_Disable.png */,
+				84A97A061FA821BC00C55936 /* Button_Press.png */,
+				84A97A071FA821BC00C55936 /* SliderNode_Press.png */,
+				84A97A081FA821BC00C55936 /* Button_Normal.png */,
+				84A97A091FA821BC00C55936 /* SliderNode_Normal.png */,
+				84A97A0A1FA821BC00C55936 /* Button_Disable.png */,
+			);
+			path = Default;
+			sourceTree = "<group>";
+		};
+		84A97A0B1FA821BC00C55936 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				84A97A0C1FA821BC00C55936 /* main_bg2.wav */,
+				84A97A0D1FA821BC00C55936 /* remove_block.wav */,
+				84A97A0E1FA821BC00C55936 /* power_fail.mp3 */,
+				84A97A0F1FA821BC00C55936 /* rotation.wav */,
+				84A97A101FA821BC00C55936 /* click_btn1.wav */,
+				84A97A111FA821BC00C55936 /* power_bg1.mp3 */,
+				84A97A121FA821BC00C55936 /* power_bg3.mp3 */,
+				84A97A131FA821BC00C55936 /* click_btn2.wav */,
+				84A97A141FA821BC00C55936 /* power_bg2.mp3 */,
+				84A97A151FA821BC00C55936 /* main_bg1.mp3 */,
+				84A97A161FA821BC00C55936 /* main_bg3.mp3 */,
+				84A97A171FA821BC00C55936 /* power_pass.wav */,
+				84A97A181FA821BC00C55936 /* block_down.wav */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 		84BA0F2F1E6C08870065FDBB /* kcp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1726,6 +3508,8 @@
 		F293BC4615EB859D00256477 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84A978D51FA821BB00C55936 /* res */,
+				84A977891FA821BB00C55936 /* src */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -1903,25 +3687,419 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A97AAB1FA821BD00C55936 /* TetrisTipBuyEnergy.lua in Resources */,
+				84A97A821FA821BD00C55936 /* TetrisLogin.lua in Resources */,
+				84A97A261FA821BC00C55936 /* crypto.lua in Resources */,
+				84A97B7A1FA821BE00C55936 /* rank_bg.png in Resources */,
+				84A97A801FA821BD00C55936 /* PowerStartPopup.lua in Resources */,
 				15A8A4491834C64F00142BE0 /* Icon-114.png in Resources */,
+				84A97C431FA821BE00C55936 /* Button_Normal.png in Resources */,
+				84A97A411FA821BD00C55936 /* ListViewEx.lua in Resources */,
+				84A97A921FA821BD00C55936 /* TetrisMeteor2.lua in Resources */,
+				84A97B111FA821BD00C55936 /* event.lua in Resources */,
+				84A97AAE1FA821BD00C55936 /* Actions.lua in Resources */,
+				84A97AD71FA821BD00C55936 /* TetrisBarView.lua in Resources */,
+				84A97A241FA821BC00C55936 /* GameState.lua in Resources */,
+				84A97AF31FA821BD00C55936 /* Constants.lua in Resources */,
+				84A97B2F1FA821BD00C55936 /* StudioConstants.lua in Resources */,
+				84A97A9B1FA821BD00C55936 /* TetrisSpar.lua in Resources */,
+				84A97AFE1FA821BD00C55936 /* DeprecatedExtensionEnum.lua in Resources */,
+				84A97B641FA821BD00C55936 /* army_num_in.png in Resources */,
+				84A97A281FA821BC00C55936 /* ColorUtil.lua in Resources */,
+				84A97AB51FA821BD00C55936 /* BlockCore3.lua in Resources */,
+				84A97B041FA821BD00C55936 /* SpriteEx.lua in Resources */,
+				84A97A1D1FA821BC00C55936 /* testkcp.lua in Resources */,
+				84A97B791FA821BE00C55936 /* rank_line_bg.png in Resources */,
+				84A97A651FA821BD00C55936 /* TetrisPowerStart.lua in Resources */,
+				84A97AA21FA821BD00C55936 /* ModalMask.lua in Resources */,
+				84A97B601FA821BD00C55936 /* point.png in Resources */,
+				84A97B3B1FA821BD00C55936 /* power_star_bg2.png in Resources */,
+				84A97ADD1FA821BD00C55936 /* TetrisShopPanel.lua in Resources */,
+				84A97C3F1FA821BE00C55936 /* Sprite.png in Resources */,
+				84A97AB11FA821BD00C55936 /* LoadingPanel.lua in Resources */,
+				84A97B0E1FA821BD00C55936 /* MenuEx.lua in Resources */,
+				84A97B5A1FA821BD00C55936 /* btn_buy_time.png in Resources */,
+				84A97B0B1FA821BD00C55936 /* NodeEx.lua in Resources */,
+				84A97A571FA821BD00C55936 /* TetrisPowerStart.lua in Resources */,
+				84A97ABC1FA821BD00C55936 /* Block2.lua in Resources */,
+				84A97A4D1FA821BD00C55936 /* Binder.lua in Resources */,
+				84A97B021FA821BD00C55936 /* SpineConstants.lua in Resources */,
+				84A97B6D1FA821BD00C55936 /* pvp_end_bg.png in Resources */,
+				84A97A751FA821BD00C55936 /* TetrisClearStone.lua in Resources */,
+				84A97A941FA821BD00C55936 /* TetrisMeteorAnimation.lua in Resources */,
 				5023811D17EBBCAC00990C9B /* Icon-120.png in Resources */,
+				84A97ACA1FA821BD00C55936 /* TetrisTipsPanel.lua in Resources */,
+				84A97AB81FA821BD00C55936 /* BlockCore4.lua in Resources */,
+				84A97AD51FA821BD00C55936 /* TetrisRankView.lua in Resources */,
+				84A97A231FA821BC00C55936 /* corefunctions.lua in Resources */,
+				84A97AF11FA821BD00C55936 /* HotswapScene.lua in Resources */,
+				84A97A501FA821BD00C55936 /* WinConfig.lua in Resources */,
+				84A97B261FA821BD00C55936 /* DeprecatedCocos2dFunc.lua in Resources */,
+				84A97B4C1FA821BD00C55936 /* net_bg.png in Resources */,
+				84A97A811FA821BD00C55936 /* scrollTestPanel.lua in Resources */,
+				84A97A301FA821BC00C55936 /* ByteArrayVarint.lua in Resources */,
+				84A97B1D1FA821BD00C55936 /* DeprecatedOpenglEnum.lua in Resources */,
+				84A97A5B1FA821BD00C55936 /* TetrisAttackAnimation.lua in Resources */,
+				84A97B0D1FA821BD00C55936 /* UIWidget.lua in Resources */,
+				84A97C4D1FA821BE00C55936 /* click_btn2.wav in Resources */,
+				84A97B751FA821BE00C55936 /* rank_self_bg.png in Resources */,
+				84A97AE71FA821BD00C55936 /* Test.lua in Resources */,
+				84A97A511FA821BD00C55936 /* MobConfig.lua in Resources */,
+				84A97B1F1FA821BD00C55936 /* DeprecatedCocos2dEnum.lua in Resources */,
+				84A97B1C1FA821BD00C55936 /* json.lua in Resources */,
+				84A97B151FA821BD00C55936 /* transition.lua in Resources */,
+				84A97B291FA821BD00C55936 /* Cocos2d.lua in Resources */,
+				84A97B051FA821BD00C55936 /* UISlider.lua in Resources */,
+				84A97A9F1FA821BD00C55936 /* TetrisMainBar.lua in Resources */,
 				5091733B17ECE17A00D62437 /* Icon-100.png in Resources */,
+				84A97B061FA821BD00C55936 /* UITextField.lua in Resources */,
+				84A97B311FA821BD00C55936 /* CocoStudio.lua in Resources */,
+				84A97A9A1FA821BD00C55936 /* TetrisShopItem.lua in Resources */,
+				84A97AE31FA821BD00C55936 /* TetrisMeteor2Conf.lua in Resources */,
+				84A97A8E1FA821BD00C55936 /* ListItem_0.lua in Resources */,
+				84A97A3D1FA821BD00C55936 /* label.lua in Resources */,
+				84A97B031FA821BD00C55936 /* init.lua in Resources */,
+				84A97B071FA821BD00C55936 /* UIScrollView.lua in Resources */,
+				84A97AAA1FA821BD00C55936 /* TetrisStoneAnimation.lua in Resources */,
+				84A97C3C1FA821BE00C55936 /* 2.png in Resources */,
+				84A97B7F1FA821BE00C55936 /* pack.plist in Resources */,
 				5023811B17EBBCAC00990C9B /* Default@2x.png in Resources */,
+				84A97A2E1FA821BC00C55936 /* GameArchiveFile.lua in Resources */,
+				84A97A641FA821BD00C55936 /* TetrisPvp.lua in Resources */,
+				84A97B391FA821BD00C55936 /* common.plist in Resources */,
+				84A97A6F1FA821BD00C55936 /* CommTips.lua in Resources */,
+				84A97A4A1FA821BD00C55936 /* log.lua in Resources */,
+				84A97B381FA821BD00C55936 /* common.png in Resources */,
+				84A97C4E1FA821BE00C55936 /* power_bg2.mp3 in Resources */,
+				84A97AF41FA821BD00C55936 /* LoginScene.lua in Resources */,
+				84A97AC31FA821BD00C55936 /* TetrisScene.lua in Resources */,
+				84A97A521FA821BD00C55936 /* TetrisStartCountAnimation.lua in Resources */,
+				84A97B571FA821BD00C55936 /* btn_watch_video.png in Resources */,
+				84A97A201FA821BC00C55936 /* network.lua in Resources */,
+				84A97AA61FA821BD00C55936 /* PowerPausePopup.lua in Resources */,
+				84A97A5E1FA821BD00C55936 /* PowerFailPopup.lua in Resources */,
+				84A97A451FA821BD00C55936 /* ResourceManager.lua in Resources */,
+				84A97A8C1FA821BD00C55936 /* TetrisNode.lua in Resources */,
+				84A97B561FA821BD00C55936 /* btn_cancel.png in Resources */,
+				84A97B4E1FA821BD00C55936 /* multimatch_bg.png in Resources */,
+				84A97ABD1FA821BD00C55936 /* TetrisSinglePanel.lua in Resources */,
+				84A97AC21FA821BD00C55936 /* Block4.lua in Resources */,
+				84A97C351FA821BE00C55936 /* anim_1.png in Resources */,
+				84A97A991FA821BD00C55936 /* TetrisSearchAnimation.lua in Resources */,
+				84A97B501FA821BD00C55936 /* intro_bg2.png in Resources */,
+				84A97B1A1FA821BD00C55936 /* ControllerConstants.lua in Resources */,
+				84A97AEA1FA821BD00C55936 /* ConfigManager.lua in Resources */,
+				84A97A661FA821BD00C55936 /* TetrisScene.lua in Resources */,
+				84A97B341FA821BD00C55936 /* main.png in Resources */,
+				84A97C331FA821BE00C55936 /* yun_right.png in Resources */,
+				84A97A7D1FA821BD00C55936 /* TetrisMainBar.lua in Resources */,
+				84A97AC61FA821BD00C55936 /* Block7.lua in Resources */,
+				84A97A351FA821BD00C55936 /* filter.lua in Resources */,
+				84A97ACB1FA821BD00C55936 /* TetrisMeteor2Panel.lua in Resources */,
+				84A97A731FA821BD00C55936 /* PageTestScene.lua in Resources */,
+				84A97B241FA821BD00C55936 /* DeprecatedCocos2dClass.lua in Resources */,
+				84A97ABF1FA821BD00C55936 /* Block3.lua in Resources */,
+				84A97A831FA821BD00C55936 /* PowerPausePopup.lua in Resources */,
+				84A97A391FA821BD00C55936 /* BaseApp.lua in Resources */,
+				84A97AE81FA821BD00C55936 /* ModelManager.lua in Resources */,
+				84A97A911FA821BD00C55936 /* CommTips.lua in Resources */,
 				5091733617ECE17A00D62437 /* Icon-29.png in Resources */,
+				84A97A4E1FA821BD00C55936 /* BaseModel.lua in Resources */,
+				84A97AED1FA821BD00C55936 /* EventDefine.lua in Resources */,
+				84A97AEF1FA821BD00C55936 /* HotswapController.lua in Resources */,
+				84A97A8B1FA821BD00C55936 /* LoadingPanel.lua in Resources */,
+				84A97B491FA821BD00C55936 /* icon_diam1.png in Resources */,
+				84A97AD21FA821BD00C55936 /* TetrisTipsBuyEnergyPanel.lua in Resources */,
+				84A97B0A1FA821BD00C55936 /* UIListView.lua in Resources */,
+				84A97B301FA821BD00C55936 /* DeprecatedCocoStudioClass.lua in Resources */,
+				84A97A9E1FA821BD00C55936 /* TetrisTimeMode.lua in Resources */,
+				84A97A1C1FA821BC00C55936 /* init.lua in Resources */,
+				84A97B671FA821BD00C55936 /* blue_win_bg.png in Resources */,
+				84A97B171FA821BD00C55936 /* DeprecatedNetworkFunc.lua in Resources */,
+				84A97B091FA821BD00C55936 /* UIEditBox.lua in Resources */,
+				84A97ACE1FA821BD00C55936 /* TetrisPvpEndIntroPanel.lua in Resources */,
+				84A97A441FA821BD00C55936 /* AudioManager.lua in Resources */,
 				5023811917EBBCAC00990C9B /* Default-568h@2x.png in Resources */,
+				84A97AA71FA821BD00C55936 /* TetrisMaze.lua in Resources */,
+				84A97AC91FA821BD00C55936 /* Tetris.lua in Resources */,
+				84A97B251FA821BD00C55936 /* DrawPrimitives.lua in Resources */,
+				84A97A421FA821BD00C55936 /* ButtonEx.lua in Resources */,
+				84A97B5B1FA821BD00C55936 /* number_blue.png in Resources */,
 				5091733917ECE17A00D62437 /* Icon-58.png in Resources */,
+				84A97C3D1FA821BE00C55936 /* 3.png in Resources */,
+				84A97AB21FA821BD00C55936 /* BlockCore1.lua in Resources */,
+				84A97B1E1FA821BD00C55936 /* Opengl.lua in Resources */,
+				84A97A6D1FA821BD00C55936 /* MainLayout.lua in Resources */,
+				84A97A6A1FA821BD00C55936 /* ConsolePanel.lua in Resources */,
+				84A97ACD1FA821BD00C55936 /* TetrisPowerEndIntroPanel.lua in Resources */,
+				84A97B181FA821BD00C55936 /* DeprecatedNetworkClass.lua in Resources */,
+				84A97A7A1FA821BD00C55936 /* TetrisScene_Net.lua in Resources */,
+				84A97B281FA821BD00C55936 /* deprecated.lua in Resources */,
+				84A97A981FA821BD00C55936 /* PowerSuccPopup.lua in Resources */,
 				5023811F17EBBCAC00990C9B /* Icon-152.png in Resources */,
+				84A97B631FA821BD00C55936 /* rank.png in Resources */,
+				84A97B1B1FA821BD00C55936 /* functions.lua in Resources */,
 				8414F3361F52745B00686680 /* Images.xcassets in Resources */,
+				84A97B6B1FA821BD00C55936 /* pvp_score_bg.png in Resources */,
+				84A97B081FA821BD00C55936 /* UICheckBox.lua in Resources */,
+				84A97A431FA821BD00C55936 /* fixscheduler_bak.lua in Resources */,
+				84A97C411FA821BE00C55936 /* Button_Press.png in Resources */,
+				84A97A761FA821BD00C55936 /* PowerSuccPopup.lua in Resources */,
+				84A97C3E1FA821BE00C55936 /* 1.png in Resources */,
+				84A97C491FA821BE00C55936 /* rotation.wav in Resources */,
+				84A97B771FA821BE00C55936 /* cup3.png in Resources */,
+				84A97A3B1FA821BD00C55936 /* init.lua in Resources */,
+				84A97ABA1FA821BD00C55936 /* TetrisCore.lua in Resources */,
+				84A97ADF1FA821BD00C55936 /* TetrisMeteorConf.lua in Resources */,
+				84A97B121FA821BD00C55936 /* display.lua in Resources */,
+				84A97A591FA821BD00C55936 /* TetrisPvpStartIntro.lua in Resources */,
+				84A97A3A1FA821BD00C55936 /* BaseScene.lua in Resources */,
+				84A97AEC1FA821BD00C55936 /* Player.lua in Resources */,
+				84A97C451FA821BE00C55936 /* Button_Disable.png in Resources */,
+				84A97B401FA821BD00C55936 /* progress_bg.png in Resources */,
+				84A97C4B1FA821BE00C55936 /* power_bg1.mp3 in Resources */,
+				84A97B7D1FA821BE00C55936 /* gamename_bg.png in Resources */,
+				84A97B001FA821BD00C55936 /* DeprecatedExtensionFunc.lua in Resources */,
+				84A97A971FA821BD00C55936 /* TetrisClearStone.lua in Resources */,
+				84A97C381FA821BE00C55936 /* bubble.png in Resources */,
+				84A97A361FA821BD00C55936 /* base64.lua in Resources */,
+				84A97AB41FA821BD00C55936 /* BlockCore.lua in Resources */,
+				84A97A6E1FA821BD00C55936 /* TestLuaLayout.lua in Resources */,
+				84A97B201FA821BD00C55936 /* Cocos2dConstants.lua in Resources */,
+				84A97B6A1FA821BD00C55936 /* pic_red_bg.png in Resources */,
+				84A97AD31FA821BD00C55936 /* TetrisPowerPanel.lua in Resources */,
+				84A97AE51FA821BD00C55936 /* TetrisMazeConf.lua in Resources */,
+				84A97B591FA821BD00C55936 /* tips_inner_bg.png in Resources */,
+				84A97B5C1FA821BD00C55936 /* number_red.png in Resources */,
+				84A97AC81FA821BD00C55936 /* TetrisTipsBuyTimePanel.lua in Resources */,
+				84A97A381FA821BD00C55936 /* BaseView.lua in Resources */,
+				84A97AC71FA821BD00C55936 /* Block6.lua in Resources */,
+				84A97A4C1FA821BD00C55936 /* BaseViewModel.lua in Resources */,
+				84A97B4D1FA821BD00C55936 /* main_bg1.png in Resources */,
+				84A97A711FA821BD00C55936 /* TetrisEndIntro.lua in Resources */,
+				84A97ADC1FA821BD00C55936 /* TetrisPowerPausePanel.lua in Resources */,
+				84A97B3D1FA821BD00C55936 /* power_pass_bg2.png in Resources */,
+				84A97B411FA821BD00C55936 /* loading_progress_bg.png in Resources */,
+				84A97C421FA821BE00C55936 /* SliderNode_Press.png in Resources */,
+				84A97AF61FA821BD00C55936 /* experimentalUIConstants.lua in Resources */,
+				84A97C361FA821BE00C55936 /* anim_2.png in Resources */,
+				84A97C481FA821BE00C55936 /* power_fail.mp3 in Resources */,
+				84A97B531FA821BD00C55936 /* btn_buy_energy.png in Resources */,
+				84A97B711FA821BE00C55936 /* pvp_result.png in Resources */,
+				84A97A881FA821BD00C55936 /* ListItem.lua in Resources */,
+				84A97AC11FA821BD00C55936 /* BaseBlock.lua in Resources */,
+				84A97AC51FA821BD00C55936 /* Block5.lua in Resources */,
+				84A97A931FA821BD00C55936 /* TetrisEndIntro.lua in Resources */,
+				84A97A251FA821BC00C55936 /* init.lua in Resources */,
+				84A97A951FA821BD00C55936 /* TetrisPvpResult.lua in Resources */,
+				84A97ABE1FA821BD00C55936 /* TetrisPowerStartIntroPanel.lua in Resources */,
+				84A97A1E1FA821BC00C55936 /* SocketTCP.lua in Resources */,
+				84A97AB31FA821BD00C55936 /* BlockCore2.lua in Resources */,
+				84A97A7C1FA821BD00C55936 /* LoadingScene.lua in Resources */,
+				84A97A721FA821BD00C55936 /* TetrisMeteorAnimation.lua in Resources */,
+				84A97B191FA821BD00C55936 /* NetworkConstants.lua in Resources */,
+				84A97B691FA821BD00C55936 /* btn_search.png in Resources */,
+				84A97AA91FA821BD00C55936 /* TetrisRank.lua in Resources */,
+				84A97B7B1FA821BE00C55936 /* gear.png in Resources */,
+				84A97A6B1FA821BD00C55936 /* PowerFailPopup.lua in Resources */,
+				84A97A871FA821BD00C55936 /* UITestScene.lua in Resources */,
+				84A97A7B1FA821BD00C55936 /* TetrisTimeMode.lua in Resources */,
+				84A97A681FA821BD00C55936 /* TetrisMeteor.lua in Resources */,
+				84A97A311FA821BC00C55936 /* Timer.lua in Resources */,
+				84A97A531FA821BD00C55936 /* TetrisRankItem.lua in Resources */,
+				84A97B2A1FA821BD00C55936 /* DeprecatedCocosDenshionFunc.lua in Resources */,
+				84A97B211FA821BD00C55936 /* luaj.lua in Resources */,
+				84A97A9D1FA821BD00C55936 /* TetrisScene_Net.lua in Resources */,
+				84A97A221FA821BC00C55936 /* NativeBridge.lua in Resources */,
+				84A97B7E1FA821BE00C55936 /* pack.png in Resources */,
+				84A97A781FA821BD00C55936 /* TetrisSpar.lua in Resources */,
+				84A97A211FA821BC00C55936 /* latencysm.lua in Resources */,
+				84A97B521FA821BD00C55936 /* diam_icon.png in Resources */,
+				84A97C401FA821BE00C55936 /* SliderNode_Disable.png in Resources */,
+				84A97B741FA821BE00C55936 /* rank_line_self_bg.png in Resources */,
+				84A97B231FA821BD00C55936 /* OpenglConstants.lua in Resources */,
+				84A97ADE1FA821BD00C55936 /* TetrisMeteorPanel.lua in Resources */,
+				84A97AA41FA821BD00C55936 /* TetrisPointAnimation.lua in Resources */,
+				84A97AE61FA821BD00C55936 /* StartScene.lua in Resources */,
+				84A97B2B1FA821BD00C55936 /* AudioEngine.lua in Resources */,
+				84A97ADB1FA821BD00C55936 /* TetrisMazePanel.lua in Resources */,
+				84A97A851FA821BD00C55936 /* LoginLayout.lua in Resources */,
+				84A97B4F1FA821BD00C55936 /* singlematch_bg.png in Resources */,
+				84A97B581FA821BD00C55936 /* nonetwork_icon.png in Resources */,
+				84A97A3C1FA821BD00C55936 /* RichLabel.lua in Resources */,
+				84A97C4C1FA821BE00C55936 /* power_bg3.mp3 in Resources */,
+				84A97B481FA821BD00C55936 /* icon_diam3.png in Resources */,
+				84A97C371FA821BE00C55936 /* anim_3.png in Resources */,
+				84A97B331FA821BD00C55936 /* add_gray.fsh in Resources */,
+				84A97B321FA821BD00C55936 /* remove_gray.fsh in Resources */,
+				84A97B451FA821BD00C55936 /* icon_diam5.png in Resources */,
+				84A97A581FA821BD00C55936 /* TetrisStart.lua in Resources */,
+				84A97C521FA821BE00C55936 /* block_down.wav in Resources */,
+				84A97B7C1FA821BE00C55936 /* big_gear.png in Resources */,
 				5023812017EBBCAC00990C9B /* Icon-57.png in Resources */,
+				84A97A861FA821BD00C55936 /* TetrisPowerLoop.lua in Resources */,
+				84A97AF91FA821BD00C55936 /* DeprecatedUIEnum.lua in Resources */,
+				84A97A471FA821BD00C55936 /* EventManager.lua in Resources */,
 				521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */,
+				84A97B161FA821BD00C55936 /* DeprecatedNetworkEnum.lua in Resources */,
+				84A97AD11FA821BD00C55936 /* TetrisPvpResultPanel.lua in Resources */,
+				84A97AD91FA821BD00C55936 /* TetrisPowerStartPanel.lua in Resources */,
+				84A97B651FA821BD00C55936 /* split.png in Resources */,
+				84A97AA81FA821BD00C55936 /* TetrisPowerLoop.lua in Resources */,
+				84A97A601FA821BD00C55936 /* TetrisStartAnimation.lua in Resources */,
+				84A97A631FA821BD00C55936 /* TestMVVMScene.lua in Resources */,
+				84A97AA01FA821BD00C55936 /* TetrisMainScene.lua in Resources */,
+				84A97A1A1FA821BC00C55936 /* Layers.lua in Resources */,
+				84A97A7F1FA821BD00C55936 /* ModalMask.lua in Resources */,
+				84A97A371FA821BD00C55936 /* BasePanel.lua in Resources */,
+				84A97C341FA821BE00C55936 /* anim_start.png in Resources */,
+				84A97A3F1FA821BD00C55936 /* label_div.lua in Resources */,
+				84A97A1F1FA821BC00C55936 /* SocketUDP.lua in Resources */,
+				84A97B421FA821BD00C55936 /* loading_progress.png in Resources */,
+				84A97AEB1FA821BD00C55936 /* Tips.lua in Resources */,
+				84A97A7E1FA821BD00C55936 /* TetrisMainScene.lua in Resources */,
+				84A97AAC1FA821BD00C55936 /* LuaExtend.lua in Resources */,
+				84A97A461FA821BD00C55936 /* ConnectManager.lua in Resources */,
+				84A97B2D1FA821BD00C55936 /* physics3d-constants.lua in Resources */,
+				84A97A541FA821BD00C55936 /* TetrisShop.lua in Resources */,
+				84A97B541FA821BD00C55936 /* btn_ok.png in Resources */,
+				84A97AE91FA821BD00C55936 /* ConsolePanel.lua in Resources */,
+				84A97AD41FA821BD00C55936 /* TetrisPvpStartIntroPanel.lua in Resources */,
+				84A97A401FA821BD00C55936 /* labelparser.lua in Resources */,
+				84A97C4A1FA821BE00C55936 /* click_btn1.wav in Resources */,
+				84A97A841FA821BD00C55936 /* TetrisMaze.lua in Resources */,
+				84A97A4B1FA821BD00C55936 /* fixscheduler.lua in Resources */,
 				5023812217EBBCAC00990C9B /* Icon-76.png in Resources */,
+				84A97AEE1FA821BD00C55936 /* version.lua in Resources */,
+				84A97AD01FA821BD00C55936 /* TetrisClearStonePanel.lua in Resources */,
+				84A97B351FA821BD00C55936 /* main.plist in Resources */,
+				84A97B4A1FA821BD00C55936 /* intro_bg.png in Resources */,
+				84A97C321FA821BE00C55936 /* yun_left.png in Resources */,
+				84A97A701FA821BD00C55936 /* TetrisMeteor2.lua in Resources */,
+				84A97C3B1FA821BE00C55936 /* 4.png in Resources */,
+				84A97A8D1FA821BD00C55936 /* SliderTestScene.lua in Resources */,
+				84A97A771FA821BD00C55936 /* TetrisSearchAnimation.lua in Resources */,
+				84A97AB91FA821BD00C55936 /* BlockCore5.lua in Resources */,
+				84A97A621FA821BD00C55936 /* TetrisStartCountAnimation.lua in Resources */,
+				84A97C511FA821BE00C55936 /* power_pass.wav in Resources */,
+				84A977871FA81F5700C55936 /* LaunchScreenBackground.png in Resources */,
+				84A97AE01FA821BD00C55936 /* TetrisPowerConf.lua in Resources */,
 				5091733A17ECE17A00D62437 /* Icon-80.png in Resources */,
+				84A97A5F1FA821BD00C55936 /* TetrisTipBuyTime.lua in Resources */,
+				84A97A4F1FA821BD00C55936 /* main.lua in Resources */,
+				84A97AFF1FA821BD00C55936 /* DeprecatedExtensionClass.lua in Resources */,
+				84A97C441FA821BE00C55936 /* SliderNode_Normal.png in Resources */,
+				84A97A491FA821BD00C55936 /* scheduler.lua in Resources */,
+				84A97A2B1FA821BC00C55936 /* ShaderUtil.lua in Resources */,
+				84A97A611FA821BD00C55936 /* TetrisTipUpdate.lua in Resources */,
+				84A97A791FA821BD00C55936 /* GameLayout.lua in Resources */,
+				84A97B3C1FA821BD00C55936 /* popup_bg.png in Resources */,
 				5091733717ECE17A00D62437 /* Icon-40.png in Resources */,
+				84A97B511FA821BD00C55936 /* pvp_bg.png in Resources */,
+				84A97C471FA821BE00C55936 /* remove_block.wav in Resources */,
+				84A97C461FA821BE00C55936 /* main_bg2.wav in Resources */,
+				84A97A331FA821BD00C55936 /* RandomLua.lua in Resources */,
+				84A97B221FA821BD00C55936 /* luaoc.lua in Resources */,
+				84A97A6C1FA821BD00C55936 /* TetrisStartAnimation.lua in Resources */,
+				84A97A2D1FA821BC00C55936 /* Localize.lua in Resources */,
+				84A97AF71FA821BD00C55936 /* GuiConstants.lua in Resources */,
+				84A97ACF1FA821BD00C55936 /* TetrisSparPanel.lua in Resources */,
+				84A97AF51FA821BD00C55936 /* config.lua in Resources */,
+				84A97B461FA821BD00C55936 /* shop_bg.png in Resources */,
 				5023811E17EBBCAC00990C9B /* Icon-144.png in Resources */,
+				84A97B371FA821BD00C55936 /* singlematch.plist in Resources */,
+				84A97A691FA821BD00C55936 /* TetrisStartIntro.lua in Resources */,
+				84A97A3E1FA821BD00C55936 /* label_img.lua in Resources */,
+				84A97B5D1FA821BD00C55936 /* number.png in Resources */,
+				84A97A321FA821BD00C55936 /* Random.lua in Resources */,
+				84A97A2F1FA821BC00C55936 /* ByteArray.lua in Resources */,
+				84A97B2E1FA821BD00C55936 /* DeprecatedCocoStudioFunc.lua in Resources */,
+				84A97B6E1FA821BD00C55936 /* building_bg.png in Resources */,
+				84A97A481FA821BD00C55936 /* UDPConnectManager.lua in Resources */,
+				84A97B441FA821BD00C55936 /* icon_diam4.png in Resources */,
 				5023811A17EBBCAC00990C9B /* Default.png in Resources */,
+				84A97C501FA821BE00C55936 /* main_bg3.mp3 in Resources */,
+				84A97B2C1FA821BD00C55936 /* DeprecatedCocosDenshionClass.lua in Resources */,
+				84A97B271FA821BD00C55936 /* bitExtend.lua in Resources */,
+				84A97B131FA821BD00C55936 /* device.lua in Resources */,
+				84A97A291FA821BC00C55936 /* bit.lua in Resources */,
+				84A97A5D1FA821BD00C55936 /* ConsolePanel.lua in Resources */,
+				84A97B431FA821BD00C55936 /* loading_bg.png in Resources */,
+				84A97A901FA821BD00C55936 /* LuaExtend.lua in Resources */,
+				84A97AB01FA821BD00C55936 /* LoadingScene.lua in Resources */,
+				84A97A671FA821BD00C55936 /* listTestPanel.lua in Resources */,
+				84A97AFC1FA821BD00C55936 /* DeprecatedCocosBuilderClass.lua in Resources */,
 				5091733817ECE17A00D62437 /* Icon-50.png in Resources */,
+				84A97AE21FA821BD00C55936 /* TetrisTimeModeConf.lua in Resources */,
+				84A97B0F1FA821BD00C55936 /* UIPageView.lua in Resources */,
+				84A97B781FA821BE00C55936 /* cup2.png in Resources */,
+				84A97ACC1FA821BD00C55936 /* TetrisTimeModePanel.lua in Resources */,
+				84A97B141FA821BD00C55936 /* audio.lua in Resources */,
+				84A97AD81FA821BD00C55936 /* TetrisPowerSuccPanel.lua in Resources */,
+				84A97B101FA821BD00C55936 /* package_support.lua in Resources */,
+				84A97A5C1FA821BD00C55936 /* TetrisStartIntro.lua in Resources */,
+				84A97AF21FA821BD00C55936 /* HotswapTipsPanel.lua in Resources */,
+				84A97AD61FA821BD00C55936 /* TetrisPvpView.lua in Resources */,
+				84A97A961FA821BD00C55936 /* TetrisPowerArmy.lua in Resources */,
+				84A97AAF1FA821BD00C55936 /* Game.lua in Resources */,
+				84A97AB61FA821BD00C55936 /* BlockCore7.lua in Resources */,
+				84A97ABB1FA821BD00C55936 /* TetrisAI.lua in Resources */,
+				84A97B5F1FA821BD00C55936 /* number2.png in Resources */,
+				84A97A561FA821BD00C55936 /* TetrisLoading.lua in Resources */,
+				84A97B5E1FA821BD00C55936 /* number_small.png in Resources */,
+				84A97AAD1FA821BD00C55936 /* init.lua in Resources */,
+				84A97A551FA821BD00C55936 /* TetrisPvp.lua in Resources */,
+				84A97AC01FA821BD00C55936 /* Block1.lua in Resources */,
+				84A97AA11FA821BD00C55936 /* TetrisHotswap.lua in Resources */,
+				84A97AE11FA821BD00C55936 /* TetrisClearStoneConf.lua in Resources */,
+				84A97B731FA821BE00C55936 /* rank_bg1.png in Resources */,
+				84A97C391FA821BE00C55936 /* attack.png in Resources */,
+				84A97B761FA821BE00C55936 /* cup1.png in Resources */,
+				84A97B0C1FA821BD00C55936 /* LayerEx.lua in Resources */,
+				84A97C4F1FA821BE00C55936 /* main_bg1.mp3 in Resources */,
+				84A97AFA1FA821BD00C55936 /* 3dConstants.lua in Resources */,
+				84A97A341FA821BD00C55936 /* toluaEx.lua in Resources */,
+				84A97A2C1FA821BC00C55936 /* UserDefaultUtil.lua in Resources */,
+				84A97B3F1FA821BD00C55936 /* progress_blue.png in Resources */,
+				84A97AA31FA821BD00C55936 /* PowerStartPopup.lua in Resources */,
+				84A97AFD1FA821BD00C55936 /* CCBReaderLoad.lua in Resources */,
+				84A977881FA81F5700C55936 /* LaunchScreen.storyboard in Resources */,
 				5023812117EBBCAC00990C9B /* Icon-72.png in Resources */,
+				84A97A2A1FA821BC00C55936 /* RandomUtil.lua in Resources */,
+				84A97AE41FA821BD00C55936 /* TetrisSparConf.lua in Resources */,
+				84A97AA51FA821BD00C55936 /* TetrisLogin.lua in Resources */,
+				84A97B3A1FA821BD00C55936 /* power_fail_bg2.png in Resources */,
+				84A97B661FA821BD00C55936 /* btn_matchbg.png in Resources */,
+				84A97A9C1FA821BD00C55936 /* TetrisPvpEndIntro.lua in Resources */,
+				84A97ADA1FA821BD00C55936 /* TetrisMultiPanel.lua in Resources */,
+				84A97B621FA821BD00C55936 /* number_yellow.png in Resources */,
+				84A97AF01FA821BD00C55936 /* HotswapData.lua in Resources */,
+				84A97B4B1FA821BD00C55936 /* main_bg2.png in Resources */,
+				84A97B3E1FA821BD00C55936 /* progress.png in Resources */,
+				84A97A741FA821BD00C55936 /* TetrisPowerArmy.lua in Resources */,
+				84A97AFB1FA821BD00C55936 /* init.lua in Resources */,
+				84A97B6F1FA821BD00C55936 /* red_win_bg.png in Resources */,
+				84A97B471FA821BD00C55936 /* icon_diam2.png in Resources */,
+				84A97A191FA821BC00C55936 /* init.lua in Resources */,
+				84A97A891FA821BD00C55936 /* 2048Scene.lua in Resources */,
 				521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */,
+				84A97C3A1FA821BE00C55936 /* meteor2.png in Resources */,
+				84A97A5A1FA821BD00C55936 /* TetrisMeteor.lua in Resources */,
+				84A97B011FA821BD00C55936 /* ExtensionConstants.lua in Resources */,
+				84A97B611FA821BD00C55936 /* army_num_out.png in Resources */,
+				84A97B6C1FA821BD00C55936 /* net_title_bg.png in Resources */,
+				84A97A271FA821BC00C55936 /* json.lua in Resources */,
+				84A97AB71FA821BD00C55936 /* BlockCore6.lua in Resources */,
+				84A97A8F1FA821BD00C55936 /* TetrisTipComm.lua in Resources */,
+				84A97A8A1FA821BD00C55936 /* ButtonTestScene.lua in Resources */,
+				84A97AC41FA821BD00C55936 /* TetrisPowerFailPanel.lua in Resources */,
+				84A97A1B1FA821BC00C55936 /* WebUtil.lua in Resources */,
+				84A97AF81FA821BD00C55936 /* DeprecatedUIFunc.lua in Resources */,
+				84A97B701FA821BD00C55936 /* pvp_start_bg.png in Resources */,
+				84A97B551FA821BD00C55936 /* tips_bg.png in Resources */,
+				84A97B361FA821BD00C55936 /* singlematch.png in Resources */,
+				84A97B681FA821BD00C55936 /* pic_blue_bg.png in Resources */,
+				84A97B721FA821BE00C55936 /* icon_gold_cup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1940,7 +4118,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# 产品输出目录\nTARGET_PATH=${BUILT_PRODUCTS_DIR}/${TARGET_NAME}.app\necho ${TARGET_PATH}\n\n# 资源目录\nRES_PATH=/Workspace/packer/output/20170903171855\n\n# 拷贝到目标目录\nrm -rf ${TARGET_PATH}/assets/\nmkdir ${TARGET_PATH}/assets/\ncp -RLp ${RES_PATH}/* ${TARGET_PATH}/assets/.\n\n# 特别处理main.lua\n# cp -RLp ${RES_PATH}/cff2a2a86a0422e736adb460d254dfc2 ${TARGET_PATH}/cff2a2a86a0422e736adb460d254dfc2\n\n# find ${SRCROOT}/../../../src/ -name \"*\" -exec touch -cm {} \\;\n# find ${SRCROOT}/../../../res/ -name \"*\" -exec touch -cm {} \\;";
+			shellScript = "# 产品输出目录\nTARGET_PATH=${BUILT_PRODUCTS_DIR}/${TARGET_NAME}.app\necho ${TARGET_PATH}\n\n# 资源目录\n#RES_PATH=/Workspace/packer/output/20170903171855\n\n# 拷贝到目标目录\n#rm -rf ${TARGET_PATH}/assets/\n#mkdir ${TARGET_PATH}/assets/\n#cp -RLp ${RES_PATH}/* ${TARGET_PATH}/assets/.\n\n# 特别处理main.lua\n# cp -RLp ${RES_PATH}/cff2a2a86a0422e736adb460d254dfc2 ${TARGET_PATH}/cff2a2a86a0422e736adb460d254dfc2\n\n# find ${SRCROOT}/../../../src/ -name \"*\" -exec touch -cm {} \\;\n# find ${SRCROOT}/../../../res/ -name \"*\" -exec touch -cm {} \\;";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2468,8 +4646,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					USE_AUDIO_ENGINE,
-					MD5_FILE,
-					MD5_FILE_LOG,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../Classes/protobuf-lite",
@@ -2495,8 +4671,8 @@
 					100000000,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoshitang.game.gametest;
-				PROVISIONING_PROFILE = "f1436f1d-d5b6-44d9-807d-de36bb86bbd1";
-				PROVISIONING_PROFILE_SPECIFIER = "ZWJ(dev)113:*";
+				PROVISIONING_PROFILE = "685cf232-a650-4b2b-a588-1e49e78ed418";
+				PROVISIONING_PROFILE_SPECIFIER = "ZWJ(0920):*";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";

@@ -24,6 +24,7 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.nextBlock = nil -- 下一块方块
     self.pic = 'fangkuai.png'
     self.fixPixel = 3
+    self.upperBlockList = {}
 
     -- 输入采集相关变量
     self.keyCode = -1
@@ -31,6 +32,9 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.collectInputInterval = 0.025
     self.collectInputRatio = 1
     self.downNum = 0
+    self.callbackNums = 0
+    self.callbackCount = 0
+    self.delayEvent = {}
 end
 
 --------------------------------
@@ -53,6 +57,18 @@ end
 -- 每一帧运行
 -- @function [parent=#TetrisNew] doUpdate
 function TetrisNew:doUpdate(dt)
+    -- 自身事件更新
+    local eventNum = #self.delayEvent
+    if eventNum > 0 then
+        for i=1, eventNum do
+            self:handleEvent(self.delayEvent[i])
+        end
+        for i=1, eventNum do
+            table.remove(self.delayEvent, 1)
+        end
+        return
+    end
+
     -- 1. 采集输入
     self:collectInput(dt)
 
@@ -63,43 +79,51 @@ function TetrisNew:doUpdate(dt)
 
     -- 3. 取事件进行更新
     local event = self.core:pollEvent()
-    if (event ~= nil) then
-        log:info("[view]update event:%s", event.name)
-        -- 处理event
-        if event.name == "GameStart" then
-            -- 游戏开始
-            self:initGridView()
-
-            -- 创建nextBlock
-            self:updateNextBlock(event.nextBlock)
-        elseif event.name == "RoundStart" then
-            -- 回合开始
-            self.block = BlockView:create(event.block, self.pic)
-            self.block:updateAttribute(self.nextBlock)
-            self.block:doUpdate()
-            self.bg:addChild(self.block)
-            self:roundReset()
-
-            -- 更新下一个block
-            self:updateNextBlock(event.nextBlock)
-
-            -- 更新方块数量
-            self.parent:updateBlockNum()
-        elseif event.name == "Shake" then
-            -- 震屏
-            self:shake(self.bg, 0.05)
-        elseif event.name == "MergeBlock" then
-            -- 合并block
-            self:merge(self.block)
-            self.block = nil
-        elseif event.name == "Eliminate" then
-            -- 进行消除
-            self:doEliminate(event.eliminateArr, event.eliminateProp)
-        end
+    if (nil ~= event) then
+        self:handleEvent(event)
     end
+    
 
     -- 4. 父节点更新
     self.parent:doUpdate(dt)
+end
+
+--------------------------------
+-- 处理事件
+-- @function [parent=#TetrisNew] handleEvent
+function TetrisNew:handleEvent(event)
+    log:info("[view]update event:%s", event.name)
+    -- 处理event
+    if event.name == "GameStart" then
+        -- 游戏开始
+        self:initGridView()
+
+        -- 创建nextBlock
+        self:updateNextBlock(event.nextBlock)
+    elseif event.name == "RoundStart" then
+        -- 回合开始
+        self.block = BlockView:create(event.block, self.pic)
+        self.block:updateAttribute(self.nextBlock)
+        self.block:doUpdate()
+        self.bg:addChild(self.block)
+        self:roundReset()
+
+        -- 更新下一个block
+        self:updateNextBlock(event.nextBlock)
+
+        -- 更新方块数量
+        self.parent:updateBlockNum()
+    elseif event.name == "Shake" then
+        -- 震屏
+        self:shake(self.bg, 0.05)
+    elseif event.name == "MergeBlock" then
+        -- 合并block
+        self:merge(self.block)
+        self.block = nil
+    elseif event.name == "Eliminate" then
+        -- 进行消除
+        self:doEliminate(event.eliminateArr, event.eliminateProp)
+    end
 end
 
 --------------------------------
@@ -202,6 +226,12 @@ end
 -- 进行消除
 -- @function [parent=#TetrisNew] doEliminate
 function TetrisNew:doEliminate(eliminateArr, eliminateProp)
+    if self.callbackNums > 0 then
+        -- 还有动画在播报，延迟
+        table.insert(self.delayEvent, {name = "Eliminate", eliminateArr = eliminateArr, eliminateProp = eliminateProp})
+        return
+    end
+
     -- 获取需要消除的行
     local removeBlocks = {}
     local eliminateGrids = {}
@@ -232,7 +262,6 @@ function TetrisNew:doEliminate(eliminateArr, eliminateProp)
     
     -- 整理方块
     local nextIdx = 1
-    self.upperBlockList = {}
     for i = 1, self.row do
         while (nextIdx <= self.row and eliminateArr[nextIdx] == 1) do
             nextIdx = nextIdx + 1
@@ -264,7 +293,6 @@ function TetrisNew:doEliminate(eliminateArr, eliminateProp)
     self.callbackNums = #removeBlocks
     self.callbackCount = 0
     if #removeBlocks > 0 then
-        self:print()
         -- 播放音效
         amgr:playEffect("remove_block.wav")
 
@@ -308,6 +336,8 @@ function TetrisNew:doEliminate(eliminateArr, eliminateProp)
                 block:runAction(sequence)
             end
         end
+
+        -- self:print()
     end
 end
 
@@ -347,7 +377,6 @@ end
 -- 插入动画表现
 -- @function [parent=#TetrisNew] doInsertGridBlockAnim
 function TetrisNew:doInsertGridBlockAnim(x, y, block)
-    log:info("doInsertGridBlockAnim x:%s, y:%s, block:%s", x, y, block)
     block:setScale(0)
     block:setVisible(true)
     local action1 = cc.ScaleTo:create(0.2, 1)
@@ -956,6 +985,8 @@ function TetrisNew:removeCallBack(sender)
     -- 更新分数
     self.callbackCount = self.callbackCount + 1
     if self.callbackCount >= self.callbackNums then
+        self.callbackNums = 0
+        self.callbackCount = 0
         self.parent:updateScore(self.removeLineNums)
         self:refreshGrid()  
     end

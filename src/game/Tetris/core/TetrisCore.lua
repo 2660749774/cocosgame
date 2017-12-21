@@ -98,8 +98,8 @@ function TetrisCore:doUpdate(dt)
             name = "MergeBlock"
         })
 
-        log:info("-----------------------------------------------")
-        self:print()
+        -- log:info("-----------------------------------------------")
+        -- self:print()
         -- 当前block消失
         self.block = nil
 
@@ -429,7 +429,7 @@ function TetrisCore:checkBlockEliminate()
             eliminateArr = eliminateArr,
             eliminateProp = eliminateProp
         })
-        self:print()
+        -- self:print()
         self.eliminateNum = eliminateNum
     end
 
