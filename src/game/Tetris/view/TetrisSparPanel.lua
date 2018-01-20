@@ -177,6 +177,13 @@ function TetrisSparPanel:handleExtraAttributes(attributes)
     if self.collectFangkuaiNum >= self.totalFangkuaiNum then
         self.pass = true
     end
+    if self.collectFangkuaiNum >= self.totalFangkuaiNum then
+        -- 胜利了，该模式下胜利即3颗星星通关
+        -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
+        self.pass = true
+        self.tetris:gameOver()
+        self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 3, self.collectFangkuaiNum})
+    end
     -- log:info("realScore:%s", self.collectFangkuaiNum)
 end
 
@@ -209,17 +216,12 @@ function TetrisSparPanel:updateFlyStar()
         self.displayFangkuaiNum = self.displayFangkuaiNum + 1
         self:updateScoreProgress(true)
         self.animTime = self.animTime - 1
+        
     end))
     label:runAction(sequence)
 
     -- log:info("displayScore:%s, realScore:%s", self.displayFangkuaiNum, self.collectFangkuaiNum)
-    if self.collectFangkuaiNum >= self.totalFangkuaiNum then
-        -- 胜利了，该模式下胜利即3颗星星通关
-        -- Tips.showSceneTips("恭喜您获胜了！！！", 3)
-        self.pass = true
-        self.tetris:gameOver()
-        self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 3, self.collectFangkuaiNum})
-    end
+    self:handleExtraAttributes()
 end
 
 --------------------------------
