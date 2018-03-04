@@ -43,3 +43,4 @@ apk
 build
 *.iml
 .settings
+UserDefault.xml
