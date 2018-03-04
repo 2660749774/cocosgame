@@ -133,6 +133,7 @@ end
 -- @function [parent=#TetrisCore] addServerFrame
 function TetrisCore:addServerFrame(frameNum, eventData)
     log:info("[core]addServerFrame %s", frameNum)
+    log:showTable(eventData)
     if self.fixScheduler then
         self.fixScheduler:addServerFrame(frameNum, eventData)
     end
@@ -160,15 +161,21 @@ end
 --------------------------------
 -- 处理服务器帧
 -- @function [parent=#TetrisCore] handleInput
-function TetrisCore:handleServerFrame(eventList)
-    for _, data in pairs(eventList) do
-        if data.protoId == protos.KEY_PRESS then
-            data.keyCode = tonumber(data.args)
-            self:handleFrameData(data)
-        elseif data.protoId == protos.REMOVE_LINES then
-            -- self:addLines(data.args)
-        end
-        -- self:handleFrameData(event)
+function TetrisCore:handleServerFrame(data)
+    -- for _, data in pairs(eventList) do
+    --     if data.protoId == protos.KEY_PRESS then
+    --         data.keyCode = tonumber(data.args)
+    --         self:handleFrameData(data)
+    --     elseif data.protoId == protos.REMOVE_LINES then
+    --         -- self:addLines(data.args)
+    --     end
+    --     -- self:handleFrameData(event)
+    -- end
+    if data.protoId == protos.KEY_PRESS then
+        data.keyCode = tonumber(data.args)
+        self:handleFrameData(data)
+    elseif data.protoId == protos.REMOVE_LINES then
+        -- self:addLines(data.args)
     end
 end
 

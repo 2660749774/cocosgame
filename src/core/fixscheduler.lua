@@ -65,7 +65,7 @@ function fixscheduler:ctor(dt)
     self.jitterdt = 10
     self.delay = 0
     self.seq = 1
-
+    self.preExecFrames = {}
 end
 
 --------------------------------
@@ -191,12 +191,13 @@ function fixscheduler:update()
 
     -- 逻辑帧率驱动显示帧率
     while (self.fixTime >= self.dt) do
+        local frameNum = self.frameNum + 1
         if self.serverFrameNum ~= -1 
-            and self.frameNum >= self.serverFrameNum
+            and frameNum > self.serverFrameNum
             and self.fillFrameNum == 0 then
             -- 锁帧等待
             break
-        elseif self.serverFrameNum == -1 or self.frameNum < self.serverFrameNum then
+        elseif self.serverFrameNum == -1 or frameNum <= self.serverFrameNum then
             self.fixTime = self.fixTime - self.dt
             self.frameNum = self.frameNum + 1
 
@@ -269,6 +270,21 @@ function fixscheduler:send(action, protoId, ...)
         else
             cmgr:send(action, nil, protoId, unpack(args))
         end
+
+        -- 如果当前没有延迟，直接执行
+        if self.frameNum == self.serverFrame then
+            local event = {protoId = protoId, seq = seq, args=args, playerId=580}
+            local frameNum = self.frameNum + 1
+            log:info("pre exec, frameNum:%s, seq：%s", frameNum, seq)
+            self.serverFrameHandler(event)
+            if not self.preExecFrames[frameNum] then
+                self.preExecFrames[frameNum] = {}
+            end
+            self.preExecFrames[frameNum][seq] = event
+            if self.serverFrameHandler then
+                self.serverFrameHandler(event)
+            end
+        end
         
         -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
     end
@@ -313,10 +329,27 @@ function fixscheduler:doServerFrame()
 
  
     local eventList = self.serverFrame[self.frameNum]
+    local preEventList = self.preExecFrames[self.frameNum]
     if nil ~= eventList then
-        self.serverFrameHandler(eventList)
+        for _, event in pairs(eventList) do
+            if event.seq and nil ~= preEventList and preEventList[event.seq] then
+                preEventList[event.seq] = nil
+                log:info("已经执行过了seq:%s", event.seq)
+            else
+                self.serverFrameHandler(event)
+            end
+        end
     end
+    -- if nil ~= preEventList then
+    --     for _, value in pairs(preEventList) do
+    --         if value ~= nil then
+    --             value.revers
+    --         end
+    --     end
+    -- end
+
     self.serverFrame[self.frameNum] = {}
+    self.preExecFrames[self.frameNum] = {}
 end
 
 --------------------------------
