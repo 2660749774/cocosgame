@@ -87,7 +87,9 @@ function TetrisNew:doUpdate(dt)
     
 
     -- 4. 父节点更新
-    self.parent:doUpdate(dt)
+    if self.parent.doUpdate then
+        self.parent:doUpdate(dt)
+    end
 end
 
 --------------------------------
@@ -114,7 +116,9 @@ function TetrisNew:handleEvent(event)
         self:updateNextBlock(event.nextBlock)
 
         -- 更新方块数量
-        self.parent:updateBlockNum()
+        if self.parent.updateBlockNum then
+            self.parent:updateBlockNum()
+        end
     elseif event.name == "Shake" then
         -- 震屏
         self:shake(self.bg, 0.05)
@@ -309,7 +313,9 @@ function TetrisNew:doEliminate(eliminateArr, eliminateProp)
         amgr:playEffect("remove_block.wav")
 
         -- 父亲视图更新节点属性
-        self.parent:checkRemoveLines(removeBlocks)
+        if self.parent.checkRemoveLines then
+            self.parent:checkRemoveLines(removeBlocks)
+        end
 
         local action = cc.Blink:create(0.5, 3)
         for _, block in pairs(removeBlocks) do
@@ -434,7 +440,11 @@ end
 function TetrisNew:updateNextBlock(model)
     local oldNextBlock = self.nextBlock
     self.nextBlock = BlockView:create(model, self.pic)
-    self.parent:updateNextBlock(self.nextBlock)
+    
+    -- 刷新下个block
+    if self.parent.updateNextBlock then
+        self.parent:updateNextBlock(self.nextBlock)
+    end
 
     self.parent:roundStart(oldNextBlock, self.nextBlock)
 end
@@ -491,7 +501,7 @@ end
 
 --------------------------------
 -- 处理推送
--- @function [parent=#TetrisNew] getPlayerInfo
+-- @function [parent=#TetrisNew] handleServerFrame
 function TetrisNew:handleServerFrame(eventList)
     for _, data in pairs(eventList) do
         if data.protoId == protos.KEY_PRESS then
@@ -575,7 +585,7 @@ end
 -- 清理重置
 -- @function [parent=#TetrisNew] reset
 function TetrisNew:reset() 
-    log:info("[view]reset")
+    log:info("[view]reset isNet:%s", self.isNet)
     -- 停止定时任务
     if self.schedulerHandler then
         scheduler.unscheduleGlobal(self.schedulerHandler)
@@ -609,9 +619,10 @@ function TetrisNew:reset()
      -- 初始化grid
     if self.isNet then
         self:initGrid(270, 540)
+        self.core = TetrisCore:create(self.isNet, 270, 540)
     else
         self:initGrid(378, 810)
-        self.core = TetrisCore:create(isNet, 378, 810)
+        self.core = TetrisCore:create(self.isNet, 378, 810)
     end
 end
 
@@ -784,7 +795,6 @@ function TetrisNew:removeCallBack(sender)
     -- 特殊方块处理
     if sender.prop and sender.prop.blockType == 6 then
         -- 水滴方块
-        -- self:flyShuidiBlock(sender)
         self:handleExtraAttributes(sender)
     else
         sender:removeFromParent()
@@ -795,50 +805,10 @@ function TetrisNew:removeCallBack(sender)
     if self.callbackCount >= self.callbackNums then
         self.callbackNums = 0
         self.callbackCount = 0
-        self.parent:updateScore(self.removeLineNums)
+        self.parent:updateScore(self.removeLineNums, self.isSelf)
         self:refreshGrid()  
     end
 end
-
-
---------------------------------
--- 处理水滴方块
--- @function [parent=#TetrisNew] flyShuidiBlock
-function TetrisNew:flyShuidiBlock(sender)
-    -- 移除自身
-    local gridX = sender.gridX
-    local gridY = sender.gridY
-    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
-
-    sender:removeFromParent()
-
-    -- 添加水滴
-    local sprite = cc.Sprite:createWithSpriteFrameName("shuidi.png")
-    sprite:setAnchorPoint(0, 0)
-    sprite:setPosition(pos.x, pos.y)
-    self.parent:addChild(sprite)
-
-    local offset = display.width - 640
-    -- 放大
-    local action1 = cc.ScaleTo:create (1, 2.0)
-
-    -- 贝塞尔运动
-    local bezierConfig = {
-        cc.p(pos.x, pos.y - 250),   
-        cc.p(350 + offset, 900),  
-        cc.p(510 + offset, 1030),  
-    }  
-    local action2 = cc.BezierTo:create(1, bezierConfig)
-
-    local sequence = cc.Sequence:create(action1, action2, 
-                                        cc.CallFunc:create(function() 
-                                            -- 移除自身
-                                            sprite:removeFromParent()
-                                            self.parent:updateShuidiNum(self.core.grids)
-                                        end))
-    sprite:runAction(sequence)
-end
-
 
 --------------------------------
 -- 固定位置插入一个block

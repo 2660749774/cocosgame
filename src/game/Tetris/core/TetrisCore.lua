@@ -132,6 +132,7 @@ end
 -- 添加服务器帧
 -- @function [parent=#TetrisCore] addServerFrame
 function TetrisCore:addServerFrame(frameNum, eventData)
+    log:info("[core]addServerFrame %s", frameNum)
     if self.fixScheduler then
         self.fixScheduler:addServerFrame(frameNum, eventData)
     end
@@ -147,6 +148,7 @@ function TetrisCore:handleInput(keyCode)
 
     -- TODO 网络下，发送服务器
     -- self:handleFrameData({keyCode=keyCode})
+    -- log:info("[core]handleInput isNet:%s", self.isNet)
     if self.isNet then
         self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
     else
@@ -159,8 +161,6 @@ end
 -- 处理服务器帧
 -- @function [parent=#TetrisCore] handleInput
 function TetrisCore:handleServerFrame(eventList)
-    log:info("handleServerFrame")
-    log:showTable(eventList)
     for _, data in pairs(eventList) do
         if data.protoId == protos.KEY_PRESS then
             data.keyCode = tonumber(data.args)
