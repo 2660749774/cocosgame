@@ -91,12 +91,19 @@ function TetrisCore:doUpdate(dt)
         self.block:doAction("down", true)
 
         -- 进行下落
-        self:merge(self.block)
+        local succ = self:merge(self.block)
 
         -- 合并block
         table.insert(self.eventStack, {
-            name = "MergeBlock"
+            name = "MergeBlock",
+            succ = succ
         })
+
+        if not succ then
+            -- 游戏结束
+            self:gameOver()
+            return
+        end
 
         -- log:info("-----------------------------------------------")
         -- self:print()
@@ -134,6 +141,10 @@ end
 -- 处理输入
 -- @function [parent=#TetrisCore] handleInput
 function TetrisCore:handleInput(keyCode)
+    if self.state == 2 then
+        return
+    end
+
     -- TODO 网络下，发送服务器
     -- self:handleFrameData({keyCode=keyCode})
     if self.isNet then
@@ -461,6 +472,7 @@ end
 -- 进行融合
 -- @function [parent=#TetrisCore] merge
 function TetrisCore:merge(block)
+    local succ = true
     local blockArray = block:getBlockArray()
     local tx = block.x
     local ty = block.y
@@ -468,10 +480,15 @@ function TetrisCore:merge(block)
         for j = 1, 4 do
             if blockArray[i][j] ~= 0 then
                 local bx, by = j, (4 - i) + 1
-                self.grids[ty + by][tx + bx] = BlockProp:create("", 1)
+                if self.grids[ty + by][tx + bx] == 0 then
+                    self.grids[ty + by][tx + bx] = BlockProp:create("", 1)
+                else
+                    succ = false
+                end
             end
         end
     end
+    return succ
 end
 
 --------------------------------

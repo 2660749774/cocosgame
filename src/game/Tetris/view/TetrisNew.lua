@@ -18,8 +18,9 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.isNet = isNet
     self.parent = parent
     self.isSelf = isSelf
+    self.blockWidth = 27
 
-    self.core = TetrisCore:create(isNet, 378, 810)
+    self.core = nil
     self.grids = {} -- 当前方格
     self.nextBlock = nil -- 下一块方块
     self.pic = 'fangkuai.png'
@@ -34,6 +35,7 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.downNum = 0
     self.callbackNums = 0
     self.callbackCount = 0
+    self.removeLineNums = 0
     self.delayEvent = {}
 end
 
@@ -120,6 +122,11 @@ function TetrisNew:handleEvent(event)
         -- 合并block
         self:merge(self.block)
         self.block = nil
+
+        if not event.succ then
+            -- 游戏结束
+            self:gameOver()
+        end
     elseif event.name == "Eliminate" then
         -- 进行消除
         self:doEliminate(event.eliminateArr, event.eliminateProp)
@@ -188,6 +195,11 @@ function TetrisNew:merge(block)
                 index = index + 1
             end
         end
+    end
+
+    -- 父亲视图更新grids
+    if self.parent.updateGridView then
+        self.parent:updateGridView(self.grids)
     end
 end
 
@@ -295,6 +307,9 @@ function TetrisNew:doEliminate(eliminateArr, eliminateProp)
     if #removeBlocks > 0 then
         -- 播放音效
         amgr:playEffect("remove_block.wav")
+
+        -- 父亲视图更新节点属性
+        self.parent:checkRemoveLines(removeBlocks)
 
         local action = cc.Blink:create(0.5, 3)
         for _, block in pairs(removeBlocks) do
@@ -560,37 +575,43 @@ end
 -- 清理重置
 -- @function [parent=#TetrisNew] reset
 function TetrisNew:reset() 
+    log:info("[view]reset")
     -- 停止定时任务
-    if self.updateTask then
-        self.fixScheduler:destroy()
-        self.fixScheduler:unscheduleTask(self.updateTask)
-        self.updateTask = nil
-        self.fixScheduler = nil
+    if self.schedulerHandler then
+        scheduler.unscheduleGlobal(self.schedulerHandler)
+        self.schedulerHandler = nil
     end
 
     -- 移除所有方块内容
     self.bg:removeAllChildren()
 
     -- 重置变量
-    self.grids = {}
-    self.id = 0
-    self.blockMap = {}
-    self.checkDownCount = 0 -- 计数器
+    self.core = nil
     self.blockWidth = 27
-    self.fixPixel = 3
-    self.gameOverFlag = false
-    self.hang = 0
-    self.removeLineNums = 0
-    self.disableDown = false
-    self.randomTimes = 1
+    self.grids = {} -- 当前方格
     self.block = nil
-    self.nextBlock = nil
+    self.nextBlock = nil -- 下一块方块
+    self.pic = 'fangkuai.png'
+    self.fixPixel = 3
+    self.upperBlockList = {}
 
-    -- 初始化grid
+    -- 输入采集相关变量
+    self.keyCode = -1
+    self.collectCd = 0
+    self.collectInputInterval = 0.025
+    self.collectInputRatio = 1
+    self.downNum = 0
+    self.callbackNums = 0
+    self.callbackCount = 0
+    self.removeLineNums = 0
+    self.delayEvent = {}
+
+     -- 初始化grid
     if self.isNet then
         self:initGrid(270, 540)
     else
         self:initGrid(378, 810)
+        self.core = TetrisCore:create(isNet, 378, 810)
     end
 end
 
@@ -724,220 +745,6 @@ function TetrisNew:sendPack(action, protoId, ...)
 end
 
 --------------------------------
--- 处理向下
--- @function [parent=#TetrisNew] _handleDown
-function TetrisNew:_handleDown(block, simulate)
-    if block == nil then
-        return
-    end
-
-    -- 处理掉了
-    if not block:handleDown(self.grids, simulate) and not simulate then
-        if self.isNet then
-            Tips.showTips("Game Over!", self.bg, 1)
-        else
-            -- Tips.showSceneTips("Game Over!", 1)
-        end
-        self:gameOver()
-    elseif not simulate then
-        self.disableDown = true
-        self.block = nil
-
-        -- 更新格子显示
-        if self.parent.updateGridView then
-            self.parent:updateGridView(self.grids)
-        end
-
-        -- 消除判断
-        self:checkBlockRemove()
-    end
-
-    
-end
-
---------------------------------
--- 消除判断
--- @function [parent=#TetrisNew] checkBlockRemove
-function TetrisNew:checkBlockRemove()
-    
-    -- 检查引用计数器 + 1
-    self.needCheckAgain = false
-    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes + 1
-    -- log:info("block remove times step1, count:%s", self.checkBlockRemoveTimes)
-
-    -- 消除判断
-    local maxLine = -1
-    local removeLines = {}
-    for i = 1, #self.grids do
-        -- log:info("remove check, width:%s", #self.grids[i])
-        local canRemove = true
-        for j = 1, #self.grids[i] do
-            -- log:info("remove check, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
-            if self.grids[i][j] == 0 then
-                canRemove = false
-                break
-            end
-        end
-        if canRemove then
-            removeLines[i] = 1
-            maxLine = i
-            self.removeLineNums =  self.removeLineNums + 1
-        end
-    end
-
-    -- 消除处理
-    local removeBlocks = {}
-    for line, _ in pairs(removeLines) do
-        for i = 1, #self.grids[line] do
-            -- log:info("remove block, y:%s , x:%s, block:%s", line, i, self.grids[line][i])
-            local removeBlock = self.grids[line][i]
-            removeBlock.gridX = i
-            removeBlock.gridY = line
-            table.insert(removeBlocks, removeBlock)
-            self.grids[line][i] = 0
-        end
-    end
-
-    -- 处理上面的方块
-    self.removeLineNums = #removeLines
-    self.callbackNums = #removeBlocks
-    self.callbackCount = 0
-
-    if #removeBlocks > 0 then
-        self.upperBlockList = {}
-        local blankLines = {}
-        for i = 2, #self.grids do 
-            if not removeLines[i] then
-                -- log:info("check line:%s", i)
-                -- 非消除行，从上到下
-                local moveLines = 0
-                for j = i - 1, 1, -1 do
-                    if removeLines[j] == 1 or blankLines[j] == 1 then
-                        moveLines = moveLines + 1
-                    else
-                        break
-                    end
-                end
-                local toline = i - moveLines
-                if moveLines > 0 then
-                    local moved = false
-                    for j = 1, #self.grids[i] do
-                        -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
-                        if self.grids[i][j] ~= 0 then
-                            local block = self.grids[i][j]
-                            self.grids[i][j] = 0
-                            self.grids[toline][j] = block
-                            block.moveLines = moveLines
-                            table.insert(self.upperBlockList, block)
-                            moved = true
-                        end   
-                    end  
-                    -- if (moved) then
-                    --     log:info("check line:%s, toline:%s", i, toline)
-                    -- end
-                    blankLines[i] = 1
-                    if removeLines[toline] then
-                        removeLines[toline] = nil
-                    end
-                    if blankLines[toline] then
-                        blankLines[toline] = nil
-                    end
-                end
-            end
-        end
-
-    end
-
-
-    -- if maxLine ~= -1 then
-    --     self.upperBlockList = {}
-    --     local removeLineNums = self.removeLineNums
-    --     for i = maxLine + 1, #self.grids do
-    --         for j = 1, #self.grids[i] do
-    --             -- log:info("reset block, y:%s , x:%s, block:%s", i, j, self.grids[i][j])
-    --             if self.grids[i][j] ~= 0 then
-    --                 local block = self.grids[i][j]
-    --                 self.grids[i][j] = 0
-    --                 self.grids[i - removeLineNums][j] = block
-    --                 block.moveLines = self.removeLineNums
-    --                 table.insert(self.upperBlockList, block)
-    --             end
-    --         end           
-    --     end
-    -- end
-
-    -- 闪烁效果
-    if #removeBlocks > 0 then
-        -- 检查移除行
-        if self.parent.checkRemoveLines then
-            self.parent:checkRemoveLines(removeBlocks)
-        end
-
-        log:info("start play removeLineNums:%s, callbackNums:%s, isSelf:%s", self.removeLineNums, self.callbackNums, self.isSelf)
-
-        -- 播放音效
-        amgr:playEffect("remove_block.wav")
-
-        self.fixScheduler:setTimeScale(1)
-        local action = cc.Blink:create(0.5, 3)
-        for _, block in pairs(removeBlocks) do
-            if block.stoneBlock then
-                -- 碎掉动画
-                block:setVisible(false)
-                local x, y = block:getPosition()
-                local sprite = nil
-
-                -- 创建水滴block
-                if block.hasShuidi then
-                    sprite = cc.Sprite:createWithSpriteFrameName("fangkuai12.png")
-                    sprite:setAnchorPoint(0.5, 0.5)
-                    sprite:setPosition(x + 13, y + 13)
-                    sprite.shuidiBlock = true
-                    sprite.hasShuidi = true
-                    self.needCheckAgain = true
-                    -- block.shuidiSprite = sprite
-
-                    sprite:setScale(0)
-                    
-
-                    self:insertBlock(block.gridX, block.gridY, sprite)
-                    self.bg:addChild(sprite)
-                end
-
-                -- 添加动画
-                local stoneAnimLayout = require("layout.TetrisNewStoneAnimation").create()
-                local animation = stoneAnimLayout['animation']
-                stoneAnimLayout['root']:runAction(animation)
-                stoneAnimLayout['root']:setPosition(x + 13, y + 13)
-                animation:setTimeSpeed(0.12)
-                animation:gotoFrameAndPlay(0, false)
-                animation:setLastFrameCallFunc(function()
-                    stoneAnimLayout['root']:removeFromParent()
-                    if nil ~= sprite then
-                        local action1 = cc.ScaleTo:create(0.2, 1)
-                        local action2 = cc.DelayTime:create(0.2)
-                        local sequence = cc.Sequence:create(action1, action2,
-                                                cc.CallFunc:create(function() 
-                                                    self:removeCallBack(block)
-                                                end))
-                        sprite:runAction(sequence)
-                    else
-                        self:removeCallBack(block)
-                    end
-                    
-                end) 
-                self.bg:addChild(stoneAnimLayout['root']) 
-            else
-                -- 闪烁动画
-                local sequence = cc.Sequence:create(action:clone(), 
-                                                cc.CallFunc:create(handler(self, self.removeCallBack), {sender = block}))
-                block:runAction(sequence)
-            end
-        end
-    end
-end
-
---------------------------------
 -- 刷新方格
 -- @function [parent=#TetrisNew] refreshGrid
 function TetrisNew:refreshGrid()
@@ -977,7 +784,8 @@ function TetrisNew:removeCallBack(sender)
     -- 特殊方块处理
     if sender.prop and sender.prop.blockType == 6 then
         -- 水滴方块
-        self:flyShuidiBlock(sender)
+        -- self:flyShuidiBlock(sender)
+        self:handleExtraAttributes(sender)
     else
         sender:removeFromParent()
     end
@@ -1031,121 +839,6 @@ function TetrisNew:flyShuidiBlock(sender)
     sprite:runAction(sequence)
 end
 
---------------------------------
--- 处理下沉方块
--- @function [parent=#TetrisNew] handleSparBlock
-function TetrisNew:handleSparBlock(sender)
-    local gridX = sender.gridX
-    local gridY = sender.gridY
-
-    -- 重新添加block
-    local x, y = self:convertGridToPosition(gridX, gridY)
-    local block = sender
-    block:retain()
-    block:removeFromParent()
-    block:setPosition(x, y)
-    self.bg:addChild(block)
-
-    -- 检测下沉位置
-    local targetGridY = self:checkSparBlockDownGridPos(gridX, gridY)
-    -- log:info("final gridY:%s", targetGridY)
-    local targetX, targetY = self:convertGridToPosition(gridX, targetGridY)
-    -- log:info("final pos:%s %s", targetX, targetY)
-
-    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes + 1
-    -- log:info("block remove times step2, count:%s", self.checkBlockRemoveTimes)
-    -- 原来的位置
-    if (targetGridY == gridY) then
-        self:insertBlock(gridX, targetGridY, block)
-        self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
-        self.needCheckAgain = true
-        -- log:info("block remove times step3, count:%s", self.checkBlockRemoveTimes)
-        return
-    end
-
-    -- 等分
-    if targetGridY < 1 then
-        self:handleExtraAttributes()
-    else
-        local oldBlock = self.grids[targetGridY][gridX]
-        if (oldBlock and oldBlock ~= 0) then
-            oldBlock:runAction(cc.ScaleTo:create(1,1,0))
-        end
-    end
-
-    -- 创建动画
-    local action = cc.MoveTo:create(1, cc.p(targetX, targetY))
-    local sequence = cc.Sequence:create(action, 
-            cc.CallFunc:create(
-                function() 
-                    -- 移除自身
-                    if targetGridY < 1 then
-                        -- 回调父类
-                        if self.parent.updateFlyStar then
-                            self.parent:updateFlyStar()
-                        end
-                        block:removeFromParent()
-                    else
-                        -- 替换原有block
-                        local oldBlock = self.grids[targetGridY][gridX]
-                        if oldBlock and oldBlock ~= 0 then
-                            oldBlock:removeFromParent()
-                        end
-                        self.grids[targetGridY][gridX] = block
-                    end
-
-                    self.checkBlockRemoveTimes = self.checkBlockRemoveTimes - 1
-                    -- log:info("block remove times step4, count:%s", self.checkBlockRemoveTimes)
-                    if self.checkBlockRemoveTimes == 0 then
-                        -- 再次检查消除
-                        self:checkBlockRemove()
-                    end
-                end
-            )
-    )
-    
-    block:runAction(sequence)
-end
-
---------------------------------
--- 处理水滴block
--- @function [parent=#TetrisNew] handleShuidiBlock
-function TetrisNew:handleShuidiBlock(sender)
-    -- 移除自身
-    local gridX = sender.gridX
-    local gridY = sender.gridY
-    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
-    -- local shuidiSprite = sender.shuidiSprite
-    -- sender:removeFromParent()
-
-    sender:removeFromParent()
-
-    -- 添加水滴
-    local sprite = cc.Sprite:createWithSpriteFrameName("shuidi.png")
-    sprite:setAnchorPoint(0, 0)
-    sprite:setPosition(pos.x, pos.y)
-    self.parent:addChild(sprite)
-
-    local offset = display.width - 640
-    -- 放大
-    local action1 = cc.ScaleTo:create (1, 2.0)
-
-    -- 贝塞尔运动
-    local bezierConfig = {
-        cc.p(pos.x, pos.y - 250),   
-        cc.p(350 + offset, 900),  
-        cc.p(510 + offset, 1030),  
-    }  
-    local action2 = cc.BezierTo:create(1, bezierConfig)
-    -- local action2 = cc.MoveTo:create(1, cc.vertex2F(500, 782))
-
-    local sequence = cc.Sequence:create(action1, action2, 
-                                        cc.CallFunc:create(function() 
-                                            -- 移除自身
-                                            sprite:removeFromParent()
-                                        end))
-    sprite:runAction(sequence)
-end
 
 --------------------------------
 -- 固定位置插入一个block
@@ -1162,67 +855,6 @@ function TetrisNew:insertBlock(gridX, gridY, block)
         end          
     end
     self.grids[gridY][gridX] = block
-end
-
---------------------------------
--- 检查是可以下降得格数
--- @function [parent=#BaseBlock] checkSparBlockDownGridPos
-function TetrisNew:checkSparBlockDownGridPos(gridX, gridY)
-    -- log:info("sparblock, gridX:%s, gridY:%s", gridX, gridY)
-
-    -- 检查自己所处位置是否合法
-    local pos = gridY - 1
-    for i = gridY - 1, 1, -1 do
-        -- log:info("check grid gridX:%s, gridY:%s, value:%s", gridX, i, self.grids[i][gridX] or -1)
-        if self.grids[i][gridX] ~= nil and self.grids[i][gridX] == 0 then
-            pos = i
-        else
-            break
-        end
-    end
-
-    if pos > 0 and self.grids[pos][gridX] ~= 0 and self.grids[pos][gridX].sparBlock then
-        pos = pos + 1
-    end
-
-    return pos
-end
-
---------------------------------
--- 播放收集星星动画
--- @function [parent=#TetrisNew] flyStar
-function TetrisNew:flyStar(sender)
-    local x, y = sender:getPosition()
-    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
-    local star = cc.Sprite:createWithSpriteFrameName("star.png")
-    star:setAnchorPoint(0, 0)
-    star:setPosition(pos.x, pos.y)
-    self.parent:addChild(star)
-
-    local offset = display.width - 640
-    -- 放大
-    local action1 = cc.ScaleTo:create (1, 2.0)
-
-    -- 贝塞尔运动
-    local bezierConfig = {
-        cc.p(pos.x, pos.y - 250),   
-        cc.p(350 + offset, 900),  
-        cc.p(510 + offset, 1030),  
-    }  
-    local action2 = cc.BezierTo:create(1, bezierConfig)
-    -- local action2 = cc.MoveTo:create(1, cc.vertex2F(500, 782))
-
-    local sequence = cc.Sequence:create(action1, action2, 
-                                        cc.CallFunc:create(function() 
-                                            -- 移除自身
-                                            star:removeFromParent()
-                                            
-                                            -- 回调父类
-                                            if self.parent.updateFlyStar then
-                                                self.parent:updateFlyStar()
-                                            end
-                                        end))
-    star:runAction(sequence)
 end
 
 --------------------------------
@@ -1255,26 +887,6 @@ function TetrisNew:createNextBlock()
 
     return self.nextBlock
 end
-
---------------------------------
--- 更新block
--- @function [parent=#TetrisNew] updateBlock
-function TetrisNew:updateBlock(block, nextBlock)
-    -- log:info("updateblock start")
-    for i=1, #nextBlock.blocks do 
-        local sprite = nextBlock.blocks[i]
-        -- log:info("updateblock sprite:%s, downblock:%s", sprite, sprite.downBlock)
-        if sprite.hasStar or sprite.extraAttributes or sprite.sparBlock then
-            sprite:retain()
-            sprite:removeFromParent()
-
-            block.blocks[i]:removeFromParent()
-            block.blocks[i] = sprite
-            block:addChild(sprite)
-        end
-    end
-end
-
 
 --------------------------------
 -- 震屏效果

@@ -92,7 +92,7 @@ end
 -- @function [parent=#TetrisClearStonePanel] refreshView
 function TetrisClearStonePanel:refreshView()
     local blockNum = self.totalBlockNum - self.blockNum
-    if blockNum <= 0 and self.removeFangkuaiNum ~= self.totalFangkuaiNum then
+    if blockNum <= 0 and not self.pass then
         self.tetris:pauseGame()
         self:getScene():pushPanel("Tetris.view.TetrisTipsBuyTime", {15, self:calcBuyCost(), self.buyTimes, 2, function() 
             self.blockNum = self.blockNum - 15
@@ -104,6 +104,9 @@ function TetrisClearStonePanel:refreshView()
             self.tetris:gameOver()
             blockNum = 0
         end})
+    end
+    if blockNum < 0 then
+        blockNum = 0
     end
     self.lbLeftBlockNum:setString(blockNum)
     self.lbResult:setString(self.removeFangkuaiNum .. "/" .. self.totalFangkuaiNum)
@@ -128,31 +131,67 @@ function TetrisClearStonePanel:updateBlockNum()
 end
 
 --------------------------------
+-- 处理额外属性
+-- @function [parent=#TetrisClearStonePanel] handleExtraAttributes
+function TetrisClearStonePanel:handleExtraAttributes(sender)
+    -- 先更新数据
+    self:updateDataModel()
+
+    -- 移除自身
+    local gridX = sender.gridX
+    local gridY = sender.gridY
+    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
+
+    sender:removeFromParent()
+
+    -- 添加水滴
+    local sprite = cc.Sprite:createWithSpriteFrameName("shuidi.png")
+    sprite:setAnchorPoint(0, 0)
+    sprite:setPosition(pos.x, pos.y)
+    self:addChild(sprite)
+
+    local offset = display.width - 640
+    -- 放大
+    local action1 = cc.ScaleTo:create (1, 2.0)
+
+    -- 贝塞尔运动
+    local bezierConfig = {
+        cc.p(pos.x, pos.y - 250),   
+        cc.p(350 + offset, 900),  
+        cc.p(510 + offset, 1030),  
+    }  
+    local action2 = cc.BezierTo:create(1, bezierConfig)
+
+    local sequence = cc.Sequence:create(action1, action2, 
+                                        cc.CallFunc:create(function() 
+                                            -- 移除自身
+                                            sprite:removeFromParent()
+                                            self:updateView()
+                                        end))
+    sprite:runAction(sequence)
+end
+
+--------------------------------
+-- 更新数据
+-- @function [parent=#TetrisClearStonePanel] updateDataModel
+function TetrisClearStonePanel:updateDataModel()
+    self.removeFangkuaiNum = self.removeFangkuaiNum + 1
+    if self.removeFangkuaiNum >= self.totalFangkuaiNum then
+        self.pass = true
+    end
+end
+
+--------------------------------
 -- 更新分数
--- @function [parent=#TetrisClearStonePanel] updateShuidiNum
-function TetrisClearStonePanel:updateShuidiNum(grids)
-    -- 判断是否胜利
-    local totalFangkuaiNum = 0
-    for i = 1, #grids do
-        for j = 1, #grids[i] do
-            if grids[i][j] ~= nil and grids[i][j] ~= 0 then
-                local block = grids[i][j]
-                if block.blockType == 4 or block.blockType == 6 then
-                    totalFangkuaiNum = totalFangkuaiNum + 1
-                end
-            end
-        end
-    end
-
-    self.removeFangkuaiNum = self.totalFangkuaiNum - totalFangkuaiNum
+-- @function [parent=#TetrisClearStonePanel] updateView
+function TetrisClearStonePanel:updateView()
+    -- 刷新视图
     self:refreshView()
-    if (totalFangkuaiNum > 0) then
-        return
+ 
+    if self.pass then
+        self.tetris:gameOver()
+        self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 3, self.removeFangkuaiNum})
     end
-
-    self.pass = true
-    self.tetris:gameOver()
-    self:getScene():pushPanel("Tetris.view.TetrisPowerSucc", {self.powerId, self.armyId, 3, self.removeFangkuaiNum})
 end
 
 --------------------------------
@@ -162,6 +201,8 @@ function TetrisClearStonePanel:reset()
     TetrisSinglePanel.reset(self)
 
     self.blockNum = 0
+    self.removeFangkuaiNum = 0
+    self.pass = false
     self:refreshView()
 end
 

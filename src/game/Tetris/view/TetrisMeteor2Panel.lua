@@ -129,7 +129,7 @@ function TetrisMeteor2Panel:updateNextBlock(nextBlock)
             -- 添加星星
             local index = RandomUtil:nextInt(#nextBlock.blocks)
             local oldSprite = nextBlock.blocks[index]
-            while (oldSprite.hasStar) do
+            while (oldSprite.extraAttributes) do
                 index = RandomUtil:nextInt(#nextBlock.blocks)
                 oldSprite = nextBlock.blocks[index]
             end
@@ -137,7 +137,7 @@ function TetrisMeteor2Panel:updateNextBlock(nextBlock)
             local sprite = cc.Sprite:createWithSpriteFrameName("fangkuai9.png")
             sprite:setAnchorPoint(0, 0)
             sprite:setPosition(oldSprite:getPosition())
-            sprite.hasStar = true
+            sprite.extraAttributes = true
             sprite.pic = "fangkuai9.png"
             
             -- 添加动画
@@ -188,7 +188,7 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
     for i = 1, #grids do
         for j = 1, #grids[i] do
             local block = grids[i][j]
-            if block.hasStar then
+            if block.extraAttributes then
                 table.insert(sprites, block)
             else
                 if #sprites >= concatNum then
@@ -221,7 +221,7 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
         for i = 1, colsBlockNum do
             for j = 1, #grids do
                 local block = grids[j][i]
-                if block.hasStar then
+                if block.extraAttributes then
                     table.insert(sprites, block)
                 else
                     if #sprites >= concatNum then
@@ -251,9 +251,9 @@ function TetrisMeteor2Panel:checkRemoveLines(removeBlocks)
 
     -- 没有得分的星星方块处理
     for _, block in pairs(removeBlocks) do
-        if block.hasStar and scoreSprites[block] == nil then
-            block.hasStar = false
-        elseif block.hasStar and scoreSprites[block] ~= nil then
+        if block.extraAttributes and scoreSprites[block] == nil then
+            block.extraAttributes = false
+        elseif block.extraAttributes and scoreSprites[block] ~= nil then
             -- 得分
             self.scoreNum = self.scoreNum + 1
         end
@@ -280,7 +280,7 @@ function TetrisMeteor2Panel:updateGridView(grids)
     for i = 1, #grids do
         for j = 1, #grids[i] do
             local block = grids[i][j]
-            if block and block ~= 0 and block.hasStar then
+            if block and block ~= 0 and block.extraAttributes then
                 table.insert(allSprites, block)
                 table.insert(sprites, block)
             else
@@ -314,7 +314,7 @@ function TetrisMeteor2Panel:updateGridView(grids)
         for i = 1, colsBlockNum do
             for j = 1, #grids do
                 local block = grids[j][i]
-                if block and block ~= 0 and block.hasStar then
+                if block and block ~= 0 and block.extraAttributes then
                     table.insert(sprites, block)
                 else
                     if #sprites >= concatNum then
@@ -347,7 +347,7 @@ function TetrisMeteor2Panel:updateGridView(grids)
         if block.animationObj and scoreSprites[block] == nil then
             block.animationObj:removeFromParent()
             block.animationObj = nil
-        elseif block.hasStar and scoreSprites[block] ~= nil and block.animationObj == nil then
+        elseif block.extraAttributes and scoreSprites[block] ~= nil and block.animationObj == nil then
             -- 添加动画
             local animationLayout = require("layout.TetrisMeteorAnimation").create()
             local meteor = animationLayout['root']
@@ -358,6 +358,45 @@ function TetrisMeteor2Panel:updateGridView(grids)
             animation:gotoFrameAndPlay(0)
         end
     end
+end
+
+
+--------------------------------
+-- 处理额外属性
+-- @function [parent=#TetrisMeteor2Panel] handleExtraAttributes
+function TetrisMeteor2Panel:handleExtraAttributes(sender)
+    -- 移除自身
+    local gridX = sender.gridX
+    local gridY = sender.gridY
+    local pos = sender:convertToWorldSpace(cc.vertex2F(0, 0))
+
+    sender:removeFromParent()
+
+    -- 添加水滴
+    local sprite = cc.Sprite:createWithSpriteFrameName("star.png")
+    sprite:setAnchorPoint(0, 0)
+    sprite:setPosition(pos.x, pos.y)
+    self:addChild(sprite)
+
+    local offset = display.width - 640
+    -- 放大
+    local action1 = cc.ScaleTo:create (1, 2.0)
+
+    -- 贝塞尔运动
+    local bezierConfig = {
+        cc.p(pos.x, pos.y - 250),   
+        cc.p(350 + offset, 900),  
+        cc.p(510 + offset, 1030),  
+    }  
+    local action2 = cc.BezierTo:create(1, bezierConfig)
+
+    local sequence = cc.Sequence:create(action1, action2, 
+                                        cc.CallFunc:create(function() 
+                                            -- 移除自身
+                                            sprite:removeFromParent()
+                                            self:updateFlyStar()
+                                        end))
+    sprite:runAction(sequence)
 end
 
 --------------------------------
