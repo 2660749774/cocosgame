@@ -49,7 +49,7 @@ function fixscheduler:ctor(dt)
     self.gameTime = 0
     self.fixTime = 0
     self.currTime = cc.Util:getCurrentTime()
-    self.scheduler = scheduler.scheduleUpdateGlobal(handler(self, self.update))
+    self.scheduler = timer:scheduleTask(handler(self, self.update))
     self.schedulers = {}
     self.timeScale = 1
     self.frameNum = 0

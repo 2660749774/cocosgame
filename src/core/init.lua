@@ -50,6 +50,7 @@ cc.exports.net = require("core.net.init")
 
 
 -- game init
+cc.exports.timer = require "core.timer".new()
 cc.exports.rmgr = require "core.manager.ResourceManager".new()
 cc.exports.emgr = require "core.manager.EventManager".new()
 cc.exports.EventDefine = require "game.Common.EventDefine"

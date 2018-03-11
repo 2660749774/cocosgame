@@ -185,7 +185,12 @@ function SocketTCP:_onConnected()
 	end
 
 	-- start to read TCP data
-	self.tickScheduler = scheduler.scheduleGlobal(__tick, SOCKET_TICK_TIME)
+	if SOCKET_TICK_TIME == 0 then
+		timer:scheduleTask(__tick)
+	else
+		self.tickScheduler = scheduler.scheduleGlobal(__tick, SOCKET_TICK_TIME)
+	end
+	
 end
 
 function SocketTCP:_connectFailure(status)

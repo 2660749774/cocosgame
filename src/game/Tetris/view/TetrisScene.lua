@@ -29,6 +29,13 @@ function TetrisScene:onCreate()
     -- 创建副本界面
     self:createPowerView()
 
+    -- timer:scheduleTask(function() 
+    --     log:info("AAAAA")
+    -- end)
+    -- timer:scheduleTask(function() 
+    --     log:info("BBBBB")
+    -- end)
+
     -- 创建bar界面
     self.barView = require("game.Tetris.view.sub.TetrisBarView"):create("barView", {self})
     self:addObject(self.barView, "scene")
