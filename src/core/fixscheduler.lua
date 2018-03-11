@@ -66,6 +66,7 @@ function fixscheduler:ctor(dt)
     self.delay = 0
     self.seq = 1
     self.preExecFrames = {}
+    self.localFrame = {}
 end
 
 --------------------------------
@@ -106,6 +107,7 @@ end
 -- @function [parent=#fixscheduler] updateServerFrameNum
 function fixscheduler:updateServerFrameNum(frameNum)
     self.serverFrameNum = frameNum
+    log:info("updateServerFrameNum frameNum:%s, time:%s", self.serverFrameNum, cc.Util:getCurrentTime())
     -- table.insert(self.jitterBuffer, {frameNum = frameNum, span = 0})
     -- if self.timeScale > 1 and self.serverFrameNum > 0 then
     --     self.fillFrameNum = self.timeScale - 1
@@ -195,7 +197,10 @@ function fixscheduler:update()
         if self.serverFrameNum ~= -1 
             and frameNum > self.serverFrameNum
             and self.fillFrameNum == 0 then
+            self.fixTime = self.fixTime - self.dt
             -- 锁帧等待
+            self:preExecFrame(frameNum)
+            log:info("update frame inner1 serverFrameNum:%s, localFrameNum:%s, fillFrameNum:%s, fixTime:%s, time:%s", self.serverFrameNum, self.frameNum, self.fillFrameNum, self.fixTime, currTime)
             break
         elseif self.serverFrameNum == -1 or frameNum <= self.serverFrameNum then
             self.fixTime = self.fixTime - self.dt
@@ -225,7 +230,14 @@ function fixscheduler:update()
         -- 处理服务器网络返回
         self:doServerFrame()
 
+        log:info("update frame inner2 serverFrameNum:%s, localFrameNum:%s, fillFrameNum:%s, fixTime:%s, time:%s", self.serverFrameNum, self.frameNum, self.fillFrameNum, self.fixTime, currTime)
+
+        if self.frameNum < self.serverFrameNum then
+            self.fixTime = self.dt
+        end
+
         -- log:info("loop serverFramecost:%s", (cc.Util:getCurrentTime() - currTime))
+        
     end
 
     self.currTime = currTime
@@ -246,13 +258,22 @@ end
 --------------------------------
 -- 发送网络包
 -- @function [parent=#fixscheduler] doUpdate
-function fixscheduler:send(action, protoId, ...)
+function fixscheduler:send(playerId, action, protoId, ...)
     -- if not self.sendPack then
     local args = { ... }
     local key = "" .. protoId
+    local value = ""
+    local index = 1
     for _, v in pairs(args) do
         key = key .. "-" .. v
+        if index == 1 then
+            value = value .. v
+        else
+            value = value .. "," .. v
+        end
+        index = index + 1
     end
+
     if self.framePacks[key] == nil then
         local seq = self.seq
         self.seq = self.seq + 1
@@ -260,7 +281,9 @@ function fixscheduler:send(action, protoId, ...)
         table.insert(args, 1, self.frameNum)
         table.insert(args, 2, self.serverFrameNum)
         table.insert(args, 3, seq)
-        self.framePacks[key] = {action=action, protoId=protoId, seq=seq, args=args}
+
+        local event = {playerId = playerId, action = action, protoId = protoId, seq = seq, args = value}
+        self.framePacks[key] = event
 
         -- 记录延迟
         actions.recordDelay(seq, "send", cc.Util:getCurrentTime())
@@ -272,18 +295,21 @@ function fixscheduler:send(action, protoId, ...)
         end
 
         -- 如果当前没有延迟，直接执行
-        if self.frameNum == self.serverFrame then
-            local event = {protoId = protoId, seq = seq, args=args, playerId=580}
-            local frameNum = self.frameNum + 1
-            log:info("pre exec, frameNum:%s, seq：%s", frameNum, seq)
-            self.serverFrameHandler(event)
-            if not self.preExecFrames[frameNum] then
-                self.preExecFrames[frameNum] = {}
+        if self.frameNum == self.serverFrameNum then
+            -- local frameNum = self.frameNum + 1
+            log:info("pre exec, add frameNum:%s, seq:%s", self.frameNum, seq)
+            if (event.args ~= "4") then
+                event.frameNum = self.frameNum
+                event.execute = false
+                table.insert(self.localFrame, event)
             end
-            self.preExecFrames[frameNum][seq] = event
-            if self.serverFrameHandler then
-                self.serverFrameHandler(event)
-            end
+            -- if not self.preExecFrames[frameNum] then
+            --     self.preExecFrames[frameNum] = {}
+            -- end
+            -- self.preExecFrames[frameNum][seq] = event
+            -- if self.serverFrameHandler then
+            --     self.serverFrameHandler(event)
+            -- end
         end
         
         -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
@@ -327,29 +353,71 @@ function fixscheduler:doServerFrame()
         return
     end
 
- 
+    -- 执行服务器帧号
     local eventList = self.serverFrame[self.frameNum]
     local preEventList = self.preExecFrames[self.frameNum]
+    local seqList = {}
     if nil ~= eventList then
         for _, event in pairs(eventList) do
             if event.seq and nil ~= preEventList and preEventList[event.seq] then
                 preEventList[event.seq] = nil
-                log:info("已经执行过了seq:%s", event.seq)
+                log:info("pre exec, already frameNum:%s, seq:%s", self.frameNum, event.seq)
             else
+                self.serverFrameHandler(event)
+                seqList[event.seq] = 1
+            end
+        end
+    end
+
+    -- 检查是否有过早执行的，回退
+    if nil ~= preEventList then
+        for _, value in pairs(preEventList) do
+            if value ~= nil then
+                value.reverse = true
+                log:info("pre exec, rollback frameNum:%s, seq:%s, protoId:%s, reverse:%s", self.frameNum, value.seq, value.protoId, value.reverse)
+                self.serverFrameHandler(value)
+            end
+        end
+    end
+
+    -- 检查预执行帧清理
+    if #self.localFrame > 0 then
+        for _, event in pairs(self.localFrame) do
+            if seqList[event.seq] == 1 then
+                log:info("pre exec, drop frameNum:%s, seq:%s", self.frameNum, event.seq)
+                event.execute = true
+            end
+        end
+    end
+
+
+    -- 执行清理
+    self.serverFrame[self.frameNum] = {}
+    self.preExecFrames[self.frameNum] = {}
+end
+
+--------------------------------
+-- 预执行帧号
+-- @function [parent=#fixscheduler] preExecFrame
+function fixscheduler:preExecFrame(frameNum)
+    if #self.localFrame <= 0 then
+        return
+    end
+
+    for _, event in pairs(self.localFrame) do
+        if event.frameNum < frameNum and not event.execute then
+            local seq = event.seq
+            log:info("pre exec, frameNum:%s, seq:%s", frameNum, seq)
+            if not self.preExecFrames[frameNum] then
+                self.preExecFrames[frameNum] = {}
+            end
+            self.preExecFrames[frameNum][seq] = event
+            if self.serverFrameHandler then
                 self.serverFrameHandler(event)
             end
         end
     end
-    -- if nil ~= preEventList then
-    --     for _, value in pairs(preEventList) do
-    --         if value ~= nil then
-    --             value.revers
-    --         end
-    --     end
-    -- end
-
-    self.serverFrame[self.frameNum] = {}
-    self.preExecFrames[self.frameNum] = {}
+    self.localFrame = {}
 end
 
 --------------------------------

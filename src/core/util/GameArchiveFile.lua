@@ -120,12 +120,12 @@ function GameArchiveFile:loadData()
 
     self.data = json.decode(content)
     self.version = self.data.version or 1
-    self.lifes = self.data.lifes or 5 -- 默认5条生命
+    self.lifes = 1000000 -- self.data.lifes or 5 -- 默认5条生命
     self.nextLifeTime = self.data.nextLifeTime or 0
-    self.diam = self.data.diam or 0
+    self.diam = 1000000 --self.data.diam or 0
 
     log:info("lifes:%s, nextLifeTime:%s, version:%s", self.lifes, self.nextLifeTime, self.version)
-
+    self.data.diam = self.diam
     self.data.version = self.version
     self.data.lifes = self.lifes
     self.data.nextLifeTime = self.nextLifeTime
@@ -238,7 +238,7 @@ end
 -- 更新玩家数据
 -- @function [parent=#GameArchiveFile] updatePlayerData
 function GameArchiveFile:updatePlayerData(player)
-    self.diam = player.diam
+    -- self.diam = player.diam
     self:saveData()
 
     emgr:dispatchEvent(EventDefine.PLAYER_UPDATE, { diam = player.diam })

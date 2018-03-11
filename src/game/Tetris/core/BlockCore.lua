@@ -29,6 +29,7 @@ end
 -- @function [parent=#BlockCore] getBlockArray
 function BlockCore:doAction(action, reverse)
     reverse = reverse or false
+    log:info("do action:%s, reverse:%s", action, reverse)
 
     if not reverse then
         if action == "up" then

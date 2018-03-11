@@ -22,6 +22,7 @@ local RandomUtil = require "core.util.RandomUtil"
 -- @function [parent=#TetrisCore] onCreate
 function TetrisCore:ctor(isNet, width, height)
     self.id = 0
+    self.playerId = 0
     self.grids = {}
     self.blockMap = {}
 
@@ -45,7 +46,8 @@ end
 --------------------------------
 -- 根据配置文件初始化
 -- @function [parent=#TetrisCore] onCreate
-function TetrisCore:init(conf)
+function TetrisCore:init(playerId, conf)
+    self.playerId = playerId
     self:initGrid(self.width, self.height)
     self:initGridBlock(conf)
 end
@@ -151,7 +153,7 @@ function TetrisCore:handleInput(keyCode)
     -- self:handleFrameData({keyCode=keyCode})
     -- log:info("[core]handleInput isNet:%s", self.isNet)
     if self.isNet then
-        self.fixScheduler:send(actions.doUpdate, protos.KEY_PRESS, keyCode)
+        self.fixScheduler:send(self.playerId, actions.doUpdate, protos.KEY_PRESS, keyCode)
     else
         self.fixScheduler:addServerFrame(self.fixScheduler.frameNum + 1, {protoId = protos.KEY_PRESS, args = keyCode})
     end
@@ -186,7 +188,7 @@ function TetrisCore:handleFrameData(data)
     if self.block == nil then
         return
     end
-
+    log:info("handleFrameData keyCode:%s, reverse:%s", data.keyCode, data.reverse)
     local action = nil
     if data.keyCode == 1 then
         action = "left"
@@ -198,7 +200,7 @@ function TetrisCore:handleFrameData(data)
         -- 持续下降
         action = "down"
         while true do
-            self.block:doAction(action)
+            self.block:doAction(action, data.reverse or false)
             if not self:checkAvailable(self.block.x, self.block.y, self.block:getBlockArray()) then
                 self.block:doAction(action, true)
                 break
@@ -214,7 +216,7 @@ function TetrisCore:handleFrameData(data)
     end
 
     if action ~= nil then
-        self.block:doAction(action)
+        self.block:doAction(action, data.reverse or false)
         if not self:checkAvailable(self.block.x, self.block.y, self.block:getBlockArray()) then
             -- 不可以行动，回退
             self.block:doAction(action, true)

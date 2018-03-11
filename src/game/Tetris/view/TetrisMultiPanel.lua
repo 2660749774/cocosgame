@@ -206,11 +206,11 @@ function TetrisMultiPanel:playGame()
     end
 
     -- 建立udp连接
-    if (udpConv) then
-        ucmgr:open(udpConv, cmgr.host, cmgr.port)
-        -- 添加PushHandler
-        ucmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
-    end
+    -- if (udpConv) then
+    --     ucmgr:open(udpConv, cmgr.host, cmgr.port)
+    --     -- 添加PushHandler
+    --     ucmgr:addPushCallback(actions.PUSH_FIGHT, self.pushHandler)
+    -- end
 
     -- 准备好了
     cmgr:send(actions.readyFight)
@@ -231,9 +231,9 @@ function TetrisMultiPanel:gameStart(data)
     -- RandomUtil:setRandomseed(data.randomseed)
 
     -- 游戏开始
-    self.tetris:gameStart()
+    self.tetris:gameStart(self.playerId)
     if self.targetTetris then
-        self.targetTetris:gameStart()
+        self.targetTetris:gameStart(self.targetId)
     end
 end
 

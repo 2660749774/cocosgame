@@ -559,8 +559,8 @@ function TetrisNew:getLocalFrameNum()
     return 0
 end
 
-function TetrisNew:gameStart(conf) 
-    self.core:gameStart(conf)
+function TetrisNew:gameStart(playerId, conf) 
+    self.core:gameStart(playerId, conf)
 
     -- 添加计时器
     self.schedulerHandler = scheduler.scheduleUpdateGlobal(handler(self, self.doUpdate))
