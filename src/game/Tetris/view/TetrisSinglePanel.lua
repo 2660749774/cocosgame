@@ -134,9 +134,6 @@ function TetrisSinglePanel:gameStart(data)
     -- 重置游戏
     self:reset()
 
-    -- 初始化随机数
-    RandomUtil:setRandomseed(data.randomseed)
-
     -- -- 随机下一块方块
     -- local nextBlock = self.tetris:createNextBlock()
 
@@ -147,7 +144,7 @@ function TetrisSinglePanel:gameStart(data)
 
     -- 游戏开始
     self.tetris.isAI = false
-    self.tetris:gameStart(0, nil)
+    self.tetris:gameStart(0, nil, data.randomseed)
 end
 
 --------------------------------

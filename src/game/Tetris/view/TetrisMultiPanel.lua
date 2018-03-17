@@ -226,10 +226,6 @@ function TetrisMultiPanel:gameStart(data)
     -- 重置游戏
     self:reset(false)
 
-    -- 初始化随机数
-    -- self.random:randomseed(data.randomseed)
-    -- RandomUtil:setRandomseed(data.randomseed)
-
     -- 游戏开始
     self.tetris:gameStart(self.playerId, nil, data.randomseed)
     if self.targetTetris then
