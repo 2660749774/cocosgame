@@ -195,14 +195,14 @@ function TetrisMultiPanel:playGame()
         udpConv = self.scheduleData.att.udpConv
         self.playerId = self.scheduleData.att.playerId
         self.targetId = self.scheduleData.def.playerId
-        self.targetTetris.isAI = self.scheduleData.def.isAI
+        self.targetTetris:setAIFlag(self.scheduleData.def.isAI)
     else
         self:updatePlayerInfo(self.playerInfo, self.scheduleData.def)
         self:updatePlayerInfo(self.targetPlayerInfo, self.scheduleData.att)
         udpConv = self.scheduleData.def.udpConv
         self.playerId = self.scheduleData.def.playerId
         self.targetId = self.scheduleData.att.playerId
-        self.targetTetris.isAI = self.scheduleData.att.isAI
+        self.targetTetris:setAIFlag(scheduleData.att.isAI)
     end
 
     -- 建立udp连接
@@ -227,13 +227,13 @@ function TetrisMultiPanel:gameStart(data)
     self:reset(false)
 
     -- 初始化随机数
-    self.random:randomseed(data.randomseed)
+    -- self.random:randomseed(data.randomseed)
     -- RandomUtil:setRandomseed(data.randomseed)
 
     -- 游戏开始
-    self.tetris:gameStart(self.playerId)
+    self.tetris:gameStart(self.playerId, nil, data.randomseed)
     if self.targetTetris then
-        self.targetTetris:gameStart(self.targetId)
+        self.targetTetris:gameStart(self.targetId, nil, data.randomseed)
     end
 end
 

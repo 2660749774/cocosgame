@@ -59,6 +59,7 @@ protos.KEY_PRESS = 100
 protos.REMOVE_LINES = 101
 protos.DEAD = 102
 protos.UPDATE_SERVERFRAME = -100
+protos.DO_FRAME = -101
 
 actions.seq_map = {}
 

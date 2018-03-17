@@ -16,6 +16,7 @@ local BlockProp = import("..core.BlockProp")
 function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.bg = bg
     self.isNet = isNet
+    self.isAI = false
     self.parent = parent
     self.isSelf = isSelf
     self.blockWidth = 27
@@ -53,6 +54,16 @@ end
 function TetrisNew:resumeGame()
     self.pause = false
     self.core:resumeGame()
+end
+
+--------------------------------
+-- 設置AI類型
+-- @function [parent=#TetrisNew] setAIFlag
+function TetrisNew:setAIFlag(isAI)
+    self.isAI = isAI
+    if self.core then
+        self.core.isAI = isAI
+    end
 end
 
 --------------------------------
@@ -134,6 +145,9 @@ function TetrisNew:handleEvent(event)
     elseif event.name == "Eliminate" then
         -- 进行消除
         self:doEliminate(event.eliminateArr, event.eliminateProp)
+    elseif event.name == "AddLines" then
+        -- 增加了行数
+        self:addLines(event.lines)
     end
 end
 
@@ -446,7 +460,7 @@ function TetrisNew:updateNextBlock(model)
         self.parent:updateNextBlock(self.nextBlock)
     end
 
-    self.parent:roundStart(oldNextBlock, self.nextBlock)
+    self.parent:roundStart(oldNextBlock, self.nextBlock, self.isSelf)
 end
 
 --------------------------------
@@ -541,26 +555,15 @@ end
 function TetrisNew:addServerFrame(frameNum, event)
     if self.core then
         self.core:addServerFrame(frameNum, event)
-        -- if event.protoId == protos.KEY_PRESS and tonumber(event.args) == 1 then
-            -- local delay = cc.Util:getCurrentTime() - self.leftTime
-            -- log:info("recive tcp callback, delay:%s, localFramNum:%s, serverFrame:%s, updateTime:%s", 
-            -- delay, self.fixScheduler.serverFrameNum, self.fixScheduler.updateTime)
-        -- end
     end
 end
+
 
 --------------------------------
--- 获取本地帧号
--- @function [parent=#TetrisNew] getLocalFrameNum
-function TetrisNew:getLocalFrameNum()
-    if self.fixScheduler then
-        return self.fixScheduler.frameNum
-    end
-    return 0
-end
-
-function TetrisNew:gameStart(playerId, conf) 
-    self.core:gameStart(playerId, conf)
+-- 游戲開始
+-- @function [parent=#TetrisNew] gameStart
+function TetrisNew:gameStart(playerId, conf, seed) 
+    self.core:gameStart(playerId, conf, seed)
 
     -- 添加计时器
     self.schedulerHandler = scheduler.scheduleUpdateGlobal(handler(self, self.doUpdate))
@@ -570,6 +573,7 @@ end
 -- 游戏结束
 -- @function [parent=#TetrisNew] gameStart
 function TetrisNew:gameOver()
+    log:info("game Over")
     self.gameOverFlag = true
     self.parent:notifyGameOver(self.isSelf)
 
@@ -619,10 +623,10 @@ function TetrisNew:reset()
      -- 初始化grid
     if self.isNet then
         self:initGrid(270, 540)
-        self.core = TetrisCore:create(self.isNet, 270, 540)
+        self.core = TetrisCore:create(self.isNet, self.isAI, 270, 540)
     else
         self:initGrid(378, 810)
-        self.core = TetrisCore:create(self.isNet, 378, 810)
+        self.core = TetrisCore:create(self.isNet, self.isAI, 378, 810)
     end
 end
 
@@ -677,6 +681,9 @@ end
 -- 创建单个方块
 -- @function [parent=#TetrisNew] createSingleBlock
 function TetrisNew:createSingleBlock(pic, gridX, gridY)
+    if pic == "" then
+        pic = self.pic
+    end
     local sprite = cc.Sprite:createWithSpriteFrameName(pic)
     sprite:setAnchorPoint(0, 0)
     sprite:setPosition((gridX - 1) * self.blockWidth + 3, (gridY - 1) * self.blockWidth + 3)
@@ -750,8 +757,8 @@ end
 -- 发送网络包
 -- @function [parent=#TetrisNew] sendPack
 function TetrisNew:sendPack(action, protoId, ...)
-    if self.fixScheduler then
-        self.fixScheduler:send(action, protoId, ...)
+    if self.core then
+        self.core:sendPack(action, protoId, ...)
     end
 end
 
@@ -840,7 +847,39 @@ end
 -- 增加行数
 -- @function [parent=#TetrisNew] addLines
 function TetrisNew:addLines(lines)
+    local num = #lines
     
+    -- 处理上面的方块
+    for i = #self.grids, 1, -1 do
+        for j = 1, #self.grids[i] do
+            if self.grids[i][j] ~= 0 then
+                local block = self.grids[i][j]
+                -- log:info("addLines i:%s, j:%s, block:%s", i, j, block)
+                if not ((i + num) > #self.grids) then
+                    local x, y = block:getPosition()
+                    block:setPosition(cc.p(x, y + self.blockWidth * num))
+                    self.grids[i][j] = 0
+                    self.grids[i + num][j] = block
+                elseif not tolua.isnull(block) then
+                    block:removeFromParent()
+                end
+            end
+        end           
+    end
+
+    -- 添加新的方块
+    local index = 1
+    for index, line in pairs(lines) do
+        for i=1, #line do
+            local value = line[i]
+            if value == 1 then
+                local block = self:createGridBlock(self.core.grids[index][i], i, index)
+                self.grids[index][i] = block
+            end
+        end
+        index = index + 1
+    end
+    self:print()
 end
 
 --------------------------------
@@ -887,8 +926,8 @@ end
 -- 退出时清理操作
 -- @function [parent=#TetrisNew] onExit
 function TetrisNew:onExit()
-    if self.fixScheduler then
-        self.fixScheduler:destroy()
+    if self.core then
+        self.core:gameOver()
     end
 end
 

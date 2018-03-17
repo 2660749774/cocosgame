@@ -135,7 +135,9 @@ end
 -- 关闭连接
 -- @function [parent=#UDPConnectManager] close
 function UDPConnectManager:close()
-    self.socket:close()
+    if self.socket then
+        self.socket:close()
+    end
 end
 
 --------------------------------

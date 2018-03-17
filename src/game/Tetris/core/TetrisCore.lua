@@ -15,18 +15,18 @@ local Block5 = import(".BlockCore5")
 local Block6 = import(".BlockCore6")
 local Block7 = import(".BlockCore7")
 local BlockProp = import(".BlockProp")
-local RandomUtil = require "core.util.RandomUtil"
 
 --------------------------------
 -- 创建方法
 -- @function [parent=#TetrisCore] onCreate
-function TetrisCore:ctor(isNet, width, height)
+function TetrisCore:ctor(isNet, isAI, width, height)
     self.id = 0
     self.playerId = 0
     self.grids = {}
     self.blockMap = {}
 
     self.isNet = isNet
+    self.isAI = isAI
     self.width = width
     self.height = height
     self.blockWidth = 27
@@ -41,6 +41,12 @@ function TetrisCore:ctor(isNet, width, height)
     self.eventStack = {}
     self.eliminateNum = 0
     self.pause = false
+    self.mainFrames = {}
+
+
+    self.random = require("core.util.Random").new()
+    self.randomCache = {}
+    self.randomNum = 0
 end
 
 --------------------------------
@@ -84,6 +90,13 @@ function TetrisCore:doUpdate(dt)
     if self.block == nil then
         -- 检查是否结束了
         return
+    end
+
+    if #self.mainFrames > 0 then
+        for _, data in pairs(self.mainFrames) do
+            self:handleFrameData(data, false)
+        end
+        self.mainFrames = {}
     end
 
     -- log:info("[core]x:%s, y:%s", self.block.x, self.block.y)
@@ -161,6 +174,15 @@ function TetrisCore:handleInput(keyCode)
 end
 
 --------------------------------
+-- 發送網絡包
+-- @function [parent=#TetrisCore] sendPack
+function TetrisCore:sendPack(action, protoId, ...)
+    if self.isNet and self.fixScheduler then
+        self.fixScheduler:send(self.playerId, action, protoId, ...)
+    end
+end
+
+--------------------------------
 -- 处理服务器帧
 -- @function [parent=#TetrisCore] handleInput
 function TetrisCore:handleServerFrame(data)
@@ -173,18 +195,29 @@ function TetrisCore:handleServerFrame(data)
     --     end
     --     -- self:handleFrameData(event)
     -- end
+    self:handleFrameData(data, true)
+end
+
+--------------------------------
+-- 处理帧数据event
+-- @function [parent=#TetrisCore] handleFrameData
+function TetrisCore:handleFrameData(data, canDelay) 
     if data.protoId == protos.KEY_PRESS then
         data.keyCode = tonumber(data.args)
-        self:handleFrameData(data)
+        self:handleInputData(data)
     elseif data.protoId == protos.REMOVE_LINES then
-        -- self:addLines(data.args)
+        if canDelay then
+            table.insert(self.mainFrames, data)
+        else
+            self:addLines(data.args)
+        end
     end
 end
 
 --------------------------------
 -- 处理帧数据event
--- @function [parent=#TetrisCore] handleInput
-function TetrisCore:handleFrameData(data)
+-- @function [parent=#TetrisCore] handleInputData
+function TetrisCore:handleInputData(data)
     if self.block == nil then
         return
     end
@@ -225,13 +258,67 @@ function TetrisCore:handleFrameData(data)
 end
 
 --------------------------------
+-- 增加行数
+-- @function [parent=#TetrisCore] addLines
+function TetrisCore:addLines(lines)
+    log:info("addLines:%s", lines)
+    local num = #lines
+
+    -- 处理上面的方块
+    for i = #self.grids, 1, -1 do
+        for j = 1, #self.grids[i] do
+            if self.grids[i][j] ~= 0 then
+                local block = self.grids[i][j]
+                -- log:info("addLines i:%s, j:%s, block:%s", i, j, block)
+                if not ((i + num) > #self.grids) then
+                    self.grids[i][j] = 0
+                    self.grids[i + num][j] = block
+                end
+            end
+        end           
+    end
+
+    -- 添加新的方块
+    local index = 1
+    for index, line in pairs(lines) do
+        for i=1, #line do
+            local value = line[i]
+            if value == 1 then
+                local prop = BlockProp:create("", 1)
+                self.grids[index][i] = prop
+            end
+        end
+        index = index + 1
+    end
+
+
+    -- 如果当前方块已经不能下落
+    if self.block and not self:checkAvailable(self.block.x, self.block.y, self.block:getBlockArray()) then
+        self.block.y = self.block.y + num
+    end
+
+    self:print()
+
+    -- 插入事件
+    table.insert(self.eventStack, {
+        name = "AddLines",
+        grids = self.grids,
+        lines = lines
+    })
+end
+
+--------------------------------
 -- 游戏开始
 -- @function [parent=#TetrisCore] gameStart
-function TetrisCore:gameStart(conf)
+function TetrisCore:gameStart(playerId, conf, seed)
     -- 初始化方格
-    self:init(conf)
+    self:init(playerId, conf)
 
     -- 创建第一个方块
+    seed = seed or tonumber(tostring(os.time()):reverse():sub(1,6))
+    -- 初始化随机数
+    self.random:randomseed(seed)
+    -- log:info("random setrandomseed %s", seed)
     self:createNextBlock()
 
     -- 添加事件
@@ -304,6 +391,9 @@ end
 -- 游戏结束
 -- @function [parent=#TetrisCore] gameOver
 function TetrisCore:gameOver()
+    if self.state == 2 then
+        return
+    end
     self.state = 2
     if self.fixScheduler then
         self.fixScheduler:destroy()
@@ -325,9 +415,12 @@ end
 -- 随机创建一个方块
 -- @function [parent=#TetrisCore] createRandomBlock
 function TetrisCore:createRandomBlock()
-    local type = RandomUtil:nextInt(7)
+    local type = self.random:nextInt(7)
     local x, y = 7, 30
     local idx = 1
+
+    self.randomNum = self.randomNum + 1
+    -- log:info("random random %s %s", self.randomNum, type)
 
     return self:createBlock(type, x, y , idx)
 end
@@ -451,6 +544,15 @@ function TetrisCore:checkBlockEliminate()
         })
         -- self:print()
         self.eliminateNum = eliminateNum
+
+        -- 通知服务器
+        if self.isNet then
+            local args = self.eliminateNum
+            if self.isAI then
+                args = args .. ",true"
+            end
+            self.fixScheduler:send(self.playerId, actions.doUpdate, protos.REMOVE_LINES, args)
+        end
     end
 
     return eliminateNum > 0
