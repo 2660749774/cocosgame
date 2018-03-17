@@ -76,7 +76,7 @@ function TetrisSparPanel:gameStart(data)
 
     -- 游戏开始
     self.tetris.isAI = false
-    self.tetris:gameStart(self.conf)
+    self.tetris:gameStart(0, self.conf)
 end
 
 --------------------------------

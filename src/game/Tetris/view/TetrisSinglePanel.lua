@@ -147,7 +147,7 @@ function TetrisSinglePanel:gameStart(data)
 
     -- 游戏开始
     self.tetris.isAI = false
-    self.tetris:gameStart()
+    self.tetris:gameStart(0, nil)
 end
 
 --------------------------------
