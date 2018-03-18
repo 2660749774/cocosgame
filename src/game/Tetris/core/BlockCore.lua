@@ -30,7 +30,7 @@ end
 -- @function [parent=#BlockCore] getBlockArray
 function BlockCore:doAction(action, reverse)
     reverse = reverse or false
-    log:info("do action:%s, reverse:%s", action, reverse)
+    -- log:info("do action:%s, reverse:%s", action, reverse)
     self.updateTimes = self.updateTimes + 1
     if not reverse then
         if action == "up" then

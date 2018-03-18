@@ -10,40 +10,47 @@ local BlockView = class("BlockView", cc.Node)
 --------------------------------
 -- 创建方法
 -- @function [parent=#BlockView] onCreate
-function BlockView:ctor(model, pic)
+function BlockView:ctor(model, pic, isSelf)
+    log:info("blockview:%s", isSelf)
     self.model = model
     self.renderModel = model:clone()
     self.pic = pic
     self.blockWidth = 27
     self.fixPixel = 3
     self.blocks = {}
-    self:updateBlock()
+    self.isSelf = isSelf
+    self:updateBlock(model)
 end
 
 --------------------------------
 -- 进行更新
 -- @function [parent=#BlockView] render
 function BlockView:doUpdate()
-    local dy = self.model.y - self.renderModel.y
-    if dy < 0 then
-        dy = -dy
-        for i=1, dy do
-            self.renderModel:doAction("down")
+    local model = self.model
+    if self.isSelf then
+        model = self.renderModel
+        local dy = self.model.y - self.renderModel.y
+        if dy < 0 then
+            dy = -dy
+            for i=1, dy do
+                model:doAction("down")
+            end
         end
     end
+
     -- 更新方块位置
-    self:updateBlock()
+    self:updateBlock(model)
 
     -- 更新坐标位置
-    local x, y = (self.renderModel.x * self.blockWidth + self.fixPixel), (self.renderModel.y * self.blockWidth + self.fixPixel)
+    local x, y = (model.x * self.blockWidth + self.fixPixel), (model.y * self.blockWidth + self.fixPixel)
     self:setPosition(cc.p(x, y))
 end
 
 --------------------------------
 -- 更新方块显示
 -- @function [parent=#BlockView] updateBlock
-function BlockView:updateBlock()
-    local array = self.renderModel:getBlockArray()
+function BlockView:updateBlock(model)
+    local array = model:getBlockArray()
     if #self.blocks == 0 then
         local bg = cc.Sprite:create() --cc.LayerColor:create(ccc4(0xFF, 0x00, 0x00, 0x80), self.blockWidth * 4, self.blockWidth * 4)
         bg:setContentSize(cc.size(self.blockWidth * 4,self.blockWidth * 4))
@@ -137,17 +144,23 @@ end
 -- 强制同步
 -- @function [parent=#BlockView] forceSync
 function BlockView:forceSync()
-    self.renderModel = self.model:clone()
-    log:info("blockview force sync2")
+    if self.isSelf then
+        self.renderModel = self.model:clone()
+        log:info("blockview force sync2")
 
-    self:doUpdate()
+        self:doUpdate()
+    end
 end
 
 --------------------------------
 -- 获取block方块
 -- @function [parent=#BlockView] getBlockArray
 function BlockView:getBlockArray()
-    return self.renderModel:getBlockArray()
+    if self.isSelf then
+        return self.renderModel:getBlockArray()
+    else
+        return self.model:getBlockArray()
+    end
 end
 
 --------------------------------

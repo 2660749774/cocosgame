@@ -300,7 +300,7 @@ function fixscheduler:send(playerId, action, protoId, ...)
         end
 
         -- 如果当前没有延迟，直接执行
-        if self.frameNum == self.serverFrameNum then
+        -- if self.frameNum == self.serverFrameNum then
             -- local frameNum = self.frameNum + 1
             -- log:info("pre exec, add frameNum:%s, seq:%s", self.frameNum, seq)
 
@@ -317,7 +317,7 @@ function fixscheduler:send(playerId, action, protoId, ...)
             -- if self.serverFrameHandler then
             --     self.serverFrameHandler(event)
             -- end
-        end
+        -- end
         
         -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
     end

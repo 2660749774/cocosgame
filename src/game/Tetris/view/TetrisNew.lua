@@ -9,6 +9,7 @@ local TetrisNew = class("TetrisNew")
 local TetrisCore = import("..core.TetrisCore")
 local BlockView = import(".block.BlockView")
 local BlockProp = import("..core.BlockProp")
+local ai = import("..AI.TetrisAI")
 
 --------------------------------
 -- 创建方法
@@ -82,6 +83,11 @@ function TetrisNew:doUpdate(dt)
         return
     end
 
+    -- 如果AI
+    if self.isAI then
+        self:aiSimulate(dt)
+    end
+
     -- 1. 采集输入
     self:collectInput(dt)
 
@@ -117,7 +123,7 @@ function TetrisNew:handleEvent(event)
         self:updateNextBlock(event.nextBlock)
     elseif event.name == "RoundStart" then
         -- 回合开始
-        self.block = BlockView:create(event.block, self.pic)
+        self.block = BlockView:create(event.block, self.pic, self.isSelf)
         self.block:updateAttribute(self.nextBlock)
         self.block:doUpdate()
         self.bg:addChild(self.block)
@@ -160,6 +166,10 @@ function TetrisNew:roundReset()
     self.keyCode = -1
     self.downNum = 0
     self.collectCd = 0
+
+    self.moves = nil
+    self.moveStep = 1
+    self.aicd = nil
 end
 
 --------------------------------
@@ -209,7 +219,7 @@ end
 -- 进行预表现
 -- @function [parent=#TetrisNew] preRender
 function TetrisNew:preRender(keyCode)
-    if self.block == nil then
+    if self.block == nil or not self.isSelf then
         return
     end
 
@@ -472,7 +482,7 @@ end
 -- @function [parent=#TetrisNew] updateNextBlock
 function TetrisNew:updateNextBlock(model)
     local oldNextBlock = self.nextBlock
-    self.nextBlock = BlockView:create(model, self.pic)
+    self.nextBlock = BlockView:create(model, self.pic, self.isSelf)
     
     -- 刷新下个block
     if self.parent.updateNextBlock then
@@ -486,23 +496,22 @@ end
 -- 进行AI模拟
 -- @function [parent=#TetrisNew] playGame
 function TetrisNew:aiSimulate(dt)
-    if self.gameOverFlag or self.disableDown then
-        return
-    end
-
     if self.block == nil then
         return
     end
+
     if self.aicd and self.aicd > dt then
         self.aicd = self.aicd - dt
         return
     elseif self.aicd == nil then
-        self.aicd = 1
+        self.aicd = 0.2
         return
     end
 
     if self.moves  == nil then
-        local results = ai:makeBestDecision(self.grids, self.block)
+        local results = ai:makeBestDecision(self.core)
+        -- log:info("ai results")
+        -- log:showTable(results)
         self.moves = results.action_moves
         self.moveStep = 1
     elseif self.moveStep <= #self.moves then
@@ -510,25 +519,24 @@ function TetrisNew:aiSimulate(dt)
         self.moveStep = self.moveStep + 1
         self:doAction(action)
     end
-
-
 end
 
 function TetrisNew:doAction(action) 
     if self.block then
-        local x, y = self.block:getPosition()
-        local idx = self.block.curIndex;
-
+        local x, y = self.core.block.x, self.core.block.y
+        local idx = self.core.block.idx;
+        
         if action.x > x then
-            self:handleRight(nil, 2)
+            self:handleRight({type="click"}, 2)
         elseif action.x < x then
-            self:handleLeft(nil, 1)
+            self:handleLeft({type="click"}, 1)
         elseif action.idx ~= idx then
-            self:handleShift(nil, 3)
+            self:handleShift({type="click"}, 3)
         else
-            self:handleDownLow(nil, 5)
-            self.aicd = 1
+            self:handleDownLow({type="click"}, 5)
+            self.aicd = 0.2
         end
+        -- log:info("do ai action ax:%s, ay:%s, aidx:%s, x:%s, y:%s, idx:%s, isSelf:%s, keyCode:%s", action.x, action.y, action.idx, x, y, idx, self.isSelf, self.keyCode)
     end
 end
 

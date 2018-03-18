@@ -165,7 +165,7 @@ function TetrisCore:handleInput(keyCode)
     -- TODO 网络下，发送服务器
     -- self:handleFrameData({keyCode=keyCode})
     -- log:info("[core]handleInput isNet:%s", self.isNet)
-    if self.isNet then
+    if self.isNet and not self.isAI then
         self.fixScheduler:send(self.playerId, actions.doUpdate, protos.KEY_PRESS, keyCode)
     else
         self.fixScheduler:addServerFrame(self.fixScheduler.frameNum + 1, {protoId = protos.KEY_PRESS, args = keyCode})

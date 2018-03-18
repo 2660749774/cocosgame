@@ -25,7 +25,7 @@ end
 --------------------------------
 -- 生成可能的移动路径
 -- @function [parent=#TetrisAI] generate
-function TetrisAI:generate(grids, block)
+function TetrisAI:generate(tetrisCore)
     local keymapFunc = function(x, y, idx) 
         return "" .. x .. ":" .. y .. ":" .. idx
     end
@@ -36,27 +36,30 @@ function TetrisAI:generate(grids, block)
 
     local results = {}
 
+    local grids = tetrisCore.grids
+    local block = tetrisCore.block
+
     local boards = grids
     local rownum = #grids[1]
     local colnum = #grids
-    local blockArrs = block.blockArray
+    local blockArrs = block.shapes
 
     local occupy = {}
 
     local actionQueues = {}
-    local x, y = block:getPosition()
-    table.insert(actionQueues, {x=x, y=y, idx=block.curIndex, prev=0})
-    occupy[keymapFunc(x, y, block.curIndex)] = true
+    local x, y = block.x, block.y
+    table.insert(actionQueues, {x=x, y=y, idx=block.idx, prev=0})
+    occupy[keymapFunc(x, y, block.idx)] = true
 
     local head = 1
     while ( head <= #actionQueues )  do
         local step = actionQueues[head]
 
         -- 1). 向左移动一步
-        local tx = step.x - block.blockWidth
+        local tx = step.x - 1
         local ty = step.y
         local tidx = step.idx
-        if ( block:checkAvailable(tx, ty, grids, blockArrs[tidx], tidx) ) then
+        if ( tetrisCore:checkAvailable(tx, ty, blockArrs[tidx]) ) then
             local key = keymapFunc(tx, ty, tidx)
             if ( occupy[key] == nil ) then
                 table.insert(actionQueues, {x=tx, y=ty, idx=tidx, prev=head})
@@ -65,10 +68,10 @@ function TetrisAI:generate(grids, block)
         end
 
         -- 2). 向右移动一步
-        tx = step.x + block.blockWidth
+        tx = step.x + 1
         ty = step.y
         tidx = step.idx
-        if ( block:checkAvailable(tx, ty, grids, blockArrs[tidx], tidx) ) then
+        if ( tetrisCore:checkAvailable(tx, ty, blockArrs[tidx]) ) then
             local key = keymapFunc(tx, ty, tidx)
             if ( occupy[key] == nil ) then
                 table.insert(actionQueues, {x=tx, y=ty, idx=tidx, prev=head})
@@ -83,7 +86,7 @@ function TetrisAI:generate(grids, block)
         if tidx > 4 then
             tidx = 1
         end
-        if ( block:checkAvailable(tx, ty, grids, blockArrs[tidx], tidx) ) then
+        if ( tetrisCore:checkAvailable(tx, ty, blockArrs[tidx]) ) then
             local key = keymapFunc(tx, ty, tidx)
             if ( occupy[key] == nil ) then
                 table.insert(actionQueues, {x=tx, y=ty, idx=tidx, prev=head})
@@ -93,9 +96,9 @@ function TetrisAI:generate(grids, block)
 
         -- 4). 向下移动一步
         tx = step.x
-        ty = step.y - block.blockWidth
+        ty = step.y - 1
         tidx = step.idx
-        if ( block:checkAvailable(tx, ty, grids, blockArrs[tidx], tidx) ) then
+        if ( tetrisCore:checkAvailable(tx, ty, blockArrs[tidx]) ) then
             local key = keymapFunc(tx, ty, tidx)
             if ( occupy[key] == nil ) then
                 table.insert(actionQueues, {x=tx, y=ty, idx=tidx, prev=head})
@@ -121,20 +124,22 @@ function TetrisAI:generate(grids, block)
     return results
 end
 
-function TetrisAI:makeBestDecision(grids, block)
+function TetrisAI:makeBestDecision(tetrisCore)
     local bestMove = nil
     local bestScore = -1000000
+    local grids = tetrisCore.grids
+    local block = tetrisCore.block
 
     -- 1) 生成所有可行的落点, 以及对应的路径线路
-    local allMoves = self:generate(grids, block)
+    local allMoves = self:generate(tetrisCore)
 
     -- 2) 遍历每个可行的落点, 选取最优的局面落点
     for _, result in pairs(allMoves) do
         local step = result.last
-        local blockArray = block.blockArray[step.idx]
         local copyGrids = self:applyData(grids, block, step)
-
         local score = self:evaluate(copyGrids, block, step)
+        -- log:info("step x:%s, y:%s, idx:%s, score:%s", step.x, step.y, step.idx, score)
+        -- self:print(copyGrids)
         if bestMove == nil or score > bestScore then
             bestScore = score
             bestMove = result.moves
@@ -175,20 +180,16 @@ function TetrisAI:applyData(grids, block, step)
 
     local tx = step.x
     local ty = step.y
-    local blockArray = block.blockArray[step.idx]
-    local colnum = #copyGrids[1]
-
-    -- 起始格子位置
-    local gridX = math.floor(tx / block.blockWidth + 1)
-    local gridY = math.floor(ty / block.blockWidth + 1)
+    local blockArray = block.shapes[step.idx]
 
     -- 填充位子
-    for i=1, #blockArray do
-        for j=1, #blockArray[i] do
-            if blockArray[i][j] == 1 then
-                local _x, _y = (j - 1), (4 - i)
-                if copyGrids[gridY + _y] ~= nil and gridX + _x <= colnum and copyGrids[gridY + _y][gridX + _x] == 0 then
-                    copyGrids[gridY + _y][gridX + _x] = 1
+    for i=1, 4 do
+        for j=1, 4 do
+            if blockArray[i][j] ~= 0 then
+                local bx, by = j, (4 - i) + 1
+                -- log:info("bx:%s, by:%s, tx:%s, ty:%s", bx, by, tx, ty)
+                if copyGrids[ty + by][tx + bx] == 0 then
+                    copyGrids[ty + by][tx + bx] = 1
                 end
             end
         end
@@ -288,6 +289,39 @@ function TetrisAI:reverseTable(array)
         table.insert(tmp, array[i])
     end
     return tmp
+end
+
+--------------------------------
+-- 打印tetris
+-- @function [parent=#TetrisAI] print
+function TetrisAI:print(grids)
+    local col = #grids[1]
+    local row = #grids
+    local fmt = ""
+    local t = {}
+    for i = 1, col do
+        if i == 1 then
+            fmt = fmt .. "%s"
+        else
+            fmt = fmt .. " %s"
+        end
+    end
+    for i = 1, row do
+        for j = 1, #grids[i] do
+            if t[i] == nil then
+                t[i] = {}
+            end
+            if grids[i][j] ~= 0 then
+                t[i][j] = '1'
+            else
+                t[i][j] = '0'
+            end
+        end
+    end
+    for i = row, 1, -1 do
+        log:info(fmt, unpack(t[i]))
+    end
+    log:info("-------------------------------------------")
 end
 
 return TetrisAI
