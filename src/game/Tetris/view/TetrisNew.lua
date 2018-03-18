@@ -135,6 +135,7 @@ function TetrisNew:handleEvent(event)
         self:shake(self.bg, 0.05)
     elseif event.name == "MergeBlock" then
         -- 合并block
+        self.block:forceSync()
         self:merge(self.block)
         self.block = nil
 
@@ -181,6 +182,8 @@ function TetrisNew:collectInput(dt)
             elseif self.keyCode == 51 then
                 keyCode = 5
                 self.downNum = 5
+            elseif self.keyCode ~= 5 then
+                self.keyCode = -1
             end
 
             -- 对于快速下降特殊处理
@@ -191,10 +194,26 @@ function TetrisNew:collectInput(dt)
                     self.collectInputRatio = 1
                 end
             end
+
+            -- 预表现
+            self:preRender(keyCode)
+
+            -- 输出
             self.core:handleInput(keyCode)
         end
         self.collectCd = self.collectInputInterval
     end
+end
+
+--------------------------------
+-- 进行预表现
+-- @function [parent=#TetrisNew] preRender
+function TetrisNew:preRender(keyCode)
+    if self.block == nil then
+        return
+    end
+
+    self.block:preRender(self.core, keyCode)
 end
 
 --------------------------------
@@ -696,7 +715,8 @@ end
 -- 处理翻转
 -- @function [parent=#TetrisNew] 
 function TetrisNew:handleShift(event, keyCode)
-    self.core:handleInput(3)
+    -- self.core:handleInput(3)
+    self.keyCode = 3
 end
 
 --------------------------------
@@ -710,7 +730,8 @@ function TetrisNew:handleLeft(event, keyCode)
             self.keyCode = -1
         end
     else
-        self.core:handleInput(1)
+        self.keyCode = 1
+        -- self.core:handleInput(1)
     end
 end
 
@@ -725,7 +746,8 @@ function TetrisNew:handleRight(event, keyCode)
             self.keyCode = -1
         end
     else
-        self.core:handleInput(2)
+        self.keyCode = 2
+        -- self.core:handleInput(2)
     end
 end
 
@@ -733,7 +755,8 @@ end
 -- 处理极速下降
 -- @function [parent=#TetrisNew] handleDown
 function TetrisNew:handleDown(event, keyCode)
-    self.core:handleInput(4)
+    -- self.core:handleInput(4)
+    self.keyCode = 4
 end
 
 --------------------------------
@@ -928,6 +951,12 @@ end
 function TetrisNew:onExit()
     if self.core then
         self.core:gameOver()
+    end
+
+    -- 停止定时任务
+    if self.schedulerHandler then
+        scheduler.unscheduleGlobal(self.schedulerHandler)
+        self.schedulerHandler = nil
     end
 end
 

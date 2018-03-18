@@ -12,6 +12,7 @@ local BlockView = class("BlockView", cc.Node)
 -- @function [parent=#BlockView] onCreate
 function BlockView:ctor(model, pic)
     self.model = model
+    self.renderModel = model:clone()
     self.pic = pic
     self.blockWidth = 27
     self.fixPixel = 3
@@ -23,11 +24,18 @@ end
 -- 进行更新
 -- @function [parent=#BlockView] render
 function BlockView:doUpdate()
+    local dy = self.model.y - self.renderModel.y
+    if dy < 0 then
+        dy = -dy
+        for i=1, dy do
+            self.renderModel:doAction("down")
+        end
+    end
     -- 更新方块位置
     self:updateBlock()
 
     -- 更新坐标位置
-    local x, y = (self.model.x * self.blockWidth + self.fixPixel), (self.model.y * self.blockWidth + self.fixPixel)
+    local x, y = (self.renderModel.x * self.blockWidth + self.fixPixel), (self.renderModel.y * self.blockWidth + self.fixPixel)
     self:setPosition(cc.p(x, y))
 end
 
@@ -35,7 +43,7 @@ end
 -- 更新方块显示
 -- @function [parent=#BlockView] updateBlock
 function BlockView:updateBlock()
-    local array = self.model:getBlockArray()
+    local array = self.renderModel:getBlockArray()
     if #self.blocks == 0 then
         local bg = cc.Sprite:create() --cc.LayerColor:create(ccc4(0xFF, 0x00, 0x00, 0x80), self.blockWidth * 4, self.blockWidth * 4)
         bg:setContentSize(cc.size(self.blockWidth * 4,self.blockWidth * 4))
@@ -90,10 +98,56 @@ function BlockView:updateAttribute(block)
 end
 
 --------------------------------
+-- 预先渲染
+-- @function [parent=#BlockView] preRender
+function BlockView:preRender(tetrisCore, keyCode)
+    if self.renderModel.updateTimes - 5 > self.model.updateTimes then
+        -- 强制同步
+        self.renderModel = self.model:clone()
+        log:info("blockview force sync1")
+    else
+        local action = nil
+        if keyCode == 1 then
+            action = "left"
+        elseif keyCode == 2 then
+            action = "right"
+        elseif keyCode == 3 then
+            action = "shift"
+        elseif keyCode == 4 then
+            -- 持续下降
+            action = "down"
+        elseif keyCode == 5 then
+            action = "down"
+        end
+        self.renderModel:doAction(action)
+        if not tetrisCore:checkAvailable(self.renderModel.x, self.renderModel.y, self.renderModel:getBlockArray()) then
+            -- 不可以下降，回退
+            self.renderModel:doAction(action, true)
+        end
+    end
+
+    log:info("blockview preRender diff:%s", self.renderModel.updateTimes - self.model.updateTimes)
+    -- self:updateBlock()
+    -- -- 更新坐标位置
+    -- local x, y = (self.renderModel.x * self.blockWidth + self.fixPixel), (self.renderModel.y * self.blockWidth + self.fixPixel)
+    -- self:setPosition(cc.p(x, y))
+end
+
+--------------------------------
+-- 强制同步
+-- @function [parent=#BlockView] forceSync
+function BlockView:forceSync()
+    self.renderModel = self.model:clone()
+    log:info("blockview force sync2")
+
+    self:doUpdate()
+end
+
+--------------------------------
 -- 获取block方块
 -- @function [parent=#BlockView] getBlockArray
 function BlockView:getBlockArray()
-    return self.model:getBlockArray()
+    return self.renderModel:getBlockArray()
 end
 
 --------------------------------
@@ -116,33 +170,32 @@ end
 --------------------------------
 -- 获取格子的逻辑坐标
 -- @function [parent=#BlockView] getGridArray
-    function BlockView:getGridArray()
-        local array = {}
-        for _, block in pairs(self.blocks) do
-            local x, y = block:getPosition()
-            table.insert(array, {x / self.blockWidth, y / self.blockWidth, block})
-        end
-        return array
+function BlockView:getGridArray()
+    local array = {}
+    for _, block in pairs(self.blocks) do
+        local x, y = block:getPosition()
+        table.insert(array, {x / self.blockWidth, y / self.blockWidth, block})
     end
-    
-    --------------------------------
-    -- 获取格子的负极值
-    -- @function [parent=#BlockView] _getGridArrayOffSet
-    function BlockView:_getGridArrayOffSet(array)
-        local minx = -1
-        local miny = -1
-        for _, value in pairs(array) do
-            if minx == -1 or value[1] < minx then
-                minx = value[1]
-            end
-            if miny == -1 or value[2] < miny then
-                miny = value[2]
-            end
+    return array
+end
+
+--------------------------------
+-- 获取格子的负极值
+-- @function [parent=#BlockView] _getGridArrayOffSet
+function BlockView:_getGridArrayOffSet(array)
+    local minx = -1
+    local miny = -1
+    for _, value in pairs(array) do
+        if minx == -1 or value[1] < minx then
+            minx = value[1]
         end
-    
-        return minx, miny
+        if miny == -1 or value[2] < miny then
+            miny = value[2]
+        end
     end
 
+    return minx, miny
+end
 
 
 return BlockView

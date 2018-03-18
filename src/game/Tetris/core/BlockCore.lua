@@ -15,6 +15,7 @@ function BlockCore:ctor(type, x, y, idx)
     self.y = y
     self.idx = idx
     self.type = type
+    self.updateTimes = 0
 end
 
 --------------------------------
@@ -30,7 +31,7 @@ end
 function BlockCore:doAction(action, reverse)
     reverse = reverse or false
     log:info("do action:%s, reverse:%s", action, reverse)
-
+    self.updateTimes = self.updateTimes + 1
     if not reverse then
         if action == "up" then
             self:up()
@@ -98,7 +99,16 @@ function BlockCore:shift()
     end
 end
 
+--------------------------------
+-- 克隆方法
+-- @function [parent=#BlockCore] clone
+function BlockCore:clone()
+    local block = BlockCore:create(self.type, self.x, self.y, self.idx)
+    block.shapes = clone(self.shapes)
+    block.updateTimes = self.updateTimes
 
+    return block
+end
 
 return BlockCore
 

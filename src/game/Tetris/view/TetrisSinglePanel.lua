@@ -342,6 +342,10 @@ function TetrisSinglePanel:onExit()
     -- 卸载资源
     local tipLayer = self:getScene():getLayer("tips")
     tipLayer:removeAllChildren()
+
+    if self.tetris then
+        self.tetris:onExit()
+    end
 end
 
 return TetrisSinglePanel

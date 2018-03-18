@@ -303,11 +303,13 @@ function fixscheduler:send(playerId, action, protoId, ...)
         if self.frameNum == self.serverFrameNum then
             -- local frameNum = self.frameNum + 1
             -- log:info("pre exec, add frameNum:%s, seq:%s", self.frameNum, seq)
-            if (event.args ~= "4" and event.protoId == protos.KEY_PRESS) then
-                event.frameNum = self.frameNum
-                event.execute = false
-                table.insert(self.localFrame, event)
-            end
+
+            -- if (event.args ~= "4" and event.protoId == protos.KEY_PRESS) then
+            --     event.frameNum = self.frameNum
+            --     event.execute = false
+            --     table.insert(self.localFrame, event)
+            -- end
+
             -- if not self.preExecFrames[frameNum] then
             --     self.preExecFrames[frameNum] = {}
             -- end
