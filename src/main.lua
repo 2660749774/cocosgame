@@ -24,6 +24,9 @@ if platform == PLATFORM_OS_WINDOWS or platform == PLATFORM_OS_MAC then
     cc.FileUtils:getInstance():addSearchPath("../../../res/")
 end
 
+cc.FileUtils:getInstance():addSearchPath("src/")
+cc.FileUtils:getInstance():addSearchPath("res/")
+
 require "config"
 require "cocos.init"
 cc.exports.log = (require "core.log").new()
