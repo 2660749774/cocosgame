@@ -113,6 +113,7 @@ function BlockView:preRender(tetrisCore, keyCode)
         self.renderModel = self.model:clone()
         log:info("blockview force sync1")
     else
+        -- log:info("preRender %s", cc.Util:getCurrentTime())
         local action = nil
         if keyCode == 1 then
             action = "left"

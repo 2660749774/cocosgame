@@ -32,7 +32,7 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     -- 输入采集相关变量
     self.keyCode = -1
     self.collectCd = 0
-    self.collectInputInterval = 0.025
+    self.collectInputInterval = 0.016
     self.collectInputRatio = 1
     self.downNum = 0
     self.callbackNums = 0
@@ -181,37 +181,44 @@ function TetrisNew:collectInput(dt)
     if self.collectCd > 0 then
         self.collectCd = self.collectCd - dt
     else
-        local keyCode = self.keyCode
-        if keyCode ~= -1 then
-            if self.keyCode == 11 then
-                keyCode = 1
-            elseif self.keyCode == 21 then
-                keyCode = 2
-            elseif self.keyCode == 31 then
-                keyCode = 3
-            elseif self.keyCode == 51 then
-                keyCode = 5
-                self.downNum = 5
-            elseif self.keyCode ~= 5 then
-                self.keyCode = -1
-            end
-
-            -- 对于快速下降特殊处理
-            if keyCode == 5 then
-                self.downNum = self.downNum - 1
-                if self.downNum <= 0 then
-                    self.keyCode = -1
-                    self.collectInputRatio = 1
-                end
-            end
-
-            -- 预表现
-            self:preRender(keyCode)
-
-            -- 输出
-            self.core:handleInput(keyCode)
-        end
+        self:_collectInput(self.keyCode)
         self.collectCd = self.collectInputInterval
+    end
+    -- log:info("collectInput %s", self.collectCd)
+end
+
+--------------------------------
+-- 采集输入
+-- @function [parent=#TetrisNew] _collectInput
+function TetrisNew:_collectInput(keyCode)
+    if keyCode ~= -1 then
+        if self.keyCode == 11 then
+            keyCode = 1
+        elseif self.keyCode == 21 then
+            keyCode = 2
+        elseif self.keyCode == 31 then
+            keyCode = 3
+        elseif self.keyCode == 51 then
+            keyCode = 5
+            self.downNum = 5
+        elseif self.keyCode ~= 5 then
+            self.keyCode = -1
+        end
+
+        -- 对于快速下降特殊处理
+        if keyCode == 5 then
+            self.downNum = self.downNum - 1
+            if self.downNum <= 0 then
+                self.keyCode = -1
+                self.collectInputRatio = 1
+            end
+        end
+
+        -- 预表现
+        self:preRender(keyCode)
+
+        -- 输出
+        self.core:handleInput(keyCode)
     end
 end
 
@@ -639,7 +646,6 @@ function TetrisNew:reset()
     -- 输入采集相关变量
     self.keyCode = -1
     self.collectCd = 0
-    self.collectInputInterval = 0.025
     self.collectInputRatio = 1
     self.downNum = 0
     self.callbackNums = 0
@@ -724,7 +730,8 @@ end
 -- @function [parent=#TetrisNew] 
 function TetrisNew:handleShift(event, keyCode)
     -- self.core:handleInput(3)
-    self.keyCode = 3
+    -- self.keyCode = 3
+    self:_collectInput(3)
 end
 
 --------------------------------
@@ -738,8 +745,10 @@ function TetrisNew:handleLeft(event, keyCode)
             self.keyCode = -1
         end
     else
-        self.keyCode = 1
+        -- self.keyCode = 1
+        self:_collectInput(1)
         -- self.core:handleInput(1)
+        -- log:info("input %s", cc.Util:getCurrentTime())
     end
 end
 
@@ -754,7 +763,8 @@ function TetrisNew:handleRight(event, keyCode)
             self.keyCode = -1
         end
     else
-        self.keyCode = 2
+        -- self.keyCode = 2
+        self:_collectInput(2)
         -- self.core:handleInput(2)
     end
 end
@@ -764,7 +774,8 @@ end
 -- @function [parent=#TetrisNew] handleDown
 function TetrisNew:handleDown(event, keyCode)
     -- self.core:handleInput(4)
-    self.keyCode = 4
+    -- self.keyCode = 4
+    self:_collectInput(4)
 end
 
 --------------------------------

@@ -221,7 +221,7 @@ function TetrisCore:handleInputData(data)
     if self.block == nil then
         return
     end
-    log:info("handleFrameData keyCode:%s, reverse:%s", data.keyCode, data.reverse)
+    -- log:info("handleFrameData keyCode:%s, reverse:%s", data.keyCode, data.reverse)
     local action = nil
     if data.keyCode == 1 then
         action = "left"
