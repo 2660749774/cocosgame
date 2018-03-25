@@ -16,6 +16,7 @@ function BlockCore:ctor(type, x, y, idx)
     self.idx = idx
     self.type = type
     self.updateTimes = 0
+    self.renderQueue = {}
 end
 
 --------------------------------
@@ -108,6 +109,28 @@ function BlockCore:clone()
     block.updateTimes = self.updateTimes
 
     return block
+end
+
+--------------------------------
+-- 添加预渲染keyCode
+-- @function [parent=#BlockCore] addPreRenderKeyCode
+function BlockCore:addPreRenderKeyCode(keyCode)
+    -- log:info("addPreRenderKeyCode:%s", keyCode)
+    table.insert(self.renderQueue, keyCode)
+end
+
+--------------------------------
+-- 检查预渲染队列
+-- @function [parent=#BlockCore] checkPreRenderKeyCode
+function BlockCore:checkPreRenderKeyCode(keyCode)
+    -- log:info("checkPreRenderKeyCode:%s", keyCode)
+    if #self.renderQueue > 0 then
+        local preKeyCode = self.renderQueue[1]
+        if preKeyCode == keyCode then
+            -- log:info("popPreRenderKeyCode:%s", keyCode)
+            table.remove(self.renderQueue, 1)
+        end
+    end
 end
 
 return BlockCore

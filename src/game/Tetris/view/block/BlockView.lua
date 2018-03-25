@@ -19,6 +19,7 @@ function BlockView:ctor(model, pic, isSelf)
     self.fixPixel = 3
     self.blocks = {}
     self.isSelf = isSelf
+    self.markForceSync = false
     self:updateBlock(model)
 end
 
@@ -111,9 +112,17 @@ function BlockView:preRender(tetrisCore, keyCode)
     if self.renderModel.updateTimes - 5 > self.model.updateTimes then
         -- 强制同步
         self.renderModel = self.model:clone()
+        self.markForceSync = true
         log:info("blockview force sync1")
     else
-        -- log:info("preRender %s", cc.Util:getCurrentTime())
+        if self.markForceSync and #self.model.renderQueue > 0 then
+            return
+        elseif self.markForceSync then
+            self.markForceSync = false
+
+        end
+
+        -- log:info("pre render keycode:%s", keyCode)
         local action = nil
         if keyCode == 1 then
             action = "left"
@@ -122,15 +131,20 @@ function BlockView:preRender(tetrisCore, keyCode)
         elseif keyCode == 3 then
             action = "shift"
         elseif keyCode == 4 then
-            -- 持续下降
+            -- 持续下降，不预先模拟
             action = "down"
+            self.markForceSync = true
+            return
         elseif keyCode == 5 then
             action = "down"
         end
+
         self.renderModel:doAction(action)
+        self.model:addPreRenderKeyCode(action)
         if not tetrisCore:checkAvailable(self.renderModel.x, self.renderModel.y, self.renderModel:getBlockArray()) then
             -- 不可以下降，回退
             self.renderModel:doAction(action, true)
+            self.model:addPreRenderKeyCode(action)
         end
     end
 

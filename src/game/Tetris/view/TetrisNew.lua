@@ -921,7 +921,7 @@ function TetrisNew:addLines(lines)
         end
         index = index + 1
     end
-    self:print()
+    -- self:print()
 end
 
 --------------------------------

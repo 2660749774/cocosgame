@@ -212,7 +212,7 @@ function fixscheduler:update()
             self.frameNum = self.frameNum + 1
 
             -- 发送网络请求
-            self:sendFramePack()
+            -- self:sendFramePack()
         end
 
         -- 加速帧处理
@@ -224,6 +224,8 @@ function fixscheduler:update()
         end
 
         -- log:info("loop self cost:%s", (cc.Util:getCurrentTime() - currTime))
+        -- 处理服务器网络返回
+        self:doServerFrame()
 
         -- 调用显示帧
         for i=1, self.timeScale do
@@ -232,8 +234,7 @@ function fixscheduler:update()
 
         -- log:info("loop update cost:%s", (cc.Util:getCurrentTime() - currTime))
 
-        -- 处理服务器网络返回
-        self:doServerFrame()
+        
 
         -- log:info("update frame inner2 serverFrameNum:%s, localFrameNum:%s, fillFrameNum:%s, fixTime:%s, time:%s", self.serverFrameNum, self.frameNum, self.fillFrameNum, self.fixTime, currTime)
 
@@ -266,20 +267,20 @@ end
 function fixscheduler:send(playerId, action, protoId, ...)
     -- if not self.sendPack then
     local args = { ... }
-    local key = "" .. protoId
-    local value = ""
-    local index = 1
-    for _, v in pairs(args) do
-        key = key .. "-" .. v
-        if index == 1 then
-            value = value .. v
-        else
-            value = value .. "," .. v
-        end
-        index = index + 1
-    end
+    -- local key = "" .. protoId
+    -- local value = ""
+    -- local index = 1
+    -- for _, v in pairs(args) do
+    --     key = key .. "-" .. v
+    --     if index == 1 then
+    --         value = value .. v
+    --     else
+    --         value = value .. "," .. v
+    --     end
+    --     index = index + 1
+    -- end
 
-    if self.framePacks[key] == nil then
+    -- if self.framePacks[key] == nil then
         local seq = self.seq
         self.seq = self.seq + 1
 
@@ -287,8 +288,8 @@ function fixscheduler:send(playerId, action, protoId, ...)
         table.insert(args, 2, self.serverFrameNum)
         table.insert(args, 3, seq)
 
-        local event = {playerId = playerId, action = action, protoId = protoId, seq = seq, args = value}
-        self.framePacks[key] = event
+        -- local event = {playerId = playerId, action = action, protoId = protoId, seq = seq, args = value}
+        -- self.framePacks[key] = event
 
         -- 记录延迟
         actions.recordDelay(seq, "send", cc.Util:getCurrentTime())
@@ -320,7 +321,7 @@ function fixscheduler:send(playerId, action, protoId, ...)
         -- end
         
         -- table.insert(self.framePacks, {action=action, protoId=protoId, args=args})
-    end
+    -- end
         -- cmgr:send(action, nil, protoId, unpack(args))
     -- end
 end
@@ -332,7 +333,7 @@ function fixscheduler:sendFramePack()
     -- for _, pack in pairs(self.framePacks) do
     --     cmgr:send(pack.action, nil, pack.protoId, unpack(pack.args))
     -- end
-    self.framePacks = {}
+    -- self.framePacks = {}
     -- if not self.sendPack then
         -- local args = { ... }
         -- table.insert(args, 1, self.frameNum)

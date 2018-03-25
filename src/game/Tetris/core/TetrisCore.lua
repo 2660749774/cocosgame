@@ -147,7 +147,7 @@ end
 -- 添加服务器帧
 -- @function [parent=#TetrisCore] addServerFrame
 function TetrisCore:addServerFrame(frameNum, eventData)
-    log:info("[core]addServerFrame %s", frameNum)
+    -- log:info("[core]addServerFrame %s", frameNum)
     log:showTable(eventData)
     if self.fixScheduler then
         self.fixScheduler:addServerFrame(frameNum, eventData)
@@ -204,6 +204,9 @@ end
 function TetrisCore:handleFrameData(data, canDelay) 
     if data.protoId == protos.KEY_PRESS then
         data.keyCode = tonumber(data.args)
+        -- if not self.isAI then
+        --     log:info("rel render keycode:%s", data.keyCode)
+        -- end
         self:handleInputData(data)
     elseif data.protoId == protos.REMOVE_LINES then
         if canDelay then
@@ -250,9 +253,11 @@ function TetrisCore:handleInputData(data)
 
     if action ~= nil then
         self.block:doAction(action, data.reverse or false)
+        self.block:checkPreRenderKeyCode(action)
         if not self:checkAvailable(self.block.x, self.block.y, self.block:getBlockArray()) then
             -- 不可以行动，回退
             self.block:doAction(action, true)
+            self.block:checkPreRenderKeyCode(action)
         end
     end 
 end
@@ -261,7 +266,6 @@ end
 -- 增加行数
 -- @function [parent=#TetrisCore] addLines
 function TetrisCore:addLines(lines)
-    log:info("addLines:%s", lines)
     local num = #lines
 
     -- 处理上面的方块
@@ -297,7 +301,7 @@ function TetrisCore:addLines(lines)
         self.block.y = self.block.y + num
     end
 
-    self:print()
+    -- self:print()
 
     -- 插入事件
     table.insert(self.eventStack, {
