@@ -71,6 +71,10 @@ end
 -- 每一帧运行
 -- @function [parent=#TetrisNew] doUpdate
 function TetrisNew:doUpdate(dt)
+    if self.pause then
+        return
+    end
+    
     -- 自身事件更新
     local eventNum = #self.delayEvent
     if eventNum > 0 then
