@@ -519,25 +519,55 @@ function TetrisNew:aiSimulate(dt)
         local results = ai:makeBestDecision(self.core)
         -- log:info("ai results")
         -- log:showTable(results)
-        self.moves = results.action_moves
+        self.moves = self:filterAIMoves(results.action_moves)
         self.moveStep = 1
+        -- log:info("ai results")
+        -- log:showTable(self.moves)
     elseif self.moveStep <= #self.moves then
         local action = self.moves[self.moveStep]
         self.moveStep = self.moveStep + 1
         self:doAction(action)
+    else
+        self:handleDownLow({type="click"}, 5)
+        self.aicd = 0.2
     end
+end
+
+--------------------------------
+-- 过滤AI行动
+-- @function [parent=#TetrisNew] filterAIMoves
+function TetrisNew:filterAIMoves(moves)
+    local results = {}
+    local x, y = self.core.block.x, self.core.block.y
+    local idx = self.core.block.idx;
+    for _, move in pairs(moves) do
+        if move.x > x then
+            x = move.x
+            idx = move.idx
+            move.keyCode = 2
+            table.insert(results, move)
+        elseif move.x < x then
+            x = move.x
+            idx = move.idx
+            move.keyCode = 1
+            table.insert(results, move)
+        elseif move.idx ~= idx then
+            x = move.x
+            idx = move.idx
+            move.keyCode = 3
+            table.insert(results, move)
+        end
+    end
+    return results
 end
 
 function TetrisNew:doAction(action) 
     if self.block then
-        local x, y = self.core.block.x, self.core.block.y
-        local idx = self.core.block.idx;
-        
-        if action.x > x then
+        if action.keyCode == 2 then
             self:handleRight({type="click"}, 2)
-        elseif action.x < x then
+        elseif action.keyCode == 1 then
             self:handleLeft({type="click"}, 1)
-        elseif action.idx ~= idx then
+        elseif action.keyCode == 3 then
             self:handleShift({type="click"}, 3)
         else
             self:handleDownLow({type="click"}, 5)

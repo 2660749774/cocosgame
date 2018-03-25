@@ -127,8 +127,10 @@ end
 function TetrisAI:makeBestDecision(tetrisCore)
     local bestMove = nil
     local bestScore = -1000000
+    local bestStep = nil
     local grids = tetrisCore.grids
     local block = tetrisCore.block
+    
 
     -- 1) 生成所有可行的落点, 以及对应的路径线路
     local allMoves = self:generate(tetrisCore)
@@ -143,8 +145,14 @@ function TetrisAI:makeBestDecision(tetrisCore)
         if bestMove == nil or score > bestScore then
             bestScore = score
             bestMove = result.moves
+            bestStep = step
         end
     end
+
+    -- log:info("best step x:%s, y:%s, idx:%s, score:%s", bestStep.x, bestStep.y, bestStep.idx, bestScore)
+    -- log:showTable(bestMove)
+    -- local copyGrids = self:applyData(grids, block, bestStep)
+    -- self:print(copyGrids)
 
     -- 3) 返回最优可行落点, 及其路径线路
     return {score=bestScore, action_moves=bestMove}
