@@ -9,6 +9,7 @@ local UserDefaultUtil = {}
 -- @function [parent=#UserDefaultUtil] setStringForKey
 function UserDefaultUtil.setStringForKey(key, value)
     cc.UserDefault:getInstance():setStringForKey(key, value)
+    cc.UserDefault:getInstance():flush()
 end
 
 --------------------------------
@@ -16,6 +17,7 @@ end
 -- @function [parent=#UserDefaultUtil] setIntegerForKey
 function UserDefaultUtil.setIntegerForKey(key, value)
     cc.UserDefault:getInstance():setIntegerForKey(key, value)
+    cc.UserDefault:getInstance():flush()
 end
 
 --------------------------------
@@ -23,6 +25,7 @@ end
 -- @function [parent=#UserDefaultUtil] setFloatForKey
 function UserDefaultUtil.setFloatForKey(key, value)
     cc.UserDefault:getInstance():setFloatForKey(key, value)
+    cc.UserDefault:getInstance():flush()
 end
 
 --------------------------------
@@ -30,6 +33,7 @@ end
 -- @function [parent=#UserDefaultUtil] setDoubleForKey
 function UserDefaultUtil.setDoubleForKey(key, value)
     cc.UserDefault:getInstance():setDoubleForKey(key, value)
+    cc.UserDefault:getInstance():flush()
 end
 
 --------------------------------
@@ -37,6 +41,7 @@ end
 -- @function [parent=#UserDefaultUtil] setBoolForKey
 function UserDefaultUtil.setBoolForKey(key, value)
     cc.UserDefault:getInstance():setBoolForKey(key, value)
+    cc.UserDefault:getInstance():flush()
 end
 
 --------------------------------

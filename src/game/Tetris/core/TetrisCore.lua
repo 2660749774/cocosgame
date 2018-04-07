@@ -399,6 +399,15 @@ function TetrisCore:gameOver()
         return
     end
     self.state = 2
+end
+
+--------------------------------
+-- 退出游戲
+-- @function [parent=#TetrisCore] destroy
+function TetrisCore:destroy()
+    if self.state ~= 2 then
+        self.state = 2
+    end
     if self.fixScheduler then
         self.fixScheduler:destroy()
         self.fixScheduler:unscheduleTask(self.updateTask)

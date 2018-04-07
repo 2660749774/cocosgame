@@ -117,9 +117,10 @@ function ConnectManger:send(action, callback, ...)
         self.requestCallback[self.requestId] = callback
     end
     
+    log:info("[send] command:%s requestId:%s, args:%s", action.command, self.requestId, args)
+
     -- requestId递增
     self.requestId = self.requestId + 1
-    -- log:info("send data %s %s", action.command, #args)
 end
 
 --------------------------------
@@ -321,7 +322,7 @@ function ConnectManger:decode()
 
     -- 打印日志
     command = trim(command)
-    -- log:info("recv command:%s, requestId:%d", command, requestId)
+    log:info("[recv] command:%s, requestId:%d, content:%s", command, requestId, content)
     -- log:info("recv content:%s", content)
     -- 转换为json
     local response = json.decode(content)

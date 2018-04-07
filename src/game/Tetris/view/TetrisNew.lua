@@ -1003,7 +1003,7 @@ end
 -- @function [parent=#TetrisNew] onExit
 function TetrisNew:onExit()
     if self.core then
-        self.core:gameOver()
+        self.core:destroy()
     end
 
     -- 停止定时任务
