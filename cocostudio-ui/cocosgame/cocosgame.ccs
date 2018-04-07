@@ -118,6 +118,8 @@
             <Image Name="left.png" />
             <Image Name="right.png" />
             <Image Name="shift.png" />
+            <Image Name="task.png" />
+            <Image Name="timg.png" />
           </Folder>
           <Folder Name="loading">
             <Image Name="loading_bg.png" />
@@ -482,6 +484,7 @@
         <Project Name="TetrisAttackAnimation.csd" Type="Scene" />
         <Project Name="TetrisClearStone.csd" Type="Scene" />
         <Project Name="TetrisEndIntro.csd" Type="Scene" />
+        <Project Name="TetrisHotswap.csd" Type="Scene" />
         <Project Name="TetrisLoading.csd" Type="Scene" />
         <Project Name="TetrisMainBar.csd" Type="Scene" />
         <Project Name="TetrisMainScene.csd" Type="Scene" />
@@ -514,7 +517,6 @@
         <Project Name="TetrisTipBuyTime.csd" Type="Scene" />
         <Project Name="TetrisTipComm.csd" Type="Scene" />
         <Project Name="TetrisTipUpdate.csd" Type="Scene" />
-        <Project Name="TetrisHotswap.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

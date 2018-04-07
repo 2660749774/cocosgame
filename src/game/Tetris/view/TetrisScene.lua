@@ -59,6 +59,8 @@ function TetrisScene:onCreate()
 
     -- 播放背景音乐
     amgr:playBgMusic({"main_bg1.mp3", "main_bg2.wav", "main_bg3.mp3"}, true)
+
+    -- self:pushPanel("Tetris.view.TetrisPvpResult", {nil, nil})
 end
 
 --------------------------------

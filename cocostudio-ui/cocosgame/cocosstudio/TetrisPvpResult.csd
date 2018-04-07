@@ -53,13 +53,13 @@
                 <FileData Type="Normal" Path="ui/pvp/pvp_end_bg.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_ok" ActionTag="1401867083" Tag="56" IconVisible="False" LeftMargin="173.9998" RightMargin="174.0002" TopMargin="773.0000" BottomMargin="277.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="262" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_ok" ActionTag="1401867083" Tag="56" IconVisible="False" LeftMargin="173.9998" RightMargin="174.0002" TopMargin="867.0042" BottomMargin="182.9958" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="262" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="292.0000" Y="86.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="319.9998" Y="320.0000" />
+                <Position X="319.9998" Y="225.9958" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.2817" />
+                <PrePosition X="0.5000" Y="0.1989" />
                 <PreSize X="0.4563" Y="0.0757" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="PlistSubImage" Path="btn_ok.png" Plist="ui/plist/common.plist" />
@@ -71,7 +71,7 @@
               <AbstractNodeData Name="self_panel" ActionTag="765316254" Tag="59" IconVisible="False" LeftMargin="42.0000" RightMargin="398.0000" TopMargin="564.9639" BottomMargin="471.0361" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="100.0000" />
                 <Children>
-                  <AbstractNodeData Name="score_panel_self" ActionTag="452516772" Tag="27" IconVisible="False" LeftMargin="51.2287" RightMargin="38.7713" TopMargin="31.8663" BottomMargin="28.1337" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="score_panel_self" ActionTag="452516772" Tag="27" IconVisible="False" LeftMargin="51.2287" RightMargin="38.7713" TopMargin="31.8663" BottomMargin="28.1337" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="110.0000" Y="40.0000" />
                     <Children>
                       <AbstractNodeData Name="Sprite_4" ActionTag="1782042028" Tag="57" IconVisible="False" LeftMargin="-0.0001" RightMargin="0.0001" TopMargin="0.2599" BottomMargin="-0.2599" ctype="SpriteObjectData">
@@ -166,7 +166,7 @@
               <AbstractNodeData Name="target_Panel" ActionTag="442924721" Tag="61" IconVisible="False" LeftMargin="391.8362" RightMargin="48.1638" TopMargin="564.9639" BottomMargin="471.0361" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="100.0000" />
                 <Children>
-                  <AbstractNodeData Name="score_panel_target" ActionTag="-89716859" Tag="28" IconVisible="False" LeftMargin="48.7094" RightMargin="41.2906" TopMargin="31.8663" BottomMargin="28.1337" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="score_panel_target" ActionTag="-89716859" Tag="28" IconVisible="False" LeftMargin="48.7094" RightMargin="41.2906" TopMargin="31.8663" BottomMargin="28.1337" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="110.0000" Y="40.0000" />
                     <Children>
                       <AbstractNodeData Name="Sprite_4" ActionTag="-1684429648" Tag="62" IconVisible="False" LeftMargin="-0.0001" RightMargin="0.0001" TopMargin="-2.2599" BottomMargin="2.2599" ctype="SpriteObjectData">
@@ -253,6 +253,88 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.7685" Y="0.4587" />
                 <PreSize X="0.3125" Y="0.0880" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="task_info" ActionTag="-1853190896" VisibleForFrame="False" Tag="58" IconVisible="False" LeftMargin="56.2470" RightMargin="383.7530" TopMargin="663.2866" BottomMargin="272.7134" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="200.0000" Y="200.0000" />
+                <Children>
+                  <AbstractNodeData Name="task_icon" ActionTag="-185815042" Tag="54" IconVisible="False" LeftMargin="-206.7085" RightMargin="-105.2915" TopMargin="-172.0919" BottomMargin="-139.9081" ctype="SpriteObjectData">
+                    <Size X="512.0000" Y="512.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="49.2915" Y="116.0919" />
+                    <Scale ScaleX="0.1858" ScaleY="0.1858" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.2465" Y="0.5805" />
+                    <PreSize X="2.5600" Y="2.5600" />
+                    <FileData Type="Normal" Path="ui/common/task.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="task_name" ActionTag="1370498962" Tag="55" IconVisible="False" LeftMargin="101.9087" RightMargin="-31.9087" TopMargin="45.9422" BottomMargin="128.0578" FontSize="26" LabelText="参与1场PVP" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="130.0000" Y="26.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="101.9087" Y="141.0578" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5095" Y="0.7053" />
+                    <PreSize X="0.6500" Y="0.1300" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="reward_icon" ActionTag="-1315601374" Tag="56" IconVisible="False" LeftMargin="98.6710" RightMargin="57.3290" TopMargin="82.4738" BottomMargin="73.5262" LeftEage="14" RightEage="14" TopEage="14" BottomEage="14" Scale9OriginX="14" Scale9OriginY="14" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
+                    <Size X="44.0000" Y="44.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="120.6710" Y="95.5262" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.6034" Y="0.4776" />
+                    <PreSize X="0.2200" Y="0.2200" />
+                    <FileData Type="Normal" Path="icon/gem_bg.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="reward_num" ActionTag="1341612246" Tag="57" IconVisible="False" LeftMargin="146.3266" RightMargin="5.6734" TopMargin="91.4756" BottomMargin="84.5244" FontSize="24" LabelText="×10" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="48.0000" Y="24.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="146.3266" Y="96.5244" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7316" Y="0.4826" />
+                    <PreSize X="0.2400" Y="0.1200" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="task_done_icon" ActionTag="-1068811296" VisibleForFrame="False" Tag="59" IconVisible="False" LeftMargin="202.8907" RightMargin="-130.8907" TopMargin="19.5415" BottomMargin="50.4585" ctype="SpriteObjectData">
+                    <Size X="128.0000" Y="130.0000" />
+                    <Children>
+                      <AbstractNodeData Name="task_done_txt" ActionTag="-263166577" Tag="60" RotationSkewX="-51.1990" RotationSkewY="-51.1990" IconVisible="False" LeftMargin="36.0313" RightMargin="35.9687" TopMargin="50.8275" BottomMargin="51.1725" FontSize="28" LabelText="完成" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                        <Size X="56.0000" Y="28.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="64.0313" Y="65.1725" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="0" G="181" B="105" />
+                        <PrePosition X="0.5002" Y="0.5013" />
+                        <PreSize X="0.4375" Y="0.2154" />
+                        <OutlineColor A="255" R="255" G="0" B="0" />
+                        <ShadowColor A="255" R="159" G="1" B="0" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="266.8907" Y="115.4585" />
+                    <Scale ScaleX="0.7300" ScaleY="0.7300" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.3345" Y="0.5773" />
+                    <PreSize X="0.6400" Y="0.6500" />
+                    <FileData Type="Normal" Path="ui/common/timg.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="156.2470" Y="372.7134" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2441" Y="0.3281" />
+                <PreSize X="0.3125" Y="0.1761" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />

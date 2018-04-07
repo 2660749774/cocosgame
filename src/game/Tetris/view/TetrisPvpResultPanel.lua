@@ -13,6 +13,10 @@ local TetrisPowerConf = import("..data.TetrisPowerConf")
 -- 创建方法
 -- @function [parent=#TetrisPvpResultPanel] onCreate
 function TetrisPvpResultPanel:onCreate(scheduleData, resultData)
+    -- resultData = '{"targetInfo":{"playerId":0,"points":0,"pointsChange":25},"taskInfo":[{"taskType":1,"taskName":"参与1场PVP对战","reward":[{"type":1,"name":"钻石","num":10}]},{"taskType":1,"taskName":"参与3场PVP对战","reward":[{"type":1,"name":"钻石","num":10}]}],"myInfo":{"playerId":191,"win":false,"points":0,"pointsChange":0}}'
+    -- resultData = json.decode(resultData)
+    -- scheduleData = '{"matchId":3,"att":{"isHost":true,"playerId":191,"udpConv":1523093994,"playerName":"玩家玩家","score":0},"def":{"isHost":false,"playerId":0,"playerName":"机器人小C","isAI":true,"score":0},"winId":191}'
+    -- scheduleData = json.decode(scheduleData)
     log:info("TetrisPvpResultPanel data:%s, %s", scheduleData, resultData)
     log:showTable(scheduleData)
     log:showTable(resultData)
@@ -132,7 +136,70 @@ function TetrisPvpResultPanel:playAnimation(scheduleData, resultData)
     self.targetPlayerInfo.scorePanel:setScale(2)
     local sequence3 = cc.Sequence:create(cc.DelayTime:create(2), cc.EaseBounceOut:create(spawn:clone()))
     self.targetPlayerInfo.scorePanel:runAction(sequence3)
+
+    -- 如果有任务播放任务动画
+    if resultData.taskInfo then
+        local index = 0
+        for _, task in pairs(resultData.taskInfo) do
+            local sequence = cc.Sequence:create(cc.DelayTime:create(3 + index * 2), cc.CallFunc:create(function() 
+                -- 播放图章动画
+                self:playTaskAnimation(task)
+            end))
+            self.layout['root']:runAction(sequence)
+            
+            index = index + 1
+        end
+    end
     
+end
+
+--------------------------------
+-- 播放任务完成动画
+-- @function [parent=#TetrisPvpResultPanel] playTaskAnimation
+function TetrisPvpResultPanel:playTaskAnimation(task)
+    log:info("show task %s %s", task.taskName, self.layout['animation'])
+    local taskInfo = self.layout['task_info']
+    local taskName = self.layout['task_name']
+    local rewardIcon = self.layout['reward_icon']
+    local rewardNum = self.layout['reward_num']
+    local doneInfo = self.layout['task_done_icon']
+    taskInfo:setVisible(false)
+    doneInfo:setVisible(false)
+    
+    -- 任务名称
+    taskName:setString(task.taskName)
+    -- 任务奖励
+    if task.reward then
+        for _, reward in pairs(task.reward) do
+            if reward.type == 1 then
+                rewardIcon:loadTexture("gem_bg.png", 1)
+            elseif reward.type == 2 then
+                rewardIcon:loadTexture("energy_bg2.png", 1)
+            end
+            rewardNum:setString("×" .. reward.num)
+        end
+    end
+ 
+
+    taskInfo:setVisible(true)
+    taskInfo:setScale(2)
+    taskInfo:setOpacity(0)
+    local action1 = cc.ScaleTo:create(0.8, 1)
+    local action2 = cc.FadeTo:create(0.8, 255)
+    local spawn = cc.Spawn:create(action1, action2)
+    local sequence = cc.Sequence:create(cc.EaseBounceOut:create(spawn), cc.CallFunc:create(function() 
+        -- 播放图章动画
+        doneInfo:setVisible(true)
+        doneInfo:setScale(2)
+        doneInfo:setOpacity(0)
+        local action1 = cc.ScaleTo:create(0.8, 0.7)
+        local action2 = cc.FadeTo:create(0.8, 255)
+        local spawn = cc.Spawn:create(action1, action2)
+        doneInfo:runAction(cc.EaseBounceOut:create(spawn))
+        
+    end))
+    taskInfo:runAction(sequence)
+
 end
 
 return TetrisPvpResultPanel
