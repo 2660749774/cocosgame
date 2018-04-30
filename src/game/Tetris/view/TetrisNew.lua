@@ -305,6 +305,7 @@ function TetrisNew:doEliminate(eliminateArr, eliminateProp)
     -- 获取需要消除的行
     local removeBlocks = {}
     local eliminateGrids = {}
+    self.removeLineNums = 0
     for i = 1, self.row do
         if eliminateArr[i] ~= 0 then
             for j = 1, self.col do

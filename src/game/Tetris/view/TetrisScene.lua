@@ -18,6 +18,7 @@ function TetrisScene:onCreate()
     self.pvpLayer = cc.Layer:create()
     self.rankLayer = cc.Layer:create()
     self.touchLayer = cc.Layer:create()
+    self.scrollEnable = true
     
     self.pvpLayer:setPosition(cc.p(self.maxWidth, 0))
     self.rankLayer:setPosition(cc.p(-self.maxWidth, 0))
@@ -455,6 +456,10 @@ end
 -- 处理触摸结束
 -- @function [parent=#TetrisScene] onMoveEnd
 function TetrisScene:onMoveEnd(moveX)
+    if not self.scrollEnable then
+        return
+    end
+    
     if moveX > 0 then
         -- 向右移动
         if self.currBtn == "rank" then
@@ -523,6 +528,10 @@ end
 -- @function [parent=#TetrisScene] onMove
 function TetrisScene:onMove(moveX)
     -- log:info("onMove:%s", moveX)
+    if not self.scrollEnable then
+        return
+    end
+
     if moveX > 0 then
         -- 向右移动
         if self.currBtn == "rank" or self.currBtn == "single" then

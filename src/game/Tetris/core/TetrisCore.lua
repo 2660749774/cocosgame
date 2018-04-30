@@ -47,6 +47,8 @@ function TetrisCore:ctor(isNet, isAI, width, height)
     self.random = require("core.util.Random").new()
     self.randomCache = {}
     self.randomNum = 0
+    self.heartbeatInterval = 1
+    self.heartbeatCd = 0
 end
 
 --------------------------------
@@ -70,6 +72,9 @@ function TetrisCore:doUpdate(dt)
     if self.pause then
         return
     end
+
+    -- 心跳
+    self:heartbeat(dt)
 
     -- 暂停计数器更新
     if self.pauseFrameNum > 0 then
@@ -171,6 +176,21 @@ function TetrisCore:handleInput(keyCode)
         self.fixScheduler:addServerFrame(self.fixScheduler.frameNum + 1, {protoId = protos.KEY_PRESS, args = keyCode})
     end
     
+end
+
+--------------------------------
+-- 心跳
+-- @function [parent=#TetrisCore] heartbeat
+function TetrisCore:heartbeat(dt)
+    if not self.isNet or self.isAI then
+        return
+    end
+
+    self.heartbeatCd = self.heartbeatCd + dt
+    if self.heartbeatCd >= self.heartbeatInterval then
+        self.fixScheduler:send(self.playerId, actions.doUpdate, protos.HEART_BEAT, "")
+        self.heartbeatCd = 0
+    end
 end
 
 --------------------------------

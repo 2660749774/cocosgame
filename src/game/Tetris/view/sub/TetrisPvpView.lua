@@ -66,6 +66,9 @@ function TetrisPvpView:pvpSearch()
                                             self.bottomPanel:setVisible(false)
                                         end))
     self.bottomPanel:runAction(sequence)
+
+    -- 禁止滚动
+    self.scene.scrollEnable = false
 end
 
 --------------------------------
@@ -81,6 +84,9 @@ function TetrisPvpView:pvpCancel()
         self.topPanel:runAction(cc.MoveTo:create(0.2, cc.p(318.64, 1094) ))
         self.bottomPanel:setVisible(true)
         self.bottomPanel:runAction(cc.MoveTo:create(0.2, cc.p(320.00, 50) ))
+
+        -- 允许滚动
+        self.scene.scrollEnable = true
     end)
 end
 
