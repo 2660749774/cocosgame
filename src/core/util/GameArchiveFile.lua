@@ -120,9 +120,9 @@ function GameArchiveFile:loadData()
 
     self.data = json.decode(content)
     self.version = self.data.version or 1
-    self.lifes = 1000000 -- self.data.lifes or 5 -- 默认5条生命
+    self.lifes = self.data.lifes or 5 -- 默认5条生命 1000000 -- 
     self.nextLifeTime = self.data.nextLifeTime or 0
-    self.diam = 1000000 --self.data.diam or 0
+    self.diam = self.data.diam or 0 -- 1000000 --
 
     log:info("lifes:%s, nextLifeTime:%s, version:%s", self.lifes, self.nextLifeTime, self.version)
     self.data.diam = self.diam
