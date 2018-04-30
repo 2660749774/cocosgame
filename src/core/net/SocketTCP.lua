@@ -42,6 +42,7 @@ function SocketTCP:ctor(__host, __port, __retryConnectWhenFailure)
 	self.tickScheduler = nil			-- timer for data
 	self.reconnectScheduler = nil		-- timer for reconnect
 	self.connectTimeTickScheduler = nil	-- timer for connect timeout
+	self.timerTask = nil -- timer for tick, timer task
 	self.name = 'SocketTCP'
 	self.tcp = nil
 	self.isRetryConnect = __retryConnectWhenFailure
@@ -121,6 +122,7 @@ function SocketTCP:close( ... )
 	self.tcp:close();
 	if self.connectTimeTickScheduler then scheduler.unscheduleGlobal(self.connectTimeTickScheduler) end
 	if self.tickScheduler then scheduler.unscheduleGlobal(self.tickScheduler) end
+	if self.timerTask then timer:unscheduleTask(self.timerTask) end
 	self:dispatchEvent({name=SocketTCP.EVENT_CLOSE})
 end
 
@@ -186,7 +188,7 @@ function SocketTCP:_onConnected()
 
 	-- start to read TCP data
 	if SOCKET_TICK_TIME == 0 then
-		timer:scheduleTask(__tick)
+		self.timerTask = timer:scheduleTask(__tick)
 	else
 		self.tickScheduler = scheduler.scheduleGlobal(__tick, SOCKET_TICK_TIME)
 	end

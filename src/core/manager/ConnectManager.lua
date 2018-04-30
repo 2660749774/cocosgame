@@ -52,14 +52,16 @@ end
 function ConnectManger:open(host, port)
     if self.socket then
         if self.socket.isConnected then
+            log:info("close socket2")
             -- 关闭以前连接
+            self.socket:disconnect()
             self.socket:close()
         end
-        self.socket:disconnect()
         self.socket = nil
         self.host = nil
         self.port = nil
     end
+    log:info("[cmgr]open host:%s, port:%s", host, port)
 
     -- 建立新的连接
     local socket = net.SocketTCP.new()
@@ -173,7 +175,10 @@ end
 -- 关闭连接
 -- @function [parent=#ConnectManger] close
 function ConnectManger:close()
+    log:info("close socket1")
+    self.socket:disconnect()
     self.socket:close()
+    self.socket = nil
 end
 
 --------------------------------
@@ -238,7 +243,6 @@ function ConnectManger:onAppStateChange(event)
         -- 后台切回前台，重新建立连接
         if self:isConnected() then
             self:close()
-            self:open(self.host, self.port)
             app:changeScene("Login")
         end
     else
@@ -247,7 +251,6 @@ function ConnectManger:onAppStateChange(event)
             -- 网络发生变化重连
             if self:isConnected() then
                 self:close()
-                self:open(self.host, self.port)
                 app:changeScene("Login")
             end
         end
