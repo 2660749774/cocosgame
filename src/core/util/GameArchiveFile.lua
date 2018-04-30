@@ -238,7 +238,7 @@ end
 -- 更新玩家数据
 -- @function [parent=#GameArchiveFile] updatePlayerData
 function GameArchiveFile:updatePlayerData(player)
-    -- self.diam = player.diam
+    self.diam = player.diam
     self:saveData()
 
     emgr:dispatchEvent(EventDefine.PLAYER_UPDATE, { diam = player.diam })
