@@ -202,7 +202,7 @@ function TetrisMultiPanel:playGame()
         udpConv = self.scheduleData.def.udpConv
         self.playerId = self.scheduleData.def.playerId
         self.targetId = self.scheduleData.att.playerId
-        self.targetTetris:setAIFlag(scheduleData.att.isAI)
+        self.targetTetris:setAIFlag(self.scheduleData.att.isAI)
     end
 
     -- 建立udp连接
