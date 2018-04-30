@@ -45,6 +45,9 @@ end
 -- 连接服务器
 -- @function [parent=#LoginScene] connectServer
 function LoginScene:connectServer()
+    -- 登录gamecenter
+    nativeBridge.loginGameCenter()
+    
     -- 先进行一次http请求
     net.WebUtil.sendRequest("https://www.baidu.com")
 
@@ -101,6 +104,7 @@ function LoginScene:login()
     local yx = "will"
     local yxSource = "will"
     local uuid = ""
+    local gamecenterUserInfo = nativeBridge.getGameCenterUserInfo()
     log:info("deviceInfo:%s", deviceInfo)
     cmgr:send(actions.login, handler(self, self.onLoginCallback), deviceInfo, deviceType, yx, yxSource, uuid)
 end

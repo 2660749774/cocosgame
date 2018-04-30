@@ -19,6 +19,7 @@
 #include <arpa/inet.h>
 #include <err.h>
 #import "LuaBridge.h"
+#import "GameCenter.h"
 
 @implementation LuaBridge
 
@@ -39,6 +40,9 @@ static int lua_listener = 0;
         // 注册网络监听
         NSString* host =[[dict valueForKey:@"host"] stringValue];
         cpnpNetworkConnectivitySetHostAddress([host UTF8String]);
+    } else if ([action isEqualToString:@"loginGameCenter"])
+    {
+        [[GameCenter getInstance] authUser];
     }
 }
 
@@ -73,6 +77,11 @@ static int lua_listener = 0;
     if ([action isEqualToString:@"getDeviceSSID"])
     {
         return [LuaBridge getDeviceSSID];
+    }
+    if ([action isEqualToString:@"getGameCenterUserInfo"])
+    {
+        return [[GameCenter getInstance] getUserInfo];
+        
     }
     return @"";
 }

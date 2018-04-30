@@ -31,7 +31,8 @@
 - (void) authUser;
 //注册gameCenter认证回调
 - (void) registerForAuthenticationNotification;
-
+//获取用户信息
+- (NSString*) getUserInfo;
 //显示排行榜
 - (void) showLeaderboard;
 //排行榜关闭时回调
@@ -39,7 +40,7 @@
 
 //上传分数到Gamecenter
 - (void) reportScore:(int64_t)score forCategory:(NSString*)category;
-// 下载前x个分数
+//下载前x个分数
 - (void) retrieveTopXScores:(int)number;
 
 //显示成就

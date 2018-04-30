@@ -6,6 +6,7 @@
 //
 //
 #import "GameCenter.h"
+#import "LuaBridge.h"
 
 @implementation GameCenter
 
@@ -96,6 +97,52 @@ static UIViewController* currentModalViewController = nil;
     } else {
         NSLog(@"Already authenticated!");
     }
+}
+
+-(NSString*) getUserInfo
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    if (!gameCenterAvailable) {
+        // 状态，不可用
+        [dict setObject:@1 forKey:@"state"];
+        
+    } else {
+        GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+        if (localPlayer.isAuthenticated) {
+            // 认证过了
+            [localPlayer generateIdentityVerificationSignatureWithCompletionHandler:^(NSURL * _Nullable publicKeyUrl, NSData * _Nullable signature, NSData * _Nullable salt, uint64_t timestamp, NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"ERROR: %@",error);
+                    [dict setObject:@3 forKey:@"state"];
+                    [dict setObject:[error localizedDescription] forKey:@"error"];
+                } else {
+                    [dict setObject:@0 forKey:@"state"];
+                    [dict setObject:[publicKeyUrl absoluteString] forKey:@"publicKeyUrl"];
+                    [dict setObject:[signature base64EncodedStringWithOptions:0]  forKey:@"signature"];
+                    [dict setObject:[salt base64EncodedStringWithOptions:0] forKey:@"salt"];
+                    [dict setObject:[NSString stringWithFormat:@"%llu", timestamp] forKey:@"timestamp"];
+                    [dict setObject:localPlayer.playerID forKey:@"player_id"];
+                    [dict setObject:[[NSBundle mainBundle] bundleIdentifier] forKey:@"app_bundle_id"];
+                }
+                [LuaBridge callLua:@"gamecenterUserInfo" args:dict];
+            }];
+        } else {
+            // 没认证过
+            [dict setObject:@2 forKey:@"state"];
+            
+        }
+    }
+    
+    // 序列化为JSON格式
+    NSError *error;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if (! jsonData)
+    {
+        NSLog(@"[LuaBridge]json解析失败：%@", error);
+        return @"";
+    }
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 -(void)removeControlView

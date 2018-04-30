@@ -119,6 +119,38 @@ function NativeBridge.getFakeDeviceId()
 end
 
 --------------------------------
+-- 登录GameCenter
+-- @function [parent=#NativeBridge] loginGameCenter
+function NativeBridge.loginGameCenter()
+	log:info("NativeBridge loginGameCenter")
+	if targetPlatform == cc.PLATFORM_OS_IPHONE
+		or targetPlatform == cc.PLATFORM_OS_IPAD then
+			-- ios、android平台
+			local args = {
+				action = "loginGameCenter"
+			}
+			NativeBridge.callNativeMethod(args)
+	end
+end
+
+--------------------------------
+-- 获取GameCenter信息
+-- @function [parent=#NativeBridge] getGameCenterUserInfo
+function NativeBridge.getGameCenterUserInfo()
+	userInfo = ""
+	if targetPlatform == cc.PLATFORM_OS_IPHONE
+		or targetPlatform == cc.PLATFORM_OS_IPAD then
+			-- ios、android平台
+			local args = {
+				action = "getGameCenterUserInfo"
+			}
+			userInfo = NativeBridge.callNativeMethodWithReturn(args)
+	end
+	log:info("gamecenter userInfo:%s", userInfo)
+	return userInfo
+end
+
+--------------------------------
 -- native调用lua的方法
 -- @function [parent=#NativeBridge] callLua
 function NativeBridge.callLua(jsonStr)

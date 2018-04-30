@@ -1791,9 +1791,12 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
-						DevelopmentTeam = T9AV7L8BJN;
+						DevelopmentTeam = K442222L9V;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 1;
+							};
 							com.apple.SafariKeychain = {
 								enabled = 0;
 							};
@@ -1948,7 +1951,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# 产品输出目录\nTARGET_PATH=${BUILT_PRODUCTS_DIR}/${TARGET_NAME}.app\necho ${TARGET_PATH}\n\n# 源码模式\ncp -RLp ${SRCROOT}/../../../src ${TARGET_PATH}/.\ncp -RLp ${SRCROOT}/../../../res ${TARGET_PATH}/.\n\n# 资源目录\n#RES_PATH=/Workspace/packer/output/20170903171855\n\n# 拷贝到目标目录\n#rm -rf ${TARGET_PATH}/assets/\n#mkdir ${TARGET_PATH}/assets/\n#cp -RLp ${RES_PATH}/* ${TARGET_PATH}/assets/.\n\n# 特别处理main.lua\n# cp -RLp ${RES_PATH}/cff2a2a86a0422e736adb460d254dfc2 ${TARGET_PATH}/cff2a2a86a0422e736adb460d254dfc2\n\n# find ${SRCROOT}/../../../src/ -name \"*\" -exec touch -cm {} \\;\n# find ${SRCROOT}/../../../res/ -name \"*\" -exec touch -cm {} \\;";
+			shellScript = "# 产品输出目录\nTARGET_PATH=${BUILT_PRODUCTS_DIR}/${TARGET_NAME}.app\necho ${TARGET_PATH}\n\n# 源码模式\nrm -rf ${TARGET_PATH}/src\nrm -rf ${TARGET_PATH}/res\ncp -RLp ${SRCROOT}/../../../src ${TARGET_PATH}/.\ncp -RLp ${SRCROOT}/../../../res ${TARGET_PATH}/.\n\n# 资源目录\n#RES_PATH=/Workspace/packer/output/20170903171855\n\n# 拷贝到目标目录\n#rm -rf ${TARGET_PATH}/assets/\n#mkdir ${TARGET_PATH}/assets/\n#cp -RLp ${RES_PATH}/* ${TARGET_PATH}/assets/.\n\n# 特别处理main.lua\n# cp -RLp ${RES_PATH}/cff2a2a86a0422e736adb460d254dfc2 ${TARGET_PATH}/cff2a2a86a0422e736adb460d254dfc2\n\n# find ${SRCROOT}/../../../src/ -name \"*\" -exec touch -cm {} \\;\n# find ${SRCROOT}/../../../res/ -name \"*\" -exec touch -cm {} \\;";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2465,10 +2468,10 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = T9AV7L8BJN;
+				DEVELOPMENT_TEAM = K442222L9V;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2501,8 +2504,8 @@
 					100000000,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoshitang.game.gametest;
-				PROVISIONING_PROFILE = "685cf232-a650-4b2b-a588-1e49e78ed418";
-				PROVISIONING_PROFILE_SPECIFIER = "ZWJ(0920):*";
+				PROVISIONING_PROFILE = "ccd238d5-51bb-449d-9117-ebcecef9ffef";
+				PROVISIONING_PROFILE_SPECIFIER = gametest;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -2552,7 +2555,7 @@
 					100000000,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoshitang.game.gametest;
-				PROVISIONING_PROFILE = "08331293-b505-4465-af34-269f430ca9dd";
+				PROVISIONING_PROFILE = "ccd238d5-51bb-449d-9117-ebcecef9ffef";
 				PROVISIONING_PROFILE_SPECIFIER = gametest;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
