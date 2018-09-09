@@ -22,11 +22,15 @@ function TetrisMultiPanel:onCreate(scheduleData)
     self.btnDown = layout['btn_down']
     self.btnDownLow = layout['btn_down_low']
     self.random = require("core.util.Random").new()
+    self.lbTimeMinute = layout['lb_time_minute']
+    self.lbTimeSec = layout['lb_time_sec']
 
     -- 信息部分
     self.scheduleData = scheduleData
     self.playerInfo = {}
     self.targetPlayerInfo = {}
+    self.totalTime = 0
+    self.time = 0
     
     self:initPlayerInfo(layout, self.playerInfo, "_self")
     self:initPlayerInfo(layout, self.targetPlayerInfo, "_target")
@@ -40,6 +44,7 @@ function TetrisMultiPanel:onCreate(scheduleData)
     self.pingSeq = 0
     self.pingTime = 0
     self.host = host
+    self.hasResult = false
 
     -- 初始化游戏块
     local targetBg = layout['tetris_panel_target']
@@ -79,6 +84,9 @@ function TetrisMultiPanel:onCreate(scheduleData)
 
     -- 播放背景音乐
     amgr:playBgMusic({"power_bg1.mp3", "power_bg2.mp3", "power_bg3.mp3"}, true)
+
+    -- 更新时间显示
+    self:updateTime()
 end
 
 --------------------------------
@@ -166,6 +174,9 @@ function TetrisMultiPanel:handlePush(response)
             elseif data.protoId == protos.FIGHT_START then
                 -- 战斗开始协议
                 self:gameStart(data)
+            elseif data.protoId == protos.TIME_OVER then
+                -- 时间结束
+                self:handleTimeOver()
             elseif data.protoId == protos.REMOVE_LINES then
                 -- 增加行数
                 if not data.isAI and data.playerId == self.playerId then
@@ -231,6 +242,10 @@ function TetrisMultiPanel:gameStart(data)
     if self.targetTetris then
         self.targetTetris:gameStart(self.targetId, nil, data.randomseed)
     end
+
+    self.currTime = cc.Util:getCurrentTime()
+    self.totalTime = data.totalTime / 1000
+    self:updateTime()
 end
 
 --------------------------------
@@ -238,8 +253,11 @@ end
 -- @function [parent=#TetrisMultiPanel] gameOver
 function TetrisMultiPanel:gameOver(data)
     log:info("gameOver playerId:%s", data.playerId)
+    self.tetris:gameOver();
     self.targetTetris:gameOver()
-    Tips.showSceneTips("等待结果更新", -1)
+    if not self.hasResult then
+        Tips.showSceneTips("等待结果更新", -1)
+    end
 end
 
 --------------------------------
@@ -252,6 +270,9 @@ function TetrisMultiPanel:showFightResult(data)
         ucmgr:removePushCallback(self.pushHandler)
         ucmgr:close()
     end
+
+    -- 收到结果
+    self.hasResult = true
 
     -- 清理Tips
     Tips.clearTips()
@@ -324,6 +345,48 @@ function TetrisMultiPanel:updateScore(removeLineNums, isSelf)
         self:updatePlayerScore(self.targetPlayerInfo, removeLineNums)
     end 
 end
+
+--------------------------------
+-- 每秒帧事件
+-- @function [parent=#TetrisMultiPanel] doUpdate
+function TetrisMultiPanel:doUpdate(dt)
+    local currTime = cc.Util:getCurrentTime()
+    local _dt = (currTime - self.currTime) / 1000
+    self.currTime = currTime
+
+    self.time = self.time + _dt
+    self:updateTime()
+end
+
+--------------------------------
+-- 更新倒计时
+-- @function [parent=#TetrisMultiPanel] updateTime
+function TetrisMultiPanel:updateTime()
+    local leftTime = math.round(self.totalTime - self.time)
+    if leftTime < 0 then
+        leftTime = 0
+    end
+
+    local minute = math.floor(leftTime / 60)
+    local sec = math.floor(leftTime % 60)
+    self.lbTimeMinute:setString(string.format("%02d", minute))
+    self.lbTimeSec:setString(string.format("%02d", sec))
+end
+
+--------------------------------
+-- 处理时间结束
+-- @function [parent=#TetrisMultiPanel] handleTimeOver
+function TetrisMultiPanel:handleTimeOver()
+    self.time = self.totalTime
+    self:updateTime()
+
+    -- 上传分数
+    self.tetris:sendPack(actions.doUpdate, protos.UPLOAD_SCORE, self.playerId .. "," .. self.playerInfo.score)
+    if self.targetId == 0 then
+        self.tetris:sendPack(actions.doUpdate, protos.UPLOAD_SCORE, self.targetId .. "," .. self.targetPlayerInfo.score)
+    end
+end
+    
 
 --------------------------------
 -- 更新分数

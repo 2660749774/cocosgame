@@ -150,8 +150,8 @@ end
 -- @function [parent=#BasePanel] runOpenTransition
 function BasePanel:runOpenTransition()
     if self.rootPanel and not self.disableTransition then
-        self.rootPanel:setScale(0.5)
-        local action = cc.EaseQuinticActionOut:create(cc.ScaleBy:create(0.5, 2, 2))
+        self.rootPanel:setScale(0.8)
+        local action = cc.EaseElasticOut:create(cc.ScaleTo:create(0.5, 1, 1))
         self.rootPanel:runAction(action)
     end
 end
@@ -161,13 +161,12 @@ end
 -- @function [parent=#BasePanel] runCloseTransition
 function BasePanel:runCloseTransition(callback)
     if self.rootPanel and not self.disableTransition then
-        local baseAction = cc.EaseQuinticActionIn:create(cc.ScaleBy:create(0.5, 0, 0))
+        local baseAction = cc.EaseExponentialOut:create(cc.ScaleTo:create(0.3, 1, 0))
         if callback then
             local action = cc.Sequence:create(baseAction, cc.CallFunc:create(callback))
             self.rootPanel:runAction(action)
         else
-            local action = cc.EaseQuinticActionIn:create(baseAction)
-            self.rootPanel:runAction(action)
+            self.rootPanel:runAction(baseAction)
         end
     else
         if callback then

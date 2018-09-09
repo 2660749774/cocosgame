@@ -21,6 +21,7 @@ function TetrisNew:ctor(bg, isNet, isSelf, parent)
     self.parent = parent
     self.isSelf = isSelf
     self.blockWidth = 27
+    self.gameOverFlag = false
 
     self.core = nil
     self.grids = {} -- 当前方格
@@ -642,6 +643,9 @@ end
 -- 游戏结束
 -- @function [parent=#TetrisNew] gameStart
 function TetrisNew:gameOver()
+    if self.gameOverFlag then
+        return
+    end
     log:info("game Over")
     self.gameOverFlag = true
     self.parent:notifyGameOver(self.isSelf)

@@ -26,7 +26,7 @@ end
 
 --------------------------------
 -- 创建方法
--- @function [parent=#Tips] showTips
+-- @function [parent=#Tips] showSceneTips
 function Tips.showSceneTips(msg, interval, color)
     color = color or Tips.DEFAULT_COLOR
     local tips = Tips._createTips(msg, color, interval)
@@ -35,7 +35,7 @@ function Tips.showSceneTips(msg, interval, color)
     local scene = app:getCurrScene()
     local tipLayer = scene:getLayer("tips")
     tipLayer:removeAllChildren()
-
+    log:info("[tip]add tip scene:%s", scene)
     tips:setPosition(display.cx, display.cy)
     scene:addObject(tips, "tips")
 end
@@ -45,6 +45,7 @@ end
 -- @function [parent=#Tips] clearTips
 function Tips.clearTips()
     local scene = app:getCurrScene()
+    log:info("[tip]clear tip scene:%s", scene)
     local tipLayer = scene:getLayer("tips")
     tipLayer:removeAllChildren()
 end

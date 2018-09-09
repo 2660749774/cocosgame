@@ -359,6 +359,48 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
+          <AbstractNodeData Name="time_bg_1" ActionTag="1578812173" Tag="140" IconVisible="False" LeftMargin="229.2943" RightMargin="366.7057" TopMargin="107.4414" BottomMargin="984.5586" ctype="SpriteObjectData">
+            <Size X="44.0000" Y="44.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="251.2943" Y="1006.5586" />
+            <Scale ScaleX="0.8000" ScaleY="0.8000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3926" Y="0.8861" />
+            <PreSize X="0.0688" Y="0.0387" />
+            <FileData Type="PlistSubImage" Path="time_bg.png" Plist="ui/plist/common.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="sp_mh" ActionTag="-1132714077" Tag="141" IconVisible="False" LeftMargin="303.4600" RightMargin="306.5400" TopMargin="103.4967" BottomMargin="982.5033" ctype="SpriteObjectData">
+            <Size X="30.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="318.4600" Y="1007.5033" />
+            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4976" Y="0.8869" />
+            <PreSize X="0.0469" Y="0.0440" />
+            <FileData Type="PlistSubImage" Path="mh.png" Plist="ui/plist/singlematch.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="lb_time_sec" ActionTag="807095562" Tag="142" IconVisible="False" LeftMargin="316.6518" RightMargin="263.3482" TopMargin="107.4972" BottomMargin="978.5028" CharWidth="30" CharHeight="50" LabelText="10" StartChar="0" ctype="TextAtlasObjectData">
+            <Size X="60.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="346.6518" Y="1003.5028" />
+            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5416" Y="0.8834" />
+            <PreSize X="0.0938" Y="0.0440" />
+            <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/number_red.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="lb_time_minute" ActionTag="-1293743485" Tag="143" IconVisible="False" LeftMargin="260.8615" RightMargin="319.1385" TopMargin="107.4972" BottomMargin="978.5028" CharWidth="30" CharHeight="50" LabelText="10" StartChar="0" ctype="TextAtlasObjectData">
+            <Size X="60.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="290.8615" Y="1003.5028" />
+            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4545" Y="0.8834" />
+            <PreSize X="0.0938" Y="0.0440" />
+            <LabelAtlasFileImage_CNB Type="Normal" Path="ui/number_atlas/number_red.png" Plist="" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

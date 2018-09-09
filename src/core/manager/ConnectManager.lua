@@ -24,6 +24,7 @@ function ConnectManger:ctor(compress)
 
     -- 主动请求回调
     self.requestCallback = {}
+    self.requestFailCallback = {}
     self.requestId = 1
 
     -- 推送回调
@@ -88,6 +89,13 @@ end
 -- 发送请求
 -- @function [parent=#ConnectManger] send
 function ConnectManger:send(action, callback, ...)
+    self:sendWithFailCallback(action, callback, nil, ...)
+end
+
+--------------------------------
+-- 发送请求
+-- @function [parent=#ConnectManger] sendWithFailCallback
+function ConnectManger:sendWithFailCallback(action, callback, failCallback, ...)
     if not self.socket.isConnected then
         log:info("网络未连接")
         return
@@ -117,6 +125,9 @@ function ConnectManger:send(action, callback, ...)
     -- 注册回调
     if callback then
         self.requestCallback[self.requestId] = callback
+    end
+    if failCallback then
+        self.requestFailCallback[self.requestId] = failCallback
     end
     
     log:info("[send] command:%s requestId:%s, args:%s", action.command, self.requestId, args)
@@ -350,9 +361,15 @@ function ConnectManger:decode()
         end
     else
         self.requestCallback[requestId] = nil
-        local msg = response.data.msg
-        if msg then
-            Tips.showSceneTips(msg, 1, Tips.ERROR_COLOR)
+        local failCallback = self.requestFailCallback[requestId]
+        if failCallback then
+            failCallback(response)
+            self.requestFailCallback[requestId] = nil
+        else
+            local msg = response.data.msg
+            if msg then
+                Tips.showSceneTips(msg, 1, Tips.ERROR_COLOR)
+            end
         end
     end
 end

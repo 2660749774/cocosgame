@@ -624,8 +624,11 @@ function TetrisCore:merge(block)
         for j = 1, 4 do
             if blockArray[i][j] ~= 0 then
                 local bx, by = j, (4 - i) + 1
-                if self.grids[ty + by][tx + bx] == 0 then
-                    self.grids[ty + by][tx + bx] = BlockProp:create("", 1)
+                -- 增加边界检查
+                local _y = ty + by
+                local _x = tx + bx
+                if _y >= 0 and _y <= self.row and _x >= 0 and _x <= self.col and self.grids[_y][_x] == 0 then
+                    self.grids[_y][_x] = BlockProp:create("", 1)
                 else
                     succ = false
                 end

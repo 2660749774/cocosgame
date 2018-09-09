@@ -55,10 +55,12 @@ actions.PUSH_UPDATE = "push@update"
 cc.exports.protos = {}
 
 protos.FIGHT_START = 1
+protos.TIME_OVER = 3
 protos.KEY_PRESS = 100
 protos.REMOVE_LINES = 101
 protos.DEAD = 102
 protos.HEART_BEAT = 103
+protos.UPLOAD_SCORE = 104
 protos.UPDATE_SERVERFRAME = -100
 protos.DO_FRAME = -101
 

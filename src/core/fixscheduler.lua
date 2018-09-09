@@ -297,7 +297,7 @@ function fixscheduler:send(playerId, action, protoId, ...)
         if ucmgr:isConnected() then
             ucmgr:send(action, protoId, unpack(args))
         else
-            cmgr:send(action, nil, protoId, unpack(args))
+            cmgr:sendWithFailCallback(action, nil, function() end, protoId, unpack(args))
         end
 
         -- 如果当前没有延迟，直接执行
